@@ -32,3 +32,9 @@ data/analysis_results/
 # OS
 .DS_Store
 Thumbs.db
+
+# Large data files (regenerate with: python scripts/refresh_data.py --full --durations)
+data/raw/setlists.json
+data/raw/shows.json
+data/raw/durations.json
+data/refresh_log.txt
