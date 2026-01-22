@@ -585,8 +585,8 @@ class PhishStatsEngine:
             raw_data={"longest": longest, "top_5": top_5}
         )
 
-    def query_play_count(self, song_name: str, venue: str = None, year: str = None) -> QueryResult:
-        """Query for how many times a song has been played."""
+    def query_play_count(self, song_name: str, venue: str = None, year: int = None) -> QueryResult:
+        """Query for how many times a song has been played, optionally filtered by year."""
         if song_name not in self.song_stats:
             return QueryResult(
                 success=False,
@@ -595,7 +595,45 @@ class PhishStatsEngine:
 
         stats = self.song_stats[song_name]
 
-        # TODO: Add venue/year filtering when we have that data indexed
+        # If year specified, count plays in that year
+        if year:
+            year_str = str(year)
+            count = 0
+            dates = []
+            for show in self.shows:
+                if not show["showdate"].startswith(year_str):
+                    continue
+                for song in show.get("songs", []):
+                    if song.get("song") == song_name:
+                        count += 1
+                        dates.append(show["showdate"])
+                        break
+
+            total_count = stats["play_count"]
+
+            if count == 0:
+                answer = f"{song_name} was not played in {year}. It has been played {total_count} times total."
+                related = [f"{song_name} in {year - 1}", f"{song_name} in {year + 1}", f"how many shows in {year}"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                dates.sort()
+                answer = (
+                    f"{song_name} was played **{count} times** in {year} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                if dates:
+                    answer += f"\n\nFirst in {year}: {dates[0]}\nLast in {year}: {dates[-1]}"
+                related = [f"longest {song_name} in {year}", f"{song_name} in {year - 1}", f"how many shows in {year}"]
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=str(count),
+                related_queries=related,
+                raw_data={"count": count, "year": year, "dates": dates}
+            )
+
+        # Default: total play count
         count = stats["play_count"]
         first = stats["first_played"]
         last = stats["last_played"]
@@ -2711,13 +2749,19 @@ class PhishStatsEngine:
                 answer="I couldn't identify which song you're asking about. Try 'longest Tweezer' or 'longest song at MSG'."
             )
 
-        # Pattern: "how many times" / "play count" / "times played" (with venue support)
+        # Pattern: "how many times" / "play count" / "times played" (with venue and year support)
         if any(p in question_lower for p in ["how many times", "play count", "times played", "how often"]):
             song = self._normalize_song_name(base_question)
+            year = self._extract_year_from_query(question)
+
+            # Special case: "2001" is a song, not a year
+            if song == "Also Sprach Zarathustra" and year == 2001:
+                year = None
+
             if song:
                 if venue:
                     return self.query_play_count_at_venue(song, venue)
-                return self.query_play_count(song)
+                return self.query_play_count(song, year=year)
             return QueryResult(
                 success=False,
                 answer="I couldn't identify which song you're asking about."
