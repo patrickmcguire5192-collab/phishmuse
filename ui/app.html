@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishMuse - Ask Anything About Phish</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    /* Phish logo style - bubbly rainbow text */
+    .phish-logo {
+      font-family: 'Comic Sans MS', 'Marker Felt', cursive;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      text-shadow:
+        3px 3px 0 #ff6b00,
+        -1px -1px 0 #ff0000,
+        1px -1px 0 #ffff00,
+        -1px 1px 0 #00ff00,
+        0 4px 8px rgba(0,0,0,0.3);
+      background: linear-gradient(180deg,
+        #ff3333 0%,
+        #ff6600 20%,
+        #ffcc00 40%,
+        #33cc33 60%,
+        #3399ff 80%,
+        #9933ff 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4));
+    }
+    /* Rainbow gradient like Phish logo */
+    .rainbow-text {
+      background: linear-gradient(90deg,
+        #ff0000 0%,
+        #ff8000 17%,
+        #ffff00 33%,
+        #00ff00 50%,
+        #00bfff 67%,
+        #8000ff 83%,
+        #ff00ff 100%
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Band image styling - fixed size, no stretching */
+    .band-image {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      flex-shrink: 0;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #e53e3e 0%, #ed8936 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Logo styling - StatMuse inspired clean wordmark */
+    .logo-text {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .query-input:focus {
+      box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    }
+    .typing-indicator span {
+      animation: bounce 1.4s infinite ease-in-out;
+    }
+    .typing-indicator span:nth-child(1) { animation-delay: -0.32s; }
+    .typing-indicator span:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+    /* Rainbow gradient button */
+    .rainbow-btn {
+      background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #54a0ff);
+      background-size: 200% 200%;
+      animation: gradient-shift 3s ease infinite;
+    }
+    @keyframes gradient-shift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+</head>
+<body class="bg-gray-950 min-h-screen text-white">
+
+  <!-- Header -->
+  <header class="border-b border-gray-800">
+    <div class="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <!-- Rainbow circle logo mark -->
+        <div class="w-9 h-9 rounded-lg flex items-center justify-center rainbow-btn">
+          <span class="text-white font-black text-lg" style="text-shadow: 0 1px 2px rgba(0,0,0,0.3);">P</span>
+        </div>
+        <!-- Clean wordmark like StatMuse -->
+        <span class="logo-text text-2xl"><span class="rainbow-text">Phish</span><span class="text-white">Muse</span></span>
+      </div>
+      <div class="text-sm text-gray-500">
+        1,998 shows • 988 songs • 40+ years
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-12">
+
+    <!-- Hero Section -->
+    <div class="text-center mb-8">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">
+        Ask anything about <span class="phish-logo text-5xl md:text-6xl">Phish</span>
+      </h1>
+      <p class="text-gray-400 text-lg">
+        Natural language queries. Instant answers.
+      </p>
+    </div>
+
+    <!-- Query Input -->
+    <form id="queryForm" class="relative mb-6">
+      <input
+        type="text"
+        id="queryInput"
+        placeholder="What's the longest Tweezer ever played?"
+        class="query-input w-full px-6 py-4 bg-gray-900 border border-gray-700 rounded-2xl text-lg placeholder-gray-500 focus:outline-none focus:border-purple-500 transition"
+        autocomplete="off"
+      >
+      <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 rainbow-btn px-5 py-2 rounded-xl font-semibold transition hover:opacity-90">
+        Ask
+      </button>
+    </form>
+
+    <!-- Example Queries -->
+    <div id="suggestions" class="flex flex-wrap gap-2 justify-center mb-12">
+      <span class="text-sm text-gray-500">Try:</span>
+      <button onclick="askQuestion('longest Tweezer at MSG')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">longest Tweezer at MSG</button>
+      <button onclick="askQuestion('Beatles covers')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">Beatles covers</button>
+      <button onclick="askQuestion('gap on Harpua')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">gap on Harpua</button>
+      <button onclick="askQuestion('most played song')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">most played song</button>
+      <button onclick="askQuestion('Tweezer in set 2')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">Tweezer in set 2</button>
+    </div>
+
+    <!-- Chat History -->
+    <div id="chatHistory" class="space-y-6">
+      <!-- Messages will be inserted here -->
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-gray-800 mt-24">
+    <div class="max-w-4xl mx-auto px-4 py-8 text-center text-gray-500 text-sm">
+      <p class="mb-2"><span class="rainbow-text font-semibold">PhishMuse</span> — Your AI-powered Phish encyclopedia</p>
+      <p>Data from Phish.net & Phish.in APIs</p>
+    </div>
+  </footer>
+
+  <script>
+    const chatHistory = document.getElementById('chatHistory');
+    const queryInput = document.getElementById('queryInput');
+    const queryForm = document.getElementById('queryForm');
+
+    // Band images to randomly display with responses
+    const bandImages = [
+      '/images/band1.png',
+      '/images/band2.png',
+      '/images/band3.png',
+      '/images/band4.png',
+      '/images/hotdogs.png'
+    ];
+
+    function getRandomBandImage() {
+      return bandImages[Math.floor(Math.random() * bandImages.length)];
+    }
+
+    function askQuestion(question) {
+      queryInput.value = question;
+      submitQuery(question);
+    }
+
+    function addUserMessage(question) {
+      // Clear previous chat - only show current query
+      chatHistory.innerHTML = '';
+
+      const div = document.createElement('div');
+      div.className = 'flex justify-end';
+      div.innerHTML = `
+        <div class="bg-red-500/20 border border-red-500/30 rounded-2xl rounded-br-md px-5 py-3 max-w-md">
+          <p class="text-red-200">${escapeHtml(question)}</p>
+        </div>
+      `;
+      chatHistory.appendChild(div);
+      scrollToBottom();
+    }
+
+    function addTypingIndicator() {
+      const div = document.createElement('div');
+      div.id = 'typing';
+      div.className = 'flex justify-start';
+      div.innerHTML = `
+        <div class="bg-gray-900 border border-gray-800 rounded-2xl rounded-bl-md px-5 py-4">
+          <div class="typing-indicator flex gap-1">
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+            <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+          </div>
+        </div>
+      `;
+      chatHistory.appendChild(div);
+      scrollToBottom();
+    }
+
+    function removeTypingIndicator() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
+
+    function addBotResponse(data) {
+      removeTypingIndicator();
+
+      const div = document.createElement('div');
+      div.className = 'flex justify-start';
+
+      let cardHtml = '';
+      if (data.card) {
+        if (data.card.type === 'longest') {
+          cardHtml = `
+            <div class="stat-card rounded-2xl p-6 border border-gray-700 mt-4">
+              <div class="flex items-start justify-between mb-4">
+                <div>
+                  <p class="text-gray-400 text-sm uppercase tracking-wide">Longest Performance</p>
+                  <h2 class="text-2xl font-bold text-white mt-1">${escapeHtml(data.card.title)}</h2>
+                </div>
+                <div class="text-right">
+                  <p class="text-4xl font-extrabold gradient-text">${escapeHtml(data.card.stat)}</p>
+                  <p class="text-gray-500 text-sm">duration</p>
+                </div>
+              </div>
+              <div class="border-t border-gray-700 pt-4">
+                <p class="text-gray-300">${escapeHtml(data.card.subtitle)}</p>
+                <p class="text-gray-500 text-sm mt-1">${escapeHtml(data.card.context)}</p>
+              </div>
+              ${data.card.extra ? `
+                <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-700">
+                  <div>
+                    <p class="text-gray-500 text-xs">Avg Duration</p>
+                    <p class="text-white font-semibold">${escapeHtml(data.card.extra.avg_duration)}</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 text-xs">Monster Rate</p>
+                    <p class="text-white font-semibold">${escapeHtml(data.card.extra.monster_rate)}</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 text-xs">Total Performances</p>
+                    <p class="text-white font-semibold">${data.card.extra.total_performances}</p>
+                  </div>
+                  <div>
+                    <p class="text-gray-500 text-xs">Monster Jams (25+ min)</p>
+                    <p class="text-white font-semibold">${data.card.extra.monster_count}</p>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+          `;
+        } else if (data.card.type === 'count' || data.card.type === 'stats') {
+          cardHtml = `
+            <div class="stat-card rounded-2xl p-6 border border-gray-700 mt-4">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="text-2xl font-bold text-white">${escapeHtml(data.card.title)}</h2>
+                  <p class="text-gray-400 text-sm mt-1">${escapeHtml(data.card.subtitle || '')}</p>
+                </div>
+                ${data.card.stat ? `
+                  <div class="text-center">
+                    <p class="text-5xl font-extrabold gradient-text">${data.card.stat}</p>
+                    <p class="text-gray-500 text-sm">${escapeHtml(data.card.stat_label || 'times')}</p>
+                  </div>
+                ` : ''}
+              </div>
+              ${data.card.extra ? `
+                <div class="grid grid-cols-2 gap-4 mt-4 pt-4 border-t border-gray-700">
+                  ${data.card.extra.jamchart_count !== undefined ? `
+                    <div>
+                      <p class="text-gray-500 text-xs">Jam Charted</p>
+                      <p class="text-white font-semibold">${data.card.extra.jamchart_count} times</p>
+                    </div>
+                  ` : ''}
+                  ${data.card.extra.opener_count !== undefined ? `
+                    <div>
+                      <p class="text-gray-500 text-xs">Show Openers</p>
+                      <p class="text-white font-semibold">${data.card.extra.opener_count}</p>
+                    </div>
+                  ` : ''}
+                  ${data.card.extra.encore_count !== undefined ? `
+                    <div>
+                      <p class="text-gray-500 text-xs">Encores</p>
+                      <p class="text-white font-semibold">${data.card.extra.encore_count}</p>
+                    </div>
+                  ` : ''}
+                  ${data.card.extra.venue_count !== undefined ? `
+                    <div>
+                      <p class="text-gray-500 text-xs">Unique Venues</p>
+                      <p class="text-white font-semibold">${data.card.extra.venue_count}</p>
+                    </div>
+                  ` : ''}
+                </div>
+              ` : ''}
+            </div>
+          `;
+        }
+      }
+
+      let relatedHtml = '';
+      if (data.related && data.related.length > 0) {
+        relatedHtml = `
+          <div class="flex flex-wrap gap-2 mt-4">
+            <span class="text-gray-500 text-sm">Related:</span>
+            ${data.related.map(q => `
+              <button onclick="askQuestion('${escapeHtml(q)}')" class="px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">${escapeHtml(q)}</button>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      const bandImage = getRandomBandImage();
+
+      div.innerHTML = `
+        <div class="flex items-start gap-4 max-w-2xl">
+          <img src="${bandImage}" alt="Band member" class="band-image hidden sm:block">
+          <div class="space-y-2 flex-1">
+            <div class="bg-gray-900 border border-gray-800 rounded-2xl rounded-bl-md px-5 py-4">
+              <p class="text-gray-200 leading-relaxed whitespace-pre-line">${escapeHtml(data.answer)}</p>
+            </div>
+            ${cardHtml}
+            ${relatedHtml}
+          </div>
+        </div>
+      `;
+
+      chatHistory.appendChild(div);
+      scrollToBottom();
+    }
+
+    function addErrorMessage(error) {
+      removeTypingIndicator();
+      const div = document.createElement('div');
+      div.className = 'flex justify-start';
+      div.innerHTML = `
+        <div class="bg-red-900/50 border border-red-700 rounded-2xl rounded-bl-md px-5 py-4 max-w-2xl">
+          <p class="text-red-200">${escapeHtml(error)}</p>
+        </div>
+      `;
+      chatHistory.appendChild(div);
+      scrollToBottom();
+    }
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    function scrollToBottom() {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+
+    async function submitQuery(question) {
+      if (!question.trim()) return;
+
+      addUserMessage(question);
+      addTypingIndicator();
+      queryInput.value = '';
+
+      try {
+        const response = await fetch('/api/query', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ question })
+        });
+
+        const data = await response.json();
+
+        if (data.error) {
+          addErrorMessage(data.error);
+        } else {
+          addBotResponse(data);
+        }
+      } catch (error) {
+        addErrorMessage('Failed to connect to server. Is the backend running?');
+      }
+    }
+
+    queryForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      submitQuery(queryInput.value);
+    });
+
+    // Focus input on load
+    queryInput.focus();
+  </script>
+
+</body>
+</html>

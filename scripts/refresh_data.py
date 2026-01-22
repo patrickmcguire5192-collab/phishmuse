@@ -94,6 +94,51 @@ def pull_phishnet_shows(years=None):
     return list(all_shows.values()), all_setlist_entries
 
 
+def pull_phishnet_songs():
+    """Pull song metadata (including original artist) from Phish.net API."""
+    print("Pulling song metadata from Phish.net...")
+
+    url = f"https://api.phish.net/v5/songs.json?apikey={PHISHNET_API_KEY}"
+    data = fetch_json(url)
+
+    if not data or not data.get("data"):
+        print("  Error: Could not fetch songs data")
+        return {}
+
+    songs = {}
+    for song in data["data"]:
+        song_name = song.get("song", "")
+        if song_name:
+            songs[song_name] = {
+                "songid": song.get("songid"),
+                "slug": song.get("slug"),
+                "artist": song.get("artist", "Phish"),  # Original artist
+                "debut": song.get("debut"),
+                "last_played": song.get("last_played"),
+                "times_played": song.get("times_played"),
+                "gap": song.get("gap")
+            }
+
+    print(f"  Loaded metadata for {len(songs)} songs")
+
+    # Group by artist for quick lookup
+    artists = {}
+    for song_name, song_data in songs.items():
+        artist = song_data.get("artist", "Phish")
+        if artist not in artists:
+            artists[artist] = []
+        artists[artist].append(song_name)
+
+    # Show top 10 cover artists
+    sorted_artists = sorted(artists.items(), key=lambda x: -len(x[1]))
+    print("  Top cover artists:")
+    for artist, song_list in sorted_artists[:10]:
+        if artist != "Phish":
+            print(f"    {artist}: {len(song_list)} songs")
+
+    return songs
+
+
 def pull_phishin_durations(song_slugs):
     """Pull duration data from Phish.in API for specified songs."""
     all_durations = {}
@@ -316,9 +361,23 @@ def main():
         with open(RAW_DIR / "setlists.json") as f:
             setlist_entries = json.load(f)
 
+    # Pull song metadata (including artist info for covers)
+    if args.full or args.recent:
+        print("\n[2/5] Pulling song metadata from Phish.net...")
+        songs_metadata = pull_phishnet_songs()
+        save_json(songs_metadata, RAW_DIR / "songs_metadata.json")
+    else:
+        # Load existing if available
+        songs_meta_path = RAW_DIR / "songs_metadata.json"
+        if songs_meta_path.exists():
+            with open(songs_meta_path) as f:
+                songs_metadata = json.load(f)
+        else:
+            songs_metadata = {}
+
     # Pull Phish.in durations
     if args.durations or args.full:
-        print("\n[2/4] Pulling duration data from Phish.in...")
+        print("\n[3/5] Pulling duration data from Phish.in...")
 
         # Key songs we want duration data for
         song_slugs = [
@@ -348,7 +407,7 @@ def main():
             durations = {}
 
     # Compute stats
-    print("\n[3/4] Computing aggregate statistics...")
+    print("\n[4/5] Computing aggregate statistics...")
 
     if setlist_entries or (RAW_DIR / "setlists.json").exists():
         if not setlist_entries:
@@ -371,7 +430,7 @@ def main():
         save_json(venue_stats, COMPUTED_DIR / "venue_stats.json")
 
     # Create metadata file
-    print("\n[4/4] Writing metadata...")
+    print("\n[5/5] Writing metadata...")
     metadata = {
         "last_refresh": datetime.now().isoformat(),
         "show_count": len(shows) if shows else 0,
