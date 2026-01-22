@@ -346,16 +346,16 @@
                     <p class="text-white font-semibold">${escapeHtml(data.card.extra.avg_duration)}</p>
                   </div>
                   <div>
-                    <p class="text-gray-500 text-xs">Monster Rate</p>
-                    <p class="text-white font-semibold">${escapeHtml(data.card.extra.monster_rate)}</p>
+                    <p class="text-gray-500 text-xs">Jam Chart Rate</p>
+                    <p class="text-white font-semibold">${data.card.extra.jamchart_rate || 'N/A'}</p>
                   </div>
                   <div>
                     <p class="text-gray-500 text-xs">Total Performances</p>
-                    <p class="text-white font-semibold">${data.card.extra.total_performances}</p>
+                    <p class="text-white font-semibold">${data.card.extra.total_performances || 'N/A'}</p>
                   </div>
                   <div>
-                    <p class="text-gray-500 text-xs">Monster Jams (25+ min)</p>
-                    <p class="text-white font-semibold">${data.card.extra.monster_count}</p>
+                    <p class="text-gray-500 text-xs">Jam Chart Versions</p>
+                    <p class="text-white font-semibold">${data.card.extra.jamchart_count != null ? data.card.extra.jamchart_count : 'N/A'}</p>
                   </div>
                 </div>
               ` : ''}
