@@ -304,6 +304,27 @@ class PhishStatsEngine:
         {"great woods", "tweeter center", "comcast center", "xfinity center", "mansfield"},  # Great Woods area
     ]
 
+    # Display names for equivalent venue groups
+    EQUIVALENT_VENUE_DISPLAY = {
+        "deer creek": "Deer Creek / Ruoff Music Center (Noblesville)",
+        "ruoff": "Deer Creek / Ruoff Music Center (Noblesville)",
+        "noblesville": "Deer Creek / Ruoff Music Center (Noblesville)",
+        "klipsch": "Deer Creek / Ruoff Music Center (Noblesville)",
+        "great woods": "Great Woods / Xfinity Center (Mansfield)",
+        "tweeter center": "Great Woods / Xfinity Center (Mansfield)",
+        "comcast center": "Great Woods / Xfinity Center (Mansfield)",
+        "xfinity center": "Great Woods / Xfinity Center (Mansfield)",
+        "mansfield": "Great Woods / Xfinity Center (Mansfield)",
+    }
+
+    def _get_equivalent_venue_display(self, venue: str) -> Optional[str]:
+        """Get display name for equivalent venue groups."""
+        venue_lower = venue.lower()
+        for key, display in self.EQUIVALENT_VENUE_DISPLAY.items():
+            if key in venue_lower:
+                return display
+        return None
+
     def _match_venue(self, perf_venue: str, target_venue: str) -> bool:
         """Check if a performance venue matches the target venue."""
         if not perf_venue or not target_venue:
@@ -1197,7 +1218,8 @@ class PhishStatsEngine:
                 )
 
             sorted_shows = sorted(all_ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
-            venue_display = sorted_shows[0]['venue'] if sorted_shows else venue
+            # Use combined display name for equivalent venues, otherwise use first result's venue
+            venue_display = self._get_equivalent_venue_display(venue) or (sorted_shows[0]['venue'] if sorted_shows else venue)
 
         else:
             # Year-based query
