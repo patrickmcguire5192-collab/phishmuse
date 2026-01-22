@@ -2693,6 +2693,10 @@ class PhishStatsEngine:
             song = self._normalize_song_name(base_question)
             year = self._extract_year_from_query(question)
 
+            # Special case: "2001" is a song (Also Sprach Zarathustra), not a year
+            if song == "Also Sprach Zarathustra" and year == 2001:
+                year = None
+
             if song:
                 if venue:
                     return self.query_longest_at_venue(song, venue)
