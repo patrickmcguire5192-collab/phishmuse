@@ -347,11 +347,44 @@ class PhishStatsEngine:
                 }
             },
             related_queries=[
-                f"top 10 longest {song_name}s",
+                f"top 10 longest {song_name}",
                 f"average {song_name} length",
                 f"longest {song_name}" if year else f"longest {song_name} in 2024"
             ],
             raw_data={"longest": longest, "tracks": tracks}
+        )
+
+    def query_top_longest(self, song_name: str, count: int = 10) -> QueryResult:
+        """Query for the top N longest versions of a song."""
+        slug = self._song_to_slug(song_name)
+
+        if slug not in self.raw_durations:
+            return QueryResult(
+                success=False,
+                answer=f"I don't have duration data for {song_name}. Try a common jam vehicle like Tweezer, Ghost, or You Enjoy Myself.",
+                related_queries=["longest Tweezer", "longest Ghost", "longest YEM"]
+            )
+
+        tracks = self.raw_durations[slug]
+        sorted_tracks = sorted(tracks, key=lambda t: t.get("duration_min", 0), reverse=True)[:count]
+
+        # Format the list
+        lines = [f"Top {count} longest {song_name} performances:\n"]
+        for i, track in enumerate(sorted_tracks, 1):
+            mins = int(track["duration_min"])
+            secs = int((track["duration_min"] - mins) * 60)
+            duration_str = f"{mins}:{secs:02d}"
+            lines.append(f"{i}. {duration_str} - {track['date']} at {track['venue']}")
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines),
+            related_queries=[
+                f"longest {song_name}",
+                f"average {song_name} length",
+                f"{song_name} stats"
+            ],
+            raw_data={"top_tracks": sorted_tracks}
         )
 
     def query_longest_at_venue(self, song_name: str, venue: str) -> QueryResult:
@@ -2269,6 +2302,17 @@ class PhishStatsEngine:
                 success=False,
                 answer="I couldn't identify which song you're asking about. Try 'average Ghost length'."
             )
+
+        # Pattern: "top 10 longest [song]" or "top 5 longest [song]"
+        top_match = re.search(r'top\s+(\d+)\s+longest', question_lower)
+        if top_match or "top longest" in question_lower:
+            count = int(top_match.group(1)) if top_match else 10
+            # Extract song name, removing "top N longest" prefix and trailing 's'
+            song_query = re.sub(r'top\s+\d*\s*longest\s*', '', question_lower).strip()
+            song_query = song_query.rstrip('s')  # Remove plural 's'
+            song = self._normalize_song_name(song_query)
+            if song:
+                return self.query_top_longest(song, count)
 
         # Pattern: "longest [song]" or "what's the longest [song]"
         if "longest" in question_lower:
