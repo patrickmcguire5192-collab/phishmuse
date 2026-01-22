@@ -362,9 +362,11 @@ class PhishStatsEngine:
             f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
         )
 
-        # Calculate monster stats for the filtered set
-        monster_count = len([t for t in tracks if t.get("duration_min", 0) >= 25])
-        monster_rate = monster_count / len(tracks) if tracks else 0
+        # Get jam chart stats from song_stats
+        song_stats = self.song_stats.get(song_name, {})
+        jamchart_count = song_stats.get("jamchart_count", 0)
+        total_plays = song_stats.get("play_count", len(tracks))
+        jamchart_rate = jamchart_count / total_plays if total_plays > 0 else 0
 
         year_title = f"{song_name} ({year})" if year else song_name
         return QueryResult(
@@ -380,8 +382,8 @@ class PhishStatsEngine:
                 "extra": {
                     "avg_duration": f"{avg:.1f} min",
                     "total_performances": len(tracks),
-                    "monster_count": monster_count,
-                    "monster_rate": f"{monster_rate*100:.1f}%"
+                    "jamchart_count": jamchart_count,
+                    "jamchart_rate": f"{jamchart_rate*100:.1f}%"
                 }
             },
             related_queries=[
@@ -688,7 +690,6 @@ class PhishStatsEngine:
         if duration_data:
             parts.append(f"• Average length: {duration_data['avg_duration_min']:.1f} min")
             parts.append(f"• Longest: {duration_data['max_duration_min']:.1f} min ({duration_data['longest']['date']})")
-            parts.append(f"• Monster jams (25+ min): {duration_data['monster_count']} ({duration_data['monster_rate']*100:.1f}%)")
 
         return QueryResult(
             success=True,
