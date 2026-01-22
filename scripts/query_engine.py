@@ -99,6 +99,7 @@ class PhishStatsEngine:
         self.songs_metadata = {}  # Song metadata including original artist
         self.artists_to_songs = {}  # Reverse lookup: artist -> list of songs
         self.show_ratings_cache = {}  # Cache for show ratings by year
+        self.ratings_cache_file = DATA_DIR / "computed" / "show_ratings_cache.json"
 
     def load_data(self):
         """Load all pre-computed data."""
@@ -141,6 +142,17 @@ class PhishStatsEngine:
             except FileNotFoundError:
                 self.songs_metadata = {}
                 self.artists_to_songs = {}
+
+            # Load cached show ratings from disk
+            try:
+                if self.ratings_cache_file.exists():
+                    with open(self.ratings_cache_file) as f:
+                        self.show_ratings_cache = json.load(f)
+                        # Convert string keys back to ints
+                        self.show_ratings_cache = {int(k): v for k, v in self.show_ratings_cache.items()}
+                    print(f"  Loaded ratings cache for {len(self.show_ratings_cache)} years")
+            except (FileNotFoundError, json.JSONDecodeError):
+                self.show_ratings_cache = {}
 
             self.data_loaded = True
             print(f"  Loaded {len(self.song_stats)} songs, {len(self.duration_stats)} with durations, {len(self.shows)} shows")
@@ -959,6 +971,14 @@ class PhishStatsEngine:
                 continue
 
         self.show_ratings_cache[year] = ratings
+
+        # Save updated cache to disk for fast future access
+        try:
+            with open(self.ratings_cache_file, 'w') as f:
+                json.dump(self.show_ratings_cache, f)
+        except Exception:
+            pass  # Disk save is best-effort
+
         return ratings
 
     def query_top_rated_shows(self, year: int = None, venue: str = None, count: int = 5) -> QueryResult:
