@@ -2021,15 +2021,51 @@ class PhishStatsEngine:
         )
 
     def _extract_date_from_query(self, query: str) -> Optional[str]:
-        """Extract a date from a query like 'setlist from 12/31/1999'."""
-        # Common date patterns
-        patterns = [
+        """Extract a date from a query like 'setlist from 12/31/1999' or 'May 18th 1991'."""
+        # Month name mapping
+        months = {
+            'january': '01', 'jan': '01',
+            'february': '02', 'feb': '02',
+            'march': '03', 'mar': '03',
+            'april': '04', 'apr': '04',
+            'may': '05',
+            'june': '06', 'jun': '06',
+            'july': '07', 'jul': '07',
+            'august': '08', 'aug': '08',
+            'september': '09', 'sep': '09', 'sept': '09',
+            'october': '10', 'oct': '10',
+            'november': '11', 'nov': '11',
+            'december': '12', 'dec': '12'
+        }
+
+        query_lower = query.lower()
+
+        # Pattern 1: Natural language dates - "May 18th 1991", "May 18, 1991", "may 18 1991"
+        month_pattern = r'(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})'
+        match = re.search(month_pattern, query_lower)
+        if match:
+            month = months[match.group(1)]
+            day = match.group(2).zfill(2)
+            year = match.group(3)
+            return f"{year}-{month}-{day}"
+
+        # Pattern 2: "18th May 1991", "18 May 1991"
+        day_first_pattern = r'(\d{1,2})(?:st|nd|rd|th)?\s+(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec),?\s*(\d{4})'
+        match = re.search(day_first_pattern, query_lower)
+        if match:
+            day = match.group(1).zfill(2)
+            month = months[match.group(2)]
+            year = match.group(3)
+            return f"{year}-{month}-{day}"
+
+        # Pattern 3: Numeric date patterns
+        numeric_patterns = [
             r'(\d{4}-\d{2}-\d{2})',  # YYYY-MM-DD
             r'(\d{1,2}/\d{1,2}/\d{4})',  # MM/DD/YYYY or M/D/YYYY
             r'(\d{1,2}/\d{1,2}/\d{2})',  # MM/DD/YY
         ]
 
-        for pattern in patterns:
+        for pattern in numeric_patterns:
             match = re.search(pattern, query)
             if match:
                 date_str = match.group(1)
