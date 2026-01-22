@@ -440,6 +440,102 @@ class PhishStatsEngine:
             raw_data={"top_tracks": sorted_tracks}
         )
 
+    def query_last_long_version(self, song_name: str, min_duration: int, venue: str = None) -> QueryResult:
+        """Query for the last time a song was played over a certain duration threshold."""
+        slug = self._song_to_slug(song_name)
+
+        if slug not in self.raw_durations:
+            return QueryResult(
+                success=False,
+                answer=f"I don't have duration data for {song_name}.",
+                related_queries=["longest Tweezer", "longest Ghost"]
+            )
+
+        tracks = self.raw_durations[slug]
+
+        # Filter by venue if specified
+        if venue:
+            tracks = [t for t in tracks if self._match_venue(t.get("venue", ""), venue)]
+            if not tracks:
+                return QueryResult(
+                    success=False,
+                    answer=f"I couldn't find any performances of {song_name} at {venue}.",
+                    related_queries=[f"longest {song_name}", f"shows at {venue}"]
+                )
+
+        # Filter by duration threshold
+        long_versions = [t for t in tracks if t.get("duration_min", 0) >= min_duration]
+
+        venue_context = f" at {venue}" if venue else ""
+
+        if not long_versions:
+            # Find the longest one to give context
+            if tracks:
+                longest = max(tracks, key=lambda t: t.get("duration_min", 0))
+                return QueryResult(
+                    success=True,
+                    answer=f"{song_name} has never been played over {min_duration} minutes{venue_context}. "
+                           f"The longest was {longest['duration_min']:.1f} min on {longest['date']}.",
+                    related_queries=[f"longest {song_name}", f"last {song_name} over {min_duration - 5} min"]
+                )
+            return QueryResult(
+                success=False,
+                answer=f"No duration data found for {song_name}{venue_context}."
+            )
+
+        # Sort by date descending to find most recent
+        long_versions.sort(key=lambda t: t.get("date", ""), reverse=True)
+        most_recent = long_versions[0]
+
+        # Format duration
+        mins = int(most_recent["duration_min"])
+        secs = int((most_recent["duration_min"] - mins) * 60)
+        duration_str = f"{mins}:{secs:02d}"
+
+        # Calculate gap (shows since)
+        gap = 0
+        for show in sorted(self.shows, key=lambda s: s["showdate"], reverse=True):
+            if show["showdate"] > most_recent["date"]:
+                gap += 1
+            else:
+                break
+
+        total_long = len(long_versions)
+        total_perfs = len(tracks) if venue else len(self.raw_durations[slug])
+
+        answer = (
+            f"The last {song_name} over {min_duration} minutes{venue_context} was **{duration_str}** "
+            f"({most_recent['duration_min']:.1f} min) on {most_recent['date']} at {most_recent['venue']}."
+        )
+
+        if gap > 0:
+            answer += f"\n\nThat was **{gap} shows ago**."
+
+        answer += f"\n\n{total_long} of {total_perfs} performances ({total_long/total_perfs*100:.1f}%) have been {min_duration}+ minutes{venue_context}."
+
+        # Find the 2nd and 3rd most recent for context
+        if len(long_versions) > 1:
+            answer += "\n\nPrevious long versions:"
+            for t in long_versions[1:4]:
+                m = int(t["duration_min"])
+                s = int((t["duration_min"] - m) * 60)
+                answer += f"\n  • {t['date']}: {m}:{s:02d} at {t['venue']}"
+
+        related = [
+            f"longest {song_name}",
+            f"last {song_name} over {min_duration + 5} min" if min_duration < 30 else f"last {song_name} over 20 min",
+        ]
+        if not venue:
+            related.append(f"last {song_name} over {min_duration} min at MSG")
+
+        return QueryResult(
+            success=True,
+            answer=answer,
+            highlight=duration_str,
+            related_queries=related,
+            raw_data={"most_recent": most_recent, "all_long_versions": long_versions}
+        )
+
     def query_longest_at_venue(self, song_name: str, venue: str) -> QueryResult:
         """Query for the longest version of a song at a specific venue."""
         slug = self._song_to_slug(song_name)
@@ -2705,15 +2801,17 @@ class PhishStatsEngine:
                     answer="I couldn't identify which song you're asking about. Try 'gap on Harpua'."
                 )
 
-        # Pattern: "when did they last play" or "last time they played"
+        # Pattern: "when did they last play" or "last time they played" (but not duration queries)
         if any(p in question_lower for p in ["last play", "when did they last", "last time", "most recent"]):
-            song = self._normalize_song_name(base_question)
-            if song:
-                return self.query_last_played(song)
-            return QueryResult(
-                success=False,
-                answer="I couldn't identify which song you're asking about."
-            )
+            # Skip if this is a duration query (e.g., "last tweezer over 25 min")
+            if not re.search(r'\d+\s*\+?\s*min|over\s+\d+', question_lower):
+                song = self._normalize_song_name(base_question)
+                if song:
+                    return self.query_last_played(song)
+                return QueryResult(
+                    success=False,
+                    answer="I couldn't identify which song you're asking about."
+                )
 
         # Pattern: "average [song] length" or "how long is [song] usually"
         if any(p in question_lower for p in ["average", "avg", "typical", "usually"]) and any(p in question_lower for p in ["length", "long", "duration", "min"]):
@@ -2724,6 +2822,16 @@ class PhishStatsEngine:
                 success=False,
                 answer="I couldn't identify which song you're asking about. Try 'average Ghost length'."
             )
+
+        # Pattern: "last [song] over 25 minutes" or "last time they played [song] over 20 min"
+        duration_match = re.search(r'(\d+)\s*\+?\s*min', question_lower)
+        if duration_match and any(p in question_lower for p in ["over", "last", "when"]):
+            # Check if this is asking about duration threshold
+            if "over" in question_lower or "+" in question_lower or ("last" in question_lower and "min" in question_lower):
+                min_duration = int(duration_match.group(1))
+                song = self._normalize_song_name(base_question)
+                if song:
+                    return self.query_last_long_version(song, min_duration, venue)
 
         # Pattern: "top 10 longest [song]" or "top 5 longest [song]"
         top_match = re.search(r'top\s+(\d+)\s+longest', question_lower)
