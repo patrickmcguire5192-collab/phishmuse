@@ -237,6 +237,14 @@ class PhishStatsEngine:
                 venue_part = parts[1].strip() if len(parts) > 1 else ""
 
                 if venue_part:
+                    # Don't treat years as venues (e.g., "in 2023" should be a year filter, not a venue)
+                    venue_part_clean = venue_part.rstrip('?.,!')
+                    if venue_part_clean.isdigit() and len(venue_part_clean) == 4:
+                        year = int(venue_part_clean)
+                        if 1983 <= year <= 2030:
+                            # This is a year, not a venue - return original query
+                            return query, None
+
                     venue = self._normalize_venue_name(venue_part)
                     if venue:
                         return base_query, venue
@@ -265,58 +273,78 @@ class PhishStatsEngine:
 
         return False
 
-    def query_longest(self, song_name: str) -> QueryResult:
-        """Query for the longest version of a song."""
+    def query_longest(self, song_name: str, year: int = None) -> QueryResult:
+        """Query for the longest version of a song, optionally filtered by year."""
         slug = self._song_to_slug(song_name)
 
-        if slug not in self.duration_stats:
+        if slug not in self.raw_durations:
             return QueryResult(
                 success=False,
                 answer=f"I don't have duration data for {song_name}. Try a common jam vehicle like Tweezer, Ghost, or You Enjoy Myself.",
                 related_queries=["longest Tweezer", "longest Ghost", "longest YEM"]
             )
 
-        stats = self.duration_stats[slug]
-        longest = stats["longest"]
+        tracks = self.raw_durations[slug]
+
+        # Filter by year if specified
+        if year:
+            tracks = [t for t in tracks if t.get("date", "").startswith(str(year))]
+            if not tracks:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have any duration data for {song_name} in {year}.",
+                    related_queries=[f"longest {song_name}", f"{song_name} in {year}"]
+                )
+
+        # Find the longest
+        longest = max(tracks, key=lambda t: t.get("duration_min", 0))
+
+        # Get overall stats for comparison
+        all_tracks = self.raw_durations[slug]
+        avg = sum(t["duration_min"] for t in all_tracks) / len(all_tracks) if all_tracks else longest["duration_min"]
 
         # Format duration
         mins = int(longest["duration_min"])
         secs = int((longest["duration_min"] - mins) * 60)
         duration_str = f"{mins}:{secs:02d}"
 
-        # Calculate vs average
-        avg = stats["avg_duration_min"]
-        vs_avg = longest["duration_min"] / avg
+        vs_avg = longest["duration_min"] / avg if avg > 0 else 1.0
 
+        year_context = f" in {year}" if year else ""
         answer = (
-            f"The longest {song_name} was {duration_str} ({longest['duration_min']:.1f} minutes), "
+            f"The longest {song_name}{year_context} was {duration_str} ({longest['duration_min']:.1f} minutes), "
             f"played at {longest['venue']} on {longest['date']}. "
             f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
         )
 
+        # Calculate monster stats for the filtered set
+        monster_count = len([t for t in tracks if t.get("duration_min", 0) >= 25])
+        monster_rate = monster_count / len(tracks) if tracks else 0
+
+        year_title = f"{song_name} ({year})" if year else song_name
         return QueryResult(
             success=True,
             answer=answer,
             highlight=duration_str,
             card_data={
                 "type": "longest",
-                "title": song_name,
+                "title": year_title,
                 "stat": duration_str,
                 "subtitle": f"{longest['date']} • {longest['venue']}",
                 "context": f"{vs_avg:.1f}x longer than average ({avg:.1f} min)",
                 "extra": {
                     "avg_duration": f"{avg:.1f} min",
-                    "total_performances": stats["track_count"],
-                    "monster_count": stats["monster_count"],
-                    "monster_rate": f"{stats['monster_rate']*100:.1f}%"
+                    "total_performances": len(tracks),
+                    "monster_count": monster_count,
+                    "monster_rate": f"{monster_rate*100:.1f}%"
                 }
             },
             related_queries=[
                 f"top 10 longest {song_name}s",
                 f"average {song_name} length",
-                f"{song_name} monster jams"
+                f"longest {song_name}" if year else f"longest {song_name} in 2024"
             ],
-            raw_data=stats
+            raw_data={"longest": longest, "tracks": tracks}
         )
 
     def query_longest_at_venue(self, song_name: str, venue: str) -> QueryResult:
@@ -2206,10 +2234,12 @@ class PhishStatsEngine:
                 return self.query_longest_song_at_venue(venue)
 
             song = self._normalize_song_name(base_question)
+            year = self._extract_year_from_query(question)
+
             if song:
                 if venue:
                     return self.query_longest_at_venue(song, venue)
-                return self.query_longest(song)
+                return self.query_longest(song, year)
 
             # If we have a venue but no song identified, assume they want longest song at venue
             if venue:
