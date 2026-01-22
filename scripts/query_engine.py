@@ -114,6 +114,13 @@ class PhishStatsEngine:
         "friday the 13th": None,  # Variable - handle specially
     }
 
+    # Phish eras - year ranges (inclusive)
+    ERAS = {
+        "1.0": (1983, 2000),  # Original era through hiatus announcement
+        "2.0": (2002, 2004),  # Brief reunion
+        "3.0": (2009, 2030),  # Reunion to present (2030 is a safe upper bound)
+    }
+
     def __init__(self):
         self.data_loaded = False
         self.song_stats = {}
@@ -277,6 +284,10 @@ class PhishStatsEngine:
                 if venue_part:
                     venue_part_clean = venue_part.rstrip('?.,!')
 
+                    # Don't treat eras as venues (e.g., "in 1.0", "of 2.0", "from 3.0")
+                    if venue_part_clean in ["1.0", "2.0", "3.0"]:
+                        return query, None
+
                     # Don't treat years as venues (e.g., "in 2023" should be a year filter, not a venue)
                     if venue_part_clean.isdigit() and len(venue_part_clean) == 4:
                         year = int(venue_part_clean)
@@ -363,8 +374,8 @@ class PhishStatsEngine:
 
         return False
 
-    def query_longest(self, song_name: str, year: int = None, venue: str = None) -> QueryResult:
-        """Query for the longest version of a song, optionally filtered by year or venue."""
+    def query_longest(self, song_name: str, year: int = None, venue: str = None, era: str = None) -> QueryResult:
+        """Query for the longest version of a song, optionally filtered by year, venue, or era."""
         slug = self._song_to_slug(song_name)
 
         if slug not in self.raw_durations:
@@ -375,6 +386,17 @@ class PhishStatsEngine:
             )
 
         tracks = self.raw_durations[slug]
+
+        # Filter by era if specified
+        if era and era in self.ERAS:
+            era_start, era_end = self.ERAS[era]
+            tracks = self._filter_by_era(tracks, era_start, era_end)
+            if not tracks:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have any duration data for {song_name} in {era}.",
+                    related_queries=[f"longest {song_name}", f"longest {song_name} in 1.0"]
+                )
 
         # Filter by year if specified
         if year:
@@ -413,6 +435,8 @@ class PhishStatsEngine:
 
         # Build context string
         context_parts = []
+        if era:
+            context_parts.append(f"in {era}")
         if year:
             context_parts.append(f"in {year}")
         if venue:
@@ -427,7 +451,7 @@ class PhishStatsEngine:
             f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
         )
 
-        # Get jam chart stats from song_stats (only show for non-venue queries)
+        # Get jam chart stats from song_stats (only show for non-venue/era queries)
         song_stats = self.song_stats.get(song_name, {})
         jamchart_count = song_stats.get("jamchart_count", 0)
         total_plays = song_stats.get("play_count", len(all_tracks))
@@ -435,7 +459,9 @@ class PhishStatsEngine:
 
         # Build title
         title_parts = [song_name]
-        if year:
+        if era:
+            title_parts.append(f"({era})")
+        elif year:
             title_parts.append(f"({year})")
         if venue:
             venue_short = self._get_equivalent_venue_display(venue) or venue
@@ -444,12 +470,12 @@ class PhishStatsEngine:
             title_parts.append(f"@ {venue_short}")
         title = " ".join(title_parts)
 
-        # Build extra data - exclude jam chart for venue queries
+        # Build extra data - exclude jam chart for venue/era queries
         extra_data = {
             "avg_duration": f"{avg:.1f} min",
             "total_performances": len(tracks),
         }
-        if not venue:
+        if not venue and not era:
             extra_data["jamchart_count"] = jamchart_count
             extra_data["jamchart_rate"] = f"{jamchart_rate*100:.1f}%"
 
@@ -1220,17 +1246,50 @@ class PhishStatsEngine:
 
         return ratings
 
-    def query_top_rated_shows(self, year: int = None, venue: str = None, count: int = 5) -> QueryResult:
-        """Query for top-rated shows, optionally filtered by year or venue."""
-        if not year and not venue:
+    def query_top_rated_shows(self, year: int = None, venue: str = None, count: int = 5, era: str = None) -> QueryResult:
+        """Query for top-rated shows, optionally filtered by year, venue, or era."""
+        if not year and not venue and not era:
             return QueryResult(
                 success=False,
-                answer="Please specify a year or venue. Try 'top rated shows of 1997' or 'best shows at MSG'.",
-                related_queries=["top rated shows of 1997", "best shows at MSG", "highest rated 1999"]
+                answer="Please specify a year, venue, or era. Try 'top rated shows of 1997', 'best shows at MSG', or 'top rated 1.0'.",
+                related_queries=["top rated shows of 1997", "best shows at MSG", "top rated 1.0"]
             )
 
+        # For era queries, search across all years in the era
+        if era and era in self.ERAS:
+            era_start, era_end = self.ERAS[era]
+            all_ratings = {}
+
+            # Get years that exist in this era
+            era_years = []
+            for show in self.shows:
+                try:
+                    show_year = int(show['showdate'][:4])
+                    if era_start <= show_year <= era_end:
+                        era_years.append(show_year)
+                except (ValueError, KeyError):
+                    pass
+
+            unique_era_years = sorted(set(era_years))
+
+            # Fetch ratings for era years
+            for y in unique_era_years:
+                year_ratings = self._fetch_show_ratings_for_year(y)
+                all_ratings.update(year_ratings)
+
+            if not all_ratings:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have enough ratings data for {era}. Ratings require at least 3 reviews per show.",
+                    related_queries=["top rated 1.0", "top rated 3.0"]
+                )
+
+            sorted_shows = sorted(all_ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
+            venue_display = None
+            era_display = era
+
         # For venue queries, we need to search across multiple years
-        if venue and not year:
+        elif venue and not year:
             # Get venue shows from our data
             venue_shows = []
             for show in self.shows:
@@ -1265,6 +1324,7 @@ class PhishStatsEngine:
             sorted_shows = sorted(all_ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
             # Use combined display name for equivalent venues, otherwise use first result's venue
             venue_display = self._get_equivalent_venue_display(venue) or (sorted_shows[0]['venue'] if sorted_shows else venue)
+            era_display = None
 
         else:
             # Year-based query
@@ -1279,11 +1339,14 @@ class PhishStatsEngine:
 
             sorted_shows = sorted(ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
             venue_display = None
+            era_display = None
 
         # Format response
         lines = []
         if venue_display:
             lines.append(f"Top {len(sorted_shows)} rated shows at {venue_display}:\n")
+        elif era_display:
+            lines.append(f"Top {len(sorted_shows)} rated shows of {era_display}:\n")
         else:
             lines.append(f"Top {len(sorted_shows)} rated shows of {year}:\n")
 
@@ -1299,7 +1362,7 @@ class PhishStatsEngine:
             answer="\n".join(lines) + f"\n\n{context}",
             related_queries=[
                 f"setlist from {sorted_shows[0]['date']}" if sorted_shows else "top rated 1997",
-                f"top rated {year - 1}" if year else "top rated 1997",
+                f"top rated {year - 1}" if year else ("top rated 1.0" if era else "top rated 1997"),
                 "best shows at MSG"
             ],
             raw_data={"shows": sorted_shows}
@@ -1312,6 +1375,48 @@ class PhishStatsEngine:
         if match:
             return int(match.group(1))
         return None
+
+    def _extract_era_from_query(self, query: str) -> tuple:
+        """
+        Extract era from query like 'longest tweezer of 1.0' or 'best shows in 3.0'.
+        Returns (query_without_era, era_name, start_year, end_year) or (query, None, None, None).
+        """
+        query_lower = query.lower()
+
+        # Patterns to match era references
+        era_patterns = [
+            r'\b(in|of|from|during)\s+(1\.0|2\.0|3\.0)\b',  # "in 1.0", "of 2.0", etc.
+            r'\b(1\.0|2\.0|3\.0)\s+era\b',  # "1.0 era"
+            r'\b(1\.0|2\.0|3\.0)\b',  # Just "1.0", "2.0", "3.0"
+        ]
+
+        for pattern in era_patterns:
+            match = re.search(pattern, query_lower)
+            if match:
+                era = match.group(2) if match.lastindex >= 2 else match.group(1)
+                if era in self.ERAS:
+                    start_year, end_year = self.ERAS[era]
+                    # Remove era from query
+                    clean_query = re.sub(pattern, '', query, flags=re.IGNORECASE).strip()
+                    # Clean up any leftover prepositions at end
+                    clean_query = re.sub(r'\s+(in|of|from|during)$', '', clean_query, flags=re.IGNORECASE).strip()
+                    return clean_query, era, start_year, end_year
+
+        return query, None, None, None
+
+    def _filter_by_era(self, items: list, era_start: int, era_end: int, date_key: str = "date") -> list:
+        """Filter a list of items by era year range."""
+        filtered = []
+        for item in items:
+            date_str = item.get(date_key, "")
+            if date_str:
+                try:
+                    year = int(date_str[:4])
+                    if era_start <= year <= era_end:
+                        filtered.append(item)
+                except (ValueError, IndexError):
+                    pass
+        return filtered
 
     def query_show_count(self, since_year: int = None, in_year: int = None, in_decade: str = None) -> QueryResult:
         """Query for how many shows Phish has played."""
@@ -2682,6 +2787,9 @@ class PhishStatsEngine:
         # Extract venue if present (e.g., "longest Tweezer at MSG")
         base_question, venue = self._extract_venue_from_query(question)
 
+        # Extract era if present (e.g., "longest Tweezer of 1.0")
+        base_question, era, era_start, era_end = self._extract_era_from_query(base_question)
+
         # Pattern: Career stats - "career stats", "phish stats", "overall stats"
         if any(p in question_lower for p in ["career stats", "phish stats", "overall stats", "band stats"]):
             return self.query_career_stats()
@@ -2699,22 +2807,24 @@ class PhishStatsEngine:
                         break
                 return self.query_shows_on_date(month, day, holiday_name)
 
-        # Pattern: Top rated shows - "top rated shows of 1997", "best shows at MSG", "highest rated 1999"
+        # Pattern: Top rated shows - "top rated shows of 1997", "best shows at MSG", "highest rated 1999", "top rated 1.0"
         if any(p in question_lower for p in ["top rated", "best show", "highest rated", "top show"]):
-            year = self._extract_year_from_query(question)
+            year = self._extract_year_from_query(question) if not era else None  # Don't extract year if era is specified
             # Extract count if specified (e.g., "top 5 rated")
             count_match = re.search(r'top\s+(\d+)', question_lower)
             count = int(count_match.group(1)) if count_match else 5
 
             if venue:
                 return self.query_top_rated_shows(year=year, venue=venue, count=count)
+            elif era:
+                return self.query_top_rated_shows(era=era, count=count)
             elif year:
                 return self.query_top_rated_shows(year=year, count=count)
             else:
                 return QueryResult(
                     success=False,
-                    answer="Please specify a year or venue. Try 'top rated shows of 1997' or 'best shows at MSG'.",
-                    related_queries=["top rated shows of 1997", "best shows at MSG"]
+                    answer="Please specify a year, venue, or era. Try 'top rated shows of 1997', 'best shows at MSG', or 'top rated 1.0'.",
+                    related_queries=["top rated shows of 1997", "best shows at MSG", "top rated 1.0"]
                 )
 
         # Pattern: Opener stats - "opener stats", "most common openers", "unique openers"
@@ -2918,7 +3028,7 @@ class PhishStatsEngine:
                 return self.query_longest_song_at_venue(venue)
 
             song = self._normalize_song_name(base_question)
-            year = self._extract_year_from_query(question)
+            year = self._extract_year_from_query(question) if not era else None  # Don't extract year if era is specified
 
             # Special case: "2001" is a song (Also Sprach Zarathustra), not a year
             if song == "Also Sprach Zarathustra" and year == 2001:
@@ -2927,7 +3037,7 @@ class PhishStatsEngine:
             if song:
                 if venue:
                     return self.query_longest_at_venue(song, venue)
-                return self.query_longest(song, year)
+                return self.query_longest(song, year, era=era)
 
             # If we have a venue but no song identified, assume they want longest song at venue
             if venue:
