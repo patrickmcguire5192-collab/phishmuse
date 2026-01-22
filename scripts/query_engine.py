@@ -237,13 +237,20 @@ class PhishStatsEngine:
                 venue_part = parts[1].strip() if len(parts) > 1 else ""
 
                 if venue_part:
-                    # Don't treat years as venues (e.g., "in 2023" should be a year filter, not a venue)
                     venue_part_clean = venue_part.rstrip('?.,!')
+
+                    # Don't treat years as venues (e.g., "in 2023" should be a year filter, not a venue)
                     if venue_part_clean.isdigit() and len(venue_part_clean) == 4:
                         year = int(venue_part_clean)
                         if 1983 <= year <= 2030:
                             # This is a year, not a venue - return original query
                             return query, None
+
+                    # Don't treat dates as venues (e.g., "from 1999-12-31" or "from 12/31/1999")
+                    if re.match(r'^\d{4}-\d{2}-\d{2}$', venue_part_clean):
+                        return query, None
+                    if re.match(r'^\d{1,2}/\d{1,2}/\d{2,4}$', venue_part_clean):
+                        return query, None
 
                     venue = self._normalize_venue_name(venue_part)
                     if venue:
@@ -796,8 +803,8 @@ class PhishStatsEngine:
                 "sets": sets
             },
             related_queries=[
-                f"longest song from {show['showdate']}",
-                f"other shows at {venue}"
+                f"how many shows at {venue}",
+                f"how many shows in {show['showdate'][:4]}"
             ],
             raw_data=show
         )
