@@ -296,6 +296,17 @@ class PhishStatsEngine:
                     # If no exact match, use the raw venue part for fuzzy matching later
                     return base_query, venue_part
 
+        # Check if query ends with a known venue alias (without explicit markers)
+        # e.g., "longest simple deer creek" or "longest tweezer msg"
+        words = query_lower.rstrip('?.,!').split()
+        # Check last 1-3 words for venue aliases
+        for num_words in [3, 2, 1]:
+            if len(words) >= num_words + 1:  # Need at least one word before venue
+                potential_venue = " ".join(words[-num_words:])
+                if potential_venue in self.VENUE_ALIASES:
+                    base_query = " ".join(query.split()[:-num_words])
+                    return base_query, potential_venue
+
         return query, None
 
     # Venues that are the same location with different names over time
@@ -352,8 +363,8 @@ class PhishStatsEngine:
 
         return False
 
-    def query_longest(self, song_name: str, year: int = None) -> QueryResult:
-        """Query for the longest version of a song, optionally filtered by year."""
+    def query_longest(self, song_name: str, year: int = None, venue: str = None) -> QueryResult:
+        """Query for the longest version of a song, optionally filtered by year or venue."""
         slug = self._song_to_slug(song_name)
 
         if slug not in self.raw_durations:
@@ -375,6 +386,17 @@ class PhishStatsEngine:
                     related_queries=[f"longest {song_name}", f"{song_name} in {year}"]
                 )
 
+        # Filter by venue if specified
+        if venue:
+            tracks = [t for t in tracks if self._match_venue(t.get("venue", ""), venue)]
+            if not tracks:
+                venue_display = self._get_equivalent_venue_display(venue) or venue
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have any duration data for {song_name} at {venue_display}.",
+                    related_queries=[f"longest {song_name}", f"shows at {venue}"]
+                )
+
         # Find the longest
         longest = max(tracks, key=lambda t: t.get("duration_min", 0))
 
@@ -389,41 +411,64 @@ class PhishStatsEngine:
 
         vs_avg = longest["duration_min"] / avg if avg > 0 else 1.0
 
-        year_context = f" in {year}" if year else ""
+        # Build context string
+        context_parts = []
+        if year:
+            context_parts.append(f"in {year}")
+        if venue:
+            venue_display = self._get_equivalent_venue_display(venue) or venue
+            context_parts.append(f"at {venue_display}")
+        context_str = " ".join(context_parts)
+        context_prefix = f" {context_str}" if context_str else ""
+
         answer = (
-            f"The longest {song_name}{year_context} was {duration_str} ({longest['duration_min']:.1f} minutes), "
+            f"The longest {song_name}{context_prefix} was {duration_str} ({longest['duration_min']:.1f} minutes), "
             f"played at {longest['venue']} on {longest['date']}. "
             f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
         )
 
-        # Get jam chart stats from song_stats
+        # Get jam chart stats from song_stats (only show for non-venue queries)
         song_stats = self.song_stats.get(song_name, {})
         jamchart_count = song_stats.get("jamchart_count", 0)
-        total_plays = song_stats.get("play_count", len(tracks))
+        total_plays = song_stats.get("play_count", len(all_tracks))
         jamchart_rate = jamchart_count / total_plays if total_plays > 0 else 0
 
-        year_title = f"{song_name} ({year})" if year else song_name
+        # Build title
+        title_parts = [song_name]
+        if year:
+            title_parts.append(f"({year})")
+        if venue:
+            venue_short = self._get_equivalent_venue_display(venue) or venue
+            # Use shorter version for title
+            venue_short = venue_short.split(" (")[0] if " (" in venue_short else venue_short
+            title_parts.append(f"@ {venue_short}")
+        title = " ".join(title_parts)
+
+        # Build extra data - exclude jam chart for venue queries
+        extra_data = {
+            "avg_duration": f"{avg:.1f} min",
+            "total_performances": len(tracks),
+        }
+        if not venue:
+            extra_data["jamchart_count"] = jamchart_count
+            extra_data["jamchart_rate"] = f"{jamchart_rate*100:.1f}%"
+
         return QueryResult(
             success=True,
             answer=answer,
             highlight=duration_str,
             card_data={
                 "type": "longest",
-                "title": year_title,
+                "title": title,
                 "stat": duration_str,
                 "subtitle": f"{longest['date']} • {longest['venue']}",
                 "context": f"{vs_avg:.1f}x longer than average ({avg:.1f} min)",
-                "extra": {
-                    "avg_duration": f"{avg:.1f} min",
-                    "total_performances": len(tracks),
-                    "jamchart_count": jamchart_count,
-                    "jamchart_rate": f"{jamchart_rate*100:.1f}%"
-                }
+                "extra": extra_data
             },
             related_queries=[
                 f"top 10 longest {song_name}",
                 f"average {song_name} length",
-                f"longest {song_name}" if year else f"longest {song_name} in 2024"
+                f"longest {song_name}" if (year or venue) else f"longest {song_name} in 2024"
             ],
             raw_data={"longest": longest, "tracks": tracks}
         )
@@ -596,8 +641,8 @@ class PhishStatsEngine:
         overall_longest = overall_stats.get("max_duration_min", longest["duration_min"])
         overall_avg = overall_stats.get("avg_duration_min", longest["duration_min"])
 
-        # Build answer
-        venue_display = longest.get("venue", venue)
+        # Build answer - use combined display name for equivalent venues
+        venue_display = self._get_equivalent_venue_display(venue) or longest.get("venue", venue)
         answer = (
             f"The longest {song_name} at {venue_display} was {duration_str} "
             f"({longest['duration_min']:.1f} minutes) on {longest['date']}. "
