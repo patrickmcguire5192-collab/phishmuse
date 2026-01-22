@@ -2606,8 +2606,8 @@ class PhishStatsEngine:
                 # If just "set breakdown" or general, target_set stays None for full breakdown
                 return self.query_song_by_set(song, target_set, year)
 
-        # Pattern: Show count - "how many shows" (check before setlist patterns)
-        if any(p in question_lower for p in ["how many shows", "total shows", "number of shows", "show count"]):
+        # Pattern: Show count - "how many shows", "shows since 2020" (check before setlist patterns)
+        if any(p in question_lower for p in ["how many shows", "total shows", "number of shows", "show count", "shows since"]):
             year = self._extract_year_from_query(question)
             if "since" in question_lower and year:
                 return self.query_show_count(since_year=year)
@@ -2637,14 +2637,21 @@ class PhishStatsEngine:
             )
 
         # Pattern: Gap query - "gap on [song]" or "how long since [song]"
+        # Note: "shows since [year]" is handled by show count, not gap
         if any(p in question_lower for p in ["gap on", "gap for", "how long since", "shows since"]):
-            song = self._normalize_song_name(base_question)
-            if song:
-                return self.query_gap(song)
-            return QueryResult(
-                success=False,
-                answer="I couldn't identify which song you're asking about. Try 'gap on Harpua'."
-            )
+            # Check if this is "shows since [year]" - if so, let show count handle it
+            year = self._extract_year_from_query(question)
+            if "shows since" in question_lower and year and not self._normalize_song_name(base_question):
+                # This is "shows since 2020", not "shows since Harpua" - let it fall through
+                pass
+            else:
+                song = self._normalize_song_name(base_question)
+                if song:
+                    return self.query_gap(song)
+                return QueryResult(
+                    success=False,
+                    answer="I couldn't identify which song you're asking about. Try 'gap on Harpua'."
+                )
 
         # Pattern: "when did they last play" or "last time they played"
         if any(p in question_lower for p in ["last play", "when did they last", "last time", "most recent"]):

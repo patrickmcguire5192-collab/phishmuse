@@ -141,13 +141,10 @@
       </button>
     </form>
 
-    <!-- Example Queries -->
+    <!-- Example Queries (populated dynamically) -->
     <div id="suggestions" class="flex flex-wrap gap-2 justify-center mb-12">
       <span class="text-sm text-gray-500">Try:</span>
-      <button onclick="askQuestion('How long was the longest Tweezer at MSG?')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">How long was the longest Tweezer at MSG?</button>
-      <button onclick="askQuestion('How many Beatles songs have they covered?')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">How many Beatles songs have they covered?</button>
-      <button onclick="askQuestion('When did they last play Harpua?')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">When did they last play Harpua?</button>
-      <button onclick="askQuestion('How many times has Ghost been played in set II?')" class="suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition">How many times has Ghost been played in set II?</button>
+      <!-- Buttons populated by JavaScript -->
     </div>
 
     <!-- Chat History -->
@@ -179,9 +176,101 @@
       '/images/hotdogs.png'
     ];
 
+    // 50 sample questions - randomly shown on page load
+    const sampleQuestions = [
+      // Longest versions
+      "What's the longest Tweezer ever played?",
+      "How long was the longest Ghost at MSG?",
+      "Longest David Bowie of all time?",
+      "What's the longest YEM ever?",
+      "Longest Bathtub Gin at Alpine Valley?",
+      "How long was the longest Mike's Song?",
+      "What's the longest Hood ever played?",
+      "Longest Slave to the Traffic Light?",
+      "What's the longest Carini ever?",
+      "Longest Reba of all time?",
+      // Play counts
+      "How many times has Tweezer been played?",
+      "How many times have they played Possum?",
+      "How many Ghost performances total?",
+      "How many times has Fluffhead been played?",
+      "How many Antelope performances?",
+      // Set position queries
+      "How many times has Ghost been played in set II?",
+      "How often does Tweezer open the show?",
+      "How many times has YEM been the encore?",
+      "How often is Possum played in set I?",
+      "How many times has Hood closed set II?",
+      // Gaps and last played
+      "When did they last play Harpua?",
+      "Gap on Fluffhead?",
+      "When was the last time they played Gamehendge?",
+      "How long since they played Esther?",
+      "Gap on The Curtain With?",
+      // Covers
+      "How many Beatles songs have they covered?",
+      "What Rolling Stones covers have they played?",
+      "How many Talking Heads songs have they covered?",
+      "Led Zeppelin covers?",
+      "How many Grateful Dead covers?",
+      // Venue queries
+      "How many shows at MSG?",
+      "How many times have they played Alpine Valley?",
+      "Shows at Dick's Sporting Goods Park?",
+      "How many shows at Hampton Coliseum?",
+      "How many shows at Red Rocks?",
+      // Show counts
+      "How many shows in 1997?",
+      "Shows since 2020?",
+      "How many shows in the 90s?",
+      "Total shows ever?",
+      "How many shows in 2024?",
+      // Top rated
+      "Top rated shows of 1997?",
+      "Best shows at MSG?",
+      "Top rated shows of 1999?",
+      "Best shows of 2023?",
+      "Top rated 1995 shows?",
+      // Holiday shows
+      "How many shows on Halloween?",
+      "How many shows on New Year's Eve?",
+      "Shows on July 4th?",
+      // Stats and openers/encores
+      "Most common encore song?",
+      "Most common opener?",
+      "What song has the biggest gap?",
+      "Most played song of all time?"
+    ];
+
+    function getRandomQuestions(count = 4) {
+      const shuffled = [...sampleQuestions].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, count);
+    }
+
+    function populateSuggestions() {
+      const container = document.getElementById('suggestions');
+      const questions = getRandomQuestions(4);
+
+      container.innerHTML = '<span class="text-sm text-gray-500">Try:</span>';
+      questions.forEach(q => {
+        const btn = document.createElement('button');
+        btn.className = 'suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition';
+        btn.textContent = q;
+        btn.onclick = () => askQuestion(q);
+        container.appendChild(btn);
+      });
+
+      // Also randomize placeholder
+      const randomQ = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
+      queryInput.placeholder = randomQ;
+    }
+
     function getRandomBandImage() {
       return bandImages[Math.floor(Math.random() * bandImages.length)];
     }
+
+    // Populate suggestions on page load
+    document.addEventListener('DOMContentLoaded', populateSuggestions);
 
     function askQuestion(question) {
       queryInput.value = question;
