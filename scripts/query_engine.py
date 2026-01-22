@@ -89,6 +89,31 @@ class PhishStatsEngine:
         "rosemont": "Rosemont Horizon",
     }
 
+    # Holiday date mappings (month, day)
+    HOLIDAYS = {
+        "halloween": (10, 31),
+        "new years eve": (12, 31),
+        "new year's eve": (12, 31),
+        "nye": (12, 31),
+        "new years": (12, 31),
+        "new year's": (12, 31),
+        "christmas": (12, 25),
+        "christmas eve": (12, 24),
+        "thanksgiving": None,  # Variable date - handle specially
+        "july 4th": (7, 4),
+        "july 4": (7, 4),
+        "fourth of july": (7, 4),
+        "4th of july": (7, 4),
+        "independence day": (7, 4),
+        "valentines day": (2, 14),
+        "valentine's day": (2, 14),
+        "st patricks day": (3, 17),
+        "st. patrick's day": (3, 17),
+        "april fools": (4, 1),
+        "april fool's": (4, 1),
+        "friday the 13th": None,  # Variable - handle specially
+    }
+
     def __init__(self):
         self.data_loaded = False
         self.song_stats = {}
@@ -2291,6 +2316,143 @@ class PhishStatsEngine:
 
         return None
 
+    def _extract_month_day_from_query(self, query: str) -> Optional[tuple]:
+        """Extract month and day from query like '10/31', 'October 31', or 'halloween'.
+        Returns tuple (month, day) or None."""
+        query_lower = query.lower()
+
+        # Check for holiday names first (check longer names first to avoid substring issues)
+        for holiday in sorted(self.HOLIDAYS.keys(), key=len, reverse=True):
+            if holiday in query_lower:
+                return self.HOLIDAYS[holiday]  # Returns (month, day) tuple or None for variable holidays
+
+        # Month name mapping
+        months = {
+            'january': 1, 'jan': 1, 'february': 2, 'feb': 2,
+            'march': 3, 'mar': 3, 'april': 4, 'apr': 4,
+            'may': 5, 'june': 6, 'jun': 6, 'july': 7, 'jul': 7,
+            'august': 8, 'aug': 8, 'september': 9, 'sep': 9, 'sept': 9,
+            'october': 10, 'oct': 10, 'november': 11, 'nov': 11,
+            'december': 12, 'dec': 12
+        }
+
+        # Pattern: "October 31", "Oct 31st", "october 31"
+        month_pattern = r'(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)\s+(\d{1,2})(?:st|nd|rd|th)?(?!\d)'
+        match = re.search(month_pattern, query_lower)
+        if match:
+            month = months[match.group(1)]
+            day = int(match.group(2))
+            return (month, day)
+
+        # Pattern: "31st of October", "31 October"
+        day_first_pattern = r'(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)(?!\s*\d{4})'
+        match = re.search(day_first_pattern, query_lower)
+        if match:
+            day = int(match.group(1))
+            month = months[match.group(2)]
+            return (month, day)
+
+        # Pattern: "10/31" (MM/DD without year)
+        numeric_pattern = r'(?:^|[^\d])(\d{1,2})/(\d{1,2})(?:[^\d/]|$)'
+        match = re.search(numeric_pattern, query)
+        if match:
+            month = int(match.group(1))
+            day = int(match.group(2))
+            if 1 <= month <= 12 and 1 <= day <= 31:
+                return (month, day)
+
+        return None
+
+    def query_shows_on_date(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
+        """Query for how many shows Phish has played on a specific month/day across all years."""
+        # Find all shows on this date
+        matching_shows = []
+        for show in self.shows:
+            showdate = show.get('showdate', '')
+            if showdate:
+                try:
+                    show_month = int(showdate[5:7])
+                    show_day = int(showdate[8:10])
+                    if show_month == month and show_day == day:
+                        matching_shows.append(show)
+                except (ValueError, IndexError):
+                    continue
+
+        # Sort by date (newest first for display, but oldest first for "first show")
+        matching_shows.sort(key=lambda x: x.get('showdate', ''))
+
+        count = len(matching_shows)
+        # Proper display names for holidays
+        holiday_display = {
+            "halloween": "Halloween",
+            "new years eve": "New Year's Eve",
+            "new year's eve": "New Year's Eve",
+            "nye": "New Year's Eve",
+            "new years": "New Year's Eve",
+            "new year's": "New Year's Eve",
+            "christmas": "Christmas",
+            "christmas eve": "Christmas Eve",
+            "july 4th": "July 4th",
+            "july 4": "July 4th",
+            "fourth of july": "July 4th",
+            "4th of july": "July 4th",
+            "independence day": "Independence Day",
+            "valentines day": "Valentine's Day",
+            "valentine's day": "Valentine's Day",
+            "st patricks day": "St. Patrick's Day",
+            "st. patrick's day": "St. Patrick's Day",
+            "april fools": "April Fools' Day",
+            "april fool's": "April Fools' Day",
+        }
+        date_display = holiday_display.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+
+        if count == 0:
+            return QueryResult(
+                success=True,
+                answer=f"Phish has never played on {date_display}.",
+                related_queries=["how many shows on halloween", "how many shows on new years eve"]
+            )
+
+        # Get years they played
+        years = [s.get('showdate', '')[:4] for s in matching_shows]
+        first_year = years[0]
+        last_year = years[-1]
+
+        # Get unique venues
+        venues = set(s.get('venue', 'Unknown') for s in matching_shows)
+
+        # Build answer
+        lines = [f"Phish has played **{count} shows** on {date_display}!\n"]
+        lines.append(f"First: {first_year} | Most Recent: {last_year}")
+        lines.append(f"Unique venues: {len(venues)}\n")
+
+        # List last 5 shows
+        lines.append("Recent shows:")
+        for show in reversed(matching_shows[-5:]):
+            date = show.get('showdate', '')
+            venue = show.get('venue', 'Unknown')
+            city = show.get('city', '')
+            state = show.get('state', '')
+            location = f"{city}, {state}" if state else city
+            lines.append(f"  • {date}: {venue}, {location}")
+
+        # Related queries
+        related = []
+        if holiday_name != "halloween":
+            related.append("how many shows on halloween")
+        if holiday_name != "new years eve" and holiday_name != "nye":
+            related.append("how many shows on new years eve")
+        if matching_shows:
+            related.append(f"setlist from {matching_shows[-1].get('showdate', '')}")
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines),
+            highlight=str(count),
+            related_queries=related,
+            raw_data={"shows": matching_shows, "count": count}
+        )
+
     def query(self, question: str) -> QueryResult:
         """
         Main query entry point. Parses the question and routes to appropriate handler.
@@ -2308,6 +2470,19 @@ class PhishStatsEngine:
         # Pattern: Career stats - "career stats", "phish stats", "overall stats"
         if any(p in question_lower for p in ["career stats", "phish stats", "overall stats", "band stats"]):
             return self.query_career_stats()
+
+        # Pattern: Shows on specific date - "how many shows on 10/31", "shows on halloween"
+        if any(p in question_lower for p in ["shows on", "played on", "on halloween", "on nye", "on new year", "on christmas", "on july 4", "on 4th of july"]):
+            month_day = self._extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+                # Detect holiday name for display (check longer names first)
+                holiday_name = None
+                for holiday in sorted(self.HOLIDAYS.keys(), key=len, reverse=True):
+                    if holiday in question_lower:
+                        holiday_name = holiday
+                        break
+                return self.query_shows_on_date(month, day, holiday_name)
 
         # Pattern: Top rated shows - "top rated shows of 1997", "best shows at MSG", "highest rated 1999"
         if any(p in question_lower for p in ["top rated", "best show", "highest rated", "top show"]):
