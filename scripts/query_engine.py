@@ -897,7 +897,7 @@ class PhishStatsEngine:
         )
 
     def _fetch_show_ratings_for_year(self, year: int) -> dict:
-        """Fetch show ratings from Phish.net API for a given year."""
+        """Fetch show ratings by scraping Phish.net setlist pages (matches website ratings)."""
         if year in self.show_ratings_cache:
             return self.show_ratings_cache[year]
 
@@ -911,30 +911,50 @@ class PhishStatsEngine:
         year_shows = [s for s in self.shows if s.get('showdate', '').startswith(str(year))]
 
         for show in year_shows:
-            showid = show.get('showid')
-            if not showid:
+            showdate = show.get('showdate')
+            if not showdate:
                 continue
 
             try:
-                url = f"https://api.phish.net/v5/reviews/showid/{showid}.json?apikey={API_KEY}"
-                req = urllib.request.Request(url)
+                # First get the permalink from the API
+                api_url = f"https://api.phish.net/v5/shows/showdate/{showdate}.json?apikey={API_KEY}"
+                req = urllib.request.Request(api_url)
                 with urllib.request.urlopen(req, timeout=10) as response:
                     data = json.loads(response.read().decode())
 
-                reviews = data.get('data', [])
-                # Only use scores 1-5 (standard 5-star rating)
-                scores = [int(r['score']) for r in reviews if r.get('score') and 1 <= int(r['score']) <= 5]
+                if not data.get('data'):
+                    continue
 
-                if len(scores) >= 3:  # Need at least 3 reviews
-                    ratings[showid] = {
-                        'date': show['showdate'],
-                        'venue': show.get('venue', 'Unknown'),
-                        'city': show.get('city', ''),
-                        'state': show.get('state', ''),
-                        'avg_rating': sum(scores) / len(scores),
-                        'num_reviews': len(scores)
-                    }
-                time.sleep(0.15)  # Rate limiting
+                show_data = data['data'][0] if isinstance(data['data'], list) else data['data']
+                permalink = show_data.get('permalink', '')
+
+                if not permalink:
+                    continue
+
+                # Fetch the setlist page and extract the real rating
+                req = urllib.request.Request(permalink, headers={'User-Agent': 'Mozilla/5.0 PhishMuse'})
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    html = response.read().decode('utf-8')
+
+                # Extract rating: "Overall: 4.644/5 (>500 ratings)"
+                rating_match = re.search(r'Overall:\s*([\d.]+)/5', html)
+                if rating_match:
+                    rating = float(rating_match.group(1))
+                    # Get number of ratings
+                    count_match = re.search(r'\(>?([\d,]+)\s*ratings?\)', html)
+                    num_ratings = int(count_match.group(1).replace(',', '')) if count_match else 0
+
+                    if num_ratings >= 20:  # Only include shows with 20+ ratings for reliability
+                        ratings[show['showid']] = {
+                            'date': showdate,
+                            'venue': show.get('venue', 'Unknown'),
+                            'city': show.get('city', ''),
+                            'state': show.get('state', ''),
+                            'avg_rating': rating,
+                            'num_reviews': num_ratings
+                        }
+
+                time.sleep(0.25)  # Rate limiting - be respectful
             except:
                 continue
 
