@@ -2116,23 +2116,24 @@ class PhishStatsEngine:
             if song:
                 return self.query_first_played(song)
 
-        # Pattern: Song by set - "Carini in set 1", "Reba in the second set", "how many times in set 2"
-        set_one_patterns = ["set 1", "set one", "first set", "1st set"]
-        set_two_patterns = ["set 2", "set two", "second set", "2nd set"]
-        set_three_patterns = ["set 3", "set three", "third set", "3rd set"]
+        # Pattern: Song by set - "Carini in set 1", "Reba in the second set", "how many times in set II"
+        set_one_patterns = ["set 1", "set one", "first set", "1st set", "set i"]
+        set_two_patterns = ["set 2", "set two", "second set", "2nd set", "set ii"]
+        set_three_patterns = ["set 3", "set three", "third set", "3rd set", "set iii"]
         all_set_patterns = set_one_patterns + set_two_patterns + set_three_patterns + ["set breakdown"]
 
         if any(p in question_lower for p in all_set_patterns):
             song = self._normalize_song_name(base_question)
             if song:
                 # Determine which set they're asking about
+                # Check in reverse order (III before II before I) to avoid substring matching issues
                 target_set = None
-                if any(p in question_lower for p in set_one_patterns):
-                    target_set = "1"
+                if any(p in question_lower for p in set_three_patterns):
+                    target_set = "3"
                 elif any(p in question_lower for p in set_two_patterns):
                     target_set = "2"
-                elif any(p in question_lower for p in set_three_patterns):
-                    target_set = "3"
+                elif any(p in question_lower for p in set_one_patterns):
+                    target_set = "1"
                 # Extract year if present
                 year = self._extract_year_from_query(question)
                 # If just "set breakdown" or general, target_set stays None for full breakdown
