@@ -298,6 +298,12 @@ class PhishStatsEngine:
 
         return query, None
 
+    # Venues that are the same location with different names over time
+    EQUIVALENT_VENUES = [
+        {"deer creek", "ruoff", "noblesville", "klipsch"},  # Deer Creek / Ruoff Music Center
+        {"great woods", "tweeter center", "comcast center", "xfinity center", "mansfield"},  # Great Woods area
+    ]
+
     def _match_venue(self, perf_venue: str, target_venue: str) -> bool:
         """Check if a performance venue matches the target venue."""
         if not perf_venue or not target_venue:
@@ -315,6 +321,13 @@ class PhishStatsEngine:
             if alias in target_lower:
                 if full_name.lower() in perf_lower:
                     return True
+
+        # Check equivalent venues (same location, different names over time)
+        for equiv_set in self.EQUIVALENT_VENUES:
+            target_matches = any(e in target_lower for e in equiv_set)
+            perf_matches = any(e in perf_lower for e in equiv_set)
+            if target_matches and perf_matches:
+                return True
 
         return False
 
