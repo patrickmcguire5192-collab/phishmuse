@@ -98,6 +98,7 @@ class PhishStatsEngine:
         self.raw_durations = {}  # All individual performances with venues
         self.songs_metadata = {}  # Song metadata including original artist
         self.artists_to_songs = {}  # Reverse lookup: artist -> list of songs
+        self.show_ratings_cache = {}  # Cache for show ratings by year
 
     def load_data(self):
         """Load all pre-computed data."""
@@ -893,6 +894,135 @@ class PhishStatsEngine:
                 f"monster {song_name}s"
             ],
             raw_data=stats
+        )
+
+    def _fetch_show_ratings_for_year(self, year: int) -> dict:
+        """Fetch show ratings from Phish.net API for a given year."""
+        if year in self.show_ratings_cache:
+            return self.show_ratings_cache[year]
+
+        import urllib.request
+        import time
+
+        API_KEY = "69F3065FB7F44C387CE5"
+        ratings = {}
+
+        # Get shows for this year
+        year_shows = [s for s in self.shows if s.get('showdate', '').startswith(str(year))]
+
+        for show in year_shows:
+            showid = show.get('showid')
+            if not showid:
+                continue
+
+            try:
+                url = f"https://api.phish.net/v5/reviews/showid/{showid}.json?apikey={API_KEY}"
+                req = urllib.request.Request(url)
+                with urllib.request.urlopen(req, timeout=10) as response:
+                    data = json.loads(response.read().decode())
+
+                reviews = data.get('data', [])
+                # Only use scores 1-5 (standard 5-star rating)
+                scores = [int(r['score']) for r in reviews if r.get('score') and 1 <= int(r['score']) <= 5]
+
+                if len(scores) >= 3:  # Need at least 3 reviews
+                    ratings[showid] = {
+                        'date': show['showdate'],
+                        'venue': show.get('venue', 'Unknown'),
+                        'city': show.get('city', ''),
+                        'state': show.get('state', ''),
+                        'avg_rating': sum(scores) / len(scores),
+                        'num_reviews': len(scores)
+                    }
+                time.sleep(0.15)  # Rate limiting
+            except:
+                continue
+
+        self.show_ratings_cache[year] = ratings
+        return ratings
+
+    def query_top_rated_shows(self, year: int = None, venue: str = None, count: int = 5) -> QueryResult:
+        """Query for top-rated shows, optionally filtered by year or venue."""
+        if not year and not venue:
+            return QueryResult(
+                success=False,
+                answer="Please specify a year or venue. Try 'top rated shows of 1997' or 'best shows at MSG'.",
+                related_queries=["top rated shows of 1997", "best shows at MSG", "highest rated 1999"]
+            )
+
+        # For venue queries, we need to search across multiple years
+        if venue and not year:
+            # Get venue shows from our data
+            venue_shows = []
+            for show in self.shows:
+                if self._match_venue(show.get('venue', ''), venue):
+                    venue_shows.append(show)
+
+            if not venue_shows:
+                return QueryResult(
+                    success=False,
+                    answer=f"I couldn't find any shows at {venue}.",
+                    related_queries=["top rated shows of 1997", "shows at MSG"]
+                )
+
+            # Get unique years for this venue
+            years = set(s['showdate'][:4] for s in venue_shows)
+
+            # Fetch ratings for those years (limit to avoid too many API calls)
+            all_ratings = {}
+            for y in sorted(years)[-10:]:  # Last 10 years at venue
+                year_ratings = self._fetch_show_ratings_for_year(int(y))
+                for sid, data in year_ratings.items():
+                    if self._match_venue(data.get('venue', ''), venue):
+                        all_ratings[sid] = data
+
+            if not all_ratings:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have enough ratings data for shows at {venue}. Ratings require at least 3 reviews per show.",
+                    related_queries=["top rated shows of 1997", f"how many shows at {venue}"]
+                )
+
+            sorted_shows = sorted(all_ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
+            venue_display = sorted_shows[0]['venue'] if sorted_shows else venue
+
+        else:
+            # Year-based query
+            ratings = self._fetch_show_ratings_for_year(year)
+
+            if not ratings:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have enough ratings data for {year}. Ratings require at least 3 reviews per show.",
+                    related_queries=[f"setlist from {year}", f"how many shows in {year}"]
+                )
+
+            sorted_shows = sorted(ratings.values(), key=lambda x: (-x['avg_rating'], -x['num_reviews']))[:count]
+            venue_display = None
+
+        # Format response
+        lines = []
+        if venue_display:
+            lines.append(f"Top {len(sorted_shows)} rated shows at {venue_display}:\n")
+        else:
+            lines.append(f"Top {len(sorted_shows)} rated shows of {year}:\n")
+
+        for i, show in enumerate(sorted_shows, 1):
+            location = f"{show['city']}, {show['state']}" if show.get('state') else show.get('city', '')
+            lines.append(f"{i}. {show['date']} - {show['avg_rating']:.2f}/5 ({show['num_reviews']} reviews)")
+            lines.append(f"   {show['venue']}, {location}")
+
+        context = f"Based on Phish.net user ratings (minimum 3 reviews per show)"
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines) + f"\n\n{context}",
+            related_queries=[
+                f"setlist from {sorted_shows[0]['date']}" if sorted_shows else "top rated 1997",
+                f"top rated {year - 1}" if year else "top rated 1997",
+                "best shows at MSG"
+            ],
+            raw_data={"shows": sorted_shows}
         )
 
     def _extract_year_from_query(self, query: str) -> Optional[int]:
@@ -2138,6 +2268,24 @@ class PhishStatsEngine:
         # Pattern: Career stats - "career stats", "phish stats", "overall stats"
         if any(p in question_lower for p in ["career stats", "phish stats", "overall stats", "band stats"]):
             return self.query_career_stats()
+
+        # Pattern: Top rated shows - "top rated shows of 1997", "best shows at MSG", "highest rated 1999"
+        if any(p in question_lower for p in ["top rated", "best show", "highest rated", "top show"]):
+            year = self._extract_year_from_query(question)
+            # Extract count if specified (e.g., "top 5 rated")
+            count_match = re.search(r'top\s+(\d+)', question_lower)
+            count = int(count_match.group(1)) if count_match else 5
+
+            if venue:
+                return self.query_top_rated_shows(year=year, venue=venue, count=count)
+            elif year:
+                return self.query_top_rated_shows(year=year, count=count)
+            else:
+                return QueryResult(
+                    success=False,
+                    answer="Please specify a year or venue. Try 'top rated shows of 1997' or 'best shows at MSG'.",
+                    related_queries=["top rated shows of 1997", "best shows at MSG"]
+                )
 
         # Pattern: Opener stats - "opener stats", "most common openers", "unique openers"
         if any(p in question_lower for p in ["opener stats", "opener statistics", "most common opener", "unique opener", "how many opener", "top opener"]):
