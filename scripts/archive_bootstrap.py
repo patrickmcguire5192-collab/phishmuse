@@ -7,24 +7,39 @@ Builds a local index of all Grateful Dead shows from Archive.org.
 This creates a JSON catalog with song names, durations, and show metadata
 for fast querying without hitting the API on every request.
 
-Run this once to build the catalog, then use archive_engine.py for queries.
+RESUME SUPPORT:
+- Saves progress after each batch of shows
+- Automatically resumes from where it left off
+- Run multiple times to incrementally build the catalog
+
+Usage:
+  python archive_bootstrap.py          # Resume/continue building
+  python archive_bootstrap.py --status # Show current progress
+  python archive_bootstrap.py --reset  # Start fresh
 """
 
 import json
 import urllib.request
 import urllib.parse
 import time
-import os
+import sys
 from pathlib import Path
 from collections import defaultdict
 from datetime import datetime
 import re
 
-# Output file
-CATALOG_PATH = Path(__file__).parent.parent / "data" / "grateful_dead_catalog.json"
+# Output files
+DATA_DIR = Path(__file__).parent.parent / "data"
+CATALOG_PATH = DATA_DIR / "grateful_dead_catalog.json"
+CHECKPOINT_PATH = DATA_DIR / "dead_checkpoint.json"
 
 # Archive.org API base
 ARCHIVE_API = "https://archive.org"
+
+# Rate limiting - be nice to Archive.org
+SEARCH_DELAY = 2.0     # Seconds between search API calls
+METADATA_DELAY = 1.5   # Seconds between metadata API calls
+SAVE_EVERY = 20        # Save checkpoint every N shows
 
 def search_shows(year: int = None, page: int = 1, rows: int = 100) -> dict:
     """Search for Grateful Dead shows on Archive.org."""
@@ -191,108 +206,197 @@ def extract_tracks(metadata: dict) -> list:
     return tracks
 
 
-def build_catalog():
-    """Build the complete Grateful Dead catalog."""
+def load_checkpoint():
+    """Load checkpoint for resume capability."""
+    if CHECKPOINT_PATH.exists():
+        try:
+            with open(CHECKPOINT_PATH) as f:
+                return json.load(f)
+        except:
+            pass
+    return {'processed_dates': [], 'shows_by_date': {}}
+
+
+def save_checkpoint(checkpoint):
+    """Save checkpoint."""
+    checkpoint['updated'] = datetime.now().isoformat()
+    with open(CHECKPOINT_PATH, 'w') as f:
+        json.dump(checkpoint, f)
+
+
+def load_catalog():
+    """Load existing catalog or create empty one."""
+    if CATALOG_PATH.exists():
+        try:
+            with open(CATALOG_PATH) as f:
+                return json.load(f)
+        except:
+            pass
+    return {
+        'metadata': {'created': datetime.now().isoformat(), 'source': 'archive.org', 'band': 'Grateful Dead'},
+        'shows': [],
+        'songs': {}
+    }
+
+
+def save_catalog(catalog):
+    """Save catalog and recalculate song stats."""
+    catalog['metadata']['updated'] = datetime.now().isoformat()
+
+    # Recalculate song stats
+    for song_name, data in catalog['songs'].items():
+        perfs = data.get('performances', [])
+        if perfs:
+            data['total_plays'] = len(perfs)
+            data['total_duration'] = sum(p['duration'] for p in perfs)
+            data['avg_duration'] = data['total_duration'] / len(perfs)
+            sorted_perfs = sorted(perfs, key=lambda x: x['duration'], reverse=True)
+            data['longest'] = sorted_perfs[0]
+            data['first_played'] = min(p['date'] for p in perfs)
+            data['last_played'] = max(p['date'] for p in perfs)
+
+    with open(CATALOG_PATH, 'w') as f:
+        json.dump(catalog, f, indent=2, default=str)
+
+
+def show_status():
+    """Show current build progress."""
+    checkpoint = load_checkpoint()
+    catalog = load_catalog()
+
+    processed = len(checkpoint.get('processed_dates', []))
+    total_dates = len(checkpoint.get('shows_by_date', {}))
+
+    print("\n" + "=" * 60)
+    print("GRATEFUL DEAD CATALOG STATUS")
+    print("=" * 60)
+    print(f"Show dates discovered: {total_dates:,}")
+    print(f"Show dates processed:  {processed:,}")
+    if total_dates > 0:
+        print(f"Progress:              {100*processed/total_dates:.1f}%")
+        print(f"Remaining:             {total_dates - processed:,}")
+    print()
+    print(f"Catalog shows:  {len(catalog.get('shows', [])):,}")
+    print(f"Catalog songs:  {len(catalog.get('songs', {})):,}")
+
+    if catalog.get('songs'):
+        print("\nTop 5 most played:")
+        top = sorted(catalog['songs'].items(), key=lambda x: x[1].get('total_plays', 0), reverse=True)[:5]
+        for song, data in top:
+            print(f"  {song}: {data.get('total_plays', 0)} times")
+    print()
+
+
+def build_catalog(reset=False):
+    """Build catalog with resume support."""
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    if reset:
+        print("Resetting - starting fresh...")
+        CHECKPOINT_PATH.unlink(missing_ok=True)
+        CATALOG_PATH.unlink(missing_ok=True)
+
     print("=" * 60)
     print("Building Grateful Dead Catalog from Archive.org")
     print("=" * 60)
-    print()
 
-    # Create data directory if needed
-    CATALOG_PATH.parent.mkdir(parents=True, exist_ok=True)
+    checkpoint = load_checkpoint()
+    catalog = load_catalog()
 
-    # First, get all unique show dates and best recording for each
-    print("Step 1: Finding all unique show dates...")
+    processed_dates = set(checkpoint.get('processed_dates', []))
+    shows_by_date = checkpoint.get('shows_by_date', {})
 
-    shows_by_date = defaultdict(list)
+    print(f"Resuming: {len(processed_dates)} dates already processed, {len(catalog.get('shows', []))} shows in catalog")
 
-    # Get total count
-    result = search_shows(rows=0)
-    total = result['response']['numFound']
-    print(f"  Total recordings in collection: {total:,}")
+    # =========================================================================
+    # PHASE 1: Discover all show dates (if not done)
+    # =========================================================================
 
-    # Fetch all recordings (paginated)
-    # Use smaller batches and slower rate to avoid rate limiting
-    page = 1
-    rows = 200  # Smaller batches
-    fetched = 0
+    if not shows_by_date:
+        print("\nPhase 1: Discovering all show dates...")
 
-    while fetched < total:
-        # Try up to 3 times with exponential backoff
-        result = None
-        for attempt in range(3):
-            result = search_shows(page=page, rows=rows)
-            if 'response' in result:
+        result = search_shows(rows=0)
+        total = result['response']['numFound']
+        print(f"Total recordings in collection: {total:,}")
+
+        page = 1
+        rows = 100
+        fetched = 0
+
+        while fetched < total:
+            result = None
+            for attempt in range(5):
+                result = search_shows(page=page, rows=rows)
+                if 'response' in result and result['response'].get('docs'):
+                    break
+                wait = min(2 ** (attempt + 1), 30)
+                print(f"  Retry {attempt+1}/5, waiting {wait}s...", flush=True)
+                time.sleep(wait)
+
+            if not result or 'response' not in result:
+                print(f"  Stopping at page {page} due to errors. Run again to resume.")
                 break
-            wait_time = 2 ** (attempt + 1)  # 2, 4, 8 seconds
-            print(f"\n  API error on page {page}, attempt {attempt + 1}/3, waiting {wait_time}s...", flush=True)
-            time.sleep(wait_time)
 
-        if not result or 'response' not in result:
-            print(f"\n  Skipping page {page} after 3 failed attempts", flush=True)
+            docs = result['response']['docs']
+            if not docs:
+                break
+
+            for doc in docs:
+                date = doc.get('date', '')[:10]
+                if date and date.startswith('19'):
+                    if date not in shows_by_date:
+                        shows_by_date[date] = []
+                    shows_by_date[date].append({
+                        'identifier': doc['identifier'],
+                        'rating': doc.get('avg_rating', 0) or 0,
+                        'venue': doc.get('venue', ''),
+                        'coverage': doc.get('coverage', '')
+                    })
+
+            fetched += len(docs)
+            if fetched % 500 == 0:
+                print(f"  {fetched:,}/{total:,} recordings, {len(shows_by_date):,} unique dates...", flush=True)
+                # Save progress
+                checkpoint['shows_by_date'] = shows_by_date
+                save_checkpoint(checkpoint)
+
             page += 1
-            fetched += rows  # Approximate skip
-            continue
+            time.sleep(SEARCH_DELAY)
 
-        docs = result['response']['docs']
+        checkpoint['shows_by_date'] = shows_by_date
+        save_checkpoint(checkpoint)
+        print(f"\nDiscovered {len(shows_by_date):,} unique show dates!")
 
-        if not docs:
-            break
+    else:
+        print(f"\nPhase 1 complete: {len(shows_by_date):,} show dates already discovered")
 
-        for doc in docs:
-            date = doc.get('date', '')[:10]  # YYYY-MM-DD
-            if date and date.startswith('19'):  # Valid GD date
-                shows_by_date[date].append({
-                    'identifier': doc['identifier'],
-                    'rating': doc.get('avg_rating', 0) or 0,
-                    'venue': doc.get('venue', ''),
-                    'coverage': doc.get('coverage', ''),
-                    'title': doc.get('title', '')
-                })
+    # =========================================================================
+    # PHASE 2: Extract setlists (resumable)
+    # =========================================================================
 
-        fetched += len(docs)
-        if fetched % 1000 == 0:
-            print(f"\n  Fetched {fetched:,}/{total:,} recordings...", flush=True)
-        page += 1
-        time.sleep(1.0)  # 1 second between requests - be nice to Archive.org
+    print("\nPhase 2: Extracting setlists and durations...")
 
-    print(f"\n  Found {len(shows_by_date):,} unique show dates")
-    print()
+    dates_to_process = sorted(set(shows_by_date.keys()) - processed_dates)
+    print(f"Remaining dates to process: {len(dates_to_process):,}")
 
-    # Step 2: For each date, pick best recording and extract tracks
-    print("Step 2: Extracting setlists and durations...")
-    print("  (This will take a while - ~2500 API calls)")
-    print()
+    if not dates_to_process:
+        print("\nAll dates processed! Catalog complete.")
+        show_status()
+        return catalog
 
-    catalog = {
-        'metadata': {
-            'created': datetime.now().isoformat(),
-            'source': 'archive.org',
-            'band': 'Grateful Dead'
-        },
-        'shows': [],
-        'songs': defaultdict(lambda: {
-            'performances': [],
-            'total_plays': 0,
-            'total_duration': 0
-        })
-    }
-
-    dates = sorted(shows_by_date.keys())
+    added = 0
     errors = 0
 
-    for i, date in enumerate(dates):
-        # Pick best recording (highest rating)
+    for i, date in enumerate(dates_to_process):
         recordings = shows_by_date[date]
         best = max(recordings, key=lambda x: x['rating'])
 
-        # Get full metadata
         metadata = get_show_metadata(best['identifier'])
         if not metadata:
             errors += 1
+            processed_dates.add(date)
             continue
 
-        # Extract tracks
         tracks = extract_tracks(metadata)
 
         if tracks:
@@ -300,7 +404,6 @@ def build_catalog():
             venue = show_meta.get('venue', best['venue'])
             if isinstance(venue, list):
                 venue = venue[0] if venue else ''
-
             coverage = show_meta.get('coverage', best['coverage'])
             if isinstance(coverage, list):
                 coverage = coverage[0] if coverage else ''
@@ -317,80 +420,50 @@ def build_catalog():
 
             # Index songs
             for track in tracks:
-                song_name = track['song']
-                catalog['songs'][song_name]['performances'].append({
+                song = track['song']
+                if song not in catalog['songs']:
+                    catalog['songs'][song] = {'performances': []}
+                catalog['songs'][song]['performances'].append({
                     'date': date,
                     'duration': track['duration'],
                     'duration_str': track['duration_str'],
                     'venue': venue
                 })
-                catalog['songs'][song_name]['total_plays'] += 1
-                catalog['songs'][song_name]['total_duration'] += track['duration']
 
-        # Progress
-        if (i + 1) % 50 == 0:
-            print(f"  Processed {i + 1:,}/{len(dates):,} shows ({len(catalog['shows']):,} with tracks)...")
+            added += 1
 
-        time.sleep(0.3)  # Rate limit - be nice to Archive.org
+        processed_dates.add(date)
 
-    print(f"\n  Processed {len(dates):,} dates, got {len(catalog['shows']):,} shows with track data")
-    print(f"  Errors: {errors}")
+        # Save progress periodically
+        if (i + 1) % SAVE_EVERY == 0:
+            checkpoint['processed_dates'] = list(processed_dates)
+            save_checkpoint(checkpoint)
+            save_catalog(catalog)
+            pct = 100 * len(processed_dates) / len(shows_by_date)
+            print(f"  {i+1}/{len(dates_to_process)} this session | Total: {len(catalog['shows'])} shows, {len(catalog['songs'])} songs ({pct:.1f}%)")
 
-    # Convert defaultdict to regular dict for JSON
-    catalog['songs'] = dict(catalog['songs'])
+        time.sleep(METADATA_DELAY)
 
-    # Calculate song stats
-    print("\nStep 3: Calculating song statistics...")
-    for song_name, data in catalog['songs'].items():
-        plays = data['total_plays']
-        if plays > 0:
-            data['avg_duration'] = data['total_duration'] / plays
+    # Final save
+    checkpoint['processed_dates'] = list(processed_dates)
+    save_checkpoint(checkpoint)
+    save_catalog(catalog)
 
-            # Find longest version
-            performances = sorted(data['performances'], key=lambda x: x['duration'], reverse=True)
-            data['longest'] = performances[0] if performances else None
-            data['first_played'] = min(p['date'] for p in performances)
-            data['last_played'] = max(p['date'] for p in performances)
-
-    print(f"  Indexed {len(catalog['songs']):,} unique songs")
-
-    # Save catalog
-    print(f"\nSaving catalog to {CATALOG_PATH}...")
-    with open(CATALOG_PATH, 'w') as f:
-        json.dump(catalog, f, indent=2, default=str)
-
-    file_size = CATALOG_PATH.stat().st_size / (1024 * 1024)
-    print(f"  Saved! ({file_size:.1f} MB)")
-
-    # Print summary
-    print("\n" + "=" * 60)
-    print("CATALOG COMPLETE!")
-    print("=" * 60)
-    print(f"Shows: {len(catalog['shows']):,}")
-    print(f"Songs: {len(catalog['songs']):,}")
-
-    # Top 10 most played
-    print("\nTop 10 Most Played Songs:")
-    top_songs = sorted(catalog['songs'].items(), key=lambda x: x[1]['total_plays'], reverse=True)[:10]
-    for song, data in top_songs:
-        print(f"  {song}: {data['total_plays']} times")
-
-    # Longest jams
-    print("\nTop 10 Longest Jams:")
-    all_performances = []
-    for song, data in catalog['songs'].items():
-        if data.get('longest'):
-            all_performances.append((song, data['longest']))
-
-    longest = sorted(all_performances, key=lambda x: x[1]['duration'], reverse=True)[:10]
-    for song, perf in longest:
-        mins = int(perf['duration'] // 60)
-        secs = int(perf['duration'] % 60)
-        print(f"  {song}: {mins}:{secs:02d} ({perf['date']})")
-
-    print()
+    print(f"\nSession complete! Added {added} shows, {errors} errors")
+    show_status()
     return catalog
 
 
 if __name__ == '__main__':
-    build_catalog()
+    if len(sys.argv) > 1:
+        arg = sys.argv[1].lower()
+        if arg in ['--status', '-s', 'status']:
+            show_status()
+        elif arg in ['--reset', '-r', 'reset']:
+            build_catalog(reset=True)
+        elif arg in ['--help', '-h']:
+            print(__doc__)
+        else:
+            build_catalog()
+    else:
+        build_catalog()
