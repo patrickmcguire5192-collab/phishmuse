@@ -1,0 +1,2305 @@
+{
+  "metadata": {
+    "source": "archive.org (test subset)",
+    "band": "Grateful Dead"
+  },
+  "shows": [
+    {
+      "date": "1972-08-27",
+      "venue": "Old Renaissance Faire Grounds",
+      "tracks": [
+        {
+          "title": "The Promised Land",
+          "song": "The Promised Land",
+          "duration": 217.0,
+          "duration_str": "3:37"
+        },
+        {
+          "title": "Sugaree",
+          "song": "Sugaree",
+          "duration": 556.0,
+          "duration_str": "9:16"
+        },
+        {
+          "title": "Me and My Uncle",
+          "song": "Me and My Uncle",
+          "duration": 207.0,
+          "duration_str": "3:27"
+        },
+        {
+          "title": "Deal",
+          "song": "Deal",
+          "duration": 360.0,
+          "duration_str": "6:00"
+        },
+        {
+          "title": "Black Throated Wind",
+          "song": "Black Throated Wind",
+          "duration": 565.0,
+          "duration_str": "9:25"
+        },
+        {
+          "title": "China Cat Sunflower >",
+          "song": "China Cat Sunflower",
+          "duration": 475.0,
+          "duration_str": "7:55"
+        },
+        {
+          "title": "I Know You Rider",
+          "song": "I Know You Rider",
+          "duration": 510.0,
+          "duration_str": "8:30"
+        },
+        {
+          "title": "Mexicali Blues",
+          "song": "Mexicali Blues",
+          "duration": 265.0,
+          "duration_str": "4:25"
+        },
+        {
+          "title": "Bertha",
+          "song": "Bertha",
+          "duration": 353.0,
+          "duration_str": "5:53"
+        },
+        {
+          "title": "Playin' In The Band",
+          "song": "Playing in the Band",
+          "duration": 1281.0,
+          "duration_str": "21:21"
+        },
+        {
+          "title": "He's Gone",
+          "song": "He's Gone",
+          "duration": 728.0,
+          "duration_str": "12:08"
+        },
+        {
+          "title": "Jack Straw",
+          "song": "Jack Straw",
+          "duration": 360.0,
+          "duration_str": "6:00"
+        },
+        {
+          "title": "Bird Song",
+          "song": "Bird Song",
+          "duration": 817.0,
+          "duration_str": "13:37"
+        },
+        {
+          "title": "Greatest Story Ever Told",
+          "song": "Greatest Story Ever Told",
+          "duration": 356.0,
+          "duration_str": "5:56"
+        },
+        {
+          "title": "Dark Star >",
+          "song": "Dark Star",
+          "duration": 1902.0,
+          "duration_str": "31:42"
+        },
+        {
+          "title": "El Paso",
+          "song": "El Paso",
+          "duration": 289.0,
+          "duration_str": "4:49"
+        },
+        {
+          "title": "Sing Me Back Home",
+          "song": "Sing Me Back Home",
+          "duration": 782.0,
+          "duration_str": "13:02"
+        },
+        {
+          "title": "Sugar Magnolia",
+          "song": "Sugar Magnolia",
+          "duration": 702.0,
+          "duration_str": "11:42"
+        },
+        {
+          "title": "Casey Jones",
+          "song": "Casey Jones",
+          "duration": 420.0,
+          "duration_str": "7:00"
+        },
+        {
+          "title": "One More Saturday Night",
+          "song": "One More Saturday Night",
+          "duration": 278.0,
+          "duration_str": "4:38"
+        }
+      ]
+    },
+    {
+      "date": "1977-05-08",
+      "venue": "Barton Hall",
+      "tracks": [
+        {
+          "title": "Minglewood Blues",
+          "song": "Minglewood Blues",
+          "duration": 365.55,
+          "duration_str": "6:05"
+        },
+        {
+          "title": "Loser",
+          "song": "Loser",
+          "duration": 530.97,
+          "duration_str": "8:50"
+        },
+        {
+          "title": "El Paso",
+          "song": "El Paso",
+          "duration": 323.17,
+          "duration_str": "5:23"
+        },
+        {
+          "title": "They Love Each Other",
+          "song": "They Love Each Other",
+          "duration": 550.99,
+          "duration_str": "9:10"
+        },
+        {
+          "title": "Jack Straw",
+          "song": "Jack Straw",
+          "duration": 485.04,
+          "duration_str": "8:05"
+        },
+        {
+          "title": "Deal",
+          "song": "Deal",
+          "duration": 448.44,
+          "duration_str": "7:28"
+        },
+        {
+          "title": "Lazy Lightning ->",
+          "song": "Lazy Lightning -",
+          "duration": 209.51,
+          "duration_str": "3:29"
+        },
+        {
+          "title": "Supplication",
+          "song": "Supplication",
+          "duration": 327.56,
+          "duration_str": "5:27"
+        },
+        {
+          "title": "Brown Eyed Women",
+          "song": "Brown Eyed Women",
+          "duration": 409.8,
+          "duration_str": "6:49"
+        },
+        {
+          "title": "Mama Tried",
+          "song": "Mama Tried",
+          "duration": 232.04,
+          "duration_str": "3:52"
+        },
+        {
+          "title": "Row Jimmy",
+          "song": "Row Jimmy",
+          "duration": 787.15,
+          "duration_str": "13:07"
+        },
+        {
+          "title": "Dancin' In the Streets",
+          "song": "Dancin' In the Streets",
+          "duration": 974.08,
+          "duration_str": "16:14"
+        },
+        {
+          "title": "Take A Step Back",
+          "song": "Take A Step Back",
+          "duration": 116.53,
+          "duration_str": "1:56"
+        },
+        {
+          "title": "Scarlet Begonias ->",
+          "song": "Scarlet Begonias -",
+          "duration": 690.53,
+          "duration_str": "11:30"
+        },
+        {
+          "title": "Fire on the Mountain",
+          "song": "Fire on the Mountain",
+          "duration": 916.24,
+          "duration_str": "15:16"
+        },
+        {
+          "title": "Estimated Prophet",
+          "song": "Estimated Prophet",
+          "duration": 818.85,
+          "duration_str": "13:38"
+        },
+        {
+          "title": "Saint Stephen ->",
+          "song": "Saint Stephen -",
+          "duration": 286.68,
+          "duration_str": "4:46"
+        },
+        {
+          "title": "Not Fade Away ->",
+          "song": "Not Fade Away -",
+          "duration": 1037.36,
+          "duration_str": "17:17"
+        },
+        {
+          "title": "Morning Dew",
+          "song": "Morning Dew",
+          "duration": 1047.21,
+          "duration_str": "17:27"
+        },
+        {
+          "title": "One More Saturday Night",
+          "song": "One More Saturday Night",
+          "duration": 322.03,
+          "duration_str": "5:22"
+        }
+      ]
+    },
+    {
+      "date": "1974-06-23",
+      "venue": "Jai-Alai Fronton",
+      "tracks": [
+        {
+          "title": "Ramble On Rose",
+          "song": "Ramble On Rose",
+          "duration": 471.43,
+          "duration_str": "7:51"
+        },
+        {
+          "title": "Black Throated Wind",
+          "song": "Black Throated Wind",
+          "duration": 409.67,
+          "duration_str": "6:49"
+        },
+        {
+          "title": "Equipment Issues",
+          "song": "Equipment Issues",
+          "duration": 443.11,
+          "duration_str": "7:23"
+        },
+        {
+          "title": "Mississippi Half-Step Uptown Toodeloo",
+          "song": "Mississippi Half-Step Uptown Toodeloo",
+          "duration": 504.81,
+          "duration_str": "8:24"
+        },
+        {
+          "title": "Beat It On Down The Line",
+          "song": "Beat It On Down The Line",
+          "duration": 281.69,
+          "duration_str": "4:41"
+        },
+        {
+          "title": "Row Jimmy",
+          "song": "Row Jimmy",
+          "duration": 556.63,
+          "duration_str": "9:16"
+        },
+        {
+          "title": "Jack Straw",
+          "song": "Jack Straw",
+          "duration": 364.49,
+          "duration_str": "6:04"
+        },
+        {
+          "title": "Let It Rock",
+          "song": "Let It Rock",
+          "duration": 289.23,
+          "duration_str": "4:49"
+        },
+        {
+          "title": "Cumberland Blues",
+          "song": "Cumberland Blues",
+          "duration": 477.15,
+          "duration_str": "7:57"
+        },
+        {
+          "title": "El Paso",
+          "song": "El Paso",
+          "duration": 461.04,
+          "duration_str": "7:41"
+        },
+        {
+          "title": "To Lay Me Down",
+          "song": "To Lay Me Down",
+          "duration": 566.56,
+          "duration_str": "9:26"
+        },
+        {
+          "title": "Weather Report Suite Prelude >",
+          "song": "Weather Report Suite Prelude",
+          "duration": 341.49,
+          "duration_str": "5:41"
+        },
+        {
+          "title": "Let It Grow >",
+          "song": "Let It Grow",
+          "duration": 640.21,
+          "duration_str": "10:40"
+        },
+        {
+          "title": "China Doll",
+          "song": "China Doll",
+          "duration": 347.71,
+          "duration_str": "5:47"
+        },
+        {
+          "title": "Seastones (From shnid=105755)",
+          "song": "Seastones (From shnid=105755)",
+          "duration": 913.41,
+          "duration_str": "15:13"
+        },
+        {
+          "title": "Jam >",
+          "song": "Jam",
+          "duration": 246.72,
+          "duration_str": "4:06"
+        },
+        {
+          "title": "Ship Of Fools",
+          "song": "Ship Of Fools",
+          "duration": 382.41,
+          "duration_str": "6:22"
+        },
+        {
+          "title": "Big River",
+          "song": "Big River",
+          "duration": 346.44,
+          "duration_str": "5:46"
+        },
+        {
+          "title": "Black Peter",
+          "song": "Black Peter",
+          "duration": 654.16,
+          "duration_str": "10:54"
+        },
+        {
+          "title": "Around And Around",
+          "song": "Around And Around",
+          "duration": 381.42,
+          "duration_str": "6:21"
+        },
+        {
+          "title": "Dark Star Jam >",
+          "song": "Dark Star Jam",
+          "duration": 1041.55,
+          "duration_str": "17:21"
+        },
+        {
+          "title": "Spanish Jam >",
+          "song": "Spanish Jam",
+          "duration": 283.15,
+          "duration_str": "4:43"
+        },
+        {
+          "title": "U.S. Blues",
+          "song": "U.S. Blues",
+          "duration": 633.63,
+          "duration_str": "10:33"
+        },
+        {
+          "title": "Uncle John's Band >",
+          "song": "Uncle John's Band",
+          "duration": 479.03,
+          "duration_str": "7:59"
+        },
+        {
+          "title": "One More Saturday Night",
+          "song": "One More Saturday Night",
+          "duration": 284.76,
+          "duration_str": "4:44"
+        },
+        {
+          "title": "Casey Jones",
+          "song": "Casey Jones",
+          "duration": 408.76,
+          "duration_str": "6:48"
+        }
+      ]
+    },
+    {
+      "date": "1970-02-13",
+      "venue": "Fillmore East",
+      "tracks": [
+        {
+          "title": "Cold Rain And Snow",
+          "song": "Cold Rain And Snow",
+          "duration": 336.0,
+          "duration_str": "5:36"
+        },
+        {
+          "title": "Beat It On Down The Line",
+          "song": "Beat It On Down The Line",
+          "duration": 163.0,
+          "duration_str": "2:43"
+        },
+        {
+          "title": "Good Lovin'",
+          "song": "Good Lovin'",
+          "duration": 542.0,
+          "duration_str": "9:02"
+        },
+        {
+          "title": "Mama Tried",
+          "song": "Mama Tried",
+          "duration": 158.0,
+          "duration_str": "2:38"
+        },
+        {
+          "title": "Black Peter",
+          "song": "Black Peter",
+          "duration": 559.0,
+          "duration_str": "9:19"
+        },
+        {
+          "title": "Hard To Handle",
+          "song": "Hard To Handle",
+          "duration": 397.0,
+          "duration_str": "6:37"
+        },
+        {
+          "title": "Saint Stephen ->",
+          "song": "Saint Stephen -",
+          "duration": 400.0,
+          "duration_str": "6:40"
+        },
+        {
+          "title": "Not Fade Away",
+          "song": "Not Fade Away",
+          "duration": 557.0,
+          "duration_str": "9:17"
+        },
+        {
+          "title": "Casey Jones",
+          "song": "Casey Jones",
+          "duration": 292.0,
+          "duration_str": "4:52"
+        }
+      ]
+    },
+    {
+      "date": "1989-10-09",
+      "venue": "Hampton Coliseum",
+      "tracks": [
+        {
+          "title": "Feel Like A Stranger",
+          "song": "Feel Like A Stranger",
+          "duration": 466.35,
+          "duration_str": "7:46"
+        },
+        {
+          "title": "Built To Last",
+          "song": "Built To Last",
+          "duration": 316.44,
+          "duration_str": "5:16"
+        },
+        {
+          "title": "Little Red Rooster",
+          "song": "Little Red Rooster",
+          "duration": 558.85,
+          "duration_str": "9:18"
+        },
+        {
+          "title": "Ramble On Rose",
+          "song": "Ramble On Rose",
+          "duration": 476.01,
+          "duration_str": "7:56"
+        },
+        {
+          "title": "We Can Run",
+          "song": "We Can Run",
+          "duration": 395.39,
+          "duration_str": "6:35"
+        },
+        {
+          "title": "Jack A Roe",
+          "song": "Jack-A-Roe",
+          "duration": 283.93,
+          "duration_str": "4:43"
+        },
+        {
+          "title": "Stuck Inside of Mobile With The Memphis Blues Again",
+          "song": "Stuck Inside of Mobile With The Memphis Blues Again",
+          "duration": 652.48,
+          "duration_str": "10:52"
+        },
+        {
+          "title": "Row Jimmy",
+          "song": "Row Jimmy",
+          "duration": 658.15,
+          "duration_str": "10:58"
+        },
+        {
+          "title": "Music Never Stopped",
+          "song": "Music Never Stopped",
+          "duration": 486.49,
+          "duration_str": "8:06"
+        },
+        {
+          "title": "Playing In The Band",
+          "song": "Playing In The Band",
+          "duration": 641.43,
+          "duration_str": "10:41"
+        },
+        {
+          "title": "Uncle John's Band",
+          "song": "Uncle John's Band",
+          "duration": 714.15,
+          "duration_str": "11:54"
+        },
+        {
+          "title": "Dark Star",
+          "song": "Dark Star",
+          "duration": 1148.41,
+          "duration_str": "19:08"
+        },
+        {
+          "title": "Drums",
+          "song": "Drums",
+          "duration": 157.39,
+          "duration_str": "2:37"
+        },
+        {
+          "title": "Space",
+          "song": "Space",
+          "duration": 501.8,
+          "duration_str": "8:21"
+        },
+        {
+          "title": "Death Don't Have No Mercy",
+          "song": "Death Don't Have No Mercy",
+          "duration": 507.08,
+          "duration_str": "8:27"
+        },
+        {
+          "title": "Dear Mr. Fantasy",
+          "song": "Dear Mr. Fantasy",
+          "duration": 273.92,
+          "duration_str": "4:33"
+        },
+        {
+          "title": "Hey Jude Finale",
+          "song": "Hey Jude Finale",
+          "duration": 224.64,
+          "duration_str": "3:44"
+        },
+        {
+          "title": "Throwing Stones",
+          "song": "Throwing Stones",
+          "duration": 608.97,
+          "duration_str": "10:08"
+        },
+        {
+          "title": "Good Lovin'",
+          "song": "Good Lovin'",
+          "duration": 451.24,
+          "duration_str": "7:31"
+        },
+        {
+          "title": "Attics of My Life",
+          "song": "Attics of My Life",
+          "duration": 375.07,
+          "duration_str": "6:15"
+        }
+      ]
+    }
+  ],
+  "songs": {
+    "The Promised Land": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 217.0,
+          "duration_str": "3:37",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 217.0,
+      "avg_duration": 217.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 217.0,
+        "duration_str": "3:37",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Sugaree": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 556.0,
+          "duration_str": "9:16",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 556.0,
+      "avg_duration": 556.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 556.0,
+        "duration_str": "9:16",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Me and My Uncle": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 207.0,
+          "duration_str": "3:27",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 207.0,
+      "avg_duration": 207.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 207.0,
+        "duration_str": "3:27",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Deal": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 360.0,
+          "duration_str": "6:00",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1977-05-08",
+          "duration": 448.44,
+          "duration_str": "7:28",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 808.44,
+      "avg_duration": 404.22,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 448.44,
+        "duration_str": "7:28",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1977-05-08"
+    },
+    "Black Throated Wind": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 565.0,
+          "duration_str": "9:25",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 409.67,
+          "duration_str": "6:49",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 974.6700000000001,
+      "avg_duration": 487.33500000000004,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 565.0,
+        "duration_str": "9:25",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1974-06-23"
+    },
+    "China Cat Sunflower": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 475.0,
+          "duration_str": "7:55",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 475.0,
+      "avg_duration": 475.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 475.0,
+        "duration_str": "7:55",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "I Know You Rider": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 510.0,
+          "duration_str": "8:30",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 510.0,
+      "avg_duration": 510.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 510.0,
+        "duration_str": "8:30",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Mexicali Blues": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 265.0,
+          "duration_str": "4:25",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 265.0,
+      "avg_duration": 265.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 265.0,
+        "duration_str": "4:25",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Bertha": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 353.0,
+          "duration_str": "5:53",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 353.0,
+      "avg_duration": 353.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 353.0,
+        "duration_str": "5:53",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Playing in the Band": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 1281.0,
+          "duration_str": "21:21",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 1281.0,
+      "avg_duration": 1281.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 1281.0,
+        "duration_str": "21:21",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "He's Gone": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 728.0,
+          "duration_str": "12:08",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 728.0,
+      "avg_duration": 728.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 728.0,
+        "duration_str": "12:08",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Jack Straw": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 360.0,
+          "duration_str": "6:00",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1977-05-08",
+          "duration": 485.04,
+          "duration_str": "8:05",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 364.49,
+          "duration_str": "6:04",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 3,
+      "total_duration": 1209.53,
+      "avg_duration": 403.1766666666667,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 485.04,
+        "duration_str": "8:05",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1977-05-08"
+    },
+    "Bird Song": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 817.0,
+          "duration_str": "13:37",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 817.0,
+      "avg_duration": 817.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 817.0,
+        "duration_str": "13:37",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Greatest Story Ever Told": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 356.0,
+          "duration_str": "5:56",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 356.0,
+      "avg_duration": 356.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 356.0,
+        "duration_str": "5:56",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Dark Star": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 1902.0,
+          "duration_str": "31:42",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1989-10-09",
+          "duration": 1148.41,
+          "duration_str": "19:08",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 3050.41,
+      "avg_duration": 1525.205,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 1902.0,
+        "duration_str": "31:42",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1989-10-09"
+    },
+    "El Paso": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 289.0,
+          "duration_str": "4:49",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1977-05-08",
+          "duration": 323.17,
+          "duration_str": "5:23",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 461.04,
+          "duration_str": "7:41",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 3,
+      "total_duration": 1073.21,
+      "avg_duration": 357.7366666666667,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 461.04,
+        "duration_str": "7:41",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1977-05-08"
+    },
+    "Sing Me Back Home": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 782.0,
+          "duration_str": "13:02",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 782.0,
+      "avg_duration": 782.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 782.0,
+        "duration_str": "13:02",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Sugar Magnolia": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 702.0,
+          "duration_str": "11:42",
+          "venue": "Old Renaissance Faire Grounds"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 702.0,
+      "avg_duration": 702.0,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 702.0,
+        "duration_str": "11:42",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1972-08-27"
+    },
+    "Casey Jones": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 420.0,
+          "duration_str": "7:00",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 408.76,
+          "duration_str": "6:48",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1970-02-13",
+          "duration": 292.0,
+          "duration_str": "4:52",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 3,
+      "total_duration": 1120.76,
+      "avg_duration": 373.58666666666664,
+      "longest": {
+        "date": "1972-08-27",
+        "duration": 420.0,
+        "duration_str": "7:00",
+        "venue": "Old Renaissance Faire Grounds"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1974-06-23"
+    },
+    "One More Saturday Night": {
+      "performances": [
+        {
+          "date": "1972-08-27",
+          "duration": 278.0,
+          "duration_str": "4:38",
+          "venue": "Old Renaissance Faire Grounds"
+        },
+        {
+          "date": "1977-05-08",
+          "duration": 322.03,
+          "duration_str": "5:22",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 284.76,
+          "duration_str": "4:44",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 3,
+      "total_duration": 884.79,
+      "avg_duration": 294.93,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 322.03,
+        "duration_str": "5:22",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1972-08-27",
+      "last_played": "1977-05-08"
+    },
+    "Minglewood Blues": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 365.55,
+          "duration_str": "6:05",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 365.55,
+      "avg_duration": 365.55,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 365.55,
+        "duration_str": "6:05",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Loser": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 530.97,
+          "duration_str": "8:50",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 530.97,
+      "avg_duration": 530.97,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 530.97,
+        "duration_str": "8:50",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "They Love Each Other": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 550.99,
+          "duration_str": "9:10",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 550.99,
+      "avg_duration": 550.99,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 550.99,
+        "duration_str": "9:10",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Lazy Lightning -": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 209.51,
+          "duration_str": "3:29",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 209.51,
+      "avg_duration": 209.51,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 209.51,
+        "duration_str": "3:29",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Supplication": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 327.56,
+          "duration_str": "5:27",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 327.56,
+      "avg_duration": 327.56,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 327.56,
+        "duration_str": "5:27",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Brown Eyed Women": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 409.8,
+          "duration_str": "6:49",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 409.8,
+      "avg_duration": 409.8,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 409.8,
+        "duration_str": "6:49",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Mama Tried": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 232.04,
+          "duration_str": "3:52",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1970-02-13",
+          "duration": 158.0,
+          "duration_str": "2:38",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 390.03999999999996,
+      "avg_duration": 195.01999999999998,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 232.04,
+        "duration_str": "3:52",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1977-05-08"
+    },
+    "Row Jimmy": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 787.15,
+          "duration_str": "13:07",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1974-06-23",
+          "duration": 556.63,
+          "duration_str": "9:16",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1989-10-09",
+          "duration": 658.15,
+          "duration_str": "10:58",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 3,
+      "total_duration": 2001.9299999999998,
+      "avg_duration": 667.31,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 787.15,
+        "duration_str": "13:07",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1989-10-09"
+    },
+    "Dancin' In the Streets": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 974.08,
+          "duration_str": "16:14",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 974.08,
+      "avg_duration": 974.08,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 974.08,
+        "duration_str": "16:14",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Take A Step Back": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 116.53,
+          "duration_str": "1:56",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 116.53,
+      "avg_duration": 116.53,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 116.53,
+        "duration_str": "1:56",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Scarlet Begonias -": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 690.53,
+          "duration_str": "11:30",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 690.53,
+      "avg_duration": 690.53,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 690.53,
+        "duration_str": "11:30",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Fire on the Mountain": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 916.24,
+          "duration_str": "15:16",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 916.24,
+      "avg_duration": 916.24,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 916.24,
+        "duration_str": "15:16",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Estimated Prophet": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 818.85,
+          "duration_str": "13:38",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 818.85,
+      "avg_duration": 818.85,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 818.85,
+        "duration_str": "13:38",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Saint Stephen -": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 286.68,
+          "duration_str": "4:46",
+          "venue": "Barton Hall"
+        },
+        {
+          "date": "1970-02-13",
+          "duration": 400.0,
+          "duration_str": "6:40",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 686.6800000000001,
+      "avg_duration": 343.34000000000003,
+      "longest": {
+        "date": "1970-02-13",
+        "duration": 400.0,
+        "duration_str": "6:40",
+        "venue": "Fillmore East"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1977-05-08"
+    },
+    "Not Fade Away -": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 1037.36,
+          "duration_str": "17:17",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 1037.36,
+      "avg_duration": 1037.36,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 1037.36,
+        "duration_str": "17:17",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Morning Dew": {
+      "performances": [
+        {
+          "date": "1977-05-08",
+          "duration": 1047.21,
+          "duration_str": "17:27",
+          "venue": "Barton Hall"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 1047.21,
+      "avg_duration": 1047.21,
+      "longest": {
+        "date": "1977-05-08",
+        "duration": 1047.21,
+        "duration_str": "17:27",
+        "venue": "Barton Hall"
+      },
+      "first_played": "1977-05-08",
+      "last_played": "1977-05-08"
+    },
+    "Ramble On Rose": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 471.43,
+          "duration_str": "7:51",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1989-10-09",
+          "duration": 476.01,
+          "duration_str": "7:56",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 947.44,
+      "avg_duration": 473.72,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 476.01,
+        "duration_str": "7:56",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1989-10-09"
+    },
+    "Equipment Issues": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 443.11,
+          "duration_str": "7:23",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 443.11,
+      "avg_duration": 443.11,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 443.11,
+        "duration_str": "7:23",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Mississippi Half-Step Uptown Toodeloo": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 504.81,
+          "duration_str": "8:24",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 504.81,
+      "avg_duration": 504.81,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 504.81,
+        "duration_str": "8:24",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Beat It On Down The Line": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 281.69,
+          "duration_str": "4:41",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1970-02-13",
+          "duration": 163.0,
+          "duration_str": "2:43",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 444.69,
+      "avg_duration": 222.345,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 281.69,
+        "duration_str": "4:41",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1974-06-23"
+    },
+    "Let It Rock": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 289.23,
+          "duration_str": "4:49",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 289.23,
+      "avg_duration": 289.23,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 289.23,
+        "duration_str": "4:49",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Cumberland Blues": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 477.15,
+          "duration_str": "7:57",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 477.15,
+      "avg_duration": 477.15,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 477.15,
+        "duration_str": "7:57",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "To Lay Me Down": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 566.56,
+          "duration_str": "9:26",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 566.56,
+      "avg_duration": 566.56,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 566.56,
+        "duration_str": "9:26",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Weather Report Suite Prelude": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 341.49,
+          "duration_str": "5:41",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 341.49,
+      "avg_duration": 341.49,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 341.49,
+        "duration_str": "5:41",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Let It Grow": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 640.21,
+          "duration_str": "10:40",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 640.21,
+      "avg_duration": 640.21,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 640.21,
+        "duration_str": "10:40",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "China Doll": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 347.71,
+          "duration_str": "5:47",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 347.71,
+      "avg_duration": 347.71,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 347.71,
+        "duration_str": "5:47",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Seastones (From shnid=105755)": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 913.41,
+          "duration_str": "15:13",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 913.41,
+      "avg_duration": 913.41,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 913.41,
+        "duration_str": "15:13",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Jam": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 246.72,
+          "duration_str": "4:06",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 246.72,
+      "avg_duration": 246.72,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 246.72,
+        "duration_str": "4:06",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Ship Of Fools": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 382.41,
+          "duration_str": "6:22",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 382.41,
+      "avg_duration": 382.41,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 382.41,
+        "duration_str": "6:22",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Big River": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 346.44,
+          "duration_str": "5:46",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 346.44,
+      "avg_duration": 346.44,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 346.44,
+        "duration_str": "5:46",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Black Peter": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 654.16,
+          "duration_str": "10:54",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1970-02-13",
+          "duration": 559.0,
+          "duration_str": "9:19",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 1213.1599999999999,
+      "avg_duration": 606.5799999999999,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 654.16,
+        "duration_str": "10:54",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1974-06-23"
+    },
+    "Around And Around": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 381.42,
+          "duration_str": "6:21",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 381.42,
+      "avg_duration": 381.42,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 381.42,
+        "duration_str": "6:21",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Dark Star Jam": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 1041.55,
+          "duration_str": "17:21",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 1041.55,
+      "avg_duration": 1041.55,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 1041.55,
+        "duration_str": "17:21",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Spanish Jam": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 283.15,
+          "duration_str": "4:43",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 283.15,
+      "avg_duration": 283.15,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 283.15,
+        "duration_str": "4:43",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "U.S. Blues": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 633.63,
+          "duration_str": "10:33",
+          "venue": "Jai-Alai Fronton"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 633.63,
+      "avg_duration": 633.63,
+      "longest": {
+        "date": "1974-06-23",
+        "duration": 633.63,
+        "duration_str": "10:33",
+        "venue": "Jai-Alai Fronton"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1974-06-23"
+    },
+    "Uncle John's Band": {
+      "performances": [
+        {
+          "date": "1974-06-23",
+          "duration": 479.03,
+          "duration_str": "7:59",
+          "venue": "Jai-Alai Fronton"
+        },
+        {
+          "date": "1989-10-09",
+          "duration": 714.15,
+          "duration_str": "11:54",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 1193.1799999999998,
+      "avg_duration": 596.5899999999999,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 714.15,
+        "duration_str": "11:54",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1974-06-23",
+      "last_played": "1989-10-09"
+    },
+    "Cold Rain And Snow": {
+      "performances": [
+        {
+          "date": "1970-02-13",
+          "duration": 336.0,
+          "duration_str": "5:36",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 336.0,
+      "avg_duration": 336.0,
+      "longest": {
+        "date": "1970-02-13",
+        "duration": 336.0,
+        "duration_str": "5:36",
+        "venue": "Fillmore East"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1970-02-13"
+    },
+    "Good Lovin'": {
+      "performances": [
+        {
+          "date": "1970-02-13",
+          "duration": 542.0,
+          "duration_str": "9:02",
+          "venue": "Fillmore East"
+        },
+        {
+          "date": "1989-10-09",
+          "duration": 451.24,
+          "duration_str": "7:31",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 2,
+      "total_duration": 993.24,
+      "avg_duration": 496.62,
+      "longest": {
+        "date": "1970-02-13",
+        "duration": 542.0,
+        "duration_str": "9:02",
+        "venue": "Fillmore East"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1989-10-09"
+    },
+    "Hard To Handle": {
+      "performances": [
+        {
+          "date": "1970-02-13",
+          "duration": 397.0,
+          "duration_str": "6:37",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 397.0,
+      "avg_duration": 397.0,
+      "longest": {
+        "date": "1970-02-13",
+        "duration": 397.0,
+        "duration_str": "6:37",
+        "venue": "Fillmore East"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1970-02-13"
+    },
+    "Not Fade Away": {
+      "performances": [
+        {
+          "date": "1970-02-13",
+          "duration": 557.0,
+          "duration_str": "9:17",
+          "venue": "Fillmore East"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 557.0,
+      "avg_duration": 557.0,
+      "longest": {
+        "date": "1970-02-13",
+        "duration": 557.0,
+        "duration_str": "9:17",
+        "venue": "Fillmore East"
+      },
+      "first_played": "1970-02-13",
+      "last_played": "1970-02-13"
+    },
+    "Feel Like A Stranger": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 466.35,
+          "duration_str": "7:46",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 466.35,
+      "avg_duration": 466.35,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 466.35,
+        "duration_str": "7:46",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Built To Last": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 316.44,
+          "duration_str": "5:16",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 316.44,
+      "avg_duration": 316.44,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 316.44,
+        "duration_str": "5:16",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Little Red Rooster": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 558.85,
+          "duration_str": "9:18",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 558.85,
+      "avg_duration": 558.85,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 558.85,
+        "duration_str": "9:18",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "We Can Run": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 395.39,
+          "duration_str": "6:35",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 395.39,
+      "avg_duration": 395.39,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 395.39,
+        "duration_str": "6:35",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Jack-A-Roe": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 283.93,
+          "duration_str": "4:43",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 283.93,
+      "avg_duration": 283.93,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 283.93,
+        "duration_str": "4:43",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Stuck Inside of Mobile With The Memphis Blues Again": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 652.48,
+          "duration_str": "10:52",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 652.48,
+      "avg_duration": 652.48,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 652.48,
+        "duration_str": "10:52",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Music Never Stopped": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 486.49,
+          "duration_str": "8:06",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 486.49,
+      "avg_duration": 486.49,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 486.49,
+        "duration_str": "8:06",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Playing In The Band": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 641.43,
+          "duration_str": "10:41",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 641.43,
+      "avg_duration": 641.43,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 641.43,
+        "duration_str": "10:41",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Drums": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 157.39,
+          "duration_str": "2:37",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 157.39,
+      "avg_duration": 157.39,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 157.39,
+        "duration_str": "2:37",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Space": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 501.8,
+          "duration_str": "8:21",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 501.8,
+      "avg_duration": 501.8,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 501.8,
+        "duration_str": "8:21",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Death Don't Have No Mercy": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 507.08,
+          "duration_str": "8:27",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 507.08,
+      "avg_duration": 507.08,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 507.08,
+        "duration_str": "8:27",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Dear Mr. Fantasy": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 273.92,
+          "duration_str": "4:33",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 273.92,
+      "avg_duration": 273.92,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 273.92,
+        "duration_str": "4:33",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Hey Jude Finale": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 224.64,
+          "duration_str": "3:44",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 224.64,
+      "avg_duration": 224.64,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 224.64,
+        "duration_str": "3:44",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Throwing Stones": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 608.97,
+          "duration_str": "10:08",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 608.97,
+      "avg_duration": 608.97,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 608.97,
+        "duration_str": "10:08",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    },
+    "Attics of My Life": {
+      "performances": [
+        {
+          "date": "1989-10-09",
+          "duration": 375.07,
+          "duration_str": "6:15",
+          "venue": "Hampton Coliseum"
+        }
+      ],
+      "total_plays": 1,
+      "total_duration": 375.07,
+      "avg_duration": 375.07,
+      "longest": {
+        "date": "1989-10-09",
+        "duration": 375.07,
+        "duration_str": "6:15",
+        "venue": "Hampton Coliseum"
+      },
+      "first_played": "1989-10-09",
+      "last_played": "1989-10-09"
+    }
+  }
+}

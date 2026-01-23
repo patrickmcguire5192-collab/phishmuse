@@ -793,6 +793,170 @@ class JamMuseEngine:
             ]
         )
 
+    def _parse_duration(self, tracktime: str) -> float:
+        """Parse tracktime string (MM:SS or HH:MM:SS) to minutes."""
+        if not tracktime:
+            return 0.0
+        try:
+            parts = tracktime.split(":")
+            if len(parts) == 2:
+                mins, secs = int(parts[0]), int(parts[1])
+                return mins + secs / 60.0
+            elif len(parts) == 3:
+                hours, mins, secs = int(parts[0]), int(parts[1]), int(parts[2])
+                return hours * 60 + mins + secs / 60.0
+        except (ValueError, IndexError):
+            return 0.0
+        return 0.0
+
+    def query_longest(self, song_name: str, limit: int = 10) -> QueryResult:
+        """Get the longest versions of a song."""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        # Find song slug
+        song_slug = None
+        for song in self.songs:
+            if song["name"].lower() == normalized.lower():
+                song_slug = song["slug"]
+                normalized = song["name"]
+                break
+
+        if not song_slug:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find '{song_name}' in the {self.band_name} catalog."
+            )
+
+        # Get all performances with durations
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        # Filter to those with duration data and parse
+        with_duration = []
+        for p in performances:
+            duration_min = self._parse_duration(p.get("tracktime", ""))
+            if duration_min > 0:
+                with_duration.append({
+                    **p,
+                    "duration_min": duration_min
+                })
+
+        if not with_duration:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I don't have duration data for {normalized}. Try checking the jam chart versions instead.",
+                related_queries=[f"best {normalized}", f"{normalized} stats"]
+            )
+
+        # Sort by duration descending
+        sorted_perfs = sorted(with_duration, key=lambda x: x["duration_min"], reverse=True)[:limit]
+
+        # Calculate stats
+        all_durations = [p["duration_min"] for p in with_duration]
+        avg_duration = sum(all_durations) / len(all_durations) if all_durations else 0
+        longest = sorted_perfs[0]
+
+        # Format the longest
+        mins = int(longest["duration_min"])
+        secs = int((longest["duration_min"] - mins) * 60)
+        duration_str = f"{mins}:{secs:02d}"
+
+        lines = [f"**Longest {normalized} Versions**\n"]
+
+        for i, perf in enumerate(sorted_perfs, 1):
+            date = perf.get("showdate", "Unknown")
+            venue = perf.get("venuename", "Unknown venue")
+            dur_mins = int(perf["duration_min"])
+            dur_secs = int((perf["duration_min"] - dur_mins) * 60)
+            dur_str = f"{dur_mins}:{dur_secs:02d}"
+            lines.append(f"{i}. {dur_str} - {date} at {venue}")
+
+        lines.append(f"\nAverage {normalized} length: {avg_duration:.1f} minutes")
+        lines.append(f"Based on {len(with_duration)} performances with timing data")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=duration_str,
+            card_data={
+                "type": "longest",
+                "title": f"Longest {normalized}",
+                "stat": duration_str,
+                "subtitle": f"{longest.get('showdate')} at {longest.get('venuename', '')}",
+                "extra": {
+                    "avg_duration": f"{avg_duration:.1f} min",
+                    "performances_with_data": len(with_duration)
+                }
+            },
+            related_queries=[
+                f"best {normalized}",
+                f"{normalized} stats",
+                f"gap on {normalized}"
+            ]
+        )
+
+    def query_average_duration(self, song_name: str) -> QueryResult:
+        """Get the average duration of a song."""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        song_slug = None
+        for song in self.songs:
+            if song["name"].lower() == normalized.lower():
+                song_slug = song["slug"]
+                normalized = song["name"]
+                break
+
+        if not song_slug:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find '{song_name}'."
+            )
+
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        durations = [self._parse_duration(p.get("tracktime", "")) for p in performances]
+        durations = [d for d in durations if d > 0]
+
+        if not durations:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I don't have duration data for {normalized}."
+            )
+
+        avg = sum(durations) / len(durations)
+        min_dur = min(durations)
+        max_dur = max(durations)
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer=f"Average {normalized} length: {avg:.1f} minutes\n"
+                   f"Shortest: {min_dur:.1f} min | Longest: {max_dur:.1f} min\n"
+                   f"Based on {len(durations)} performances with timing data.",
+            highlight=f"{avg:.1f}",
+            card_data={
+                "type": "duration",
+                "title": f"{normalized} Duration",
+                "stat": f"{avg:.1f}",
+                "stat_label": "avg minutes",
+                "extra": {
+                    "min": f"{min_dur:.1f} min",
+                    "max": f"{max_dur:.1f} min",
+                    "count": len(durations)
+                }
+            }
+        )
+
     def query_show_count(self, venue: str = None, year: int = None) -> QueryResult:
         """How many shows has the band played?"""
         shows = self.shows
@@ -940,6 +1104,18 @@ class JamMuseEngine:
         if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
             return self.query_setlist(date_match.group(1))
 
+        # Longest version queries
+        if any(word in q for word in ["longest", "how long", "longest version"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_longest(song)
+
+        # Average duration queries
+        if any(word in q for word in ["average length", "avg duration", "typical length", "how long is"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_average_duration(song)
+
         # Jam chart / best version queries
         if any(word in q for word in ["best", "jam chart", "jamchart", "greatest", "top version"]):
             song = self._normalize_song_name(question)
@@ -1001,24 +1177,302 @@ class JamMuseEngine:
 
 
 # =============================================================================
+# UNIFIED JAMMUSE - AUTO-DETECTS BAND FROM QUERY
+# =============================================================================
+
+# Import setlist.fm engine
+try:
+    from scripts.setlistfm_engine import SetlistFMEngine, SETLISTFM_BANDS, get_all_setlistfm_aliases
+    SETLISTFM_AVAILABLE = True
+except ImportError:
+    SETLISTFM_AVAILABLE = False
+    SETLISTFM_BANDS = {}
+
+# Import Archive.org Grateful Dead engine
+try:
+    from scripts.archive_engine import ArchiveDeadEngine, get_dead_song_aliases
+    DEAD_AVAILABLE = True
+except ImportError:
+    DEAD_AVAILABLE = False
+
+
+class UnifiedJamMuse:
+    """
+    Unified query engine that auto-detects which band you're asking about.
+    No need to specify - just ask about any song and it figures it out.
+
+    Supports:
+    - Phish (via PhishStatsEngine)
+    - Goose, King Gizzard (via Songfish/JamMuseEngine)
+    - Umphrey's McGee, Widespread Panic, moe., STS9, Billy Strings (via setlist.fm)
+    """
+
+    def __init__(self, include_phish: bool = True):
+        """Initialize with all band engines."""
+        self.engines = {}
+        self.setlistfm_engines = {}
+        self._song_to_band = {}  # Maps song names to band keys
+        self._alias_to_band = {}  # Maps aliases to band keys
+        self.include_phish = include_phish
+        self._phish_engine = None
+        self._dead_engine = None
+
+        # Initialize Songfish-based engines (Goose, King Gizzard)
+        for band_key in BANDS:
+            self.engines[band_key] = JamMuseEngine(band_key)
+
+        # Initialize setlist.fm engines (Umphrey's, WSP, moe., STS9, Billy Strings)
+        if SETLISTFM_AVAILABLE:
+            for band_key in SETLISTFM_BANDS:
+                self.setlistfm_engines[band_key] = SetlistFMEngine(band_key)
+
+        # Initialize Archive.org Grateful Dead engine
+        if DEAD_AVAILABLE:
+            try:
+                self._dead_engine = ArchiveDeadEngine()
+            except Exception as e:
+                print(f"Warning: Could not load Dead engine: {e}")
+                self._dead_engine = None
+
+        # Build song lookup tables
+        self._build_song_index()
+
+    def _build_song_index(self):
+        """Build index of all songs across all bands for auto-detection."""
+        # Index Songfish bands (Goose, King Gizzard)
+        for band_key, engine in self.engines.items():
+            config = BANDS[band_key]
+
+            # Index song aliases
+            for alias, song_name in config.get("song_aliases", {}).items():
+                self._alias_to_band[alias.lower()] = band_key
+
+            # Index actual songs from API
+            for song in engine.songs:
+                song_name = song["name"].lower()
+                self._song_to_band[song_name] = band_key
+
+        # Index setlist.fm bands (Umphrey's, WSP, moe., STS9, Billy Strings)
+        if SETLISTFM_AVAILABLE:
+            for band_key, config in SETLISTFM_BANDS.items():
+                # Index song aliases
+                for alias in config.get("song_aliases", {}).keys():
+                    self._alias_to_band[alias.lower()] = band_key
+
+                # Index band name aliases
+                for alias in config.get("aliases", []):
+                    self._alias_to_band[alias.lower()] = band_key
+
+        # If including Phish, add Phish song detection
+        if self.include_phish:
+            self._add_phish_songs()
+
+        # Add Grateful Dead song aliases for detection
+        if DEAD_AVAILABLE and self._dead_engine:
+            dead_aliases = get_dead_song_aliases()
+            for alias in dead_aliases:
+                self._alias_to_band[alias.lower()] = "dead"
+
+    def _add_phish_songs(self):
+        """Add Phish songs to the index for detection."""
+        # Common Phish song aliases that are unique to Phish
+        phish_aliases = {
+            "tweezer": "phish", "ghost": "phish", "yem": "phish",
+            "you enjoy myself": "phish", "reba": "phish", "divided sky": "phish",
+            "fluffhead": "phish", "harry hood": "phish", "hood": "phish",
+            "antelope": "phish", "run like an antelope": "phish",
+            "slave": "phish", "slave to the traffic light": "phish",
+            "bathtub gin": "phish", "gin": "phish", "mike's song": "phish",
+            "mikes song": "phish", "mike's": "phish", "weekapaug": "phish",
+            "weekapaug groove": "phish", "down with disease": "phish",
+            "dwd": "phish", "disease": "phish", "simple": "phish",
+            "carini": "phish", "piper": "phish", "sand": "phish",
+            "twist": "phish", "drowned": "phish", "wolfman's": "phish",
+            "wolfmans brother": "phish", "wolfman's brother": "phish",
+            "stash": "phish", "possum": "phish", "cavern": "phish",
+            "chalk dust": "phish", "chalkdust": "phish", "chalk dust torture": "phish",
+            "bouncing": "phish", "bouncing around the room": "phish",
+            "fee": "phish", "sample": "phish", "sample in a jar": "phish",
+            "lizards": "phish", "the lizards": "phish", "golgi": "phish",
+            "golgi apparatus": "phish", "suzy greenberg": "phish", "suzy": "phish",
+            "ac/dc bag": "phish", "acdc bag": "phish", "bag": "phish",
+            "maze": "phish", "sparkle": "phish", "esther": "phish",
+            "punch you in the eye": "phish", "pyite": "phish",
+            "harpua": "phish", "gamehendge": "phish", "mcgrupp": "phish",
+            "llama": "phish", "david bowie": "phish", "bowie": "phish",
+            "jim": "phish", "halley's comet": "phish", "halleys": "phish",
+            "cities": "phish", "mango song": "phish", "mango": "phish",
+            "guyute": "phish", "limb by limb": "phish", "limb": "phish",
+            "theme": "phish", "theme from the bottom": "phish",
+            "free": "phish", "character zero": "phish", "zero": "phish",
+            "first tube": "phish", "tube": "phish", "gotta jibboo": "phish",
+            "jibboo": "phish", "moma dance": "phish", "moma": "phish",
+            "roggae": "phish", "birds of a feather": "phish", "birds": "phish",
+            "dirt": "phish", "waste": "phish", "wading": "phish",
+            "wading in the velvet sea": "phish", "prince caspian": "phish",
+            "caspian": "phish", "vultures": "phish", "sleeping monkey": "phish",
+            "scents and subtle sounds": "phish", "scents": "phish",
+            "walls of the cave": "phish", "walls": "phish",
+            "party time": "phish", "blaze on": "phish", "everything's right": "phish",
+            "everythings right": "phish", "ruby waves": "phish", "ruby": "phish",
+            "sigma oasis": "phish", "sigma": "phish", "set your soul free": "phish",
+            "soul free": "phish", "no men": "phish", "no men in no man's land": "phish",
+            "golden age": "phish", "fuego": "phish", "winterqueen": "phish",
+            "steam": "phish", "light": "phish", "mercury": "phish",
+            "breath and burning": "phish", "miss you": "phish",
+            "more": "phish", "say it to me santos": "phish", "santos": "phish",
+        }
+        for alias, band in phish_aliases.items():
+            self._alias_to_band[alias] = band
+
+    def _get_phish_engine(self):
+        """Get or lazily load the Phish engine."""
+        if self._phish_engine is None and self.include_phish:
+            try:
+                from scripts.query_engine import PhishStatsEngine
+                self._phish_engine = PhishStatsEngine()
+                self._phish_engine.load_data()
+            except Exception as e:
+                print(f"Warning: Could not load Phish engine: {e}")
+                self._phish_engine = False  # Mark as failed
+        return self._phish_engine if self._phish_engine else None
+
+    def _detect_band(self, query: str) -> Optional[str]:
+        """
+        Detect which band the query is about based on song names/aliases.
+        Returns band key or None if can't detect.
+        """
+        q_lower = query.lower()
+
+        # Check for explicit band mentions
+        if any(word in q_lower for word in ["phish", "trey", "fishman", "page", "mike gordon"]):
+            return "phish"
+        if any(word in q_lower for word in ["grateful dead", "the dead", "jerry garcia", "jerry", "garcia", "dead played", "gd "]):
+            return "dead"
+        if any(word in q_lower for word in ["goose", "rick mitarotonda", "el goose"]):
+            return "goose"
+        if any(word in q_lower for word in ["king gizzard", "kglw", "gizz", "stu mackenzie"]):
+            return "kglw"
+        # Setlist.fm bands
+        if any(word in q_lower for word in ["umphreys", "umphrey", "umph "]):
+            return "umphreys"
+        if any(word in q_lower for word in ["widespread", "wsp", "panic"]):
+            return "wsp"
+        if any(word in q_lower for word in ["moe.", "moe "]):
+            return "moe"
+        if any(word in q_lower for word in ["sts9", "sound tribe", "sector 9"]):
+            return "sts9"
+        if any(word in q_lower for word in ["billy strings", "bmfs"]):
+            return "billy"
+
+        # Check aliases - sort by length (longest first) to avoid partial matches
+        # e.g., "fluffhead" should match before "head"
+        sorted_aliases = sorted(self._alias_to_band.items(), key=lambda x: len(x[0]), reverse=True)
+        for alias, band_key in sorted_aliases:
+            if alias in q_lower:
+                return band_key
+
+        # Check song names from catalogs - also longest first
+        sorted_songs = sorted(self._song_to_band.items(), key=lambda x: len(x[0]), reverse=True)
+        for song_name, band_key in sorted_songs:
+            if song_name in q_lower:
+                return band_key
+
+        return None
+
+    def query(self, question: str) -> QueryResult:
+        """
+        Answer any jam band question - auto-detects which band.
+        """
+        # Detect which band
+        band_key = self._detect_band(question)
+
+        if not band_key:
+            return QueryResult(
+                success=False,
+                band=None,
+                answer="I couldn't figure out which band you're asking about. "
+                       "Try including a song name like:\n"
+                       "- 'longest Dark Star' (Grateful Dead)\n"
+                       "- 'longest Tweezer' (Phish)\n"
+                       "- 'Arcadia stats' (Goose)\n"
+                       "- 'gap on Dripping Tap' (King Gizzard)\n"
+                       "- 'how many times Mantis' (Umphrey's McGee)\n"
+                       "- 'when did they last play Chilly Water' (Widespread Panic)"
+            )
+
+        # Route to appropriate engine
+        if band_key == "phish":
+            phish_engine = self._get_phish_engine()
+            if phish_engine:
+                result = phish_engine.query(question)
+                # Wrap Phish result to add band field
+                return QueryResult(
+                    success=result.success,
+                    answer=result.answer,
+                    band="Phish",
+                    highlight=result.highlight,
+                    card_data=result.card_data,
+                    related_queries=result.related_queries,
+                    raw_data=getattr(result, 'raw_data', None)
+                )
+            else:
+                return QueryResult(
+                    success=False,
+                    band="Phish",
+                    answer="Phish data is currently unavailable. Try a Goose or King Gizzard query!"
+                )
+        elif band_key == "dead":
+            # Grateful Dead via Archive.org
+            if self._dead_engine:
+                return self._dead_engine.query(question)
+            else:
+                return QueryResult(
+                    success=False,
+                    band="Grateful Dead",
+                    answer="Grateful Dead catalog is still loading. Please try again in a few minutes!"
+                )
+        elif band_key in self.engines:
+            # Songfish bands (Goose, King Gizzard)
+            return self.engines[band_key].query(question)
+        elif band_key in self.setlistfm_engines:
+            # Setlist.fm bands (Umphrey's, WSP, moe., STS9, Billy Strings)
+            return self.setlistfm_engines[band_key].query(question)
+        else:
+            return QueryResult(
+                success=False,
+                band=None,
+                answer=f"Unknown band key: {band_key}"
+            )
+
+    def get_available_bands(self) -> List[str]:
+        """Return list of available bands."""
+        bands = list(self.engines.keys())  # Songfish bands
+        bands.extend(self.setlistfm_engines.keys())  # Setlist.fm bands
+        if self.include_phish:
+            bands.insert(0, "phish")
+        if self._dead_engine:
+            bands.insert(0, "dead")  # Grateful Dead at the top!
+        return bands
+
+
+# =============================================================================
 # CONVENIENCE FUNCTIONS
 # =============================================================================
 
-def get_goose_engine() -> JamMuseEngine:
-    """Get a Goose query engine."""
-    return JamMuseEngine("goose")
+# Singleton unified engine
+_unified_engine = None
 
-def get_kglw_engine() -> JamMuseEngine:
-    """Get a King Gizzard query engine."""
-    return JamMuseEngine("kglw")
+def get_unified_engine() -> UnifiedJamMuse:
+    """Get the singleton unified JamMuse engine."""
+    global _unified_engine
+    if _unified_engine is None:
+        _unified_engine = UnifiedJamMuse(include_phish=True)
+    return _unified_engine
 
-def query_goose(question: str) -> QueryResult:
-    """Quick query for Goose."""
-    return get_goose_engine().query(question)
-
-def query_kglw(question: str) -> QueryResult:
-    """Quick query for King Gizzard."""
-    return get_kglw_engine().query(question)
+def query_any(question: str) -> QueryResult:
+    """Query any band - auto-detects from context."""
+    return get_unified_engine().query(question)
 
 
 # =============================================================================
@@ -1029,38 +1483,29 @@ if __name__ == "__main__":
     import sys
 
     print("=" * 60)
-    print("JamMuse Engine - Testing")
+    print("JamMuse Unified Engine - Testing")
     print("=" * 60)
 
-    # Test Goose
-    print("\n--- GOOSE ---")
-    goose = get_goose_engine()
+    engine = get_unified_engine()
 
     test_queries = [
-        "Arcadia stats",
+        # Phish
+        "longest Tweezer",
+        "Carini stats",
+        "gap on Fluffhead",
+        # Goose
+        "longest Arcadia",
         "how many times Hungersite",
         "gap on Madhuvan",
-        "best Tumble",
-        "how many shows in 2024",
-    ]
-
-    for q in test_queries:
-        print(f"\nQ: {q}")
-        result = goose.query(q)
-        print(result.answer[:300])
-
-    # Test King Gizzard
-    print("\n--- KING GIZZARD ---")
-    kglw = get_kglw_engine()
-
-    test_queries = [
+        # King Gizzard
         "The River stats",
-        "how many times Head On/Pill",
-        "gap on Dripping Tap",
+        "longest Dripping Tap",
         "best Magma",
     ]
 
     for q in test_queries:
         print(f"\nQ: {q}")
-        result = kglw.query(q)
-        print(result.answer[:300])
+        result = engine.query(q)
+        band = result.band or "Unknown"
+        answer_preview = result.answer.split('\n')[0][:60]
+        print(f"   [{band}] {answer_preview}...")
