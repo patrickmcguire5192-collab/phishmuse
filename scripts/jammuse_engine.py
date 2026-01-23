@@ -1,0 +1,1066 @@
+#!/usr/bin/env python3
+"""
+JamMuse Query Engine
+====================
+
+Multi-band natural language query interface for jam band statistics.
+Supports Goose, King Gizzard & the Lizard Wizard, and more via Songfish API.
+
+Each band has its own lore, terminology, and fan language that the engine understands.
+"""
+
+import json
+import re
+import urllib.request
+import urllib.error
+from pathlib import Path
+from typing import Optional, Dict, Any, List
+from dataclasses import dataclass
+from collections import Counter
+from datetime import datetime
+
+# Cache directory for API responses
+CACHE_DIR = Path(__file__).parent.parent / "data" / "jammuse_cache"
+CACHE_DIR.mkdir(parents=True, exist_ok=True)
+
+
+@dataclass
+class QueryResult:
+    """Structured result from a query."""
+    success: bool
+    answer: str
+    band: str = None
+    highlight: Optional[str] = None
+    card_data: Optional[Dict[str, Any]] = None
+    related_queries: Optional[List[str]] = None
+    raw_data: Optional[Any] = None
+
+
+# =============================================================================
+# BAND CONFIGURATIONS
+# =============================================================================
+
+BANDS = {
+    "goose": {
+        "name": "Goose",
+        "api_base": "https://elgoose.net/api/v2",
+        "artist_id": 1,  # Filter for main band (not Vasudo)
+        "site_url": "https://elgoose.net",
+
+        # Fan terminology and aliases
+        "aliases": ["goose", "el goose", "the goose"],
+
+        # Song name aliases (how fans refer to songs)
+        "song_aliases": {
+            "arcadia": "Arcadia",
+            "arc": "Arcadia",
+            "hungersite": "Hungersite",
+            "hunger": "Hungersite",
+            "wysteria": "Wysteria Lane",
+            "wysteria lane": "Wysteria Lane",
+            "madhuvan": "Madhuvan",
+            "madhu": "Madhuvan",
+            "tumble": "Tumble",
+            "all i need": "All I Need",
+            "ain": "All I Need",
+            "arrow": "Arrow",
+            "creatures": "Creatures",
+            "atlas dogs": "Atlas Dogs",
+            "atlas": "Atlas Dogs",
+            "drive": "Drive",
+            "thatch": "Thatch",
+            "rosewood": "Rosewood Heart",
+            "rosewood heart": "Rosewood Heart",
+            "echo of a rose": "Echo of a Rose",
+            "echo": "Echo of a Rose",
+            "hot tea": "Hot Tea",
+            "rockdale": "Rockdale",
+            "dripfield": "Dripfield",
+            "time to flee": "Time to Flee",
+            "earthling or alien": "Earthling or Alien?",
+            "earthling": "Earthling or Alien?",
+            "empress": "The Empress Of Organos",
+            "empress of organos": "The Empress Of Organos",
+            "old sea": "This Old Sea",
+            "this old sea": "This Old Sea",
+            "animal": "Animal",
+            "into the myst": "Into the Myst",
+            "myst": "Into the Myst",
+            "turned clouds": "Turned Clouds",
+            "flodown": "Flodown",
+            "elmeg": "Elmeg the Wise",
+            "elmeg the wise": "Elmeg the Wise",
+            "red bird": "Red Bird",
+            "butter rum": "Butter Rum",
+            "butterrum": "Butter Rum",
+            "seekers on the ridge": "Seekers on the Ridge",
+            "seekers": "Seekers on the Ridge",
+            "yeti": "Yeti",
+            "white lights": "White Lights",
+            "slow ready": "Slow Ready",
+            "factory fiction": "Factory Fiction",
+            "borne": "Borne",
+            "pancakes": "Pancakes",
+            "jive lee": "Jive Lee",
+            "jive": "Jive Lee",
+            "so ready": "So Ready",
+            "doc brown": "Doc Brown",
+            "silver rising": "Silver Rising",
+        },
+
+        # Venue aliases
+        "venue_aliases": {
+            "cap": "The Capitol Theatre",
+            "capitol": "The Capitol Theatre",
+            "cap theatre": "The Capitol Theatre",
+            "radio city": "Radio City Music Hall",
+            "rcmh": "Radio City Music Hall",
+            "msg": "Madison Square Garden",
+            "garden": "Madison Square Garden",
+            "spac": "Saratoga Performing Arts Center",
+            "saratoga": "Saratoga Performing Arts Center",
+            "red rocks": "Red Rocks Amphitheatre",
+            "peach": "Peach Music Festival",
+            "peach fest": "Peach Music Festival",
+            "westville": "Westville Music Bowl",
+            "nectars": "Nectar's",
+            "forest hills": "Forest Hills Stadium",
+            "dicks": "Dick's Sporting Goods Park",
+            "dicks field": "Dick's Sporting Goods Park",
+        },
+
+        # Eras (like Phish 1.0, 2.0, 3.0)
+        "eras": {
+            "pre-peter": (2014, 2017),    # Before Peter Anspach joined
+            "early": (2018, 2019),         # Early Peter era, pre-breakout
+            "breakout": (2019, 2021),      # Peach Fest breakthrough
+            "arena": (2022, 2030),         # Arena/theater era
+        },
+
+        # Special events (like Phish NYE, Halloween)
+        "special_events": {
+            "goosemas": {"month": 12, "description": "Annual December holiday show"},
+            "mustache season": {"months": [5, 6, 7, 8], "description": "Summer tour tradition"},
+        },
+
+        # Band members
+        "members": {
+            "rick": "Rick Mitarotonda",
+            "mitarotonda": "Rick Mitarotonda",
+            "peter": "Peter Anspach",
+            "anspach": "Peter Anspach",
+            "trevor": "Trevor Weekz",
+            "weekz": "Trevor Weekz",
+            "cotter": "Cotter Ellis",
+            "ellis": "Cotter Ellis",
+            "ben": "Ben Atkind",
+            "atkind": "Ben Atkind",
+        },
+
+        # Milestone shows
+        "milestone_shows": {
+            "2019-08-03": "Peach Fest 2019 - The breakout show that put Goose on the map",
+            "2022-05-05": "Radio City with Trey Anastasio - 'Passing the torch' moment",
+            "2025-06-28": "First MSG headline - Longest set ever played at MSG (4+ hours)",
+        },
+
+        # Top jam vehicles (from our jam chart analysis)
+        "jam_vehicles": [
+            "All I Need", "Madhuvan", "Tumble", "Wysteria Lane", "Drive",
+            "Thatch", "Arcadia", "Creatures", "Rosewood Heart", "Arrow",
+            "Echo of a Rose", "Hungersite", "Rockdale", "Pancakes", "Hot Tea"
+        ],
+    },
+
+    "kglw": {
+        "name": "King Gizzard & the Lizard Wizard",
+        "short_name": "King Gizzard",
+        "api_base": "https://kglw.net/api/v2",
+        "artist_id": 1,
+        "site_url": "https://kglw.net",
+
+        # Fan terminology
+        "aliases": ["king gizzard", "kglw", "gizz", "king gizz", "gizzard",
+                   "the gizz", "lizard wizard"],
+
+        # Song aliases
+        "song_aliases": {
+            "head on pill": "Head On/Pill",
+            "head on/pill": "Head On/Pill",
+            "hop": "Head On/Pill",
+            "the river": "The River",
+            "river": "The River",
+            "dripping tap": "The Dripping Tap",
+            "the dripping tap": "The Dripping Tap",
+            "tap": "The Dripping Tap",
+            "crumbling castle": "Crumbling Castle",
+            "crumbling": "Crumbling Castle",
+            "am i in heaven": "Am I In Heaven?",
+            "heaven": "Am I In Heaven?",
+            "gamma knife": "Gamma Knife",
+            "gamma": "Gamma Knife",
+            "rattlesnake": "Rattlesnake",
+            "snake": "Rattlesnake",
+            "robot stop": "Robot Stop",
+            "robot": "Robot Stop",
+            "magma": "Magma",
+            "hypertension": "Hypertension",
+            "ice v": "Ice V",
+            "slow jam 1": "Slow Jam 1",
+            "slow jam": "Slow Jam 1",
+            "slow jam 2": "Her and I (Slow Jam 2)",
+            "her and i": "Her and I (Slow Jam 2)",
+            "mind fuzz": "I'm In Your Mind Fuzz",
+            "im in your mind": "I'm In Your Mind",
+            "nuclear fusion": "Nuclear Fusion",
+            "nuclear": "Nuclear Fusion",
+            "float along": "Float Along – Fill Your Lungs",
+            "peoples vultures": "People-Vultures",
+            "people vultures": "People-Vultures",
+            "vultures": "People-Vultures",
+            "iron lung": "Iron Lung",
+            "gaia": "Gaia",
+            "mars for the rich": "Mars for the Rich",
+            "mars": "Mars for the Rich",
+            "superbug": "Superbug",
+            "han tyumi": "Han-Tyumi, the Confused Cyborg",
+            "han-tyumi": "Han-Tyumi, the Confused Cyborg",
+            "bitter boogie": "Bitter Boogie",
+            "boogie": "Bitter Boogie",
+            "inner cell": "Inner Cell",
+            "loyalty": "Loyalty",
+            "horology": "Horology",
+            "polygondwanaland": "Crumbling Castle",  # Often means the epic opener
+            "nonagon infinity": "Robot Stop",  # Often means the album opener
+            "magenta mountain": "Magenta Mountain",
+            "magenta": "Magenta Mountain",
+            "this thing": "This Thing",
+            "kepler": "Kepler-22b",
+            "kepler-22b": "Kepler-22b",
+            "kepler 22b": "Kepler-22b",
+            "hot water": "Hot Water",
+            "theia": "Theia",
+            "extinction": "Extinction",
+            "motor spirit": "Motor Spirit",
+            "perihelion": "Perihelion",
+            "gliese 710": "Gliese 710",
+            "gliese": "Gliese 710",
+        },
+
+        # Venue aliases
+        "venue_aliases": {
+            "red rocks": "Red Rocks Amphitheatre",
+            "reds": "Red Rocks Amphitheatre",
+            "babys": "Baby's All Right",
+            "baby's": "Baby's All Right",
+            "babys all right": "Baby's All Right",
+            "brooklyn": "Baby's All Right",  # Their famous Brooklyn spot
+            "forest hills": "Forest Hills Stadium",
+            "bonnaroo": "Bonnaroo Music Festival",
+            "roo": "Bonnaroo Music Festival",
+            "glastonbury": "Worthy Farm",
+            "glasto": "Worthy Farm",
+            "greek": "William Randolph Hearst Greek Theatre",
+            "greek theatre": "William Randolph Hearst Greek Theatre",
+            "berkeley": "William Randolph Hearst Greek Theatre",
+            "tote": "The Tote Hotel",
+            "corner": "Corner Hotel",
+            "croxton": "Croxton Park Hotel",
+            "enmore": "Enmore Theatre",
+            "levitation": "Levitation Festival",
+            "desert daze": "Desert Daze",
+        },
+
+        # Gizzverse lore
+        "lore": {
+            "gizzverse": "The interconnected narrative across albums featuring recurring characters and themes",
+            "han-tyumi": "A confused cyborg who appears across multiple albums, seeking to become human",
+            "nonagon infinity": "The album that loops infinitely - Robot Stop flows into Big Fig Wasp",
+            "microtonal": "Albums using microtonal tuning (Flying Microtonal Banana, K.G., L.W.)",
+            "marathon": "Their famous 3+ hour career-spanning sets",
+            "bootlegger": "Official program where fans can download and distribute live recordings",
+        },
+
+        # Eras
+        "eras": {
+            "garage": (2010, 2013),           # Early garage rock
+            "psych": (2014, 2016),            # Psychedelic era (Mind Fuzz, Quarters)
+            "prolific": (2017, 2017),         # 5 albums in one year!
+            "thrash": (2018, 2020),           # Heavier era (Infest the Rats' Nest)
+            "jam": (2021, 2030),              # Extended jam era (Timeland, marathon sets)
+        },
+
+        # Band members
+        "members": {
+            "stu": "Stu Mackenzie",
+            "mackenzie": "Stu Mackenzie",
+            "ambrose": "Ambrose Kenny-Smith",
+            "amby": "Ambrose Kenny-Smith",
+            "cook": "Cook Craig",
+            "cookie": "Cook Craig",
+            "joey": "Joey Walker",
+            "lucas": "Lucas Harwood",
+            "cavs": "Michael Cavanagh",
+            "michael": "Michael Cavanagh",
+        },
+
+        # Special show types
+        "show_types": {
+            "marathon": "3+ hour career-spanning sets",
+            "orchestral": "Shows with full orchestra backing",
+            "rave": "Electronic/dance focused sets",
+            "residency": "Multi-night runs at same venue",
+        },
+
+        # Top jam vehicles (from our jam chart analysis)
+        "jam_vehicles": [
+            "The River", "The Dripping Tap", "Magma", "Head On/Pill",
+            "Slow Jam 1", "Hypertension", "Am I In Heaven?", "Sense",
+            "Her and I (Slow Jam 2)", "Ice V", "Theia", "Magenta Mountain"
+        ],
+    }
+}
+
+
+class JamMuseEngine:
+    """Multi-band query engine for jam band statistics."""
+
+    def __init__(self, band_key: str):
+        """Initialize engine for a specific band."""
+        if band_key not in BANDS:
+            raise ValueError(f"Unknown band: {band_key}. Available: {list(BANDS.keys())}")
+
+        self.band_key = band_key
+        self.config = BANDS[band_key]
+        self.band_name = self.config["name"]
+        self.api_base = self.config["api_base"]
+        self.artist_id = self.config.get("artist_id")
+
+        # Data caches
+        self._shows = None
+        self._songs = None
+        self._setlists = None
+        self._jamcharts = None
+        self._venues = None
+
+    # =========================================================================
+    # API METHODS
+    # =========================================================================
+
+    def _fetch_api(self, endpoint: str, params: dict = None) -> dict:
+        """Fetch data from Songfish API with caching."""
+        cache_key = f"{self.band_key}_{endpoint.replace('/', '_')}"
+        if params:
+            param_str = "_".join(f"{k}_{v}" for k, v in sorted(params.items()))
+            cache_key += f"_{param_str}"
+        cache_file = CACHE_DIR / f"{cache_key}.json"
+
+        # Check cache (1 hour expiry for most data)
+        if cache_file.exists():
+            age = datetime.now().timestamp() - cache_file.stat().st_mtime
+            if age < 3600:  # 1 hour
+                with open(cache_file) as f:
+                    return json.load(f)
+
+        # Fetch from API
+        url = f"{self.api_base}/{endpoint}.json"
+        if params:
+            param_str = "&".join(f"{k}={v}" for k, v in params.items())
+            url += f"?{param_str}"
+
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "JamMuse/1.0"})
+            with urllib.request.urlopen(req, timeout=30) as response:
+                data = json.loads(response.read().decode())
+
+            # Cache response
+            with open(cache_file, 'w') as f:
+                json.dump(data, f)
+
+            return data
+        except Exception as e:
+            print(f"API error for {url}: {e}")
+            # Try to use stale cache
+            if cache_file.exists():
+                with open(cache_file) as f:
+                    return json.load(f)
+            return {"error": True, "data": []}
+
+    @property
+    def shows(self) -> List[dict]:
+        """Get all shows for this band."""
+        if self._shows is None:
+            data = self._fetch_api("shows")
+            all_shows = data.get("data", [])
+            # Filter by artist_id if specified
+            if self.artist_id:
+                self._shows = [s for s in all_shows if s.get("artist_id") == self.artist_id]
+            else:
+                self._shows = all_shows
+        return self._shows
+
+    @property
+    def songs(self) -> List[dict]:
+        """Get all songs for this band."""
+        if self._songs is None:
+            data = self._fetch_api("songs")
+            self._songs = data.get("data", [])
+        return self._songs
+
+    @property
+    def jamcharts(self) -> List[dict]:
+        """Get all jam chart entries."""
+        if self._jamcharts is None:
+            data = self._fetch_api("jamcharts")
+            all_jams = data.get("data", [])
+            if self.artist_id:
+                self._jamcharts = [j for j in all_jams if j.get("artist_id") == self.artist_id]
+            else:
+                self._jamcharts = all_jams
+        return self._jamcharts
+
+    def get_setlist(self, show_date: str) -> List[dict]:
+        """Get setlist for a specific show."""
+        data = self._fetch_api(f"setlists/showdate/{show_date}")
+        setlist = data.get("data", [])
+        if self.artist_id:
+            setlist = [s for s in setlist if s.get("artist_id") == self.artist_id]
+        return sorted(setlist, key=lambda x: (x.get("setnumber", "1"), x.get("position", 0)))
+
+    # =========================================================================
+    # NORMALIZATION HELPERS
+    # =========================================================================
+
+    def _normalize_song_name(self, query: str) -> Optional[str]:
+        """Normalize a song name from query using aliases."""
+        query_lower = query.lower().strip()
+
+        # Remove common filler words using word boundaries (multi-word first, then single)
+        filler_phrases = [
+            "how many times", "when did they", "tell me about",
+            "jam chart", "gap on", "gap for", "info on",
+        ]
+        for phrase in filler_phrases:
+            query_lower = query_lower.replace(phrase, " ")
+
+        # Single word fillers - use word boundary regex
+        filler_words = [
+            "longest", "best", "play", "played", "last", "first",
+            "stats", "statistics", "info", "about", "gap",
+            "jamchart", "greatest", "version", "top"
+        ]
+        for word in filler_words:
+            query_lower = re.sub(rf'\b{word}\b', ' ', query_lower)
+
+        # Clean up extra spaces and punctuation
+        query_lower = re.sub(r'[?!.,]', '', query_lower)
+        query_lower = " ".join(query_lower.split()).strip()
+
+        if not query_lower:
+            return None
+
+        # Check aliases first (exact match)
+        song_aliases = self.config.get("song_aliases", {})
+        if query_lower in song_aliases:
+            return song_aliases[query_lower]
+
+        # Check if query is contained in an alias or vice versa
+        for alias, song_name in song_aliases.items():
+            if alias == query_lower or query_lower == alias:
+                return song_name
+
+        # Check if it matches a song name directly
+        for song in self.songs:
+            song_name_lower = song["name"].lower()
+            if query_lower == song_name_lower:
+                return song["name"]
+
+        # Check partial matches (query in song name or song name in query)
+        for song in self.songs:
+            song_name_lower = song["name"].lower()
+            if query_lower in song_name_lower or song_name_lower in query_lower:
+                return song["name"]
+
+        # Last resort: check aliases for partial matches
+        for alias, song_name in song_aliases.items():
+            if alias in query_lower or query_lower in alias:
+                return song_name
+
+        return None
+
+    def _normalize_venue(self, query: str) -> Optional[str]:
+        """Normalize a venue name from query using aliases."""
+        query_lower = query.lower().strip()
+
+        venue_aliases = self.config.get("venue_aliases", {})
+        if query_lower in venue_aliases:
+            return venue_aliases[query_lower]
+
+        # Check partial matches
+        for alias, venue in venue_aliases.items():
+            if alias in query_lower:
+                return venue
+
+        return query
+
+    def _match_venue(self, show_venue: str, target_venue: str) -> bool:
+        """Check if a show venue matches the target."""
+        if not show_venue or not target_venue:
+            return False
+
+        show_lower = show_venue.lower()
+        target_lower = target_venue.lower()
+
+        # Direct match
+        if target_lower in show_lower or show_lower in target_lower:
+            return True
+
+        # Check aliases
+        normalized = self._normalize_venue(target_venue)
+        if normalized and normalized.lower() in show_lower:
+            return True
+
+        return False
+
+    # =========================================================================
+    # QUERY METHODS
+    # =========================================================================
+
+    def query_song_stats(self, song_name: str) -> QueryResult:
+        """Get comprehensive stats for a song."""
+        # Find song in catalog
+        song_match = None
+        for song in self.songs:
+            if song["name"].lower() == song_name.lower():
+                song_match = song
+                break
+
+        if not song_match:
+            # Try alias
+            normalized = self._normalize_song_name(song_name)
+            if normalized:
+                for song in self.songs:
+                    if song["name"].lower() == normalized.lower():
+                        song_match = song
+                        break
+
+        if not song_match:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find a song called '{song_name}' in the {self.band_name} catalog."
+            )
+
+        song_name = song_match["name"]
+        song_slug = song_match["slug"]
+
+        # Count performances via setlists API
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        play_count = len(performances)
+
+        if play_count == 0:
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=f"{song_name} is in the {self.band_name} catalog but hasn't been played live yet."
+            )
+
+        # Get first and last played
+        dates = sorted(set(p["showdate"] for p in performances if p.get("showdate")))
+        first_played = dates[0] if dates else "Unknown"
+        last_played = dates[-1] if dates else "Unknown"
+
+        # Calculate gap
+        if last_played != "Unknown" and len(self.shows) > 0:
+            shows_since = len([s for s in self.shows if s["showdate"] > last_played])
+        else:
+            shows_since = 0
+
+        # Jam chart count
+        jamchart_entries = [j for j in self.jamcharts if j.get("songname") == song_name]
+        jamchart_count = len(jamchart_entries)
+        jamchart_rate = (jamchart_count / play_count * 100) if play_count > 0 else 0
+
+        # Check if original
+        is_original = song_match.get("isoriginal", 1) == 1
+        original_artist = song_match.get("original_artist", "")
+
+        # Build answer
+        lines = [f"**{song_name}** - {self.band_name} Stats\n"]
+
+        if not is_original and original_artist:
+            lines.append(f"Originally by: {original_artist}")
+
+        lines.append(f"Times played: {play_count}")
+        lines.append(f"First played: {first_played}")
+        lines.append(f"Last played: {last_played}")
+
+        if shows_since > 0:
+            lines.append(f"Current gap: {shows_since} shows")
+
+        if jamchart_count > 0:
+            lines.append(f"Jam charted: {jamchart_count} times ({jamchart_rate:.1f}%)")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=str(play_count),
+            card_data={
+                "type": "stats",
+                "title": song_name,
+                "stat": play_count,
+                "stat_label": "times played",
+                "extra": {
+                    "first_played": first_played,
+                    "last_played": last_played,
+                    "gap": shows_since,
+                    "jamchart_count": jamchart_count,
+                    "jamchart_rate": f"{jamchart_rate:.1f}%"
+                }
+            },
+            related_queries=[
+                f"best {song_name}",
+                f"gap on {song_name}",
+                f"first {song_name}"
+            ]
+        )
+
+    def query_play_count(self, song_name: str) -> QueryResult:
+        """How many times has a song been played?"""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        # Find in songs
+        song_slug = None
+        for song in self.songs:
+            if song["name"].lower() == normalized.lower():
+                song_slug = song["slug"]
+                normalized = song["name"]
+                break
+
+        if not song_slug:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find '{song_name}' in the {self.band_name} catalog."
+            )
+
+        # Get performances
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        count = len(set(p["showdate"] for p in performances if p.get("showdate")))
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer=f"{self.band_name} has played {normalized} {count} times.",
+            highlight=str(count),
+            card_data={
+                "type": "count",
+                "title": normalized,
+                "stat": count,
+                "stat_label": "times played"
+            }
+        )
+
+    def query_gap(self, song_name: str) -> QueryResult:
+        """How many shows since a song was last played?"""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        song_slug = None
+        for song in self.songs:
+            if song["name"].lower() == normalized.lower():
+                song_slug = song["slug"]
+                normalized = song["name"]
+                break
+
+        if not song_slug:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find '{song_name}'."
+            )
+
+        # Get performances
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        if not performances:
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=f"{normalized} has never been played live by {self.band_name}."
+            )
+
+        # Find last played
+        dates = sorted(set(p["showdate"] for p in performances if p.get("showdate")))
+        last_played = dates[-1] if dates else None
+
+        if not last_played:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"Couldn't determine when {normalized} was last played."
+            )
+
+        # Get last venue
+        last_perf = next((p for p in performances if p.get("showdate") == last_played), None)
+        venue = last_perf.get("venuename", "Unknown venue") if last_perf else "Unknown venue"
+
+        # Count shows since
+        shows_since = len([s for s in self.shows if s["showdate"] > last_played])
+
+        if shows_since == 0:
+            answer = f"{normalized} was played at the most recent show ({last_played} at {venue})."
+        else:
+            answer = f"{normalized} was last played {shows_since} shows ago on {last_played} at {venue}."
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer=answer,
+            highlight=str(shows_since) if shows_since > 0 else "0",
+            card_data={
+                "type": "gap",
+                "title": normalized,
+                "stat": shows_since,
+                "stat_label": "shows ago",
+                "extra": {
+                    "last_played": last_played,
+                    "venue": venue
+                }
+            }
+        )
+
+    def query_jamchart(self, song_name: str, limit: int = 5) -> QueryResult:
+        """Get jam chart entries for a song (the best versions)."""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        # Find matching jam charts
+        entries = [j for j in self.jamcharts
+                   if j.get("songname", "").lower() == normalized.lower()]
+
+        if not entries:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"No jam chart entries found for {normalized}. Try one of the top jammed songs: {', '.join(self.config['jam_vehicles'][:5])}."
+            )
+
+        # Sort by date (most recent first) and take top N
+        entries = sorted(entries, key=lambda x: x.get("showdate", ""), reverse=True)[:limit]
+
+        lines = [f"**Best {normalized} Versions** (Jam Chart)\n"]
+
+        for i, entry in enumerate(entries, 1):
+            date = entry.get("showdate", "Unknown")
+            venue = entry.get("venuename", "Unknown venue")
+            duration = entry.get("tracktime", "")
+            note = entry.get("jamchartnote", "")
+
+            line = f"{i}. {date} at {venue}"
+            if duration:
+                line += f" ({duration})"
+            lines.append(line)
+
+            if note:
+                # Truncate long notes
+                note = note[:200] + "..." if len(note) > 200 else note
+                lines.append(f"   *{note}*")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            card_data={
+                "type": "jamchart",
+                "title": f"Best {normalized}",
+                "extra": {"entries": len(entries)}
+            },
+            related_queries=[
+                f"{normalized} stats",
+                f"gap on {normalized}",
+                f"how many times {normalized}"
+            ]
+        )
+
+    def query_show_count(self, venue: str = None, year: int = None) -> QueryResult:
+        """How many shows has the band played?"""
+        shows = self.shows
+
+        if year:
+            shows = [s for s in shows if str(s.get("show_year")) == str(year)]
+
+        if venue:
+            normalized_venue = self._normalize_venue(venue)
+            shows = [s for s in shows if self._match_venue(s.get("venuename", ""), normalized_venue)]
+
+        count = len(shows)
+
+        if venue and year:
+            answer = f"{self.band_name} played {count} shows at {venue} in {year}."
+        elif venue:
+            answer = f"{self.band_name} has played {count} shows at {venue}."
+        elif year:
+            answer = f"{self.band_name} played {count} shows in {year}."
+        else:
+            answer = f"{self.band_name} has played {count} shows total."
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer=answer,
+            highlight=str(count)
+        )
+
+    def query_setlist(self, date: str) -> QueryResult:
+        """Get setlist for a specific date."""
+        # Normalize date format
+        date = date.replace("/", "-")
+
+        setlist = self.get_setlist(date)
+
+        if not setlist:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"No setlist found for {date}."
+            )
+
+        # Group by set
+        sets = {}
+        venue = None
+        for song in setlist:
+            setnumber = song.get("setnumber", "1")
+            settype = song.get("settype", "Set")
+            key = f"{settype} {setnumber}" if settype != "Encore" else "Encore"
+
+            if key not in sets:
+                sets[key] = []
+
+            name = song.get("songname", "Unknown")
+            transition = song.get("transition", ", ")
+            sets[key].append((name, transition))
+
+            if not venue:
+                venue = song.get("venuename", "")
+
+        # Format output
+        lines = [f"**{self.band_name}** - {date}"]
+        if venue:
+            lines.append(f"*{venue}*\n")
+
+        for set_name in sorted(sets.keys()):
+            songs = sets[set_name]
+            song_str = ""
+            for i, (name, trans) in enumerate(songs):
+                song_str += name
+                if i < len(songs) - 1:
+                    song_str += trans if trans else ", "
+            lines.append(f"**{set_name}:** {song_str}")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines)
+        )
+
+    def query_last_played(self, song_name: str) -> QueryResult:
+        """When was a song last played?"""
+        return self.query_gap(song_name)  # Same logic
+
+    def query_first_played(self, song_name: str) -> QueryResult:
+        """When was a song first played (debut)?"""
+        normalized = self._normalize_song_name(song_name) or song_name
+
+        song_slug = None
+        for song in self.songs:
+            if song["name"].lower() == normalized.lower():
+                song_slug = song["slug"]
+                normalized = song["name"]
+                break
+
+        if not song_slug:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I couldn't find '{song_name}'."
+            )
+
+        # Get performances
+        data = self._fetch_api(f"setlists/slug/{song_slug}")
+        performances = data.get("data", [])
+        if self.artist_id:
+            performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+        if not performances:
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=f"{normalized} has never been played live."
+            )
+
+        # Find first played
+        dates = sorted(set(p["showdate"] for p in performances if p.get("showdate")))
+        first_played = dates[0] if dates else None
+
+        first_perf = next((p for p in performances if p.get("showdate") == first_played), None)
+        venue = first_perf.get("venuename", "Unknown venue") if first_perf else "Unknown venue"
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer=f"{normalized} debuted on {first_played} at {venue}.",
+            card_data={
+                "type": "debut",
+                "title": normalized,
+                "extra": {"debut_date": first_played, "venue": venue}
+            }
+        )
+
+    # =========================================================================
+    # MAIN QUERY ROUTER
+    # =========================================================================
+
+    def query(self, question: str) -> QueryResult:
+        """Route a natural language question to the appropriate handler."""
+        q = question.lower().strip()
+
+        # Setlist queries
+        date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', question)
+        if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
+            return self.query_setlist(date_match.group(1))
+
+        # Jam chart / best version queries
+        if any(word in q for word in ["best", "jam chart", "jamchart", "greatest", "top version"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_jamchart(song)
+
+        # Gap queries
+        if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_gap(song)
+
+        # First played / debut queries
+        if any(word in q for word in ["first time", "debut", "first played", "when did they first"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_first_played(song)
+
+        # Play count queries
+        if any(word in q for word in ["how many times", "how often", "play count", "times played"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_play_count(song)
+
+        # Show count queries
+        if any(word in q for word in ["how many shows", "show count", "total shows"]):
+            year_match = re.search(r'\b(20\d{2}|19\d{2})\b', question)
+            year = int(year_match.group(1)) if year_match else None
+            return self.query_show_count(year=year)
+
+        # Last played queries
+        if any(word in q for word in ["last played", "last time", "when was the last"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_last_played(song)
+
+        # Stats queries (explicit)
+        if any(word in q for word in ["stats", "statistics", "info on", "tell me about"]):
+            song = self._normalize_song_name(question)
+            if song:
+                return self.query_song_stats(song)
+
+        # Default: try to identify a song and give stats
+        song = self._normalize_song_name(question)
+        if song:
+            return self.query_song_stats(song)
+
+        # Fallback
+        return QueryResult(
+            success=False,
+            band=self.band_name,
+            answer=f"I'm not sure how to answer that about {self.band_name}. Try asking about:\n"
+                   f"- Song stats: '{self.config['jam_vehicles'][0]} stats'\n"
+                   f"- Play count: 'how many times {self.config['jam_vehicles'][1]}'\n"
+                   f"- Gap: 'gap on {self.config['jam_vehicles'][2]}'\n"
+                   f"- Best versions: 'best {self.config['jam_vehicles'][0]}'\n"
+                   f"- Setlists: 'setlist 2024-09-07'"
+        )
+
+
+# =============================================================================
+# CONVENIENCE FUNCTIONS
+# =============================================================================
+
+def get_goose_engine() -> JamMuseEngine:
+    """Get a Goose query engine."""
+    return JamMuseEngine("goose")
+
+def get_kglw_engine() -> JamMuseEngine:
+    """Get a King Gizzard query engine."""
+    return JamMuseEngine("kglw")
+
+def query_goose(question: str) -> QueryResult:
+    """Quick query for Goose."""
+    return get_goose_engine().query(question)
+
+def query_kglw(question: str) -> QueryResult:
+    """Quick query for King Gizzard."""
+    return get_kglw_engine().query(question)
+
+
+# =============================================================================
+# CLI FOR TESTING
+# =============================================================================
+
+if __name__ == "__main__":
+    import sys
+
+    print("=" * 60)
+    print("JamMuse Engine - Testing")
+    print("=" * 60)
+
+    # Test Goose
+    print("\n--- GOOSE ---")
+    goose = get_goose_engine()
+
+    test_queries = [
+        "Arcadia stats",
+        "how many times Hungersite",
+        "gap on Madhuvan",
+        "best Tumble",
+        "how many shows in 2024",
+    ]
+
+    for q in test_queries:
+        print(f"\nQ: {q}")
+        result = goose.query(q)
+        print(result.answer[:300])
+
+    # Test King Gizzard
+    print("\n--- KING GIZZARD ---")
+    kglw = get_kglw_engine()
+
+    test_queries = [
+        "The River stats",
+        "how many times Head On/Pill",
+        "gap on Dripping Tap",
+        "best Magma",
+    ]
+
+    for q in test_queries:
+        print(f"\nQ: {q}")
+        result = kglw.query(q)
+        print(result.answer[:300])
