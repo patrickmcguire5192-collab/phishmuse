@@ -267,7 +267,7 @@
       return shuffled.slice(0, count);
     }
 
-    function createFeaturedCard(data, question) {
+    function createFeaturedCard(data, question, index) {
       const band = data.band || 'Unknown';
       const style = getBandStyle(band);
 
@@ -291,8 +291,9 @@
         }
       }
 
+      // Use data attribute to store question (avoids quote escaping issues in onclick)
       return `
-        <div class="stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition group" onclick="askQuestion('${escapeHtml(question)}')">
+        <div class="featured-card stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition group" data-question="${encodeURIComponent(question)}">
           <div class="flex items-start justify-between">
             <div class="flex-1 min-w-0">
               <span class="${style.badge} text-white text-xs font-bold px-2 py-0.5 rounded-full">${escapeHtml(band)}</span>
@@ -308,6 +309,15 @@
         </div>
       `;
     }
+
+    // Event delegation for featured cards (handles clicks reliably)
+    document.getElementById('featuredStats').addEventListener('click', (e) => {
+      const card = e.target.closest('.featured-card');
+      if (card && card.dataset.question) {
+        const question = decodeURIComponent(card.dataset.question);
+        askQuestion(question);
+      }
+    });
 
     async function loadFeaturedStats() {
       const container = document.getElementById('featuredStats');
@@ -332,11 +342,11 @@
       const validResults = results.filter(r => r && r.data && r.data.success);
 
       if (validResults.length > 0) {
-        container.innerHTML = validResults.map(r => createFeaturedCard(r.data, r.question)).join('');
+        container.innerHTML = validResults.map((r, i) => createFeaturedCard(r.data, r.question, i)).join('');
       } else {
         // Fallback to clickable suggestions if API fails
         container.innerHTML = questions.map(q => `
-          <div class="stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition" onclick="askQuestion('${escapeHtml(q)}')">
+          <div class="featured-card stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition" data-question="${encodeURIComponent(q)}">
             <p class="text-gray-300">${escapeHtml(q)}</p>
             <p class="text-gray-500 text-xs mt-2">Click to search →</p>
           </div>
