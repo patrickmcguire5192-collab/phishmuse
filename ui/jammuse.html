@@ -141,12 +141,32 @@
       </button>
     </form>
 
-    <!-- Example Queries -->
-    <div id="suggestions" class="flex flex-wrap gap-2 justify-center mb-12">
-      <span class="text-sm text-gray-500">Try:</span>
+    <!-- Featured Stats - Pre-answered questions -->
+    <div id="featuredStats" class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+      <!-- Cards will be populated by JavaScript -->
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 animate-pulse">
+        <div class="h-4 bg-gray-700 rounded w-3/4 mb-3"></div>
+        <div class="h-8 bg-gray-700 rounded w-1/2 mb-2"></div>
+        <div class="h-3 bg-gray-700 rounded w-full"></div>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 animate-pulse">
+        <div class="h-4 bg-gray-700 rounded w-3/4 mb-3"></div>
+        <div class="h-8 bg-gray-700 rounded w-1/2 mb-2"></div>
+        <div class="h-3 bg-gray-700 rounded w-full"></div>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 animate-pulse">
+        <div class="h-4 bg-gray-700 rounded w-3/4 mb-3"></div>
+        <div class="h-8 bg-gray-700 rounded w-1/2 mb-2"></div>
+        <div class="h-3 bg-gray-700 rounded w-full"></div>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 animate-pulse">
+        <div class="h-4 bg-gray-700 rounded w-3/4 mb-3"></div>
+        <div class="h-8 bg-gray-700 rounded w-1/2 mb-2"></div>
+        <div class="h-3 bg-gray-700 rounded w-full"></div>
+      </div>
     </div>
 
-    <!-- Chat History -->
+    <!-- Chat History (appears after user asks a question) -->
     <div id="chatHistory" class="space-y-6">
     </div>
 
@@ -225,30 +245,112 @@
       'King Gizzard & the Lizard Wizard': { gradient: 'kglw-gradient', badge: 'badge-kglw' },
     };
 
-    function getRandomQuestions(count = 4) {
-      const shuffled = [...sampleQuestions].sort(() => Math.random() - 0.5);
+    // Featured questions - curated for impressive stats on homepage
+    const featuredQuestions = [
+      // Grateful Dead - impressive duration stats
+      "What's the longest Dark Star ever?",
+      "Longest Dead Playing in the Band?",
+      "Top 10 longest Morning Dew",
+      // Phish - impressive stats
+      "What's the longest Phish Tweezer?",
+      "Longest Phish Ghost?",
+      "How many times has Phish played YEM?",
+      // Goose
+      "What's the longest Goose Arcadia?",
+      "How many times has Goose played Hungersite?",
+      // King Gizzard
+      "What's the longest King Gizzard Dripping Tap?",
+    ];
+
+    function getRandomFeatured(count = 4) {
+      const shuffled = [...featuredQuestions].sort(() => Math.random() - 0.5);
       return shuffled.slice(0, count);
     }
 
-    function populateSuggestions() {
-      const container = document.getElementById('suggestions');
-      const questions = getRandomQuestions(4);
+    function createFeaturedCard(data, question) {
+      const band = data.band || 'Unknown';
+      const style = getBandStyle(band);
 
-      container.innerHTML = '<span class="text-sm text-gray-500">Try:</span>';
-      questions.forEach(q => {
-        const btn = document.createElement('button');
-        btn.className = 'suggestion-btn px-3 py-1 bg-gray-800 hover:bg-gray-700 rounded-full text-sm transition';
-        btn.textContent = q;
-        btn.onclick = () => askQuestion(q);
-        container.appendChild(btn);
+      let statValue = data.highlight || '';
+      let statLabel = '';
+      let title = '';
+      let subtitle = '';
+
+      if (data.card) {
+        title = data.card.title || '';
+        if (data.card.type === 'longest') {
+          statValue = data.card.stat || statValue;
+          statLabel = 'duration';
+          subtitle = data.card.subtitle || '';
+        } else if (data.card.type === 'count' || data.card.type === 'stats') {
+          statValue = data.card.stat || statValue;
+          statLabel = data.card.stat_label || 'times played';
+          if (data.card.extra) {
+            subtitle = data.card.extra.last_played ? `Last: ${data.card.extra.last_played}` : '';
+          }
+        }
+      }
+
+      return `
+        <div class="stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition group" onclick="askQuestion('${escapeHtml(question)}')">
+          <div class="flex items-start justify-between">
+            <div class="flex-1 min-w-0">
+              <span class="${style.badge} text-white text-xs font-bold px-2 py-0.5 rounded-full">${escapeHtml(band)}</span>
+              <h3 class="text-lg font-bold text-white mt-2 truncate">${escapeHtml(title)}</h3>
+              <p class="text-gray-400 text-sm truncate">${escapeHtml(subtitle)}</p>
+            </div>
+            <div class="text-right ml-4">
+              <p class="text-3xl font-extrabold ${style.gradient}">${escapeHtml(statValue)}</p>
+              <p class="text-gray-500 text-xs">${escapeHtml(statLabel)}</p>
+            </div>
+          </div>
+          <p class="text-gray-500 text-xs mt-3 group-hover:text-gray-400 transition">Click to explore →</p>
+        </div>
+      `;
+    }
+
+    async function loadFeaturedStats() {
+      const container = document.getElementById('featuredStats');
+      const questions = getRandomFeatured(4);
+
+      // Fetch all 4 in parallel
+      const promises = questions.map(async (q) => {
+        try {
+          const response = await fetch('/api/jammuse/query', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ question: q })
+          });
+          const data = await response.json();
+          return { data, question: q };
+        } catch (e) {
+          return null;
+        }
       });
 
+      const results = await Promise.all(promises);
+      const validResults = results.filter(r => r && r.data && r.data.success);
+
+      if (validResults.length > 0) {
+        container.innerHTML = validResults.map(r => createFeaturedCard(r.data, r.question)).join('');
+      } else {
+        // Fallback to clickable suggestions if API fails
+        container.innerHTML = questions.map(q => `
+          <div class="stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition" onclick="askQuestion('${escapeHtml(q)}')">
+            <p class="text-gray-300">${escapeHtml(q)}</p>
+            <p class="text-gray-500 text-xs mt-2">Click to search →</p>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFeaturedStats();
       // Randomize placeholder
       const randomQ = sampleQuestions[Math.floor(Math.random() * sampleQuestions.length)];
       queryInput.placeholder = randomQ;
-    }
-
-    document.addEventListener('DOMContentLoaded', populateSuggestions);
+    });
 
     function askQuestion(question) {
       queryInput.value = question;
