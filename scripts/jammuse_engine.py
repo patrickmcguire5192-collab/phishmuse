@@ -1477,15 +1477,17 @@ class UnifiedJamMuse:
 
         # Check aliases - sort by length (longest first) to avoid partial matches
         # e.g., "fluffhead" should match before "head"
+        # Use word boundary matching to avoid "time" matching inside "times"
         sorted_aliases = sorted(self._alias_to_band.items(), key=lambda x: len(x[0]), reverse=True)
         for alias, band_key in sorted_aliases:
-            if alias in q_lower:
+            # Use word boundary regex for more precise matching
+            if re.search(rf'\b{re.escape(alias)}\b', q_lower):
                 return band_key
 
         # Check song names from catalogs - also longest first
         sorted_songs = sorted(self._song_to_band.items(), key=lambda x: len(x[0]), reverse=True)
         for song_name, band_key in sorted_songs:
-            if song_name in q_lower:
+            if re.search(rf'\b{re.escape(song_name)}\b', q_lower):
                 return band_key
 
         return None

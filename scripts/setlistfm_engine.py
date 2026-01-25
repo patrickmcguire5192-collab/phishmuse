@@ -254,7 +254,6 @@ SETLISTFM_BANDS = {
             "thought sausage": "Thought Sausage",
             "three weeks": "Three Weeks",
             "time keeps on slipping": "Time Keeps on Slipping",
-            "time": "Time Keeps on Slipping",
             "time zones": "Time Zones",
             "tired bones": "Tired Bones",
             "travelin light": "Travelin' Light",
