@@ -28,8 +28,8 @@ unified_engine = None
 
 @app.route('/')
 def index():
-    """Serve the main UI."""
-    return send_from_directory('ui', 'app.html')
+    """Serve the main UI - JamMuse (includes all PhishMuse functionality)."""
+    return send_from_directory('ui', 'jammuse.html')
 
 @app.route('/images/<path:filename>')
 def serve_image(filename):
