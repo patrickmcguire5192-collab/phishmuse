@@ -1444,12 +1444,62 @@ class UnifiedJamMuse:
                 self._phish_engine = False  # Mark as failed
         return self._phish_engine if self._phish_engine else None
 
+    def _normalize_query_for_detection(self, query: str) -> List[str]:
+        """
+        Generate normalized variations of the query for better matching.
+        Handles plurals, possessives, and other natural language variations.
+        Returns list of query variations to try.
+        """
+        q_lower = query.lower()
+        variations = [q_lower]
+
+        # Create a singularized version by removing trailing 's' from words
+        words = q_lower.split()
+        singularized_words = []
+        for word in words:
+            # Strip punctuation for processing
+            clean_word = re.sub(r'[?!.,\'"]', '', word)
+
+            # Handle common plural patterns
+            if clean_word.endswith('ies') and len(clean_word) > 4:
+                # "candies" -> "candy" (but not "series")
+                singularized_words.append(clean_word[:-3] + 'y')
+            elif clean_word.endswith('es') and len(clean_word) > 3:
+                # "boxes" -> "box", "glasses" -> "glass"
+                # But be careful: "eyes" -> "eye", not "ey"
+                if clean_word.endswith('sses') or clean_word.endswith('xes') or clean_word.endswith('ches') or clean_word.endswith('shes'):
+                    singularized_words.append(clean_word[:-2])
+                else:
+                    singularized_words.append(clean_word[:-1])  # Just remove 's'
+            elif clean_word.endswith('s') and len(clean_word) > 2 and not clean_word.endswith('ss'):
+                # "cats" -> "cat", but not "glass" -> "glas"
+                singularized_words.append(clean_word[:-1])
+            else:
+                singularized_words.append(clean_word)
+
+        singularized = ' '.join(singularized_words)
+        if singularized != q_lower:
+            variations.append(singularized)
+
+        # Also try with possessives removed ("mike's song" -> "mikes song" -> "mike song")
+        no_possessive = re.sub(r"'s\b", 's', q_lower)  # "mike's" -> "mikes"
+        if no_possessive not in variations:
+            variations.append(no_possessive)
+        no_possessive2 = re.sub(r"'s\b", '', q_lower)  # "mike's" -> "mike"
+        if no_possessive2 not in variations:
+            variations.append(no_possessive2)
+
+        return variations
+
     def _detect_band(self, query: str) -> Optional[str]:
         """
         Detect which band the query is about based on song names/aliases.
         Returns band key or None if can't detect.
         """
         q_lower = query.lower()
+
+        # Get normalized variations for matching
+        query_variations = self._normalize_query_for_detection(query)
 
         # Check for explicit band mentions
         if any(word in q_lower for word in ["phish", "trey", "fishman", "page", "mike gordon"]):
@@ -1480,22 +1530,70 @@ class UnifiedJamMuse:
         # Use word boundary matching to avoid "time" matching inside "times"
         sorted_aliases = sorted(self._alias_to_band.items(), key=lambda x: len(x[0]), reverse=True)
         for alias, band_key in sorted_aliases:
-            # Use word boundary regex for more precise matching
-            if re.search(rf'\b{re.escape(alias)}\b', q_lower):
-                return band_key
+            # Try matching against all query variations (original + singularized, etc.)
+            for q_var in query_variations:
+                if re.search(rf'\b{re.escape(alias)}\b', q_var):
+                    return band_key
 
         # Check song names from catalogs - also longest first
         sorted_songs = sorted(self._song_to_band.items(), key=lambda x: len(x[0]), reverse=True)
         for song_name, band_key in sorted_songs:
-            if re.search(rf'\b{re.escape(song_name)}\b', q_lower):
-                return band_key
+            for q_var in query_variations:
+                if re.search(rf'\b{re.escape(song_name)}\b', q_var):
+                    return band_key
 
         return None
+
+    def _normalize_question(self, question: str) -> str:
+        """
+        Normalize the question by converting plurals to singular, etc.
+        This helps sub-engines that don't have their own normalization.
+        """
+        q = question
+
+        # Common plural song name patterns - convert to singular
+        # "tweezers" -> "tweezer", "ghosts" -> "ghost", etc.
+        plural_fixes = [
+            (r'\btweezers\b', 'tweezer'),
+            (r'\bghosts\b', 'ghost'),
+            (r'\brebas\b', 'reba'),
+            (r'\bstashes\b', 'stash'),
+            (r'\bcaverns\b', 'cavern'),
+            (r'\bmazes\b', 'maze'),
+            (r'\bsimples\b', 'simple'),
+            (r'\bpipers\b', 'piper'),
+            (r'\bcarinis\b', 'carini'),
+            (r'\bwastes\b', 'waste'),
+        ]
+
+        for pattern, replacement in plural_fixes:
+            q = re.sub(pattern, replacement, q, flags=re.IGNORECASE)
+
+        # Generic singularization for words ending in 's' that look like song names
+        # Be conservative - only apply to likely song name positions
+        words = q.split()
+        normalized_words = []
+        for i, word in enumerate(words):
+            clean = word.lower().rstrip('?!.,')
+            # If word ends in 's' and previous word is a query keyword, try to singularize
+            if clean.endswith('s') and len(clean) > 3 and not clean.endswith('ss'):
+                prev_word = words[i-1].lower() if i > 0 else ''
+                if prev_word in ['longest', 'best', 'about', 'on', 'for']:
+                    # Try singularizing
+                    singular = clean[:-1]
+                    normalized_words.append(word[:-1] if word[-1] == 's' else word.replace(clean, singular))
+                    continue
+            normalized_words.append(word)
+
+        return ' '.join(normalized_words)
 
     def query(self, question: str) -> QueryResult:
         """
         Answer any jam band question - auto-detects which band.
         """
+        # Normalize the question for better matching
+        normalized_question = self._normalize_question(question)
+
         # Detect which band
         band_key = self._detect_band(question)
 
@@ -1513,11 +1611,11 @@ class UnifiedJamMuse:
                        "- 'when did they last play Chilly Water' (Widespread Panic)"
             )
 
-        # Route to appropriate engine
+        # Route to appropriate engine (use normalized question for better matching)
         if band_key == "phish":
             phish_engine = self._get_phish_engine()
             if phish_engine:
-                result = phish_engine.query(question)
+                result = phish_engine.query(normalized_question)
                 # Wrap Phish result to add band field
                 return QueryResult(
                     success=result.success,
@@ -1537,7 +1635,7 @@ class UnifiedJamMuse:
         elif band_key == "dead":
             # Grateful Dead via Archive.org
             if self._dead_engine:
-                return self._dead_engine.query(question)
+                return self._dead_engine.query(normalized_question)
             else:
                 return QueryResult(
                     success=False,
@@ -1546,10 +1644,10 @@ class UnifiedJamMuse:
                 )
         elif band_key in self.engines:
             # Songfish bands (Goose, King Gizzard)
-            return self.engines[band_key].query(question)
+            return self.engines[band_key].query(normalized_question)
         elif band_key in self.setlistfm_engines:
             # Setlist.fm bands (Umphrey's, WSP, moe., STS9, Billy Strings)
-            return self.setlistfm_engines[band_key].query(question)
+            return self.setlistfm_engines[band_key].query(normalized_question)
         else:
             return QueryResult(
                 success=False,
