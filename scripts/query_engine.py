@@ -788,6 +788,73 @@ class PhishStatsEngine:
             raw_data={"longest": longest, "top_5": top_5}
         )
 
+    def query_longest_overall(self, limit: int = 5) -> QueryResult:
+        """Query for the longest performances of ANY song (overall longest jams)."""
+        all_performances = []
+
+        for song_slug, performances in self.raw_durations.items():
+            # Convert slug back to song name
+            song_name = song_slug.replace("-", " ").title()
+            for name in self.song_stats.keys():
+                if self._song_to_slug(name) == song_slug:
+                    song_name = name
+                    break
+
+            for perf in performances:
+                all_performances.append({
+                    "song": song_name,
+                    "date": perf["date"],
+                    "venue": perf.get("venue", "Unknown venue"),
+                    "duration_min": perf["duration_min"]
+                })
+
+        if not all_performances:
+            return QueryResult(
+                success=False,
+                answer="I don't have duration data available. Try running 'python scripts/refresh_data.py --durations' to fetch timing data."
+            )
+
+        # Sort by duration descending and take top N
+        sorted_perfs = sorted(all_performances, key=lambda x: x["duration_min"], reverse=True)[:limit]
+
+        # Format the result
+        longest = sorted_perfs[0]
+        mins = int(longest["duration_min"])
+        secs = int((longest["duration_min"] - mins) * 60)
+        duration_str = f"{mins}:{secs:02d}"
+
+        if limit == 1:
+            lines = ["**Longest Phish Performance Ever**\n"]
+        else:
+            lines = [f"**Top {limit} Longest Phish Performances**\n"]
+
+        for i, perf in enumerate(sorted_perfs, 1):
+            dur_mins = int(perf["duration_min"])
+            dur_secs = int((perf["duration_min"] - dur_mins) * 60)
+            dur_str = f"{dur_mins}:{dur_secs:02d}"
+            lines.append(f"{i}. **{perf['song']}** - {dur_str} ({perf['date']} at {perf['venue']})")
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines),
+            highlight=duration_str,
+            card_data={
+                "type": "longest_overall",
+                "title": "Longest Phish Jams",
+                "stat": duration_str,
+                "subtitle": f"{longest['song']} - {longest['date']}",
+                "extra": {
+                    "top_performances": sorted_perfs[:5]
+                }
+            },
+            related_queries=[
+                f"longest {sorted_perfs[0]['song']}",
+                f"longest {sorted_perfs[1]['song']}" if len(sorted_perfs) > 1 else None,
+                f"best {sorted_perfs[0]['song']}"
+            ],
+            raw_data={"top_performances": sorted_perfs}
+        )
+
     def query_play_count(self, song_name: str, venue: str = None, year: int = None) -> QueryResult:
         """Query for how many times a song has been played, optionally filtered by year."""
         if song_name not in self.song_stats:
@@ -3023,6 +3090,25 @@ class PhishStatsEngine:
 
         # Pattern: "longest [song]" or "what's the longest [song]"
         if "longest" in question_lower:
+            # Check for "longest ever" overall queries (no specific song - e.g., "longest ever phish jams")
+            overall_patterns = [
+                r"longest\s+ever\s+(\w+\s+)?(jams?|songs?|versions?|performances?)",  # "longest ever jams" or "longest ever phish jams"
+                r"longest\s+(jams?|songs?|versions?|performances?)\s+ever",
+                r"longest\s+(jams?|songs?|versions?|performances?)\s+of\s+all\s+time",
+                r"longest\s+ever\s+played",
+                r"longest\s+phish\s+(jams?|songs?)",
+                r"longest\s+ever$",
+            ]
+            is_overall = any(re.search(pat, question_lower) for pat in overall_patterns)
+
+            if is_overall:
+                # Determine limit: plural = 5, singular = 1
+                if any(word in question_lower for word in ["jams", "songs", "versions", "performances"]):
+                    limit = 5
+                else:
+                    limit = 1
+                return self.query_longest_overall(limit=limit)
+
             # Check if asking for longest song at venue (no specific song)
             if venue and ("longest song" in question_lower or "longest jam" in question_lower):
                 return self.query_longest_song_at_venue(venue)

@@ -957,6 +957,93 @@ class JamMuseEngine:
             }
         )
 
+    def query_longest_overall(self, limit: int = 5) -> QueryResult:
+        """Get the longest performances of ANY song (overall longest jams)."""
+        all_performances = []
+
+        # Get top jam vehicles first (most likely to have long versions)
+        jam_vehicles = self.config.get("jam_vehicles", [])
+        songs_to_check = []
+
+        # Add jam vehicles first
+        for song in self.songs:
+            if song["name"] in jam_vehicles:
+                songs_to_check.insert(0, song)
+            else:
+                songs_to_check.append(song)
+
+        # Limit to top 50 songs to avoid too many API calls
+        songs_to_check = songs_to_check[:50]
+
+        for song in songs_to_check:
+            song_slug = song["slug"]
+            song_name = song["name"]
+
+            # Get performances for this song
+            data = self._fetch_api(f"setlists/slug/{song_slug}")
+            performances = data.get("data", [])
+            if self.artist_id:
+                performances = [p for p in performances if p.get("artist_id") == self.artist_id]
+
+            for p in performances:
+                duration_min = self._parse_duration(p.get("tracktime", ""))
+                if duration_min > 0:
+                    all_performances.append({
+                        "song": song_name,
+                        "date": p.get("showdate", "Unknown"),
+                        "venue": p.get("venuename", "Unknown venue"),
+                        "duration_min": duration_min,
+                        "tracktime": p.get("tracktime", "")
+                    })
+
+        if not all_performances:
+            return QueryResult(
+                success=False,
+                band=self.band_name,
+                answer=f"I don't have duration data for {self.band_name} performances."
+            )
+
+        # Sort by duration descending and take top N
+        sorted_perfs = sorted(all_performances, key=lambda x: x["duration_min"], reverse=True)[:limit]
+
+        # Format the result
+        longest = sorted_perfs[0]
+        mins = int(longest["duration_min"])
+        secs = int((longest["duration_min"] - mins) * 60)
+        duration_str = f"{mins}:{secs:02d}"
+
+        if limit == 1:
+            lines = [f"**Longest {self.band_name} Performance Ever**\n"]
+        else:
+            lines = [f"**Top {limit} Longest {self.band_name} Performances**\n"]
+
+        for i, perf in enumerate(sorted_perfs, 1):
+            dur_mins = int(perf["duration_min"])
+            dur_secs = int((perf["duration_min"] - dur_mins) * 60)
+            dur_str = f"{dur_mins}:{dur_secs:02d}"
+            lines.append(f"{i}. **{perf['song']}** - {dur_str} ({perf['date']} at {perf['venue']})")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=duration_str,
+            card_data={
+                "type": "longest_overall",
+                "title": f"Longest {self.band_name} Jams",
+                "stat": duration_str,
+                "subtitle": f"{longest['song']} - {longest['date']}",
+                "extra": {
+                    "top_performances": sorted_perfs[:5]
+                }
+            },
+            related_queries=[
+                f"longest {sorted_perfs[0]['song']}",
+                f"longest {sorted_perfs[1]['song']}" if len(sorted_perfs) > 1 else None,
+                f"best {sorted_perfs[0]['song']}"
+            ]
+        )
+
     def query_show_count(self, venue: str = None, year: int = None) -> QueryResult:
         """How many shows has the band played?"""
         shows = self.shows
@@ -1104,10 +1191,30 @@ class JamMuseEngine:
         if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
             return self.query_setlist(date_match.group(1))
 
-        # Longest version queries
-        if any(word in q for word in ["longest", "how long", "longest version"]):
+        # Longest OVERALL queries (no specific song - "longest ever jams", "longest songs ever")
+        if any(word in q for word in ["longest", "longest ever"]):
+            # Check if this is an "overall" query (no specific song mentioned)
+            # Patterns: "longest ever X jams", "longest X songs", "longest X jams ever"
+            overall_patterns = [
+                r"longest\s+ever\s+(\w+\s+)?(jams?|songs?|versions?|performances?)",  # "longest ever jams" or "longest ever goose jams"
+                r"longest\s+(\w+\s+)?(jams?|songs?|versions?|performances?)\s+ever",  # "longest jams ever" or "longest goose jams ever"
+                r"longest\s+(jams?|songs?|versions?|performances?)\s+of\s+all\s+time",
+                r"longest\s+ever\s+played",
+                r"longest\s+ever$",
+            ]
+            is_overall = any(re.search(pat, q) for pat in overall_patterns)
+
+            # Also check if no song can be identified
             song = self._normalize_song_name(question)
-            if song:
+
+            if is_overall or not song:
+                # Determine limit: plural = 5, singular = 1
+                if any(word in q for word in ["jams", "songs", "versions", "performances"]):
+                    limit = 5
+                else:
+                    limit = 1
+                return self.query_longest_overall(limit=limit)
+            elif song:
                 return self.query_longest(song)
 
         # Average duration queries
@@ -1347,7 +1454,10 @@ class UnifiedJamMuse:
         # Check for explicit band mentions
         if any(word in q_lower for word in ["phish", "trey", "fishman", "page", "mike gordon"]):
             return "phish"
-        if any(word in q_lower for word in ["grateful dead", "the dead", "jerry garcia", "jerry", "garcia", "dead played", "gd "]):
+        if any(word in q_lower for word in ["grateful dead", "the dead", "jerry garcia", "jerry", "garcia", "dead played", "gd ", "dead jams", "dead songs", "dead jam", "dead song"]):
+            return "dead"
+        # Also check for standalone "dead" followed by common query words
+        if re.search(r'\bdead\b', q_lower) and any(word in q_lower for word in ["longest", "best", "stats", "how many", "played"]):
             return "dead"
         if any(word in q_lower for word in ["goose", "rick mitarotonda", "el goose"]):
             return "goose"

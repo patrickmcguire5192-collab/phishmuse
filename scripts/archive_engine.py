@@ -526,6 +526,74 @@ class ArchiveDeadEngine:
             }
         )
 
+    def query_longest_overall(self, limit: int = 5) -> QueryResult:
+        """Get the longest performances of ANY song (overall longest jams)."""
+        all_performances = []
+
+        # Skip non-jam entries (interviews, announcements, full mixes, etc.)
+        skip_songs = ['Drums', 'Space', 'Drums/Space', 'Full Mix', 'Pre Show Press Conference With Bill Graham',
+                      'Stage Announcements', 'Tuning', 'Crowd', 'Interview', 'Tape 1', 'Tape 2']
+
+        for song_name, song_data in self.songs.items():
+            # Skip Drums/Space and non-music entries
+            if song_name in skip_songs or 'press conference' in song_name.lower() or 'full mix' in song_name.lower():
+                continue
+
+            performances = song_data.get('performances', [])
+            for perf in performances:
+                all_performances.append({
+                    'song': song_name,
+                    'date': perf['date'],
+                    'venue': perf.get('venue', 'Unknown'),
+                    'duration': perf['duration']
+                })
+
+        if not all_performances:
+            return QueryResult(
+                success=False,
+                answer="No duration data found in the Dead catalog."
+            )
+
+        # Sort by duration descending and take top N
+        sorted_perfs = sorted(all_performances, key=lambda x: x['duration'], reverse=True)[:limit]
+
+        # Format the result
+        longest = sorted_perfs[0]
+        duration_str = self._format_duration(longest['duration'])
+
+        if limit == 1:
+            lines = ["**Longest Grateful Dead Performance Ever**\n"]
+        else:
+            lines = [f"**Top {limit} Longest Grateful Dead Jams**\n"]
+
+        for i, perf in enumerate(sorted_perfs, 1):
+            dur_str = self._format_duration(perf['duration'])
+            lines.append(f"{i}. **{perf['song']}** - {dur_str} ({perf['date']} at {perf['venue']})")
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines),
+            highlight=duration_str,
+            card_data={
+                'type': 'longest_overall',
+                'title': 'Longest Dead Jams',
+                'stat': duration_str,
+                'subtitle': f"{longest['song']} - {longest['date']}",
+                'extra': {
+                    'top_performances': [
+                        {'song': p['song'], 'duration': self._format_duration(p['duration']),
+                         'date': p['date'], 'venue': p['venue']}
+                        for p in sorted_perfs[:5]
+                    ]
+                }
+            },
+            related_queries=[
+                f"longest {sorted_perfs[0]['song']}",
+                f"longest {sorted_perfs[1]['song']}" if len(sorted_perfs) > 1 else None,
+                f"{sorted_perfs[0]['song']} stats"
+            ]
+        )
+
     def query(self, question: str) -> QueryResult:
         """Parse and route a natural language query."""
         if not self.catalog:
@@ -536,14 +604,33 @@ class ArchiveDeadEngine:
 
         q = question.lower().strip()
 
-        # Top N longest patterns
+        # Check for "longest ever" overall queries (no specific song)
+        overall_patterns = [
+            r"longest\s+ever\s+(\w+\s+)?(jams?|songs?|versions?|performances?)",
+            r"longest\s+(\w+\s+)?(jams?|songs?|versions?|performances?)\s+ever",
+            r"longest\s+(jams?|songs?|versions?|performances?)\s+of\s+all\s+time",
+            r"longest\s+dead\s+(jams?|songs?)",
+            r"longest\s+grateful\s+dead\s+(jams?|songs?)",
+            r"longest\s+ever$",
+        ]
+        is_overall = any(re.search(pat, q) for pat in overall_patterns)
+
+        if is_overall:
+            # Determine limit: plural = 5, singular = 1
+            if any(word in q for word in ["jams", "songs", "versions", "performances"]):
+                limit = 5
+            else:
+                limit = 1
+            return self.query_longest_overall(limit=limit)
+
+        # Top N longest patterns (for specific song)
         top_n_match = re.search(r'top\s*(\d+)\s+longest\s+(.+)', q)
         if top_n_match:
             n = int(top_n_match.group(1))
             song = top_n_match.group(2).strip()
             return self.query_longest(song, top_n=min(n, 25))
 
-        # Longest patterns
+        # Longest patterns (for specific song)
         longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q)
         if longest_match:
             song = longest_match.group(1).strip()
