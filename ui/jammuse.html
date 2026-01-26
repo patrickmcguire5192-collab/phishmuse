@@ -798,8 +798,8 @@
             <!-- Content -->
             <div class="flex-1 min-w-0">
               <span class="${style.badge} text-white text-xs font-bold px-2 py-0.5 rounded-full">${escapeHtml(band)}</span>
-              <h3 class="text-lg font-bold text-white mt-2 truncate">${escapeHtml(title)}</h3>
-              <p class="text-gray-400 text-sm truncate">${escapeHtml(subtitle)}</p>
+              <h3 class="${title.length > 25 ? 'text-base' : 'text-lg'} font-bold text-white mt-2 leading-tight">${escapeHtml(title)}</h3>
+              <p class="text-gray-400 text-sm leading-tight">${escapeHtml(subtitle)}</p>
             </div>
             <!-- Stat -->
             <div class="text-right flex-shrink-0">
