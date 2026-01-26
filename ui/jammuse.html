@@ -764,23 +764,49 @@
       if (data.card) {
         // Get the song name from the card title
         let songName = data.card.title || '';
-        // Remove "Longest " prefix if already there to avoid "Longest Longest X"
+        // Clean up song name - remove prefixes that might already be there
         songName = songName.replace(/^Longest\s+/i, '');
+        songName = songName.replace(/\s+versions?$/i, '');
 
-        if (data.card.type === 'longest') {
-          title = `Longest ${songName}`;
+        // Generate natural language title based on query type
+        if (data.card.type === 'longest' || qLower.includes('longest')) {
+          title = `Longest ${songName} Ever`;
           statValue = data.card.stat || statValue;
           statLabel = 'duration';
           subtitle = data.card.subtitle || '';
-        } else if (data.card.type === 'count' || data.card.type === 'stats') {
-          title = songName;
+        } else if (data.card.type === 'count' || qLower.includes('how many') || qLower.includes('times')) {
+          title = `Times Played: ${songName}`;
           statValue = data.card.stat || statValue;
-          statLabel = data.card.stat_label || 'times played';
+          statLabel = 'performances';
           if (data.card.extra) {
-            subtitle = data.card.extra.last_played ? `Last: ${data.card.extra.last_played}` : '';
+            subtitle = data.card.extra.last_played ? `Last played: ${data.card.extra.last_played}` : '';
           }
+        } else if (qLower.includes('best')) {
+          title = `Best ${songName} Versions`;
+          statValue = data.card.stat || statValue;
+          statLabel = data.card.stat_label || 'top rated';
+          subtitle = data.card.subtitle || '';
+        } else if (qLower.includes('gap')) {
+          title = `Current Gap: ${songName}`;
+          statValue = data.card.stat || statValue;
+          statLabel = 'shows ago';
+          subtitle = data.card.subtitle || '';
+        } else if (qLower.includes('last')) {
+          title = `Last Played: ${songName}`;
+          statValue = data.card.stat || statValue;
+          statLabel = data.card.stat_label || '';
+          subtitle = data.card.subtitle || '';
+        } else if (qLower.includes('first') || qLower.includes('debut')) {
+          title = `${songName} Debut`;
+          statValue = data.card.stat || statValue;
+          statLabel = data.card.stat_label || '';
+          subtitle = data.card.subtitle || '';
         } else {
-          title = songName;
+          // Default: try to make it descriptive
+          title = `${songName} Stats`;
+          statValue = data.card.stat || statValue;
+          statLabel = data.card.stat_label || '';
+          subtitle = data.card.subtitle || '';
         }
       }
 
