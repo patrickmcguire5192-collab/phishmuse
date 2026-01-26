@@ -582,15 +582,17 @@
         </svg>`,
     };
 
-    // Color palettes for mascot variations
+    // Color palettes for mascot variations - each bear gets a complementary background
     const bearColors = [
-      { body: '#FF6B6B', accent: '#E84545', collar: '#FFD700', collarInner: '#FFA500' }, // Red/Gold
-      { body: '#FF8C00', accent: '#E67300', collar: '#FFD700', collarInner: '#FFA500' }, // Orange/Gold
-      { body: '#FFD700', accent: '#E6C200', collar: '#FF6B6B', collarInner: '#E84545' }, // Yellow/Red
-      { body: '#4ECDC4', accent: '#3DB8B0', collar: '#FFD700', collarInner: '#FFA500' }, // Teal/Gold
-      { body: '#9B59B6', accent: '#8E44AD', collar: '#FFD700', collarInner: '#FFA500' }, // Purple/Gold
-      { body: '#3498DB', accent: '#2980B9', collar: '#FFD700', collarInner: '#FFA500' }, // Blue/Gold
-      { body: '#E74C3C', accent: '#C0392B', collar: '#2ECC71', collarInner: '#27AE60' }, // Red/Green
+      { body: '#FF6B6B', accent: '#E84545', collar: '#FFD700', collarInner: '#FFA500', bg1: '#7c3aed', bg2: '#2563eb' }, // Red bear on purple/blue
+      { body: '#FF8C00', accent: '#E67300', collar: '#FFD700', collarInner: '#FFA500', bg1: '#1e3a5f', bg2: '#0f172a' }, // Orange bear on dark blue
+      { body: '#FFD700', accent: '#E6C200', collar: '#FF6B6B', collarInner: '#E84545', bg1: '#7c3aed', bg2: '#4c1d95' }, // Yellow bear on purple
+      { body: '#4ECDC4', accent: '#3DB8B0', collar: '#FFD700', collarInner: '#FFA500', bg1: '#be185d', bg2: '#831843' }, // Teal bear on magenta
+      { body: '#9B59B6', accent: '#8E44AD', collar: '#FFD700', collarInner: '#FFA500', bg1: '#065f46', bg2: '#064e3b' }, // Purple bear on emerald
+      { body: '#3498DB', accent: '#2980B9', collar: '#FFD700', collarInner: '#FFA500', bg1: '#9f1239', bg2: '#881337' }, // Blue bear on rose
+      { body: '#E74C3C', accent: '#C0392B', collar: '#2ECC71', collarInner: '#27AE60', bg1: '#1e40af', bg2: '#1e3a8a' }, // Red/Green bear on blue
+      { body: '#F472B6', accent: '#EC4899', collar: '#FFD700', collarInner: '#FFA500', bg1: '#115e59', bg2: '#134e4a' }, // Pink bear on teal
+      { body: '#34D399', accent: '#10B981', collar: '#FFD700', collarInner: '#FFA500', bg1: '#7e22ce', bg2: '#6b21a8' }, // Green bear on violet
     ];
 
     const gooseBackgrounds = [
@@ -636,8 +638,8 @@
           <path d="M6 28 L11 29" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
           <defs>
             <linearGradient id="dead-bg-${colors.body.slice(1)}" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#7c3aed"/>
-              <stop offset="100%" stop-color="#2563eb"/>
+              <stop offset="0%" stop-color="${colors.bg1}"/>
+              <stop offset="100%" stop-color="${colors.bg2}"/>
             </linearGradient>
           </defs>
         </svg>`;
