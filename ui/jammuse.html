@@ -717,24 +717,93 @@
 
     // Featured questions - curated for impressive stats on homepage
     const featuredQuestions = [
-      // Grateful Dead - impressive duration stats
+      // LONGEST queries
       "What's the longest Dark Star ever?",
-      "Longest Dead Playing in the Band?",
-      "Top 10 longest Morning Dew",
-      // Phish - impressive stats
-      "What's the longest Phish Tweezer?",
-      "Longest Phish Ghost?",
-      "How many times has Phish played YEM?",
-      // Goose
+      "Longest Phish Tweezer?",
       "What's the longest Goose Arcadia?",
-      "How many times has Goose played Hungersite?",
-      // King Gizzard
       "What's the longest King Gizzard Dripping Tap?",
+
+      // TIMES PLAYED queries
+      "How many times has Phish played YEM?",
+      "How many times has Goose played Hungersite?",
+      "How many times did the Dead play Scarlet Begonias?",
+      "How many times has King Gizzard played Rattlesnake?",
+
+      // GAP queries - shows since last played
+      "What's the gap on Phish Harpua?",
+      "What's the gap on Goose Madhuvan?",
+      "What's the Phish Fluffhead gap?",
+      "What's the gap on Dead Terrapin Station?",
+
+      // LAST PLAYED queries
+      "When did Phish last play Foam?",
+      "When did Goose last play So Ready?",
+      "When did the Dead last play St. Stephen?",
+      "When did King Gizzard last play Head On/Pill?",
+
+      // DEBUT / FIRST PLAYED queries
+      "When did Phish first play Tweezer?",
+      "When did the Dead first play Eyes of the World?",
+      "When did Goose first play Arcadia?",
+      "When did Phish debut Sigma Oasis?",
+
+      // BEST VERSIONS queries (for bands with jam charts)
+      "Best Goose Arcadia versions",
+      "Best King Gizzard River versions",
     ];
 
+    // Categorized questions for balanced variety
+    const questionsByType = {
+      longest: [
+        "What's the longest Dark Star ever?",
+        "Longest Phish Tweezer?",
+        "What's the longest Goose Arcadia?",
+        "What's the longest King Gizzard Dripping Tap?",
+      ],
+      timesPlayed: [
+        "How many times has Phish played YEM?",
+        "How many times has Goose played Hungersite?",
+        "How many times did the Dead play Scarlet Begonias?",
+        "How many times has King Gizzard played Rattlesnake?",
+      ],
+      gap: [
+        "What's the gap on Phish Harpua?",
+        "What's the gap on Goose Madhuvan?",
+        "What's the Phish Fluffhead gap?",
+        "What's the gap on Dead Terrapin Station?",
+      ],
+      lastPlayed: [
+        "When did Phish last play Foam?",
+        "When did Goose last play So Ready?",
+        "When did the Dead last play St. Stephen?",
+        "When did King Gizzard last play Head On/Pill?",
+      ],
+      debut: [
+        "When did Phish first play Tweezer?",
+        "When did the Dead first play Eyes of the World?",
+        "When did Goose first play Arcadia?",
+        "When did Phish debut Sigma Oasis?",
+      ],
+      best: [
+        "Best Goose Arcadia versions",
+        "Best King Gizzard River versions",
+      ],
+    };
+
     function getRandomFeatured(count = 4) {
-      const shuffled = [...featuredQuestions].sort(() => Math.random() - 0.5);
-      return shuffled.slice(0, count);
+      // Pick one from each category for variety, then fill remaining randomly
+      const types = Object.keys(questionsByType);
+      const shuffledTypes = types.sort(() => Math.random() - 0.5);
+
+      const selected = [];
+      for (let i = 0; i < count && i < shuffledTypes.length; i++) {
+        const type = shuffledTypes[i];
+        const questions = questionsByType[type];
+        const randomQ = questions[Math.floor(Math.random() * questions.length)];
+        selected.push(randomQ);
+      }
+
+      return selected;
     }
 
     function createFeaturedCard(data, question, index) {
