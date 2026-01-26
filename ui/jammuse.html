@@ -717,34 +717,25 @@
 
     // Featured questions - curated for impressive stats on homepage
     const featuredQuestions = [
-      // LONGEST - all bands
+      // LONGEST - all bands (these work great!)
       "What's the longest Dark Star ever?",
       "Longest Phish Tweezer ever?",
       "What's the longest Goose Arcadia?",
       "What's the longest King Gizzard Dripping Tap?",
       "Longest Dead Morning Dew?",
       "Longest Phish Ghost ever?",
+      "Longest Dead Playing in the Band?",
+      "Longest Goose Hungersite?",
 
-      // TIMES PLAYED - all bands
+      // TIMES PLAYED - all bands (these work great!)
       "How many times has Phish played YEM?",
       "How many times has Goose played Hungersite?",
       "How many times did the Dead play Eyes of the World?",
       "How many times has King Gizzard played Rattlesnake?",
       "How many times has Phish played Carini?",
-
-      // GAP - Phish only (they're still touring!)
-      "What's the gap on Phish Harpua?",
-      "What's the Phish Fluffhead gap?",
-      "What's the gap on Phish Destiny Unbound?",
-      "Phish gap on Brother?",
-
-      // DEBUT - all bands (natural language: "When did X debut Y?" or "When did X first play Y?")
-      "When did Phish debut Tweezer?",
-      "When did the Dead debut Eyes of the World?",
-      "When did Goose debut Arcadia?",
-      "When did King Gizzard debut Dripping Tap?",
-      "When did Phish debut Sigma Oasis?",
-      "When did the Dead debut Scarlet Begonias?",
+      "How many times has Phish played Ghost?",
+      "How many times did the Dead play Scarlet Begonias?",
+      "How many times has Goose played Arcadia?",
     ];
 
     function getRandomFeatured(count = 4) {
@@ -779,49 +770,22 @@
       if (data.card) {
         // Get the song name from the card title
         let songName = data.card.title || '';
-        // Clean up song name - remove prefixes/suffixes that might already be there
+        // Clean up song name - remove prefixes that might already be there
         songName = songName.replace(/^Longest\s+/i, '');
-        songName = songName.replace(/\s+versions?$/i, '');
-        songName = songName.replace(/\s+debut$/i, '');
 
         // Generate natural language title based on query type
-        // Check question first, then fall back to card type
-        if (qLower.includes('longest')) {
+        if (qLower.includes('longest') || data.card.type === 'longest') {
           title = `Longest ${songName} Ever`;
           statValue = data.card.stat || statValue;
           statLabel = 'duration';
           subtitle = data.card.subtitle || '';
-        } else if (qLower.includes('how many') || qLower.includes('times played')) {
-          title = `Times Played: ${songName}`;
-          statValue = data.card.stat || statValue;
-          statLabel = 'performances';
-          if (data.card.extra && data.card.extra.last_played) {
-            subtitle = `Last played: ${data.card.extra.last_played}`;
-          }
-        } else if (qLower.includes('gap')) {
-          title = `Current Gap: ${songName}`;
-          statValue = data.card.stat || statValue;
-          statLabel = 'shows ago';
-          if (data.card.extra && data.card.extra.last_played) {
-            subtitle = `Last played: ${data.card.extra.last_played}`;
-          }
-        } else if (qLower.includes('debut') || qLower.includes('first play')) {
-          title = `${songName} Debut`;
-          statValue = data.card.stat || statValue;
-          statLabel = 'first played';
-          subtitle = data.card.subtitle || '';
-        } else if (data.card.type === 'longest') {
-          title = `Longest ${songName} Ever`;
-          statValue = data.card.stat || statValue;
-          statLabel = 'duration';
-          subtitle = data.card.subtitle || '';
-        } else if (data.card.type === 'count') {
+        } else if (qLower.includes('how many') || qLower.includes('times')) {
           title = `Times Played: ${songName}`;
           statValue = data.card.stat || statValue;
           statLabel = 'performances';
           subtitle = '';
         } else {
-          // Default
+          // Default - use card data as-is
           title = songName;
           statValue = data.card.stat || statValue;
           statLabel = data.card.stat_label || '';
