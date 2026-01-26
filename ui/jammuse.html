@@ -717,93 +717,39 @@
 
     // Featured questions - curated for impressive stats on homepage
     const featuredQuestions = [
-      // LONGEST queries
+      // LONGEST - all bands
       "What's the longest Dark Star ever?",
-      "Longest Phish Tweezer?",
+      "Longest Phish Tweezer ever?",
       "What's the longest Goose Arcadia?",
       "What's the longest King Gizzard Dripping Tap?",
+      "Longest Dead Morning Dew?",
+      "Longest Phish Ghost ever?",
 
-      // TIMES PLAYED queries
+      // TIMES PLAYED - all bands
       "How many times has Phish played YEM?",
       "How many times has Goose played Hungersite?",
-      "How many times did the Dead play Scarlet Begonias?",
+      "How many times did the Dead play Eyes of the World?",
       "How many times has King Gizzard played Rattlesnake?",
+      "How many times has Phish played Carini?",
 
-      // GAP queries - shows since last played
+      // GAP - Phish only (they're still touring!)
       "What's the gap on Phish Harpua?",
-      "What's the gap on Goose Madhuvan?",
       "What's the Phish Fluffhead gap?",
-      "What's the gap on Dead Terrapin Station?",
+      "What's the gap on Phish Destiny Unbound?",
+      "Phish gap on Brother?",
 
-      // LAST PLAYED queries
-      "When did Phish last play Foam?",
-      "When did Goose last play So Ready?",
-      "When did the Dead last play St. Stephen?",
-      "When did King Gizzard last play Head On/Pill?",
-
-      // DEBUT / FIRST PLAYED queries
-      "When did Phish first play Tweezer?",
-      "When did the Dead first play Eyes of the World?",
-      "When did Goose first play Arcadia?",
+      // DEBUT - all bands (natural language: "When did X debut Y?" or "When did X first play Y?")
+      "When did Phish debut Tweezer?",
+      "When did the Dead debut Eyes of the World?",
+      "When did Goose debut Arcadia?",
+      "When did King Gizzard debut Dripping Tap?",
       "When did Phish debut Sigma Oasis?",
-
-      // BEST VERSIONS queries (for bands with jam charts)
-      "Best Goose Arcadia versions",
-      "Best King Gizzard River versions",
+      "When did the Dead debut Scarlet Begonias?",
     ];
 
-    // Categorized questions for balanced variety
-    const questionsByType = {
-      longest: [
-        "What's the longest Dark Star ever?",
-        "Longest Phish Tweezer?",
-        "What's the longest Goose Arcadia?",
-        "What's the longest King Gizzard Dripping Tap?",
-      ],
-      timesPlayed: [
-        "How many times has Phish played YEM?",
-        "How many times has Goose played Hungersite?",
-        "How many times did the Dead play Scarlet Begonias?",
-        "How many times has King Gizzard played Rattlesnake?",
-      ],
-      gap: [
-        "What's the gap on Phish Harpua?",
-        "What's the gap on Goose Madhuvan?",
-        "What's the Phish Fluffhead gap?",
-        "What's the gap on Dead Terrapin Station?",
-      ],
-      lastPlayed: [
-        "When did Phish last play Foam?",
-        "When did Goose last play So Ready?",
-        "When did the Dead last play St. Stephen?",
-        "When did King Gizzard last play Head On/Pill?",
-      ],
-      debut: [
-        "When did Phish first play Tweezer?",
-        "When did the Dead first play Eyes of the World?",
-        "When did Goose first play Arcadia?",
-        "When did Phish debut Sigma Oasis?",
-      ],
-      best: [
-        "Best Goose Arcadia versions",
-        "Best King Gizzard River versions",
-      ],
-    };
-
     function getRandomFeatured(count = 4) {
-      // Pick one from each category for variety, then fill remaining randomly
-      const types = Object.keys(questionsByType);
-      const shuffledTypes = types.sort(() => Math.random() - 0.5);
-
-      const selected = [];
-      for (let i = 0; i < count && i < shuffledTypes.length; i++) {
-        const type = shuffledTypes[i];
-        const questions = questionsByType[type];
-        const randomQ = questions[Math.floor(Math.random() * questions.length)];
-        selected.push(randomQ);
-      }
-
-      return selected;
+      const shuffled = [...featuredQuestions].sort(() => Math.random() - 0.5);
+      return shuffled.slice(0, count);
     }
 
     function createFeaturedCard(data, question, index) {
@@ -833,46 +779,50 @@
       if (data.card) {
         // Get the song name from the card title
         let songName = data.card.title || '';
-        // Clean up song name - remove prefixes that might already be there
+        // Clean up song name - remove prefixes/suffixes that might already be there
         songName = songName.replace(/^Longest\s+/i, '');
         songName = songName.replace(/\s+versions?$/i, '');
+        songName = songName.replace(/\s+debut$/i, '');
 
         // Generate natural language title based on query type
-        if (data.card.type === 'longest' || qLower.includes('longest')) {
+        // Check question first, then fall back to card type
+        if (qLower.includes('longest')) {
           title = `Longest ${songName} Ever`;
           statValue = data.card.stat || statValue;
           statLabel = 'duration';
           subtitle = data.card.subtitle || '';
-        } else if (data.card.type === 'count' || qLower.includes('how many') || qLower.includes('times')) {
+        } else if (qLower.includes('how many') || qLower.includes('times played')) {
           title = `Times Played: ${songName}`;
           statValue = data.card.stat || statValue;
           statLabel = 'performances';
-          if (data.card.extra) {
-            subtitle = data.card.extra.last_played ? `Last played: ${data.card.extra.last_played}` : '';
+          if (data.card.extra && data.card.extra.last_played) {
+            subtitle = `Last played: ${data.card.extra.last_played}`;
           }
-        } else if (qLower.includes('best')) {
-          title = `Best ${songName} Versions`;
-          statValue = data.card.stat || statValue;
-          statLabel = data.card.stat_label || 'top rated';
-          subtitle = data.card.subtitle || '';
         } else if (qLower.includes('gap')) {
           title = `Current Gap: ${songName}`;
           statValue = data.card.stat || statValue;
           statLabel = 'shows ago';
-          subtitle = data.card.subtitle || '';
-        } else if (qLower.includes('last')) {
-          title = `Last Played: ${songName}`;
-          statValue = data.card.stat || statValue;
-          statLabel = data.card.stat_label || '';
-          subtitle = data.card.subtitle || '';
-        } else if (qLower.includes('first') || qLower.includes('debut')) {
+          if (data.card.extra && data.card.extra.last_played) {
+            subtitle = `Last played: ${data.card.extra.last_played}`;
+          }
+        } else if (qLower.includes('debut') || qLower.includes('first play')) {
           title = `${songName} Debut`;
           statValue = data.card.stat || statValue;
-          statLabel = data.card.stat_label || '';
+          statLabel = 'first played';
           subtitle = data.card.subtitle || '';
+        } else if (data.card.type === 'longest') {
+          title = `Longest ${songName} Ever`;
+          statValue = data.card.stat || statValue;
+          statLabel = 'duration';
+          subtitle = data.card.subtitle || '';
+        } else if (data.card.type === 'count') {
+          title = `Times Played: ${songName}`;
+          statValue = data.card.stat || statValue;
+          statLabel = 'performances';
+          subtitle = '';
         } else {
-          // Default: try to make it descriptive
-          title = `${songName} Stats`;
+          // Default
+          title = songName;
           statValue = data.card.stat || statValue;
           statLabel = data.card.stat_label || '';
           subtitle = data.card.subtitle || '';
