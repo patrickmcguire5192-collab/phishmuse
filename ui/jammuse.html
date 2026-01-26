@@ -95,6 +95,21 @@
     .badge-phish { background: linear-gradient(135deg, #e53e3e, #ed8936); }
     .badge-goose { background: linear-gradient(135deg, #3b82f6, #06b6d4); }
     .badge-kglw { background: linear-gradient(135deg, #22c55e, #84cc16); }
+    .badge-umphreys { background: linear-gradient(135deg, #f59e0b, #d97706); }
+    .badge-wsp { background: linear-gradient(135deg, #8b5cf6, #6366f1); }
+    .badge-moe { background: linear-gradient(135deg, #ec4899, #f43f5e); }
+    .badge-sts9 { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+    .badge-billy { background: linear-gradient(135deg, #a3e635, #65a30d); }
+
+    /* Mascot container */
+    .mascot-container {
+      width: 72px;
+      height: 72px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.05);
+    }
   </style>
 </head>
 <body class="bg-gray-950 min-h-screen text-white">
@@ -243,7 +258,323 @@
       'Goose': { gradient: 'goose-gradient', badge: 'badge-goose' },
       'King Gizzard': { gradient: 'kglw-gradient', badge: 'badge-kglw' },
       'King Gizzard & the Lizard Wizard': { gradient: 'kglw-gradient', badge: 'badge-kglw' },
+      "Umphrey's McGee": { gradient: 'phish-gradient', badge: 'badge-umphreys' },
+      'Widespread Panic': { gradient: 'dead-gradient', badge: 'badge-wsp' },
+      'moe.': { gradient: 'phish-gradient', badge: 'badge-moe' },
+      'STS9': { gradient: 'goose-gradient', badge: 'badge-sts9' },
+      'Billy Strings': { gradient: 'kglw-gradient', badge: 'badge-billy' },
     };
+
+    // Band mascot SVGs - StatMuse-style cartoon illustrations
+    const bandMascots = {
+      'Grateful Dead': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Dancing Bear -->
+          <circle cx="36" cy="36" r="32" fill="url(#dead-bg)"/>
+          <!-- Bear body -->
+          <ellipse cx="36" cy="42" rx="16" ry="18" fill="#FF6B6B"/>
+          <!-- Bear head -->
+          <circle cx="36" cy="24" r="12" fill="#FF6B6B"/>
+          <!-- Ears -->
+          <circle cx="26" cy="16" r="5" fill="#FF6B6B"/>
+          <circle cx="46" cy="16" r="5" fill="#FF6B6B"/>
+          <circle cx="26" cy="16" r="3" fill="#E55555"/>
+          <circle cx="46" cy="16" r="3" fill="#E55555"/>
+          <!-- Face -->
+          <ellipse cx="36" cy="26" rx="6" ry="4" fill="#FFE4C4"/>
+          <circle cx="32" cy="22" r="2" fill="#1a1a2e"/>
+          <circle cx="40" cy="22" r="2" fill="#1a1a2e"/>
+          <ellipse cx="36" cy="27" rx="2" ry="1.5" fill="#1a1a2e"/>
+          <!-- Dancing arms up -->
+          <ellipse cx="22" cy="34" rx="4" ry="8" fill="#FF6B6B" transform="rotate(-30 22 34)"/>
+          <ellipse cx="50" cy="34" rx="4" ry="8" fill="#FF6B6B" transform="rotate(30 50 34)"/>
+          <!-- Legs -->
+          <ellipse cx="30" cy="58" rx="5" ry="6" fill="#FF6B6B"/>
+          <ellipse cx="42" cy="58" rx="5" ry="6" fill="#FF6B6B"/>
+          <defs>
+            <linearGradient id="dead-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#7c3aed"/>
+              <stop offset="100%" stop-color="#2563eb"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'Phish': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Four fish on a hot dog -->
+          <rect x="8" y="38" width="56" height="14" rx="7" fill="#F4A460"/>
+          <rect x="10" y="36" width="52" height="10" rx="5" fill="#FFD700"/>
+          <path d="M12 41 Q36 32 60 41" stroke="#CD853F" stroke-width="2" fill="none"/>
+          <!-- Fish 1 - Red -->
+          <ellipse cx="18" cy="30" rx="7" ry="5" fill="#e53e3e"/>
+          <polygon points="10,30 6,25 6,35" fill="#e53e3e"/>
+          <circle cx="21" cy="29" r="1.5" fill="white"/>
+          <circle cx="21.5" cy="29" r="0.8" fill="#1a1a2e"/>
+          <!-- Fish 2 - Blue -->
+          <ellipse cx="30" cy="26" rx="7" ry="5" fill="#3b82f6"/>
+          <polygon points="22,26 18,21 18,31" fill="#3b82f6"/>
+          <circle cx="33" cy="25" r="1.5" fill="white"/>
+          <circle cx="33.5" cy="25" r="0.8" fill="#1a1a2e"/>
+          <!-- Fish 3 - Green -->
+          <ellipse cx="42" cy="26" rx="7" ry="5" fill="#22c55e"/>
+          <polygon points="50,26 54,21 54,31" fill="#22c55e"/>
+          <circle cx="39" cy="25" r="1.5" fill="white"/>
+          <circle cx="38.5" cy="25" r="0.8" fill="#1a1a2e"/>
+          <!-- Fish 4 - Orange -->
+          <ellipse cx="54" cy="30" rx="7" ry="5" fill="#ed8936"/>
+          <polygon points="62,30 66,25 66,35" fill="#ed8936"/>
+          <circle cx="51" cy="29" r="1.5" fill="white"/>
+          <circle cx="50.5" cy="29" r="0.8" fill="#1a1a2e"/>
+          <!-- Bun shine -->
+          <ellipse cx="36" cy="52" rx="24" ry="4" fill="#DEB887"/>
+        </svg>`,
+
+      'Goose': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cool Goose -->
+          <circle cx="36" cy="36" r="32" fill="url(#goose-bg)"/>
+          <!-- Body -->
+          <ellipse cx="36" cy="48" rx="18" ry="14" fill="white"/>
+          <!-- Neck -->
+          <path d="M36 38 Q32 28 36 18" stroke="white" stroke-width="12" fill="none" stroke-linecap="round"/>
+          <!-- Head -->
+          <circle cx="36" cy="16" r="10" fill="white"/>
+          <!-- Beak -->
+          <path d="M42 18 L54 16 L42 20 Z" fill="#ed8936"/>
+          <!-- Cool sunglasses -->
+          <rect x="28" y="12" width="8" height="5" rx="1" fill="#1a1a2e"/>
+          <rect x="38" y="12" width="8" height="5" rx="1" fill="#1a1a2e"/>
+          <line x1="36" y1="14" x2="38" y2="14" stroke="#1a1a2e" stroke-width="2"/>
+          <line x1="28" y1="14" x2="24" y2="12" stroke="#1a1a2e" stroke-width="1.5"/>
+          <line x1="46" y1="14" x2="50" y2="12" stroke="#1a1a2e" stroke-width="1.5"/>
+          <!-- Wing -->
+          <ellipse cx="28" cy="48" rx="8" ry="12" fill="#E8E8E8" transform="rotate(-10 28 48)"/>
+          <!-- Feet -->
+          <path d="M30 60 L26 68 M30 60 L30 68 M30 60 L34 68" stroke="#ed8936" stroke-width="2"/>
+          <path d="M42 60 L38 68 M42 60 L42 68 M42 60 L46 68" stroke="#ed8936" stroke-width="2"/>
+          <defs>
+            <linearGradient id="goose-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3b82f6"/>
+              <stop offset="100%" stop-color="#06b6d4"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'King Gizzard': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lizard Wizard -->
+          <circle cx="36" cy="36" r="32" fill="url(#kglw-bg)"/>
+          <!-- Wizard hat -->
+          <polygon points="36,4 22,32 50,32" fill="#7c3aed"/>
+          <ellipse cx="36" cy="32" rx="16" ry="4" fill="#6d28d9"/>
+          <!-- Stars on hat -->
+          <polygon points="32,16 33,19 30,17 34,17 31,19" fill="#fcd34d" transform="scale(0.8)"/>
+          <polygon points="42,22 43,25 40,23 44,23 41,25" fill="#fcd34d" transform="scale(0.7)"/>
+          <!-- Lizard head -->
+          <ellipse cx="36" cy="42" rx="14" ry="10" fill="#22c55e"/>
+          <!-- Snout -->
+          <ellipse cx="36" cy="50" rx="8" ry="5" fill="#22c55e"/>
+          <!-- Eyes - bulging lizard eyes -->
+          <circle cx="28" cy="38" r="6" fill="#84cc16"/>
+          <circle cx="44" cy="38" r="6" fill="#84cc16"/>
+          <circle cx="29" cy="37" r="3" fill="#1a1a2e"/>
+          <circle cx="45" cy="37" r="3" fill="#1a1a2e"/>
+          <circle cx="30" cy="36" r="1" fill="white"/>
+          <circle cx="46" cy="36" r="1" fill="white"/>
+          <!-- Nostrils -->
+          <circle cx="33" cy="52" r="1.5" fill="#15803d"/>
+          <circle cx="39" cy="52" r="1.5" fill="#15803d"/>
+          <!-- Smile -->
+          <path d="M30 55 Q36 59 42 55" stroke="#15803d" stroke-width="2" fill="none"/>
+          <!-- Scales detail -->
+          <circle cx="36" cy="44" r="2" fill="#15803d" opacity="0.3"/>
+          <defs>
+            <linearGradient id="kglw-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="100%" stop-color="#15803d"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'King Gizzard & the Lizard Wizard': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lizard Wizard (same as above) -->
+          <circle cx="36" cy="36" r="32" fill="url(#kglw-bg2)"/>
+          <polygon points="36,4 22,32 50,32" fill="#7c3aed"/>
+          <ellipse cx="36" cy="32" rx="16" ry="4" fill="#6d28d9"/>
+          <polygon points="32,16 33,19 30,17 34,17 31,19" fill="#fcd34d" transform="scale(0.8)"/>
+          <ellipse cx="36" cy="42" rx="14" ry="10" fill="#22c55e"/>
+          <ellipse cx="36" cy="50" rx="8" ry="5" fill="#22c55e"/>
+          <circle cx="28" cy="38" r="6" fill="#84cc16"/>
+          <circle cx="44" cy="38" r="6" fill="#84cc16"/>
+          <circle cx="29" cy="37" r="3" fill="#1a1a2e"/>
+          <circle cx="45" cy="37" r="3" fill="#1a1a2e"/>
+          <circle cx="30" cy="36" r="1" fill="white"/>
+          <circle cx="46" cy="36" r="1" fill="white"/>
+          <circle cx="33" cy="52" r="1.5" fill="#15803d"/>
+          <circle cx="39" cy="52" r="1.5" fill="#15803d"/>
+          <path d="M30 55 Q36 59 42 55" stroke="#15803d" stroke-width="2" fill="none"/>
+          <defs>
+            <linearGradient id="kglw-bg2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22c55e"/>
+              <stop offset="100%" stop-color="#15803d"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'Widespread Panic': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Panicking crowd -->
+          <circle cx="36" cy="36" r="32" fill="url(#wsp-bg)"/>
+          <!-- Person 1 - arms up panicking -->
+          <circle cx="20" cy="28" r="6" fill="#FFD5B5"/>
+          <ellipse cx="20" cy="46" rx="6" ry="10" fill="#8b5cf6"/>
+          <line x1="14" y1="38" x2="8" y2="28" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="26" y1="38" x2="30" y2="26" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="18" cy="26" r="1" fill="#1a1a2e"/>
+          <circle cx="22" cy="26" r="1" fill="#1a1a2e"/>
+          <ellipse cx="20" cy="30" rx="2" ry="1" fill="#1a1a2e"/>
+          <!-- Person 2 - center, really panicking -->
+          <circle cx="36" cy="24" r="7" fill="#FFD5B5"/>
+          <ellipse cx="36" cy="44" rx="7" ry="12" fill="#6366f1"/>
+          <line x1="29" y1="34" x2="20" y2="24" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="43" y1="34" x2="52" y2="24" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="33" cy="22" r="1.5" fill="#1a1a2e"/>
+          <circle cx="39" cy="22" r="1.5" fill="#1a1a2e"/>
+          <ellipse cx="36" cy="28" rx="3" ry="2" fill="#1a1a2e"/>
+          <!-- Person 3 - arms up -->
+          <circle cx="52" cy="28" r="6" fill="#FFD5B5"/>
+          <ellipse cx="52" cy="46" rx="6" ry="10" fill="#8b5cf6"/>
+          <line x1="46" y1="38" x2="42" y2="26" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <line x1="58" y1="38" x2="64" y2="28" stroke="#FFD5B5" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="26" r="1" fill="#1a1a2e"/>
+          <circle cx="54" cy="26" r="1" fill="#1a1a2e"/>
+          <ellipse cx="52" cy="30" rx="2" ry="1" fill="#1a1a2e"/>
+          <!-- Sweat drops / panic lines -->
+          <path d="M16 18 L14 14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M56 18 L58 14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M36 14 L36 10" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="wsp-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#8b5cf6"/>
+              <stop offset="100%" stop-color="#6366f1"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      "Umphrey's McGee": `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Angular prog-rock UM character -->
+          <circle cx="36" cy="36" r="32" fill="url(#um-bg)"/>
+          <!-- Geometric U shape head -->
+          <path d="M24 20 L24 40 Q24 52 36 52 Q48 52 48 40 L48 20" stroke="#f59e0b" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <!-- Cool angular sunglasses -->
+          <polygon points="26,28 34,28 32,34 24,34" fill="#1a1a2e"/>
+          <polygon points="38,28 46,28 48,34 40,34" fill="#1a1a2e"/>
+          <line x1="34" y1="30" x2="38" y2="30" stroke="#1a1a2e" stroke-width="2"/>
+          <!-- Lightning bolt accent -->
+          <polygon points="52,16 48,28 52,28 46,42 50,30 46,30" fill="#fcd34d"/>
+          <!-- M shape below -->
+          <path d="M20 58 L28 48 L36 56 L44 48 L52 58" stroke="#d97706" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="um-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#f59e0b"/>
+              <stop offset="100%" stop-color="#d97706"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'moe.': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Quirky moe. character -->
+          <circle cx="36" cy="36" r="32" fill="url(#moe-bg)"/>
+          <!-- Round goofy head -->
+          <circle cx="36" cy="32" r="18" fill="#FFE4C4"/>
+          <!-- Wild hair -->
+          <path d="M22 22 Q18 12 26 16 Q24 8 34 14 Q36 6 42 14 Q50 8 48 18 Q56 14 52 24" stroke="#4a3728" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Big goofy eyes -->
+          <circle cx="30" cy="30" r="5" fill="white"/>
+          <circle cx="42" cy="30" r="5" fill="white"/>
+          <circle cx="31" cy="31" r="2.5" fill="#1a1a2e"/>
+          <circle cx="43" cy="31" r="2.5" fill="#1a1a2e"/>
+          <!-- Wide grin -->
+          <path d="M28 40 Q36 48 44 40" stroke="#1a1a2e" stroke-width="2" fill="none"/>
+          <!-- Tongue out -->
+          <ellipse cx="36" cy="44" rx="4" ry="3" fill="#ec4899"/>
+          <!-- moe. text hint -->
+          <text x="36" y="62" font-size="10" fill="white" text-anchor="middle" font-weight="bold">moe.</text>
+          <defs>
+            <linearGradient id="moe-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ec4899"/>
+              <stop offset="100%" stop-color="#f43f5e"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'STS9': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Futuristic space tribal -->
+          <circle cx="36" cy="36" r="32" fill="url(#sts9-bg)"/>
+          <!-- Geometric tribal head -->
+          <polygon points="36,12 52,28 52,48 36,58 20,48 20,28" fill="#0891b2" stroke="#06b6d4" stroke-width="2"/>
+          <!-- Inner geometric pattern -->
+          <polygon points="36,18 46,30 46,44 36,52 26,44 26,30" fill="#0e7490"/>
+          <!-- Glowing eyes -->
+          <circle cx="30" cy="34" r="4" fill="#22d3ee"/>
+          <circle cx="42" cy="34" r="4" fill="#22d3ee"/>
+          <circle cx="30" cy="34" r="2" fill="white"/>
+          <circle cx="42" cy="34" r="2" fill="white"/>
+          <!-- Circuit-like patterns -->
+          <line x1="36" y1="24" x2="36" y2="18" stroke="#22d3ee" stroke-width="1.5"/>
+          <line x1="36" y1="46" x2="36" y2="52" stroke="#22d3ee" stroke-width="1.5"/>
+          <circle cx="36" cy="40" r="3" stroke="#22d3ee" stroke-width="1.5" fill="none"/>
+          <!-- Orbital rings -->
+          <ellipse cx="36" cy="36" rx="28" ry="8" stroke="#22d3ee" stroke-width="1" fill="none" opacity="0.5" transform="rotate(-20 36 36)"/>
+          <defs>
+            <linearGradient id="sts9-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0891b2"/>
+              <stop offset="100%" stop-color="#0e7490"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+
+      'Billy Strings': `
+        <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Bluegrass picker -->
+          <circle cx="36" cy="36" r="32" fill="url(#billy-bg)"/>
+          <!-- Hat -->
+          <ellipse cx="36" cy="20" rx="16" ry="4" fill="#4a3728"/>
+          <rect x="26" y="10" width="20" height="12" rx="2" fill="#5c4033"/>
+          <!-- Face -->
+          <circle cx="36" cy="32" r="12" fill="#FFE4C4"/>
+          <!-- Beard -->
+          <path d="M26 36 Q26 50 36 52 Q46 50 46 36" fill="#4a3728"/>
+          <!-- Eyes -->
+          <circle cx="32" cy="30" r="2" fill="#1a1a2e"/>
+          <circle cx="40" cy="30" r="2" fill="#1a1a2e"/>
+          <!-- Guitar -->
+          <ellipse cx="36" cy="56" rx="12" ry="8" fill="#d97706"/>
+          <ellipse cx="36" cy="56" rx="4" ry="3" fill="#1a1a2e"/>
+          <rect x="34" y="38" width="4" height="12" fill="#8B4513"/>
+          <!-- Guitar strings -->
+          <line x1="33" y1="44" x2="33" y2="64" stroke="#fcd34d" stroke-width="0.5"/>
+          <line x1="36" y1="44" x2="36" y2="64" stroke="#fcd34d" stroke-width="0.5"/>
+          <line x1="39" y1="44" x2="39" y2="64" stroke="#fcd34d" stroke-width="0.5"/>
+          <!-- Hand on guitar -->
+          <ellipse cx="44" cy="52" rx="4" ry="3" fill="#FFE4C4" transform="rotate(-20 44 52)"/>
+          <defs>
+            <linearGradient id="billy-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#65a30d"/>
+              <stop offset="100%" stop-color="#4d7c0f"/>
+            </linearGradient>
+          </defs>
+        </svg>`,
+    };
+
+    // Get mascot for a band (with fallback)
+    function getBandMascot(bandName) {
+      return bandMascots[bandName] || bandMascots['Grateful Dead']; // Default to Dead bear
+    }
 
     // Featured questions - curated for impressive stats on homepage
     const featuredQuestions = [
@@ -314,16 +645,25 @@
         }
       }
 
+      // Get the mascot for this band
+      const mascot = getBandMascot(band);
+
       // Use data attribute to store question (avoids quote escaping issues in onclick)
       return `
         <div class="featured-card stat-card rounded-2xl p-5 border border-gray-700 cursor-pointer hover:border-gray-500 transition group" data-question="${encodeURIComponent(question)}">
-          <div class="flex items-start justify-between">
+          <div class="flex items-start gap-4">
+            <!-- Mascot -->
+            <div class="mascot-container">
+              ${mascot}
+            </div>
+            <!-- Content -->
             <div class="flex-1 min-w-0">
               <span class="${style.badge} text-white text-xs font-bold px-2 py-0.5 rounded-full">${escapeHtml(band)}</span>
               <h3 class="text-lg font-bold text-white mt-2 truncate">${escapeHtml(title)}</h3>
               <p class="text-gray-400 text-sm truncate">${escapeHtml(subtitle)}</p>
             </div>
-            <div class="text-right ml-4">
+            <!-- Stat -->
+            <div class="text-right flex-shrink-0">
               <p class="text-3xl font-extrabold ${style.gradient}">${escapeHtml(statValue)}</p>
               <p class="text-gray-500 text-xs">${escapeHtml(statLabel)}</p>
             </div>
