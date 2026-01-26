@@ -269,28 +269,39 @@
     const bandMascots = {
       'Grateful Dead': `
         <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Dancing Bear -->
+          <!-- Dancing Bear - inspired by iconic marching bear -->
           <circle cx="36" cy="36" r="32" fill="url(#dead-bg)"/>
-          <!-- Bear body -->
-          <ellipse cx="36" cy="42" rx="16" ry="18" fill="#FF6B6B"/>
-          <!-- Bear head -->
-          <circle cx="36" cy="24" r="12" fill="#FF6B6B"/>
-          <!-- Ears -->
-          <circle cx="26" cy="16" r="5" fill="#FF6B6B"/>
-          <circle cx="46" cy="16" r="5" fill="#FF6B6B"/>
-          <circle cx="26" cy="16" r="3" fill="#E55555"/>
-          <circle cx="46" cy="16" r="3" fill="#E55555"/>
-          <!-- Face -->
-          <ellipse cx="36" cy="26" rx="6" ry="4" fill="#FFE4C4"/>
-          <circle cx="32" cy="22" r="2" fill="#1a1a2e"/>
-          <circle cx="40" cy="22" r="2" fill="#1a1a2e"/>
-          <ellipse cx="36" cy="27" rx="2" ry="1.5" fill="#1a1a2e"/>
-          <!-- Dancing arms up -->
-          <ellipse cx="22" cy="34" rx="4" ry="8" fill="#FF6B6B" transform="rotate(-30 22 34)"/>
-          <ellipse cx="50" cy="34" rx="4" ry="8" fill="#FF6B6B" transform="rotate(30 50 34)"/>
-          <!-- Legs -->
-          <ellipse cx="30" cy="58" rx="5" ry="6" fill="#FF6B6B"/>
-          <ellipse cx="42" cy="58" rx="5" ry="6" fill="#FF6B6B"/>
+          <!-- Bear body - slight tilt for dancing motion -->
+          <ellipse cx="34" cy="44" rx="14" ry="16" fill="#FF6B6B" transform="rotate(-5 34 44)"/>
+          <!-- Marching band collar - iconic contrasting neckband -->
+          <ellipse cx="34" cy="30" rx="10" ry="4" fill="#FFD700"/>
+          <ellipse cx="34" cy="30" rx="8" ry="3" fill="#FFA500"/>
+          <!-- Bear head - tilted happy -->
+          <circle cx="34" cy="22" r="11" fill="#FF6B6B"/>
+          <!-- Ears - round and perky -->
+          <circle cx="24" cy="14" r="5" fill="#FF6B6B"/>
+          <circle cx="44" cy="14" r="5" fill="#FF6B6B"/>
+          <circle cx="24" cy="14" r="3" fill="#E84545"/>
+          <circle cx="44" cy="14" r="3" fill="#E84545"/>
+          <!-- Happy closed eyes - classic dancing bear smile -->
+          <path d="M28 20 Q30 18 32 20" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M36 20 Q38 18 40 20" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Big happy smile -->
+          <path d="M28 26 Q34 32 40 26" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Nose -->
+          <ellipse cx="34" cy="24" rx="2" ry="1.5" fill="#1a1a2e"/>
+          <!-- Dancing arm raised HIGH - marching motion -->
+          <ellipse cx="18" cy="28" rx="4" ry="9" fill="#FF6B6B" transform="rotate(-45 18 28)"/>
+          <!-- Other arm out for balance -->
+          <ellipse cx="50" cy="38" rx="4" ry="8" fill="#FF6B6B" transform="rotate(20 50 38)"/>
+          <!-- One leg up - marching/dancing! -->
+          <ellipse cx="28" cy="58" rx="5" ry="7" fill="#FF6B6B" transform="rotate(-10 28 58)"/>
+          <!-- Other leg kicking out -->
+          <ellipse cx="44" cy="54" rx="5" ry="7" fill="#FF6B6B" transform="rotate(25 44 54)"/>
+          <!-- Motion lines for dancing energy -->
+          <path d="M8 22 L12 24" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M6 28 L11 29" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M56 50 L60 52" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
           <defs>
             <linearGradient id="dead-bg" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stop-color="#7c3aed"/>
