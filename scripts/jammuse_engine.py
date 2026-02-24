@@ -809,8 +809,31 @@ class JamMuseEngine:
             return 0.0
         return 0.0
 
-    def query_longest(self, song_name: str, limit: int = 10) -> QueryResult:
-        """Get the longest versions of a song."""
+    # Day-of-week names for parsing
+    DAY_NAMES = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+    def _extract_day_of_week_from_query(self, query: str) -> tuple:
+        """
+        Extract day of week from query like 'longest Arcadia on a Monday'.
+        Returns (query_without_day, day_name) or (query, None).
+        """
+        query_lower = query.lower()
+        for day in self.DAY_NAMES:
+            patterns = [
+                rf'\bon\s+a\s+{day}\s*(?:night|evening)?\b',
+                rf'\bon\s+{day}s?\s*(?:night|evening)?\b',
+                rf'\b{day}s?\s*(?:night|evening)?\b',
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, query_lower)
+                if match:
+                    clean_query = query[:match.start()] + query[match.end():]
+                    clean_query = re.sub(r'\s+', ' ', clean_query).strip()
+                    return clean_query, day.capitalize()
+        return query, None
+
+    def query_longest(self, song_name: str, limit: int = 10, day_of_week: str = None) -> QueryResult:
+        """Get the longest versions of a song, optionally filtered by day of week."""
         normalized = self._normalize_song_name(song_name) or song_name
 
         # Find song slug
@@ -852,6 +875,27 @@ class JamMuseEngine:
                 related_queries=[f"best {normalized}", f"{normalized} stats"]
             )
 
+        # Filter by day of week if specified
+        if day_of_week:
+            filtered = []
+            for p in with_duration:
+                showdate = p.get("showdate", "")
+                if showdate:
+                    try:
+                        dt = datetime.strptime(showdate[:10], "%Y-%m-%d")
+                        if dt.strftime("%A") == day_of_week:
+                            filtered.append(p)
+                    except (ValueError, IndexError):
+                        pass
+            with_duration = filtered
+            if not with_duration:
+                return QueryResult(
+                    success=False,
+                    band=self.band_name,
+                    answer=f"I don't have any performances of {normalized} on a {day_of_week}.",
+                    related_queries=[f"longest {normalized}", f"longest {normalized} on a Saturday"]
+                )
+
         # Sort by duration descending
         sorted_perfs = sorted(with_duration, key=lambda x: x["duration_min"], reverse=True)[:limit]
 
@@ -865,7 +909,8 @@ class JamMuseEngine:
         secs = int((longest["duration_min"] - mins) * 60)
         duration_str = f"{mins}:{secs:02d}"
 
-        lines = [f"**Longest {normalized} Versions**\n"]
+        day_context = f" on {day_of_week}s" if day_of_week else ""
+        lines = [f"**Longest {normalized} Versions{day_context}**\n"]
 
         for i, perf in enumerate(sorted_perfs, 1):
             date = perf.get("showdate", "Unknown")
@@ -875,9 +920,10 @@ class JamMuseEngine:
             dur_str = f"{dur_mins}:{dur_secs:02d}"
             lines.append(f"{i}. {dur_str} - {date} at {venue}")
 
-        lines.append(f"\nAverage {normalized} length: {avg_duration:.1f} minutes")
+        lines.append(f"\nAverage {normalized} length{day_context}: {avg_duration:.1f} minutes")
         lines.append(f"Based on {len(with_duration)} performances with timing data")
 
+        title_suffix = f" ({day_of_week}s)" if day_of_week else ""
         return QueryResult(
             success=True,
             band=self.band_name,
@@ -885,7 +931,7 @@ class JamMuseEngine:
             highlight=duration_str,
             card_data={
                 "type": "longest",
-                "title": f"Longest {normalized}",
+                "title": f"Longest {normalized}{title_suffix}",
                 "stat": duration_str,
                 "subtitle": f"{longest.get('showdate')} at {longest.get('venuename', '')}",
                 "extra": {
@@ -1184,10 +1230,12 @@ class JamMuseEngine:
 
     def query(self, question: str) -> QueryResult:
         """Route a natural language question to the appropriate handler."""
-        q = question.lower().strip()
+        # Extract day of week before other processing
+        base_question, day_of_week = self._extract_day_of_week_from_query(question)
+        q = base_question.lower().strip()
 
         # Setlist queries
-        date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', question)
+        date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', base_question)
         if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
             return self.query_setlist(date_match.group(1))
 
@@ -1205,7 +1253,7 @@ class JamMuseEngine:
             is_overall = any(re.search(pat, q) for pat in overall_patterns)
 
             # Also check if no song can be identified
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
 
             if is_overall or not song:
                 # Determine limit: plural = 5, singular = 1
@@ -1215,58 +1263,58 @@ class JamMuseEngine:
                     limit = 1
                 return self.query_longest_overall(limit=limit)
             elif song:
-                return self.query_longest(song)
+                return self.query_longest(song, day_of_week=day_of_week)
 
         # Average duration queries
         if any(word in q for word in ["average length", "avg duration", "typical length", "how long is"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_average_duration(song)
 
         # Jam chart / best version queries
         if any(word in q for word in ["best", "jam chart", "jamchart", "greatest", "top version"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_jamchart(song)
 
         # Gap queries
         if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_gap(song)
 
         # First played / debut queries
         if any(word in q for word in ["first time", "debut", "first played", "when did they first"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_first_played(song)
 
         # Play count queries
         if any(word in q for word in ["how many times", "how often", "play count", "times played"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_play_count(song)
 
         # Show count queries
         if any(word in q for word in ["how many shows", "show count", "total shows"]):
-            year_match = re.search(r'\b(20\d{2}|19\d{2})\b', question)
+            year_match = re.search(r'\b(20\d{2}|19\d{2})\b', base_question)
             year = int(year_match.group(1)) if year_match else None
             return self.query_show_count(year=year)
 
         # Last played queries
         if any(word in q for word in ["last played", "last time", "when was the last"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_last_played(song)
 
         # Stats queries (explicit)
         if any(word in q for word in ["stats", "statistics", "info on", "tell me about"]):
-            song = self._normalize_song_name(question)
+            song = self._normalize_song_name(base_question)
             if song:
                 return self.query_song_stats(song)
 
         # Default: try to identify a song and give stats
-        song = self._normalize_song_name(question)
+        song = self._normalize_song_name(base_question)
         if song:
             return self.query_song_stats(song)
 

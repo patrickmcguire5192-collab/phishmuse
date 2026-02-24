@@ -16,6 +16,7 @@ can be added on top for true natural language flexibility.
 
 import json
 import re
+from datetime import datetime
 from pathlib import Path
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
@@ -58,9 +59,12 @@ class PhishStatsEngine:
         "fenway": "Fenway Park",
         "sphere": "Sphere",
         "las vegas sphere": "Sphere",
-        "riviera": "Moon Palace Resort",  # Mexico runs
-        "mexico": "Moon Palace Resort",
-        "cancun": "Moon Palace Resort",
+        "riviera": "Moon Palace",  # Mexico runs
+        "riviera maya": "Moon Palace",
+        "mexico": "Moon Palace",
+        "cancun": "Moon Palace",
+        "moon palace": "Moon Palace",
+        "moon palace resort": "Moon Palace",
         "mgm": "MGM Grand Garden Arena",
         "hampton": "Hampton Coliseum",
         "mothership": "Hampton Coliseum",
@@ -374,8 +378,8 @@ class PhishStatsEngine:
 
         return False
 
-    def query_longest(self, song_name: str, year: int = None, venue: str = None, era: str = None) -> QueryResult:
-        """Query for the longest version of a song, optionally filtered by year, venue, or era."""
+    def query_longest(self, song_name: str, year: int = None, venue: str = None, era: str = None, day_of_week: str = None) -> QueryResult:
+        """Query for the longest version of a song, optionally filtered by year, venue, era, or day of week."""
         slug = self._song_to_slug(song_name)
 
         if slug not in self.raw_durations:
@@ -419,6 +423,16 @@ class PhishStatsEngine:
                     related_queries=[f"longest {song_name}", f"shows at {venue}"]
                 )
 
+        # Filter by day of week if specified
+        if day_of_week:
+            tracks = self._filter_by_day_of_week(tracks, day_of_week)
+            if not tracks:
+                return QueryResult(
+                    success=False,
+                    answer=f"I don't have any duration data for {song_name} on a {day_of_week}.",
+                    related_queries=[f"longest {song_name}", f"longest {song_name} on a Saturday"]
+                )
+
         # Find the longest
         longest = max(tracks, key=lambda t: t.get("duration_min", 0))
 
@@ -435,6 +449,8 @@ class PhishStatsEngine:
 
         # Build context string
         context_parts = []
+        if day_of_week:
+            context_parts.append(f"on a {day_of_week}")
         if era:
             context_parts.append(f"in {era}")
         if year:
@@ -451,7 +467,7 @@ class PhishStatsEngine:
             f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
         )
 
-        # Get jam chart stats from song_stats (only show for non-venue/era queries)
+        # Get jam chart stats from song_stats (only show for non-venue/era/day queries)
         song_stats = self.song_stats.get(song_name, {})
         jamchart_count = song_stats.get("jamchart_count", 0)
         total_plays = song_stats.get("play_count", len(all_tracks))
@@ -459,6 +475,8 @@ class PhishStatsEngine:
 
         # Build title
         title_parts = [song_name]
+        if day_of_week:
+            title_parts.append(f"({day_of_week}s)")
         if era:
             title_parts.append(f"({era})")
         elif year:
@@ -470,12 +488,15 @@ class PhishStatsEngine:
             title_parts.append(f"@ {venue_short}")
         title = " ".join(title_parts)
 
-        # Build extra data - exclude jam chart for venue/era queries
+        # Build extra data - exclude jam chart for venue/era/day queries
         extra_data = {
             "avg_duration": f"{avg:.1f} min",
             "total_performances": len(tracks),
         }
-        if not venue and not era:
+        if day_of_week:
+            extra_data["day_of_week"] = day_of_week
+            extra_data[f"{day_of_week}_performances"] = len(tracks)
+        if not venue and not era and not day_of_week:
             extra_data["jamchart_count"] = jamchart_count
             extra_data["jamchart_rate"] = f"{jamchart_rate*100:.1f}%"
 
@@ -494,7 +515,7 @@ class PhishStatsEngine:
             related_queries=[
                 f"top 10 longest {song_name}",
                 f"average {song_name} length",
-                f"longest {song_name}" if (year or venue) else f"longest {song_name} in 2024"
+                f"longest {song_name}" if (year or venue or day_of_week) else f"longest {song_name} on a Saturday"
             ],
             raw_data={"longest": longest, "tracks": tracks}
         )
@@ -855,8 +876,8 @@ class PhishStatsEngine:
             raw_data={"top_performances": sorted_perfs}
         )
 
-    def query_play_count(self, song_name: str, venue: str = None, year: int = None) -> QueryResult:
-        """Query for how many times a song has been played, optionally filtered by year."""
+    def query_play_count(self, song_name: str, venue: str = None, year: int = None, day_of_week: str = None) -> QueryResult:
+        """Query for how many times a song has been played, optionally filtered by year or day of week."""
         if song_name not in self.song_stats:
             return QueryResult(
                 success=False,
@@ -864,6 +885,64 @@ class PhishStatsEngine:
             )
 
         stats = self.song_stats[song_name]
+
+        # Day-of-week play count
+        if day_of_week:
+            count = 0
+            total_count = 0
+            dates = []
+            for show in self.shows:
+                showdate = show["showdate"]
+                # Also filter by year if both specified
+                if year and not showdate.startswith(str(year)):
+                    continue
+                for song in show.get("songs", []):
+                    if song.get("song") == song_name:
+                        total_count += 1
+                        try:
+                            dt = datetime.strptime(showdate[:10], "%Y-%m-%d")
+                            if dt.strftime("%A") == day_of_week:
+                                count += 1
+                                dates.append(showdate)
+                        except (ValueError, IndexError):
+                            pass
+                        break
+            context = f"on a {day_of_week}"
+            if year:
+                context += f" in {year}"
+
+            if count == 0:
+                answer = f"{song_name} has never been played {context}. It has been played {total_count} times total."
+                related = [f"{song_name} play count", f"longest {song_name} on a {day_of_week}"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                dates.sort()
+                answer = (
+                    f"{song_name} has been played **{count} times** {context} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                if dates:
+                    answer += f"\n\nFirst: {dates[0]}\nMost recent: {dates[-1]}"
+                related = [f"longest {song_name} on a {day_of_week}", f"{song_name} play count"]
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=str(count),
+                card_data={
+                    "type": "count",
+                    "title": f"{song_name} ({day_of_week}s)",
+                    "stat": count,
+                    "stat_label": f"times on {day_of_week}",
+                    "subtitle": f"{pct:.1f}% of {total_count} total" if count > 0 else f"0 of {total_count} total",
+                    "extra": {
+                        "day_of_week": day_of_week,
+                        "total_plays": total_count
+                    }
+                },
+                related_queries=related,
+                raw_data={"count": count, "day_of_week": day_of_week, "dates": dates}
+            )
 
         # If year specified, count plays in that year
         if year:
@@ -1480,6 +1559,47 @@ class PhishStatsEngine:
                 try:
                     year = int(date_str[:4])
                     if era_start <= year <= era_end:
+                        filtered.append(item)
+                except (ValueError, IndexError):
+                    pass
+        return filtered
+
+    # Day-of-week names for parsing
+    DAY_NAMES = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+
+    def _extract_day_of_week_from_query(self, query: str) -> tuple:
+        """
+        Extract day of week from query like 'longest Tweezer on a Monday'.
+        Returns (query_without_day, day_name) or (query, None).
+        Day name is returned capitalized (e.g., "Monday").
+        """
+        query_lower = query.lower()
+
+        # Patterns: "on a Monday", "on Mondays", "on Monday", "on a friday night"
+        for day in self.DAY_NAMES:
+            patterns = [
+                rf'\bon\s+a\s+{day}\s*(?:night|evening)?\b',   # "on a Monday", "on a Friday night"
+                rf'\bon\s+{day}s?\s*(?:night|evening)?\b',     # "on Monday", "on Mondays"
+                rf'\b{day}s?\s*(?:night|evening)?\b',           # just "Monday" or "Mondays"
+            ]
+            for pattern in patterns:
+                match = re.search(pattern, query_lower)
+                if match:
+                    clean_query = query[:match.start()] + query[match.end():]
+                    clean_query = re.sub(r'\s+', ' ', clean_query).strip()
+                    return clean_query, day.capitalize()
+
+        return query, None
+
+    def _filter_by_day_of_week(self, items: list, day_name: str, date_key: str = "date") -> list:
+        """Filter a list of items by day of week. day_name should be capitalized (e.g., 'Monday')."""
+        filtered = []
+        for item in items:
+            date_str = item.get(date_key, "")
+            if date_str:
+                try:
+                    dt = datetime.strptime(date_str[:10], "%Y-%m-%d")
+                    if dt.strftime("%A") == day_name:
                         filtered.append(item)
                 except (ValueError, IndexError):
                     pass
@@ -2851,8 +2971,11 @@ class PhishStatsEngine:
 
         question_lower = question.lower().strip()
 
+        # Extract day of week if present (e.g., "longest Tweezer on a Monday")
+        base_question, day_of_week = self._extract_day_of_week_from_query(question)
+
         # Extract venue if present (e.g., "longest Tweezer at MSG")
-        base_question, venue = self._extract_venue_from_query(question)
+        base_question, venue = self._extract_venue_from_query(base_question)
 
         # Extract era if present (e.g., "longest Tweezer of 1.0")
         base_question, era, era_start, era_end = self._extract_era_from_query(base_question)
@@ -3121,9 +3244,9 @@ class PhishStatsEngine:
                 year = None
 
             if song:
-                if venue:
+                if venue and not day_of_week:
                     return self.query_longest_at_venue(song, venue)
-                return self.query_longest(song, year, era=era)
+                return self.query_longest(song, year, venue=venue, era=era, day_of_week=day_of_week)
 
             # If we have a venue but no song identified, assume they want longest song at venue
             if venue:
@@ -3144,9 +3267,9 @@ class PhishStatsEngine:
                 year = None
 
             if song:
-                if venue:
+                if venue and not day_of_week:
                     return self.query_play_count_at_venue(song, venue)
-                return self.query_play_count(song, year=year)
+                return self.query_play_count(song, year=year, day_of_week=day_of_week)
             return QueryResult(
                 success=False,
                 answer="I couldn't identify which song you're asking about."
