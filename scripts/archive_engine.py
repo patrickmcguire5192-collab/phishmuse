@@ -223,8 +223,106 @@ class ArchiveDeadEngine:
             return int(match.group(1))
         return None
 
-    def query_longest(self, song_name: str, top_n: int = 1, year: int = None) -> QueryResult:
-        """Find the longest version(s) of a song, optionally filtered by year."""
+    # Top Dead venues with common shorthand aliases
+    VENUE_ALIASES = {
+        "msg": "Madison Square Garden",
+        "madison square garden": "Madison Square Garden",
+        "the garden": "Madison Square Garden",
+        "garden": "Madison Square Garden",
+        "spectrum": "The Spectrum",
+        "the spectrum": "The Spectrum",
+        "winterland": "Winterland Arena",
+        "oakland coliseum": "Oakland-Alameda County Coliseum",
+        "oakland": "Oakland-Alameda County Coliseum",
+        "shoreline": "Shoreline Amphitheatre",
+        "nassau": "Nassau Coliseum",
+        "nassau coliseum": "Nassau Coliseum",
+        "boston garden": "Boston Garden",
+        "boston": "Boston Garden",
+        "kaiser": "Henry J. Kaiser Convention Center",
+        "henry kaiser": "Henry J. Kaiser Convention Center",
+        "fillmore west": "Fillmore West",
+        "fillmore": "Fillmore West",
+        "capital centre": "Capital Centre",
+        "capital center": "Capital Centre",
+        "landover": "Capital Centre",
+        "fillmore east": "Fillmore East",
+        "red rocks": "Red Rocks Amphitheatre",
+        "greek": "Greek Theatre",
+        "greek theatre": "Greek Theatre",
+        "hartford": "Hartford Civic Center",
+        "hampton": "Hampton Coliseum",
+        "hampton coliseum": "Hampton Coliseum",
+        "rosemont": "Rosemont Horizon",
+        "richfield": "Richfield Coliseum",
+        "richfield coliseum": "Richfield Coliseum",
+        "deer creek": "Deer Creek Music Center",
+    }
+
+    def _extract_venue_from_query(self, query: str) -> tuple:
+        """
+        Extract venue from query like 'longest Dark Star at Winterland'.
+        Returns (query_without_venue, venue_name) or (query, None).
+        """
+        query_lower = query.lower()
+
+        for marker in [" at ", " from "]:
+            if marker in query_lower:
+                parts = query.split(marker, 1)
+                base_query = parts[0].strip()
+                venue_part = parts[1].strip().rstrip('?.,!')
+
+                if not venue_part:
+                    continue
+
+                # Don't treat years as venues
+                if venue_part.isdigit() and len(venue_part) == 4:
+                    continue
+
+                # Check aliases
+                venue_lower = venue_part.lower()
+                if venue_lower in self.VENUE_ALIASES:
+                    return base_query, self.VENUE_ALIASES[venue_lower]
+
+                # Try partial match against alias keys
+                for alias, full_name in self.VENUE_ALIASES.items():
+                    if alias in venue_lower or venue_lower in alias:
+                        return base_query, full_name
+
+                # Return raw venue for fuzzy matching
+                return base_query, venue_part
+
+        # Check if query ends with a known venue alias (without marker)
+        words = query_lower.rstrip('?.,!').split()
+        for num_words in [3, 2, 1]:
+            if len(words) >= num_words + 1:
+                potential_venue = " ".join(words[-num_words:])
+                if potential_venue in self.VENUE_ALIASES:
+                    base_query = " ".join(query.split()[:-num_words])
+                    return base_query, self.VENUE_ALIASES[potential_venue]
+
+        return query, None
+
+    def _match_venue(self, perf_venue: str, target_venue: str) -> bool:
+        """Check if a performance venue matches the target venue (fuzzy)."""
+        if not perf_venue or not target_venue:
+            return False
+        perf_lower = perf_venue.lower()
+        target_lower = target_venue.lower()
+
+        # Direct substring match
+        if target_lower in perf_lower or perf_lower in target_lower:
+            return True
+
+        # Check if target is an alias, compare resolved name
+        resolved = self.VENUE_ALIASES.get(target_lower, target_lower)
+        if resolved.lower() in perf_lower or perf_lower in resolved.lower():
+            return True
+
+        return False
+
+    def query_longest(self, song_name: str, top_n: int = 1, year: int = None, venue: str = None) -> QueryResult:
+        """Find the longest version(s) of a song, optionally filtered by year or venue."""
         canonical = self._resolve_song(song_name)
         if not canonical:
             return QueryResult(
@@ -252,11 +350,26 @@ class ArchiveDeadEngine:
                     related_queries=[f"longest {canonical}", f"{canonical} stats"]
                 )
 
+        # Filter by venue if specified
+        if venue:
+            performances = [p for p in performances if self._match_venue(p.get('venue', ''), venue)]
+            if not performances:
+                return QueryResult(
+                    success=False,
+                    answer=f"No performances of {canonical} found at {venue}.",
+                    related_queries=[f"longest {canonical}", f"{canonical} stats"]
+                )
+
         # Sort by duration
         sorted_perfs = sorted(performances, key=lambda x: x['duration'], reverse=True)
 
         # Build context string
-        year_context = f" in {year}" if year else ""
+        context_parts = []
+        if year:
+            context_parts.append(f"in {year}")
+        if venue:
+            context_parts.append(f"at {venue}")
+        filter_context = " " + " ".join(context_parts) if context_parts else ""
 
         if top_n == 1:
             longest = sorted_perfs[0]
@@ -271,11 +384,17 @@ class ArchiveDeadEngine:
             else:
                 context = ""
 
-            title = f"{canonical} ({year})" if year else canonical
+            # Build title
+            title_parts = [canonical]
+            if year:
+                title_parts.append(f"({year})")
+            if venue:
+                title_parts.append(f"@ {venue}")
+            title = " ".join(title_parts)
 
             return QueryResult(
                 success=True,
-                answer=f"The longest {canonical}{year_context} was {duration}, played at {longest['venue']} on {longest['date']}. {context}",
+                answer=f"The longest {canonical}{filter_context} was {duration}, played at {longest['venue']} on {longest['date']}. {context}",
                 highlight=duration,
                 card_data={
                     'type': 'longest',
@@ -290,17 +409,24 @@ class ArchiveDeadEngine:
                 },
                 related_queries=[
                     f"top 10 longest {canonical}" + (f" in {year}" if year else ""),
-                    f"longest {canonical}" if year else f"longest {canonical} in 1977",
+                    f"longest {canonical}" if (year or venue) else f"longest {canonical} at Winterland",
                     f"how many times did they play {canonical}"
                 ]
             )
         else:
             # Top N list
-            title_suffix = f" ({year})" if year else ""
-            lines = [f"**Top {top_n} Longest {canonical} Versions{year_context}:**\n"]
+            lines = [f"**Top {top_n} Longest {canonical} Versions{filter_context}:**\n"]
             for i, perf in enumerate(sorted_perfs[:top_n], 1):
                 duration = self._format_duration(perf['duration'])
                 lines.append(f"{i}. {duration} - {perf['date']} @ {perf['venue']}")
+
+            # Build title suffix
+            title_suffix_parts = []
+            if year:
+                title_suffix_parts.append(str(year))
+            if venue:
+                title_suffix_parts.append(venue)
+            title_suffix = f" ({', '.join(title_suffix_parts)})" if title_suffix_parts else ""
 
             return QueryResult(
                 success=True,
@@ -627,6 +753,10 @@ class ArchiveDeadEngine:
 
         q = question.lower().strip()
 
+        # Extract venue if present (e.g., "longest Dark Star at Winterland")
+        base_question, venue = self._extract_venue_from_query(question)
+        q_base = base_question.lower().strip()
+
         # Check for "longest ever" overall queries (no specific song)
         overall_patterns = [
             r"longest\s+ever\s+(\w+\s+)?(jams?|songs?|versions?|performances?)",
@@ -636,34 +766,34 @@ class ArchiveDeadEngine:
             r"longest\s+grateful\s+dead\s+(jams?|songs?)",
             r"longest\s+ever$",
         ]
-        is_overall = any(re.search(pat, q) for pat in overall_patterns)
+        is_overall = any(re.search(pat, q_base) for pat in overall_patterns)
 
         if is_overall:
             # Determine limit: plural = 5, singular = 1
-            if any(word in q for word in ["jams", "songs", "versions", "performances"]):
+            if any(word in q_base for word in ["jams", "songs", "versions", "performances"]):
                 limit = 5
             else:
                 limit = 1
             return self.query_longest_overall(limit=limit)
 
         # Extract year if present (e.g., "longest Dark Star in 1973", "longest Dark Star of 1977")
-        year = self._extract_year_from_query(q)
+        year = self._extract_year_from_query(q_base)
         # Remove year and preposition from query for cleaner song name extraction
-        q_no_year = re.sub(r'\s+(?:in|of|from|during)\s+(?:19[6-9]\d|20[0-2]\d)\b', '', q).strip()
-        q_no_year = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_no_year).strip()
+        q_clean = re.sub(r'\s+(?:in|of|from|during)\s+(?:19[6-9]\d|20[0-2]\d)\b', '', q_base).strip()
+        q_clean = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_clean).strip()
 
         # Top N longest patterns (for specific song)
-        top_n_match = re.search(r'top\s*(\d+)\s+longest\s+(.+)', q_no_year)
+        top_n_match = re.search(r'top\s*(\d+)\s+longest\s+(.+)', q_clean)
         if top_n_match:
             n = int(top_n_match.group(1))
             song = top_n_match.group(2).strip()
-            return self.query_longest(song, top_n=min(n, 25), year=year)
+            return self.query_longest(song, top_n=min(n, 25), year=year, venue=venue)
 
         # Longest patterns (for specific song)
-        longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q_no_year)
+        longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q_clean)
         if longest_match:
             song = longest_match.group(1).strip()
-            return self.query_longest(song, year=year)
+            return self.query_longest(song, year=year, venue=venue)
 
         # Play count patterns
         count_patterns = [

@@ -522,6 +522,51 @@ class JamMuseEngine:
 
         return False
 
+    def _extract_venue_from_query(self, query: str) -> tuple:
+        """
+        Extract venue from query like 'longest Arcadia at Cap'.
+        Returns (query_without_venue, venue_name) or (query, None).
+        """
+        query_lower = query.lower()
+        venue_aliases = self.config.get("venue_aliases", {})
+
+        for marker in [" at ", " from "]:
+            if marker in query_lower:
+                parts = query.split(marker, 1)
+                base_query = parts[0].strip()
+                venue_part = parts[1].strip().rstrip('?.,!')
+
+                if not venue_part:
+                    continue
+
+                # Don't treat years as venues
+                if venue_part.isdigit() and len(venue_part) == 4:
+                    continue
+
+                # Check aliases
+                venue_lower = venue_part.lower()
+                if venue_lower in venue_aliases:
+                    return base_query, venue_aliases[venue_lower]
+
+                # Try partial match against alias keys
+                for alias, full_name in venue_aliases.items():
+                    if alias in venue_lower or venue_lower in alias:
+                        return base_query, full_name
+
+                # Return raw venue for fuzzy matching
+                return base_query, venue_part
+
+        # Check if query ends with a known venue alias (no marker)
+        words = query_lower.rstrip('?.,!').split()
+        for num_words in [3, 2, 1]:
+            if len(words) >= num_words + 1:
+                potential_venue = " ".join(words[-num_words:])
+                if potential_venue in venue_aliases:
+                    base_query = " ".join(query.split()[:-num_words])
+                    return base_query, venue_aliases[potential_venue]
+
+        return query, None
+
     # =========================================================================
     # QUERY METHODS
     # =========================================================================
@@ -839,8 +884,8 @@ class JamMuseEngine:
             return int(match.group(1))
         return None
 
-    def query_longest(self, song_name: str, limit: int = 10, day_of_week: str = None, year: int = None) -> QueryResult:
-        """Get the longest versions of a song, optionally filtered by day of week or year."""
+    def query_longest(self, song_name: str, limit: int = 10, day_of_week: str = None, year: int = None, venue: str = None) -> QueryResult:
+        """Get the longest versions of a song, optionally filtered by day of week, year, or venue."""
         normalized = self._normalize_song_name(song_name) or song_name
 
         # Find song slug
@@ -915,6 +960,17 @@ class JamMuseEngine:
                     related_queries=[f"longest {normalized}", f"{normalized} stats"]
                 )
 
+        # Filter by venue if specified
+        if venue:
+            with_duration = [p for p in with_duration if self._match_venue(p.get("venuename", ""), venue)]
+            if not with_duration:
+                return QueryResult(
+                    success=False,
+                    band=self.band_name,
+                    answer=f"I don't have any performances of {normalized} at {venue}.",
+                    related_queries=[f"longest {normalized}", f"{normalized} stats"]
+                )
+
         # Sort by duration descending
         sorted_perfs = sorted(with_duration, key=lambda x: x["duration_min"], reverse=True)[:limit]
 
@@ -934,17 +990,19 @@ class JamMuseEngine:
             context_parts.append(f"on {day_of_week}s")
         if year:
             context_parts.append(f"in {year}")
+        if venue:
+            context_parts.append(f"at {venue}")
         filter_context = " " + " ".join(context_parts) if context_parts else ""
 
         lines = [f"**Longest {normalized} Versions{filter_context}**\n"]
 
         for i, perf in enumerate(sorted_perfs, 1):
             date = perf.get("showdate", "Unknown")
-            venue = perf.get("venuename", "Unknown venue")
+            perf_venue = perf.get("venuename", "Unknown venue")
             dur_mins = int(perf["duration_min"])
             dur_secs = int((perf["duration_min"] - dur_mins) * 60)
             dur_str = f"{dur_mins}:{dur_secs:02d}"
-            lines.append(f"{i}. {dur_str} - {date} at {venue}")
+            lines.append(f"{i}. {dur_str} - {date} at {perf_venue}")
 
         lines.append(f"\nAverage {normalized} length{filter_context}: {avg_duration:.1f} minutes")
         lines.append(f"Based on {len(with_duration)} performances with timing data")
@@ -955,6 +1013,8 @@ class JamMuseEngine:
             title_parts.append(f"{day_of_week}s")
         if year:
             title_parts.append(str(year))
+        if venue:
+            title_parts.append(f"@ {venue}")
         title_suffix = f" ({', '.join(title_parts)})" if title_parts else ""
 
         return QueryResult(
@@ -1266,6 +1326,9 @@ class JamMuseEngine:
         # Extract day of week before other processing
         base_question, day_of_week = self._extract_day_of_week_from_query(question)
 
+        # Extract venue if present (e.g., "longest Arcadia at Cap")
+        base_question, venue = self._extract_venue_from_query(base_question)
+
         # Extract year if present (e.g., "longest Arcadia in 2023")
         year = self._extract_year_from_query(base_question)
         # Remove year + preposition from query for cleaner song name extraction
@@ -1303,7 +1366,7 @@ class JamMuseEngine:
                     limit = 1
                 return self.query_longest_overall(limit=limit)
             elif song:
-                return self.query_longest(song, day_of_week=day_of_week, year=year)
+                return self.query_longest(song, day_of_week=day_of_week, year=year, venue=venue)
 
         # Average duration queries
         if any(word in q for word in ["average length", "avg duration", "typical length", "how long is"]):
