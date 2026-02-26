@@ -216,8 +216,15 @@ class ArchiveDeadEngine:
             secs = int(seconds % 60)
             return f"{mins}:{secs:02d}"
 
-    def query_longest(self, song_name: str, top_n: int = 1) -> QueryResult:
-        """Find the longest version(s) of a song."""
+    def _extract_year_from_query(self, query: str) -> Optional[int]:
+        """Extract a year from a query string."""
+        match = re.search(r'\b(19[6-9]\d|20[0-2]\d)\b', query)
+        if match:
+            return int(match.group(1))
+        return None
+
+    def query_longest(self, song_name: str, top_n: int = 1, year: int = None) -> QueryResult:
+        """Find the longest version(s) of a song, optionally filtered by year."""
         canonical = self._resolve_song(song_name)
         if not canonical:
             return QueryResult(
@@ -235,8 +242,21 @@ class ArchiveDeadEngine:
                 answer=f"No performance data found for {canonical}.",
             )
 
+        # Filter by year if specified
+        if year:
+            performances = [p for p in performances if p.get('date', '').startswith(str(year))]
+            if not performances:
+                return QueryResult(
+                    success=False,
+                    answer=f"No performances of {canonical} found in {year}.",
+                    related_queries=[f"longest {canonical}", f"{canonical} stats"]
+                )
+
         # Sort by duration
         sorted_perfs = sorted(performances, key=lambda x: x['duration'], reverse=True)
+
+        # Build context string
+        year_context = f" in {year}" if year else ""
 
         if top_n == 1:
             longest = sorted_perfs[0]
@@ -251,30 +271,33 @@ class ArchiveDeadEngine:
             else:
                 context = ""
 
+            title = f"{canonical} ({year})" if year else canonical
+
             return QueryResult(
                 success=True,
-                answer=f"The longest {canonical} was {duration}, played at {longest['venue']} on {longest['date']}. {context}",
+                answer=f"The longest {canonical}{year_context} was {duration}, played at {longest['venue']} on {longest['date']}. {context}",
                 highlight=duration,
                 card_data={
                     'type': 'longest',
-                    'title': canonical,
+                    'title': title,
                     'stat': duration,
                     'subtitle': f"{longest['date']} • {longest['venue']}",
                     'context': context,
                     'extra': {
-                        'total_performances': total_plays,
+                        'total_performances': len(performances) if year else total_plays,
                         'avg_duration': avg_dur
                     }
                 },
                 related_queries=[
-                    f"top 10 longest {canonical}",
-                    f"average {canonical} length",
+                    f"top 10 longest {canonical}" + (f" in {year}" if year else ""),
+                    f"longest {canonical}" if year else f"longest {canonical} in 1977",
                     f"how many times did they play {canonical}"
                 ]
             )
         else:
             # Top N list
-            lines = [f"**Top {top_n} Longest {canonical} Versions:**\n"]
+            title_suffix = f" ({year})" if year else ""
+            lines = [f"**Top {top_n} Longest {canonical} Versions{year_context}:**\n"]
             for i, perf in enumerate(sorted_perfs[:top_n], 1):
                 duration = self._format_duration(perf['duration'])
                 lines.append(f"{i}. {duration} - {perf['date']} @ {perf['venue']}")
@@ -285,7 +308,7 @@ class ArchiveDeadEngine:
                 highlight=self._format_duration(sorted_perfs[0]['duration']),
                 card_data={
                     'type': 'list',
-                    'title': f"Longest {canonical} Versions",
+                    'title': f"Longest {canonical} Versions{title_suffix}",
                     'items': [
                         {'rank': i+1, 'value': self._format_duration(p['duration']),
                          'date': p['date'], 'venue': p['venue']}
@@ -623,18 +646,24 @@ class ArchiveDeadEngine:
                 limit = 1
             return self.query_longest_overall(limit=limit)
 
+        # Extract year if present (e.g., "longest Dark Star in 1973", "longest Dark Star of 1977")
+        year = self._extract_year_from_query(q)
+        # Remove year and preposition from query for cleaner song name extraction
+        q_no_year = re.sub(r'\s+(?:in|of|from|during)\s+(?:19[6-9]\d|20[0-2]\d)\b', '', q).strip()
+        q_no_year = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_no_year).strip()
+
         # Top N longest patterns (for specific song)
-        top_n_match = re.search(r'top\s*(\d+)\s+longest\s+(.+)', q)
+        top_n_match = re.search(r'top\s*(\d+)\s+longest\s+(.+)', q_no_year)
         if top_n_match:
             n = int(top_n_match.group(1))
             song = top_n_match.group(2).strip()
-            return self.query_longest(song, top_n=min(n, 25))
+            return self.query_longest(song, top_n=min(n, 25), year=year)
 
         # Longest patterns (for specific song)
-        longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q)
+        longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q_no_year)
         if longest_match:
             song = longest_match.group(1).strip()
-            return self.query_longest(song)
+            return self.query_longest(song, year=year)
 
         # Play count patterns
         count_patterns = [

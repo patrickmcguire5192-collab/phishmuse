@@ -832,8 +832,15 @@ class JamMuseEngine:
                     return clean_query, day.capitalize()
         return query, None
 
-    def query_longest(self, song_name: str, limit: int = 10, day_of_week: str = None) -> QueryResult:
-        """Get the longest versions of a song, optionally filtered by day of week."""
+    def _extract_year_from_query(self, query: str) -> Optional[int]:
+        """Extract a year from a query string."""
+        match = re.search(r'\b(19[6-9]\d|20[0-2]\d)\b', query)
+        if match:
+            return int(match.group(1))
+        return None
+
+    def query_longest(self, song_name: str, limit: int = 10, day_of_week: str = None, year: int = None) -> QueryResult:
+        """Get the longest versions of a song, optionally filtered by day of week or year."""
         normalized = self._normalize_song_name(song_name) or song_name
 
         # Find song slug
@@ -896,6 +903,18 @@ class JamMuseEngine:
                     related_queries=[f"longest {normalized}", f"longest {normalized} on a Saturday"]
                 )
 
+        # Filter by year if specified
+        if year:
+            year_str = str(year)
+            with_duration = [p for p in with_duration if p.get("showdate", "").startswith(year_str)]
+            if not with_duration:
+                return QueryResult(
+                    success=False,
+                    band=self.band_name,
+                    answer=f"I don't have any performances of {normalized} in {year}.",
+                    related_queries=[f"longest {normalized}", f"{normalized} stats"]
+                )
+
         # Sort by duration descending
         sorted_perfs = sorted(with_duration, key=lambda x: x["duration_min"], reverse=True)[:limit]
 
@@ -909,8 +928,15 @@ class JamMuseEngine:
         secs = int((longest["duration_min"] - mins) * 60)
         duration_str = f"{mins}:{secs:02d}"
 
-        day_context = f" on {day_of_week}s" if day_of_week else ""
-        lines = [f"**Longest {normalized} Versions{day_context}**\n"]
+        # Build context strings for display
+        context_parts = []
+        if day_of_week:
+            context_parts.append(f"on {day_of_week}s")
+        if year:
+            context_parts.append(f"in {year}")
+        filter_context = " " + " ".join(context_parts) if context_parts else ""
+
+        lines = [f"**Longest {normalized} Versions{filter_context}**\n"]
 
         for i, perf in enumerate(sorted_perfs, 1):
             date = perf.get("showdate", "Unknown")
@@ -920,10 +946,17 @@ class JamMuseEngine:
             dur_str = f"{dur_mins}:{dur_secs:02d}"
             lines.append(f"{i}. {dur_str} - {date} at {venue}")
 
-        lines.append(f"\nAverage {normalized} length{day_context}: {avg_duration:.1f} minutes")
+        lines.append(f"\nAverage {normalized} length{filter_context}: {avg_duration:.1f} minutes")
         lines.append(f"Based on {len(with_duration)} performances with timing data")
 
-        title_suffix = f" ({day_of_week}s)" if day_of_week else ""
+        # Build title suffix
+        title_parts = []
+        if day_of_week:
+            title_parts.append(f"{day_of_week}s")
+        if year:
+            title_parts.append(str(year))
+        title_suffix = f" ({', '.join(title_parts)})" if title_parts else ""
+
         return QueryResult(
             success=True,
             band=self.band_name,
@@ -1232,9 +1265,16 @@ class JamMuseEngine:
         """Route a natural language question to the appropriate handler."""
         # Extract day of week before other processing
         base_question, day_of_week = self._extract_day_of_week_from_query(question)
-        q = base_question.lower().strip()
 
-        # Setlist queries
+        # Extract year if present (e.g., "longest Arcadia in 2023")
+        year = self._extract_year_from_query(base_question)
+        # Remove year + preposition from query for cleaner song name extraction
+        q_no_year = re.sub(r'\s+(?:in|of|from|during)\s+(?:19[6-9]\d|20[0-2]\d)\b', '', base_question).strip()
+        q_no_year = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_no_year).strip()
+
+        q = q_no_year.lower().strip()
+
+        # Setlist queries (use original base_question for date extraction)
         date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', base_question)
         if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
             return self.query_setlist(date_match.group(1))
@@ -1253,7 +1293,7 @@ class JamMuseEngine:
             is_overall = any(re.search(pat, q) for pat in overall_patterns)
 
             # Also check if no song can be identified
-            song = self._normalize_song_name(base_question)
+            song = self._normalize_song_name(q_no_year)
 
             if is_overall or not song:
                 # Determine limit: plural = 5, singular = 1
@@ -1263,7 +1303,7 @@ class JamMuseEngine:
                     limit = 1
                 return self.query_longest_overall(limit=limit)
             elif song:
-                return self.query_longest(song, day_of_week=day_of_week)
+                return self.query_longest(song, day_of_week=day_of_week, year=year)
 
         # Average duration queries
         if any(word in q for word in ["average length", "avg duration", "typical length", "how long is"]):
