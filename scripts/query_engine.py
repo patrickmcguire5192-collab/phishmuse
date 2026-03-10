@@ -53,6 +53,11 @@ class QueryResult:
     raw_data: Optional[Any] = None
 
 
+def _phishin_link(date: str) -> str:
+    """Return a Phish.in link for a show date."""
+    return f"https://phish.in/{date}"
+
+
 class PhishStatsEngine:
     """Query engine for Phish statistics."""
 
@@ -478,7 +483,8 @@ class PhishStatsEngine:
         answer = (
             f"The longest {song_name}{context_prefix} was {duration_str} ({longest['duration_min']:.1f} minutes), "
             f"played at {longest['venue']} on {longest['date']}. "
-            f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min)."
+            f"That's {vs_avg:.1f}x longer than average ({avg:.1f} min).\n\n"
+            f"{_phishin_link(longest['date'])}"
         )
 
         # Get jam chart stats from song_stats (only show for non-venue/era/day queries)
@@ -554,7 +560,7 @@ class PhishStatsEngine:
             mins = int(track["duration_min"])
             secs = int((track["duration_min"] - mins) * 60)
             duration_str = f"{mins}:{secs:02d}"
-            lines.append(f"{i}. {duration_str} - {track['date']} at {track['venue']}")
+            lines.append(f"{i}. {duration_str} - {track['date']} at {track['venue']}  {_phishin_link(track['date'])}")
 
         return QueryResult(
             success=True,
@@ -646,7 +652,9 @@ class PhishStatsEngine:
             for t in long_versions[1:4]:
                 m = int(t["duration_min"])
                 s = int((t["duration_min"] - m) * 60)
-                answer += f"\n  • {t['date']}: {m}:{s:02d} at {t['venue']}"
+                answer += f"\n  \u2022 {t['date']}: {m}:{s:02d} at {t['venue']}  {_phishin_link(t['date'])}"
+
+        answer += f"\n\n{_phishin_link(most_recent['date'])}"
 
         related = [
             f"longest {song_name}",
@@ -867,7 +875,7 @@ class PhishStatsEngine:
             dur_mins = int(perf["duration_min"])
             dur_secs = int((perf["duration_min"] - dur_mins) * 60)
             dur_str = f"{dur_mins}:{dur_secs:02d}"
-            lines.append(f"{i}. **{perf['song']}** - {dur_str} ({perf['date']} at {perf['venue']})")
+            lines.append(f"{i}. **{perf['song']}** - {dur_str} ({perf['date']} at {perf['venue']})  {_phishin_link(perf['date'])}")
 
         return QueryResult(
             success=True,
@@ -1076,7 +1084,7 @@ class PhishStatsEngine:
         last = stats["last_played"]
         count = stats["play_count"]
 
-        answer = f"{song_name} was last played on {last}. It has been played {count} times total."
+        answer = f"{song_name} was last played on {last}. It has been played {count} times total.\n\n{_phishin_link(last)}"
 
         return QueryResult(
             success=True,
@@ -1119,11 +1127,11 @@ class PhishStatsEngine:
                 break
 
         if gap == 0:
-            answer = f"{song_name} was played at the most recent show ({last_played})!"
+            answer = f"{song_name} was played at the most recent show ({last_played})!\n\n{_phishin_link(last_played)}"
         elif gap == 1:
-            answer = f"{song_name} has a gap of 1 show. Last played on {last_played}."
+            answer = f"{song_name} has a gap of 1 show. Last played on {last_played}.\n\n{_phishin_link(last_played)}"
         else:
-            answer = f"{song_name} has a gap of {gap} shows. Last played on {last_played}."
+            answer = f"{song_name} has a gap of {gap} shows. Last played on {last_played}.\n\n{_phishin_link(last_played)}"
 
         return QueryResult(
             success=True,
@@ -1262,6 +1270,8 @@ class PhishStatsEngine:
                 setlist_parts.append(f"\nEncore: {', '.join(sets[set_name])}")
             else:
                 setlist_parts.append(f"\nSet {set_name}: {', '.join(sets[set_name])}")
+
+        setlist_parts.append(f"\n{_phishin_link(show['showdate'])}")
 
         return QueryResult(
             success=True,
@@ -2168,7 +2178,7 @@ class PhishStatsEngine:
         answer = f"{song_name} last opened a show on {last['date']} at {last['venue']}"
         if location:
             answer += f" ({location})"
-        answer += f".\nThat's {gap} shows ago. They've opened with {song_name} {total_openers} times total."
+        answer += f".\nThat's {gap} shows ago. They've opened with {song_name} {total_openers} times total.\n\n{_phishin_link(last['date'])}"
 
         return QueryResult(
             success=True,
@@ -2241,7 +2251,7 @@ class PhishStatsEngine:
         answer = f"{song_name} was last an encore on {last['date']} at {last['venue']}"
         if location:
             answer += f" ({location})"
-        answer += f".\nThat's {gap} shows ago. They've encored with {song_name} {total_encores} times total."
+        answer += f".\nThat's {gap} shows ago. They've encored with {song_name} {total_encores} times total.\n\n{_phishin_link(last['date'])}"
 
         return QueryResult(
             success=True,
@@ -2587,7 +2597,7 @@ class PhishStatsEngine:
             answer += f" at {venue}"
             if city:
                 answer += f" ({city})"
-        answer += f". It has been played {play_count} times since."
+        answer += f". It has been played {play_count} times since.\n\n{_phishin_link(debut)}"
 
         return QueryResult(
             success=True,
@@ -2833,7 +2843,7 @@ class PhishStatsEngine:
             city = show.get('city', '')
             state = show.get('state', '')
             location = f"{city}, {state}" if state else city
-            lines.append(f"  • {date}: {venue}, {location}")
+            lines.append(f"  • {date}: {venue}, {location}  {_phishin_link(date)}")
 
         # Related queries
         related = []
@@ -2895,7 +2905,7 @@ class PhishStatsEngine:
             else:
                 lines.append(f"**Set {set_name}:** {', '.join(sets[set_name])}")
 
-        lines.append(f"\n[Listen on Phish.in](https://phish.in/{date})")
+        lines.append(f"\nhttps://phish.in/{date}")
 
         related = [f"random show from {date[:4]}", f"setlist {date}"]
         if year:
