@@ -18,6 +18,12 @@ from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
 from collections import Counter
 from datetime import datetime
+import random as _random
+
+from scripts.date_utils import (
+    extract_date_from_query, is_setlist_query,
+    is_random_show_query, extract_year_filter,
+)
 
 # Cache directory for API responses
 CACHE_DIR = Path(__file__).parent.parent / "data" / "jammuse_cache"
@@ -1212,6 +1218,65 @@ class JamMuseEngine:
             highlight=str(count)
         )
 
+    def query_random_show(self, year: int = None) -> QueryResult:
+        """Return a random show for this band, optionally filtered by year."""
+        candidates = self.shows
+        if year:
+            candidates = [s for s in candidates if str(s.get('show_year', s.get('showdate', '')[:4])) == str(year)]
+
+        if not candidates:
+            if year:
+                return QueryResult(
+                    success=False,
+                    band=self.band_name,
+                    answer=f"No {self.band_name} shows found for {year}.",
+                )
+            return QueryResult(success=False, band=self.band_name, answer="No show data available.")
+
+        show = _random.choice(candidates)
+        date = show.get('showdate', '')
+        venue = show.get('venuename', show.get('venue', 'Unknown Venue'))
+        city = show.get('city', '')
+        state = show.get('state', '')
+        location = f"{city}, {state}" if state else city
+
+        year_display = f" from {year}" if year else ""
+        lines = [f"Here's a random {self.band_name} show{year_display} for you!\n"]
+        lines.append(f"**{date}** - {venue}")
+        if location:
+            lines.append(f"*{location}*")
+
+        # Try to fetch setlist for this show
+        try:
+            setlist_data = self.get_setlist(date)
+            if setlist_data:
+                sets = {}
+                for entry in setlist_data:
+                    set_name = str(entry.get('setnumber', entry.get('set', '1')))
+                    if set_name not in sets:
+                        sets[set_name] = []
+                    sets[set_name].append(entry.get('songname', entry.get('song', 'Unknown')))
+                lines.append("")
+                for set_name in sorted(sets.keys()):
+                    if set_name.lower() in ('e', 'e2'):
+                        lines.append(f"**Encore:** {', '.join(sets[set_name])}")
+                    else:
+                        lines.append(f"**Set {set_name}:** {', '.join(sets[set_name])}")
+        except Exception:
+            pass  # Setlist fetch is best-effort
+
+        related = [f"random {self.band_name.lower()} show from {date[:4]}", f"{self.band_name.lower()} setlist {date}"]
+        if year:
+            related.append(f"random {self.band_name.lower()} show")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=date,
+            related_queries=related
+        )
+
     def query_setlist(self, date: str) -> QueryResult:
         """Get setlist for a specific date."""
         # Normalize date format
@@ -1323,6 +1388,11 @@ class JamMuseEngine:
 
     def query(self, question: str) -> QueryResult:
         """Route a natural language question to the appropriate handler."""
+        # Random show - check early before other processing
+        if is_random_show_query(question.lower()):
+            year = extract_year_filter(question)
+            return self.query_random_show(year=year)
+
         # Extract day of week before other processing
         base_question, day_of_week = self._extract_day_of_week_from_query(question)
 
@@ -1338,9 +1408,10 @@ class JamMuseEngine:
         q = q_no_year.lower().strip()
 
         # Setlist queries (use original base_question for date extraction)
-        date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', base_question)
-        if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
-            return self.query_setlist(date_match.group(1))
+        if is_setlist_query(q):
+            date = extract_date_from_query(base_question)
+            if date:
+                return self.query_setlist(date)
 
         # Longest OVERALL queries (no specific song - "longest ever jams", "longest songs ever")
         if any(word in q for word in ["longest", "longest ever"]):
@@ -1657,8 +1728,8 @@ class UnifiedJamMuse:
             return "phish"
         if any(word in q_lower for word in ["grateful dead", "the dead", "jerry garcia", "jerry", "garcia", "dead played", "gd ", "dead jams", "dead songs", "dead jam", "dead song"]):
             return "dead"
-        # Also check for standalone "dead" followed by common query words
-        if re.search(r'\bdead\b', q_lower) and any(word in q_lower for word in ["longest", "best", "stats", "how many", "played"]):
+        # Also check for standalone "dead" followed by common query words or a date
+        if re.search(r'\bdead\b', q_lower) and (any(word in q_lower for word in ["longest", "best", "stats", "how many", "played", "setlist", "show"]) or extract_date_from_query(query)):
             return "dead"
         if any(word in q_lower for word in ["goose", "rick mitarotonda", "el goose"]):
             return "goose"
@@ -1738,6 +1809,18 @@ class UnifiedJamMuse:
 
         return ' '.join(normalized_words)
 
+    def _get_engine_for_band(self, band_key: str):
+        """Return the engine instance for a given band key."""
+        if band_key == "phish":
+            return self._get_phish_engine()
+        elif band_key == "dead":
+            return self._dead_engine
+        elif band_key in self.engines:
+            return self.engines[band_key]
+        elif band_key in self.setlistfm_engines:
+            return self.setlistfm_engines[band_key]
+        return None
+
     def query(self, question: str) -> QueryResult:
         """
         Answer any jam band question - auto-detects which band.
@@ -1761,6 +1844,33 @@ class UnifiedJamMuse:
                        "- 'how many times Mantis' (Umphrey's McGee)\n"
                        "- 'when did they last play Chilly Water' (Widespread Panic)"
             )
+
+        # If query has a date but no setlist keyword, and no other intent,
+        # treat it as a setlist lookup (e.g., "Grateful Dead 5/8/77")
+        q_lower = question.lower()
+        date = extract_date_from_query(question)
+        if date and not is_setlist_query(q_lower):
+            other_intents = [
+                "longest", "best", "gap", "how many", "stats", "first",
+                "last played", "average", "top", "debut", "jam chart",
+                "unique", "bust", "cover", "opener", "encore",
+            ]
+            if not any(kw in q_lower for kw in other_intents):
+                engine = self._get_engine_for_band(band_key)
+                if engine and hasattr(engine, 'query_setlist'):
+                    result = engine.query_setlist(date)
+                    # Wrap Phish result to add band field if needed
+                    if band_key == "phish" and not getattr(result, 'band', None):
+                        return QueryResult(
+                            success=result.success,
+                            answer=result.answer,
+                            band="Phish",
+                            highlight=result.highlight,
+                            card_data=result.card_data,
+                            related_queries=result.related_queries,
+                            raw_data=getattr(result, 'raw_data', None)
+                        )
+                    return result
 
         # Route to appropriate engine (use normalized question for better matching)
         if band_key == "phish":

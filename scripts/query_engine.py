@@ -21,6 +21,20 @@ from pathlib import Path
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
 
+import random
+
+from scripts.date_utils import (
+    extract_date_from_query as _shared_extract_date,
+    is_setlist_query,
+    extract_month_day_from_query as _shared_extract_month_day,
+    is_shows_on_date_query,
+    detect_holiday_name,
+    HOLIDAYS as SHARED_HOLIDAYS,
+    HOLIDAY_DISPLAY,
+    is_random_show_query,
+    extract_year_filter,
+)
+
 # Paths
 BASE_DIR = Path(__file__).parent.parent
 DATA_DIR = BASE_DIR / "data"
@@ -2763,112 +2777,12 @@ class PhishStatsEngine:
         )
 
     def _extract_date_from_query(self, query: str) -> Optional[str]:
-        """Extract a date from a query like 'setlist from 12/31/1999' or 'May 18th 1991'."""
-        # Month name mapping
-        months = {
-            'january': '01', 'jan': '01',
-            'february': '02', 'feb': '02',
-            'march': '03', 'mar': '03',
-            'april': '04', 'apr': '04',
-            'may': '05',
-            'june': '06', 'jun': '06',
-            'july': '07', 'jul': '07',
-            'august': '08', 'aug': '08',
-            'september': '09', 'sep': '09', 'sept': '09',
-            'october': '10', 'oct': '10',
-            'november': '11', 'nov': '11',
-            'december': '12', 'dec': '12'
-        }
-
-        query_lower = query.lower()
-
-        # Pattern 1: Natural language dates - "May 18th 1991", "May 18, 1991", "may 18 1991"
-        month_pattern = r'(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)\s+(\d{1,2})(?:st|nd|rd|th)?,?\s*(\d{4})'
-        match = re.search(month_pattern, query_lower)
-        if match:
-            month = months[match.group(1)]
-            day = match.group(2).zfill(2)
-            year = match.group(3)
-            return f"{year}-{month}-{day}"
-
-        # Pattern 2: "18th May 1991", "18 May 1991"
-        day_first_pattern = r'(\d{1,2})(?:st|nd|rd|th)?\s+(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec),?\s*(\d{4})'
-        match = re.search(day_first_pattern, query_lower)
-        if match:
-            day = match.group(1).zfill(2)
-            month = months[match.group(2)]
-            year = match.group(3)
-            return f"{year}-{month}-{day}"
-
-        # Pattern 3: Numeric date patterns
-        numeric_patterns = [
-            r'(\d{4}-\d{2}-\d{2})',  # YYYY-MM-DD
-            r'(\d{1,2}/\d{1,2}/\d{4})',  # MM/DD/YYYY or M/D/YYYY
-            r'(\d{1,2}/\d{1,2}/\d{2})',  # MM/DD/YY
-        ]
-
-        for pattern in numeric_patterns:
-            match = re.search(pattern, query)
-            if match:
-                date_str = match.group(1)
-                # Convert to YYYY-MM-DD format
-                if '/' in date_str:
-                    parts = date_str.split('/')
-                    if len(parts[2]) == 2:
-                        year = '19' + parts[2] if int(parts[2]) > 50 else '20' + parts[2]
-                    else:
-                        year = parts[2]
-                    return f"{year}-{parts[0].zfill(2)}-{parts[1].zfill(2)}"
-                return date_str
-
-        return None
+        """Extract a date from a query. Delegates to shared date_utils."""
+        return _shared_extract_date(query)
 
     def _extract_month_day_from_query(self, query: str) -> Optional[tuple]:
-        """Extract month and day from query like '10/31', 'October 31', or 'halloween'.
-        Returns tuple (month, day) or None."""
-        query_lower = query.lower()
-
-        # Check for holiday names first (check longer names first to avoid substring issues)
-        for holiday in sorted(self.HOLIDAYS.keys(), key=len, reverse=True):
-            if holiday in query_lower:
-                return self.HOLIDAYS[holiday]  # Returns (month, day) tuple or None for variable holidays
-
-        # Month name mapping
-        months = {
-            'january': 1, 'jan': 1, 'february': 2, 'feb': 2,
-            'march': 3, 'mar': 3, 'april': 4, 'apr': 4,
-            'may': 5, 'june': 6, 'jun': 6, 'july': 7, 'jul': 7,
-            'august': 8, 'aug': 8, 'september': 9, 'sep': 9, 'sept': 9,
-            'october': 10, 'oct': 10, 'november': 11, 'nov': 11,
-            'december': 12, 'dec': 12
-        }
-
-        # Pattern: "October 31", "Oct 31st", "october 31"
-        month_pattern = r'(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)\s+(\d{1,2})(?:st|nd|rd|th)?(?!\d)'
-        match = re.search(month_pattern, query_lower)
-        if match:
-            month = months[match.group(1)]
-            day = int(match.group(2))
-            return (month, day)
-
-        # Pattern: "31st of October", "31 October"
-        day_first_pattern = r'(\d{1,2})(?:st|nd|rd|th)?\s+(?:of\s+)?(january|jan|february|feb|march|mar|april|apr|may|june|jun|july|jul|august|aug|september|sep|sept|october|oct|november|nov|december|dec)(?!\s*\d{4})'
-        match = re.search(day_first_pattern, query_lower)
-        if match:
-            day = int(match.group(1))
-            month = months[match.group(2)]
-            return (month, day)
-
-        # Pattern: "10/31" (MM/DD without year)
-        numeric_pattern = r'(?:^|[^\d])(\d{1,2})/(\d{1,2})(?:[^\d/]|$)'
-        match = re.search(numeric_pattern, query)
-        if match:
-            month = int(match.group(1))
-            day = int(match.group(2))
-            if 1 <= month <= 12 and 1 <= day <= 31:
-                return (month, day)
-
-        return None
+        """Extract month and day from query. Delegates to shared date_utils."""
+        return _shared_extract_month_day(query)
 
     def query_shows_on_date(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
         """Query for how many shows Phish has played on a specific month/day across all years."""
@@ -2889,29 +2803,7 @@ class PhishStatsEngine:
         matching_shows.sort(key=lambda x: x.get('showdate', ''))
 
         count = len(matching_shows)
-        # Proper display names for holidays
-        holiday_display = {
-            "halloween": "Halloween",
-            "new years eve": "New Year's Eve",
-            "new year's eve": "New Year's Eve",
-            "nye": "New Year's Eve",
-            "new years": "New Year's Eve",
-            "new year's": "New Year's Eve",
-            "christmas": "Christmas",
-            "christmas eve": "Christmas Eve",
-            "july 4th": "July 4th",
-            "july 4": "July 4th",
-            "fourth of july": "July 4th",
-            "4th of july": "July 4th",
-            "independence day": "Independence Day",
-            "valentines day": "Valentine's Day",
-            "valentine's day": "Valentine's Day",
-            "st patricks day": "St. Patrick's Day",
-            "st. patrick's day": "St. Patrick's Day",
-            "april fools": "April Fools' Day",
-            "april fool's": "April Fools' Day",
-        }
-        date_display = holiday_display.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+        date_display = HOLIDAY_DISPLAY.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
 
         if count == 0:
             return QueryResult(
@@ -2960,6 +2852,69 @@ class PhishStatsEngine:
             raw_data={"shows": matching_shows, "count": count}
         )
 
+    def query_random_show(self, year: int = None) -> QueryResult:
+        """Return a random Phish show, optionally filtered by year."""
+        candidates = self.shows
+        if year:
+            candidates = [s for s in candidates if s.get('showdate', '').startswith(str(year))]
+
+        if not candidates:
+            if year:
+                return QueryResult(
+                    success=False,
+                    answer=f"No Phish shows found for {year}.",
+                    related_queries=["random show from 1997", "random show from 2023"]
+                )
+            return QueryResult(success=False, answer="No show data available.")
+
+        show = random.choice(candidates)
+        date = show.get('showdate', '')
+        venue = show.get('venue', 'Unknown Venue')
+        city = show.get('city', '')
+        state = show.get('state', '')
+        location = f"{city}, {state}" if state else city
+
+        # Build setlist preview
+        songs = show.get('songs', [])
+        sets = {}
+        for song in songs:
+            set_name = song.get('set', '1')
+            if set_name not in sets:
+                sets[set_name] = []
+            sets[set_name].append(song.get('song', 'Unknown'))
+
+        year_display = f" from {year}" if year else ""
+        lines = [f"Here's a random Phish show{year_display} for you!\n"]
+        lines.append(f"**{date}** - {venue}")
+        if location:
+            lines.append(f"*{location}*\n")
+
+        for set_name in sorted(sets.keys()):
+            if set_name.lower() in ('e', 'e2', 'e3'):
+                lines.append(f"**Encore:** {', '.join(sets[set_name])}")
+            else:
+                lines.append(f"**Set {set_name}:** {', '.join(sets[set_name])}")
+
+        lines.append(f"\n[Listen on Phish.in](https://phish.in/{date})")
+
+        related = [f"random show from {date[:4]}", f"setlist {date}"]
+        if year:
+            related.append("random show")
+
+        return QueryResult(
+            success=True,
+            answer="\n".join(lines),
+            highlight=date,
+            card_data={
+                "type": "random_show",
+                "title": date,
+                "subtitle": venue,
+                "context": location,
+                "sets": sets,
+            },
+            related_queries=related
+        )
+
     def query(self, question: str) -> QueryResult:
         """
         Main query entry point. Parses the question and routes to appropriate handler.
@@ -2980,6 +2935,11 @@ class PhishStatsEngine:
         # Extract era if present (e.g., "longest Tweezer of 1.0")
         base_question, era, era_start, era_end = self._extract_era_from_query(base_question)
 
+        # Pattern: Random show - "random show", "give me a show to listen to"
+        if is_random_show_query(question_lower):
+            year = extract_year_filter(question)
+            return self.query_random_show(year=year)
+
         # Pattern: Career stats - "career stats", "phish stats", "overall stats"
         if any(p in question_lower for p in ["career stats", "phish stats", "overall stats", "band stats"]):
             return self.query_career_stats()
@@ -2989,12 +2949,7 @@ class PhishStatsEngine:
             month_day = self._extract_month_day_from_query(question)
             if month_day:
                 month, day = month_day
-                # Detect holiday name for display (check longer names first)
-                holiday_name = None
-                for holiday in sorted(self.HOLIDAYS.keys(), key=len, reverse=True):
-                    if holiday in question_lower:
-                        holiday_name = holiday
-                        break
+                holiday_name = detect_holiday_name(question_lower)
                 return self.query_shows_on_date(month, day, holiday_name)
 
         # Pattern: Top rated shows - "top rated shows of 1997", "best shows at MSG", "highest rated 1999", "top rated 1.0"
@@ -3142,7 +3097,7 @@ class PhishStatsEngine:
                 return self.query_unique_songs()
 
         # Pattern: Setlist lookup - "setlist from 12/31/1999" or "show on 1999-12-31"
-        if any(p in question_lower for p in ["setlist", "show on", "show from", "what did they play on"]):
+        if is_setlist_query(question_lower):
             date = self._extract_date_from_query(question)
             if date:
                 return self.query_setlist(date)

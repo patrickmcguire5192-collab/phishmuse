@@ -21,6 +21,14 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 from difflib import get_close_matches
+import random
+
+from scripts.date_utils import (
+    extract_date_from_query, is_setlist_query,
+    extract_month_day_from_query, is_shows_on_date_query,
+    detect_holiday_name, HOLIDAY_DISPLAY,
+    is_random_show_query, extract_year_filter,
+)
 
 # Path to the catalog file
 CATALOG_PATH = Path(__file__).parent.parent / "data" / "grateful_dead_catalog.json"
@@ -743,6 +751,137 @@ class ArchiveDeadEngine:
             ]
         )
 
+    def query_shows_on_date(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
+        """Query for how many shows the Grateful Dead played on a specific month/day across all years."""
+        matching_shows = []
+        seen_dates = set()
+        for show in self.shows:
+            show_date = show.get('date', '')
+            if show_date and show_date not in seen_dates:
+                try:
+                    show_month = int(show_date[5:7])
+                    show_day = int(show_date[8:10])
+                    if show_month == month and show_day == day:
+                        matching_shows.append(show)
+                        seen_dates.add(show_date)
+                except (ValueError, IndexError):
+                    continue
+
+        matching_shows.sort(key=lambda x: x.get('date', ''))
+
+        count = len(matching_shows)
+        date_display = HOLIDAY_DISPLAY.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+
+        if count == 0:
+            return QueryResult(
+                success=True,
+                band="Grateful Dead",
+                answer=f"The Grateful Dead never played on {date_display}.",
+                related_queries=["dead shows on halloween", "dead shows on new years eve"]
+            )
+
+        years = [s.get('date', '')[:4] for s in matching_shows]
+        first_year = years[0]
+        last_year = years[-1]
+        venues = set(s.get('venue', 'Unknown') for s in matching_shows)
+
+        lines = [f"The Grateful Dead played **{count} shows** on {date_display}!\n"]
+        lines.append(f"First: {first_year} | Most Recent: {last_year}")
+        lines.append(f"Unique venues: {len(venues)}\n")
+
+        lines.append("Shows:")
+        for show in matching_shows:
+            date = show.get('date', '')
+            venue = show.get('venue', 'Unknown')
+            location = show.get('location', '')
+            lines.append(f"  \u2022 {date}: {venue}" + (f", {location}" if location else ""))
+
+        related = []
+        if holiday_name != "halloween":
+            related.append("dead shows on halloween")
+        if holiday_name != "new years eve" and holiday_name != "nye":
+            related.append("dead shows on new years eve")
+        if matching_shows:
+            related.append(f"dead setlist {matching_shows[-1].get('date', '')}")
+
+        return QueryResult(
+            success=True,
+            band="Grateful Dead",
+            answer="\n".join(lines),
+            highlight=str(count),
+            related_queries=related
+        )
+
+    def query_random_show(self, year: int = None) -> QueryResult:
+        """Return a random Grateful Dead show, optionally filtered by year.
+        Weights selection toward higher-rated shows on Archive.org."""
+        # Deduplicate by date (Archive.org has multiple recordings per show)
+        seen_dates = {}
+        for show in self.shows:
+            d = show.get('date', '')
+            if d and d not in seen_dates:
+                seen_dates[d] = show
+
+        candidates = list(seen_dates.values())
+        if year:
+            candidates = [s for s in candidates if s.get('date', '').startswith(str(year))]
+
+        if not candidates:
+            if year:
+                return QueryResult(
+                    success=False,
+                    band="Grateful Dead",
+                    answer=f"No Grateful Dead shows found for {year}.",
+                    related_queries=["random dead show from 1977", "random dead show from 1972"]
+                )
+            return QueryResult(success=False, band="Grateful Dead", answer="No show data available.")
+
+        # Weight by rating (higher-rated shows more likely to be picked)
+        rated = [s for s in candidates if s.get('rating') and s['rating'] > 0]
+        if rated:
+            weights = [s['rating'] ** 2 for s in rated]  # Square to favor top shows
+            show = random.choices(rated, weights=weights, k=1)[0]
+        else:
+            show = random.choice(candidates)
+
+        date = show.get('date', '')
+        venue = show.get('venue', 'Unknown Venue')
+        location = show.get('location', '')
+        rating = show.get('rating')
+        identifier = show.get('identifier', '')
+
+        # Build setlist from tracks
+        tracks = show.get('tracks', [])
+
+        year_display = f" from {year}" if year else ""
+        lines = [f"Here's a random Grateful Dead show{year_display} for you!\n"]
+        lines.append(f"**{date}** - {venue}")
+        if location:
+            lines.append(f"*{location}*")
+        if rating:
+            lines.append(f"Archive.org rating: **{rating:.2f}**/5.00\n")
+
+        if tracks:
+            for t in tracks:
+                song = t.get('song', t.get('title', 'Unknown'))
+                dur = t.get('duration_str', '')
+                lines.append(f"  \u2022 {song}" + (f" ({dur})" if dur else ""))
+
+        if identifier:
+            lines.append(f"\n[Listen on Archive.org](https://archive.org/details/{identifier})")
+
+        related = [f"random dead show from {date[:4]}", f"dead setlist {date}"]
+        if year:
+            related.append("random dead show")
+
+        return QueryResult(
+            success=True,
+            band="Grateful Dead",
+            answer="\n".join(lines),
+            highlight=date,
+            related_queries=related
+        )
+
     def query(self, question: str) -> QueryResult:
         """Parse and route a natural language query."""
         if not self.catalog:
@@ -752,6 +891,11 @@ class ArchiveDeadEngine:
             )
 
         q = question.lower().strip()
+
+        # Random show - "random show", "give me a show to listen to"
+        if is_random_show_query(q):
+            year = extract_year_filter(question)
+            return self.query_random_show(year=year)
 
         # Extract venue if present (e.g., "longest Dark Star at Winterland")
         base_question, venue = self._extract_venue_from_query(question)
@@ -839,11 +983,19 @@ class ArchiveDeadEngine:
             year = int(year_match.group(1)) if year_match else None
             return self.query_show_count(year)
 
+        # Shows on a specific month/day - "shows on March 9th", "shows on halloween"
+        if is_shows_on_date_query(q):
+            month_day = extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+                holiday_name = detect_holiday_name(q)
+                return self.query_shows_on_date(month, day, holiday_name)
+
         # Setlist
-        date_match = re.search(r'setlist.*(\d{4}-\d{2}-\d{2})|(\d{4}-\d{2}-\d{2}).*setlist', q)
-        if date_match:
-            date = date_match.group(1) or date_match.group(2)
-            return self.query_setlist(date)
+        if is_setlist_query(q):
+            date = extract_date_from_query(question)
+            if date:
+                return self.query_setlist(date)
 
         # If query contains a song name, return stats
         for song in self.songs:

@@ -18,6 +18,12 @@ from pathlib import Path
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass
 from datetime import datetime
+import random as _random
+
+from scripts.date_utils import (
+    extract_date_from_query, is_setlist_query,
+    is_random_show_query, extract_year_filter,
+)
 from collections import Counter
 
 # Cache directory
@@ -853,10 +859,63 @@ class SetlistFMEngine:
             highlight=str(len(setlists))
         )
 
+    def query_random_show(self, year: int = None) -> QueryResult:
+        """Return a random show for this band, optionally filtered by year."""
+        setlists = self._get_all_setlists()
+
+        candidates = setlists
+        if year:
+            candidates = [sl for sl in setlists if self._format_date(sl.get("eventDate", "")).startswith(str(year))]
+
+        if not candidates:
+            if year:
+                return QueryResult(
+                    success=False,
+                    band=self.band_name,
+                    answer=f"No {self.band_name} shows found for {year}.",
+                )
+            return QueryResult(success=False, band=self.band_name, answer="No show data available.")
+
+        sl = _random.choice(candidates)
+        date = self._format_date(sl.get("eventDate", ""))
+        venue = sl.get("venue", {}).get("name", "Unknown")
+        city = sl.get("venue", {}).get("city", {}).get("name", "")
+        state = sl.get("venue", {}).get("city", {}).get("stateCode", "")
+        country = sl.get("venue", {}).get("city", {}).get("country", {}).get("code", "")
+        location = f"{city}, {state}" if state else (f"{city}, {country}" if country else city)
+
+        year_display = f" from {year}" if year else ""
+        lines = [f"Here's a random {self.band_name} show{year_display} for you!\n"]
+        lines.append(f"**{date}** - {venue}")
+        if location:
+            lines.append(f"*{location}*")
+
+        # Include setlist
+        sets = sl.get("sets", {}).get("set", [])
+        if sets:
+            lines.append("")
+            for i, s in enumerate(sets):
+                set_name = s.get("name", f"Set {i+1}")
+                songs = [song.get("name", "?") for song in s.get("song", [])]
+                if songs:
+                    lines.append(f"**{set_name}:** {', '.join(songs)}")
+
+        related = [f"random {self.band_name.lower()} show from {date[:4]}", f"{self.band_name.lower()} setlist {date}"]
+        if year:
+            related.append(f"random {self.band_name.lower()} show")
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=date,
+            related_queries=related
+        )
+
     def query_setlist(self, date: str) -> QueryResult:
         """Get setlist for a specific date."""
-        # Normalize date format
-        date_clean = date.replace("/", "-")
+        # Normalize date to YYYY-MM-DD for comparison with _format_date output
+        date_clean = extract_date_from_query(date) or date
 
         # Try to find the show
         setlists = self._get_all_setlists()
@@ -904,10 +963,16 @@ class SetlistFMEngine:
         """Route a natural language question to the appropriate handler."""
         q = question.lower().strip()
 
+        # Random show
+        if is_random_show_query(q):
+            year = extract_year_filter(question)
+            return self.query_random_show(year=year)
+
         # Setlist queries
-        date_match = re.search(r'(\d{4}-\d{2}-\d{2}|\d{1,2}/\d{1,2}/\d{2,4})', question)
-        if date_match and any(word in q for word in ["setlist", "set list", "what did they play"]):
-            return self.query_setlist(date_match.group(1))
+        if is_setlist_query(q):
+            date = extract_date_from_query(question)
+            if date:
+                return self.query_setlist(date)
 
         # Gap queries
         if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last", "last played", "last time"]):
