@@ -868,7 +868,7 @@ class ArchiveDeadEngine:
                 lines.append(f"  \u2022 {song}" + (f" ({dur})" if dur else ""))
 
         if identifier:
-            lines.append(f"\n[Listen on Archive.org](https://archive.org/details/{identifier})")
+            lines.append(f"\nhttps://archive.org/details/{identifier}")
 
         related = [f"random dead show from {date[:4]}", f"dead setlist {date}"]
         if year:

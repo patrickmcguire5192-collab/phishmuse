@@ -975,7 +975,7 @@ class SetlistFMEngine:
                 return self.query_setlist(date)
 
         # Gap queries
-        if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last", "last played", "last time"]):
+        if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last", "last played", "last time", "shows since"]):
             song = self._normalize_song_name(question)
             if song:
                 return self.query_gap(song)

@@ -1098,7 +1098,7 @@ class PhishStatsEngine:
                 "subtitle": f"Played {count} times total"
             },
             related_queries=[
-                f"gap on {song_name}",
+                f"how many shows since they played {song_name}",
                 f"longest {song_name}",
                 f"{song_name} stats"
             ],
@@ -2198,7 +2198,7 @@ class PhishStatsEngine:
             related_queries=[
                 f"{song_name} as opener",
                 f"last {song_name} as encore",
-                f"gap on {song_name}"
+                f"how many shows since they played {song_name}"
             ],
             raw_data={"last": last, "all_openers": opener_shows[:10]}
         )
@@ -2271,7 +2271,7 @@ class PhishStatsEngine:
             related_queries=[
                 f"{song_name} as encore",
                 f"last {song_name} as opener",
-                f"gap on {song_name}"
+                f"how many shows since they played {song_name}"
             ],
             raw_data={"last": last, "all_encores": encore_shows[:10]}
         )
@@ -2563,7 +2563,7 @@ class PhishStatsEngine:
                 "extra": {"top_gaps": top_20}
             },
             related_queries=[
-                f"gap on {top_20[0]['song']}",
+                f"how many shows since they played {top_20[0]['song']}",
                 "rarest songs",
                 "most played song"
             ],
@@ -2613,7 +2613,7 @@ class PhishStatsEngine:
             related_queries=[
                 f"when did they last play {song_name}",
                 f"{song_name} stats",
-                f"gap on {song_name}"
+                f"how many shows since they played {song_name}"
             ],
             raw_data=stats
         )
@@ -3111,6 +3111,12 @@ class PhishStatsEngine:
             date = self._extract_date_from_query(question)
             if date:
                 return self.query_setlist(date)
+            # No full date found - try month/day fallback (e.g. "show on 12/31")
+            month_day = self._extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+                holiday_name = detect_holiday_name(question_lower)
+                return self.query_shows_on_date(month, day, holiday_name)
             return QueryResult(
                 success=False,
                 answer="I couldn't find a date in your question. Try 'setlist from 1999-12-31' or 'show on 12/31/1999'."
@@ -3130,7 +3136,7 @@ class PhishStatsEngine:
                     return self.query_gap(song)
                 return QueryResult(
                     success=False,
-                    answer="I couldn't identify which song you're asking about. Try 'gap on Harpua'."
+                    answer="I couldn't identify which song you're asking about. Try 'how many shows since they played Harpua'."
                 )
 
         # Pattern: "when did they last play" or "last time they played" (but not duration queries)
@@ -3253,8 +3259,8 @@ class PhishStatsEngine:
 
         return QueryResult(
             success=False,
-            answer="I'm not sure how to answer that. Try asking about:\n• Longest version of a song ('longest Tweezer')\n• Play counts ('how many times has Ghost been played')\n• Song stats ('Tweezer stats')\n• Gap on a song ('gap on Harpua')\n• Setlists ('setlist from 1999-12-31')\n• Average length ('average Ghost length')",
-            related_queries=["longest Tweezer", "Ghost play count", "gap on Harpua", "setlist from 1999-12-31"]
+            answer="I'm not sure how to answer that. Try asking about:\n• Longest version of a song ('longest Tweezer')\n• Play counts ('how many times has Ghost been played')\n• Song stats ('Tweezer stats')\n• How many shows since a song ('how many shows since they played Harpua')\n• Setlists ('setlist from 1999-12-31')\n• Average length ('average Ghost length')",
+            related_queries=["longest Tweezer", "Ghost play count", "how many shows since they played Harpua", "setlist from 1999-12-31"]
         )
 
 

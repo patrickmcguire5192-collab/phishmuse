@@ -27,7 +27,10 @@ from scripts.date_utils import (
 
 # Cache directory for API responses
 CACHE_DIR = Path(__file__).parent.parent / "data" / "jammuse_cache"
-CACHE_DIR.mkdir(parents=True, exist_ok=True)
+try:
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+except OSError:
+    pass
 
 
 @dataclass
@@ -379,9 +382,12 @@ class JamMuseEngine:
             with urllib.request.urlopen(req, timeout=30) as response:
                 data = json.loads(response.read().decode())
 
-            # Cache response
-            with open(cache_file, 'w') as f:
-                json.dump(data, f)
+            # Cache response (best-effort, may fail on read-only filesystems)
+            try:
+                with open(cache_file, 'w') as f:
+                    json.dump(data, f)
+            except OSError:
+                pass
 
             return data
         except Exception as e:
@@ -676,7 +682,7 @@ class JamMuseEngine:
             },
             related_queries=[
                 f"best {song_name}",
-                f"gap on {song_name}",
+                f"how many shows since they played {song_name}",
                 f"first {song_name}"
             ]
         )
@@ -839,7 +845,7 @@ class JamMuseEngine:
             },
             related_queries=[
                 f"{normalized} stats",
-                f"gap on {normalized}",
+                f"how many shows since they played {normalized}",
                 f"how many times {normalized}"
             ]
         )
@@ -1041,7 +1047,7 @@ class JamMuseEngine:
             related_queries=[
                 f"best {normalized}",
                 f"{normalized} stats",
-                f"gap on {normalized}"
+                f"how many shows since they played {normalized}"
             ]
         )
 
@@ -1452,7 +1458,7 @@ class JamMuseEngine:
                 return self.query_jamchart(song)
 
         # Gap queries
-        if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last"]):
+        if any(word in q for word in ["gap on", "gap for", "how long since", "when did they last", "shows since"]):
             song = self._normalize_song_name(base_question)
             if song:
                 return self.query_gap(song)
@@ -1499,7 +1505,7 @@ class JamMuseEngine:
             answer=f"I'm not sure how to answer that about {self.band_name}. Try asking about:\n"
                    f"- Song stats: '{self.config['jam_vehicles'][0]} stats'\n"
                    f"- Play count: 'how many times {self.config['jam_vehicles'][1]}'\n"
-                   f"- Gap: 'gap on {self.config['jam_vehicles'][2]}'\n"
+                   f"- Gap: 'how many shows since they played {self.config['jam_vehicles'][2]}'\n"
                    f"- Best versions: 'best {self.config['jam_vehicles'][0]}'\n"
                    f"- Setlists: 'setlist 2024-09-07'"
         )
@@ -1840,7 +1846,7 @@ class UnifiedJamMuse:
                        "- 'longest Dark Star' (Grateful Dead)\n"
                        "- 'longest Tweezer' (Phish)\n"
                        "- 'Arcadia stats' (Goose)\n"
-                       "- 'gap on Dripping Tap' (King Gizzard)\n"
+                       "- 'how many shows since they played Dripping Tap' (King Gizzard)\n"
                        "- 'how many times Mantis' (Umphrey's McGee)\n"
                        "- 'when did they last play Chilly Water' (Widespread Panic)"
             )
@@ -1963,11 +1969,11 @@ if __name__ == "__main__":
         # Phish
         "longest Tweezer",
         "Carini stats",
-        "gap on Fluffhead",
+        "how many shows since they played Fluffhead",
         # Goose
         "longest Arcadia",
         "how many times Hungersite",
-        "gap on Madhuvan",
+        "how many shows since they played Madhuvan",
         # King Gizzard
         "The River stats",
         "longest Dripping Tap",
