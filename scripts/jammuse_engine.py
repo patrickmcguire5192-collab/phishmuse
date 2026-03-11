@@ -1719,6 +1719,46 @@ class UnifiedJamMuse:
 
         return variations
 
+    # Band prefixes used when injecting band context into related queries.
+    # Uses the shortest natural keyword that _detect_band will recognize.
+    BAND_PREFIXES = {
+        "phish": "Phish",
+        "dead": "Dead",
+        "goose": "Goose",
+        "kglw": "King Gizzard",
+        "umphreys": "Umphrey's",
+        "wsp": "Widespread Panic",
+        "moe": "moe.",
+        "sts9": "STS9",
+        "billy": "Billy Strings",
+    }
+
+    def _add_band_context(self, result: QueryResult, band_key: str) -> QueryResult:
+        """Ensure each related query includes enough context for _detect_band to identify the band."""
+        if not result.related_queries or not band_key:
+            return result
+
+        prefix = self.BAND_PREFIXES.get(band_key)
+        if not prefix:
+            return result
+
+        fixed = []
+        for q in result.related_queries:
+            # Check if _detect_band can already identify this query
+            if self._detect_band(q) is not None:
+                fixed.append(q)
+            else:
+                fixed.append(f"{prefix} {q}")
+        return QueryResult(
+            success=result.success,
+            answer=result.answer,
+            band=result.band,
+            highlight=result.highlight,
+            card_data=result.card_data,
+            related_queries=fixed,
+            raw_data=getattr(result, 'raw_data', None)
+        )
+
     def _detect_band(self, query: str) -> Optional[str]:
         """
         Detect which band the query is about based on song names/aliases.
@@ -1867,7 +1907,7 @@ class UnifiedJamMuse:
                     result = engine.query_setlist(date)
                     # Wrap Phish result to add band field if needed
                     if band_key == "phish" and not getattr(result, 'band', None):
-                        return QueryResult(
+                        result = QueryResult(
                             success=result.success,
                             answer=result.answer,
                             band="Phish",
@@ -1876,22 +1916,23 @@ class UnifiedJamMuse:
                             related_queries=result.related_queries,
                             raw_data=getattr(result, 'raw_data', None)
                         )
-                    return result
+                    return self._add_band_context(result, band_key)
 
         # Route to appropriate engine (use normalized question for better matching)
+        result = None
         if band_key == "phish":
             phish_engine = self._get_phish_engine()
             if phish_engine:
-                result = phish_engine.query(normalized_question)
+                phish_result = phish_engine.query(normalized_question)
                 # Wrap Phish result to add band field
-                return QueryResult(
-                    success=result.success,
-                    answer=result.answer,
+                result = QueryResult(
+                    success=phish_result.success,
+                    answer=phish_result.answer,
                     band="Phish",
-                    highlight=result.highlight,
-                    card_data=result.card_data,
-                    related_queries=result.related_queries,
-                    raw_data=getattr(result, 'raw_data', None)
+                    highlight=phish_result.highlight,
+                    card_data=phish_result.card_data,
+                    related_queries=phish_result.related_queries,
+                    raw_data=getattr(phish_result, 'raw_data', None)
                 )
             else:
                 return QueryResult(
@@ -1902,7 +1943,7 @@ class UnifiedJamMuse:
         elif band_key == "dead":
             # Grateful Dead via Archive.org
             if self._dead_engine:
-                return self._dead_engine.query(normalized_question)
+                result = self._dead_engine.query(normalized_question)
             else:
                 return QueryResult(
                     success=False,
@@ -1911,16 +1952,18 @@ class UnifiedJamMuse:
                 )
         elif band_key in self.engines:
             # Songfish bands (Goose, King Gizzard)
-            return self.engines[band_key].query(normalized_question)
+            result = self.engines[band_key].query(normalized_question)
         elif band_key in self.setlistfm_engines:
             # Setlist.fm bands (Umphrey's, WSP, moe., STS9, Billy Strings)
-            return self.setlistfm_engines[band_key].query(normalized_question)
+            result = self.setlistfm_engines[band_key].query(normalized_question)
         else:
             return QueryResult(
                 success=False,
                 band=None,
                 answer=f"Unknown band key: {band_key}"
             )
+
+        return self._add_band_context(result, band_key)
 
     def get_available_bands(self) -> List[str]:
         """Return list of available bands."""
