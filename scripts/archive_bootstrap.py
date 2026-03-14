@@ -78,20 +78,52 @@ def get_show_metadata(identifier: str) -> dict:
 
 
 def normalize_song_name(name: str) -> str:
-    """Normalize song names for consistent matching."""
+    """Normalize song names for consistent matching.
+
+    Archive.org track titles are extremely inconsistent:
+      - "gd72-11-24 s1 t04 Brown Eyed Women"
+      - "03 - Brown Eyed Women"
+      - "Brown-Eyed Women //"
+      - "05. Brown Eyed Women"
+    This function strips all that noise to get the canonical song name.
+    """
     if not name:
         return ""
 
-    # Remove leading/trailing whitespace
     name = name.strip()
 
-    # Remove transition indicators but track them
+    # Remove transition indicators
     name = re.sub(r'\s*[>→]\s*$', '', name)
     name = re.sub(r'^\s*[>→]\s*', '', name)
 
-    # Common abbreviations and variations
+    # Strip leading Archive.org file prefixes:
+    #   "gd72-11-24 s1 t04 Brown Eyed Women" -> "Brown Eyed Women"
+    #   "gd77-05-28 t09 Brown Eyed Women" -> "Brown Eyed Women"
+    #   "gd83-10-15 s1t05 Brown Eyed Women" -> "Brown Eyed Women"
+    name = re.sub(r'^gd\d{2,4}[-_]\d{2}[-_]\d{2}\s+(?:s\d+\s*)?(?:t\d+\s+)?', '', name, flags=re.IGNORECASE)
+
+    # Strip leading track numbers: "03 - ", "03. ", "16 ", "[02:43] "
+    name = re.sub(r'^\[?\d{1,2}:\d{2}\]?\s+', '', name)  # "[02:43] " or "04:40 "
+    name = re.sub(r'^\d{1,2}\s*[-.)]\s*', '', name)       # "03 - ", "03. ", "05) "
+    name = re.sub(r'^\d{1,2}\s+(?=[A-Z])', '', name)      # "16 Brown..." (number + space + capital)
+
+    # Strip trailing punctuation junk: " //", " /", " -", " ;", " *", "-\\"
+    name = re.sub(r'\s*[/;*\\]+\s*$', '', name)
+    name = re.sub(r'\s*-\s*$', '', name)
+
+    # Strip trailing parenthetical notes like "(crowd fades out)"
+    name = re.sub(r'\s*\((?:crowd|tape|no music|incomplete|cut|fragment|false start|reprise)[^)]*\)\s*$', '', name, flags=re.IGNORECASE)
+
+    # Strip "JAMES BROWN - " style artist prefixes (for covers mis-tagged with artist)
+    name = re.sub(r'^[A-Z\s]+\s+-\s+', '', name)
+
+    name = name.strip()
+
+    # Common abbreviations and variations (exact match after stripping)
     replacements = {
         "Playin' In The Band": "Playing in the Band",
+        "Playing In The Band": "Playing in the Band",
+        "Playing in The Band": "Playing in the Band",
         "Playin'": "Playing in the Band",
         "PITB": "Playing in the Band",
         "Truckin'": "Truckin",
@@ -125,13 +157,30 @@ def normalize_song_name(name: str) -> str:
         "TOO": "The Other One",
         "Drums": "Drums",
         "Space": "Space",
-        "Drums/Space": "Drums",  # We'll track these separately
+        "Drums/Space": "Drums",
+        "Brown Eyed Woman": "Brown Eyed Women",
+        "Brown-Eyed Women": "Brown Eyed Women",
+        "Brown-eyed Women": "Brown Eyed Women",
+        "Brown-Eyes Women": "Brown Eyed Women",
+        "Brown Eyed Womern": "Brown Eyed Women",
+        "Brown_eyed Women": "Brown Eyed Women",
     }
 
     # Check for exact replacements
     for old, new in replacements.items():
         if name.lower() == old.lower():
             return new
+
+    # Normalize hyphens between words to spaces for common patterns
+    # "Brown-Eyed" -> "Brown Eyed" (but preserve "Jack-A-Roe", "Half-Step")
+    # Only do this if the hyphenated form isn't a known song name
+    if '-' in name and name not in replacements.values():
+        dehyphenated = name.replace('-', ' ')
+        dehyphenated = re.sub(r'\s+', ' ', dehyphenated).strip()
+        # Check if dehyphenated matches a known replacement
+        for old, new in replacements.items():
+            if dehyphenated.lower() == old.lower():
+                return new
 
     return name
 
@@ -285,6 +334,94 @@ def show_status():
         for song, data in top:
             print(f"  {song}: {data.get('total_plays', 0)} times")
     print()
+
+
+def consolidate_catalog():
+    """Re-normalize all song names in the existing catalog and merge duplicates.
+
+    This fixes the fragmentation caused by Archive.org's inconsistent track naming.
+    No API calls needed — just re-processes the local catalog file.
+    """
+    catalog = load_catalog()
+    if not catalog.get('songs'):
+        print("No catalog to consolidate.")
+        return
+
+    old_count = len(catalog['songs'])
+    old_show_count = len(catalog.get('shows', []))
+    print(f"Consolidating catalog: {old_count} song entries, {old_show_count} shows...")
+
+    # Step 0: Deduplicate shows by date.
+    # The bootstrap can accumulate duplicate shows across multiple runs.
+    # Keep the one with the most tracks (best recording).
+    seen_dates = {}
+    for show in catalog.get('shows', []):
+        d = show.get('date', '')
+        if d not in seen_dates or len(show.get('tracks', [])) > len(seen_dates[d].get('tracks', [])):
+            seen_dates[d] = show
+    catalog['shows'] = sorted(seen_dates.values(), key=lambda s: s.get('date', ''))
+    deduped_shows = old_show_count - len(catalog['shows'])
+    if deduped_shows:
+        print(f"  Deduplicated shows: {old_show_count} -> {len(catalog['shows'])} ({deduped_shows} duplicates removed)")
+
+    # Step 1: Re-normalize every track in every show
+    for show in catalog.get('shows', []):
+        for track in show.get('tracks', []):
+            old_song = track['song']
+            new_song = normalize_song_name(old_song)
+            if new_song != old_song:
+                track['song'] = new_song
+
+    # Step 2: Rebuild the songs index from scratch using normalized names
+    # Use case-insensitive merging: prefer the title-cased version
+    new_songs = {}
+    canonical_map = {}  # lowercase -> canonical name
+    for show in catalog.get('shows', []):
+        for track in show.get('tracks', []):
+            song = track['song']
+            if not song or song.lower() in ['stage announcements', 'stage anouncements', 'tuning', 'crowd']:
+                continue
+            song_lower = song.lower()
+            if song_lower not in canonical_map:
+                # Prefer the version that starts with an uppercase letter
+                canonical_map[song_lower] = song if song[0].isupper() else song.title()
+            canonical = canonical_map[song_lower]
+            # Update track to use canonical name
+            track['song'] = canonical
+            if canonical not in new_songs:
+                new_songs[canonical] = {'performances': []}
+            new_songs[canonical]['performances'].append({
+                'date': show['date'],
+                'duration': track['duration'],
+                'duration_str': track['duration_str'],
+                'venue': show.get('venue', '')
+            })
+
+    # Step 3: Deduplicate performances by date within each song.
+    # A single recording can list the same song as multiple tracks (different
+    # audio formats, split files, etc.).  Keep the longest-duration entry per date.
+    total_dupes = 0
+    for song_name, data in new_songs.items():
+        seen = {}  # date -> best performance
+        for perf in data['performances']:
+            d = perf['date']
+            if d not in seen or perf['duration'] > seen[d]['duration']:
+                seen[d] = perf
+        removed = len(data['performances']) - len(seen)
+        total_dupes += removed
+        data['performances'] = list(seen.values())
+
+    catalog['songs'] = new_songs
+    save_catalog(catalog)
+
+    new_count = len(new_songs)
+    print(f"Consolidated: {old_count} -> {new_count} songs (merged {old_count - new_count} duplicate names, {total_dupes} duplicate performances)")
+
+    # Show some stats
+    top = sorted(new_songs.items(), key=lambda x: x[1].get('total_plays', 0), reverse=True)[:10]
+    print("\nTop 10 most played after consolidation:")
+    for song, data in top:
+        print(f"  {song}: {data.get('total_plays', 0)} times")
 
 
 def build_catalog(reset=False):
@@ -461,6 +598,8 @@ if __name__ == '__main__':
             show_status()
         elif arg in ['--reset', '-r', 'reset']:
             build_catalog(reset=True)
+        elif arg in ['--consolidate', '-c', 'consolidate']:
+            consolidate_catalog()
         elif arg in ['--help', '-h']:
             print(__doc__)
         else:

@@ -23,6 +23,9 @@ import random as _random
 from scripts.date_utils import (
     extract_date_from_query, is_setlist_query,
     is_random_show_query, extract_year_filter,
+    is_shows_on_date_query, extract_month_day_from_query,
+    detect_holiday_name, HOLIDAY_DISPLAY,
+    is_on_this_day_query,
 )
 
 # Cache directory for API responses
@@ -1388,6 +1391,55 @@ class JamMuseEngine:
             }
         )
 
+    def query_shows_on_date(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
+        """Query for how many shows this band played on a specific month/day across all years."""
+        matching_shows = []
+        for show in self.shows:
+            showdate = show.get('showdate', '')
+            if showdate:
+                try:
+                    show_month = int(showdate[5:7])
+                    show_day = int(showdate[8:10])
+                    if show_month == month and show_day == day:
+                        matching_shows.append(show)
+                except (ValueError, IndexError):
+                    continue
+
+        matching_shows.sort(key=lambda x: x.get('showdate', ''))
+
+        count = len(matching_shows)
+        date_display = HOLIDAY_DISPLAY.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+
+        if count == 0:
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=f"{self.band_name} has never played on {date_display}.",
+            )
+
+        years = [s.get('showdate', '')[:4] for s in matching_shows]
+        first_year = years[0]
+        last_year = years[-1]
+        venues = set(s.get('venuename', 'Unknown') for s in matching_shows)
+
+        lines = [f"{self.band_name} has played **{count} shows** on {date_display}!\n"]
+        lines.append(f"First: {first_year} | Most Recent: {last_year}")
+        lines.append(f"Unique venues: {len(venues)}\n")
+
+        lines.append("Recent shows:")
+        for show in reversed(matching_shows[-5:]):
+            date = show.get('showdate', '')
+            venue = show.get('venuename', 'Unknown')
+            location = show.get('location', '')
+            lines.append(f"  \u2022 {date}: {venue}" + (f", {location}" if location else ""))
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=str(count),
+        )
+
     # =========================================================================
     # MAIN QUERY ROUTER
     # =========================================================================
@@ -1412,6 +1464,14 @@ class JamMuseEngine:
         q_no_year = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_no_year).strip()
 
         q = q_no_year.lower().strip()
+
+        # Shows on a specific month/day - "shows on March 9th", "shows on halloween"
+        if is_shows_on_date_query(q):
+            month_day = extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+                holiday_name = detect_holiday_name(q)
+                return self.query_shows_on_date(month, day, holiday_name)
 
         # Setlist queries (use original base_question for date extraction)
         if is_setlist_query(q):
@@ -1867,10 +1927,92 @@ class UnifiedJamMuse:
             return self.setlistfm_engines[band_key]
         return None
 
+    def query_on_this_day(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
+        """Query all bands for shows on a specific month/day — cross-band 'On This Day'."""
+        from scripts.date_utils import HOLIDAY_DISPLAY
+        date_display = HOLIDAY_DISPLAY.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+
+        import calendar
+        month_name = calendar.month_name[month]
+        header = f"**On This Day: {month_name} {day}**"
+        if holiday_name:
+            header = f"**On This Day: {date_display} ({month_name} {day})**"
+
+        band_sections = []
+        total_shows = 0
+
+        # Query each engine
+        all_engines = []
+
+        # Phish
+        phish = self._get_phish_engine()
+        if phish and hasattr(phish, 'query_shows_on_date'):
+            all_engines.append(("Phish", phish))
+
+        # Dead
+        if self._dead_engine and hasattr(self._dead_engine, 'query_shows_on_date'):
+            all_engines.append(("Grateful Dead", self._dead_engine))
+
+        # Songfish bands (Goose, KGLW)
+        for band_key, engine in self.engines.items():
+            all_engines.append((BANDS[band_key]["name"], engine))
+
+        # Setlist.fm bands
+        for band_key, engine in self.setlistfm_engines.items():
+            all_engines.append((engine.band_name, engine))
+
+        for band_name, engine in all_engines:
+            try:
+                result = engine.query_shows_on_date(month, day, holiday_name)
+                if result.highlight and int(result.highlight) > 0:
+                    count = int(result.highlight)
+                    total_shows += count
+                    band_sections.append(f"**{band_name}**: {count} shows")
+                    # Extract recent shows lines from the answer
+                    lines = result.answer.split('\n')
+                    for line in lines:
+                        if line.strip().startswith('\u2022'):
+                            band_sections.append(f"  {line.strip()}")
+            except Exception:
+                continue
+
+        if total_shows == 0:
+            return QueryResult(
+                success=True,
+                band=None,
+                answer=f"{header}\n\nNo bands in the database have played on {date_display}.",
+            )
+
+        output_lines = [f"{header}\n"]
+        output_lines.append(f"**{total_shows} total shows** across all bands on {date_display}\n")
+        output_lines.extend(band_sections)
+
+        return QueryResult(
+            success=True,
+            band=None,
+            answer="\n".join(output_lines),
+            highlight=str(total_shows),
+            related_queries=["on this day", "shows on halloween", "shows on new years eve"],
+        )
+
     def query(self, question: str) -> QueryResult:
         """
         Answer any jam band question - auto-detects which band.
         """
+        q_lower = question.lower().strip()
+
+        # "On this day" / "today in jam history" — cross-band, check BEFORE band detection
+        if is_on_this_day_query(q_lower):
+            # Check if a specific date is mentioned, otherwise use today
+            month_day = extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+            else:
+                today = datetime.now()
+                month, day = today.month, today.day
+            holiday_name = detect_holiday_name(q_lower)
+            return self.query_on_this_day(month, day, holiday_name)
+
         # Normalize the question for better matching
         normalized_question = self._normalize_question(question)
 

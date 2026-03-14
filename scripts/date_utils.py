@@ -250,3 +250,20 @@ def detect_holiday_name(question_lower: str) -> str:
         if holiday in question_lower:
             return holiday
     return None
+
+
+# =============================================================================
+# "ON THIS DAY" QUERIES
+# =============================================================================
+
+ON_THIS_DAY_KEYWORDS = [
+    "on this day",
+    "today in jam",
+    "today in history",
+    "today in jam history",
+]
+
+
+def is_on_this_day_query(question_lower: str) -> bool:
+    """Check if a query is asking for 'on this day' across all bands."""
+    return any(kw in question_lower for kw in ON_THIS_DAY_KEYWORDS)

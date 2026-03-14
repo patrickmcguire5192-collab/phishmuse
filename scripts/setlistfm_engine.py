@@ -23,6 +23,8 @@ import random as _random
 from scripts.date_utils import (
     extract_date_from_query, is_setlist_query,
     is_random_show_query, extract_year_filter,
+    is_shows_on_date_query, extract_month_day_from_query,
+    detect_holiday_name, HOLIDAY_DISPLAY,
 )
 from collections import Counter
 
@@ -955,6 +957,54 @@ class SetlistFMEngine:
             answer=f"No setlist found for {self.band_name} on {date}."
         )
 
+    def query_shows_on_date(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
+        """Query for how many shows this band played on a specific month/day across all years."""
+        setlists = self._get_all_setlists()
+        matching_shows = []
+        for sl in setlists:
+            dt = self._parse_date(sl.get("eventDate", ""))
+            if dt and dt.month == month and dt.day == day:
+                matching_shows.append(sl)
+
+        # Sort by date (oldest first)
+        matching_shows.sort(key=lambda x: self._parse_date(x.get("eventDate", "")) or datetime.min)
+
+        count = len(matching_shows)
+        date_display = HOLIDAY_DISPLAY.get(holiday_name, f"{month}/{day}") if holiday_name else f"{month}/{day}"
+
+        if count == 0:
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=f"{self.band_name} has never played on {date_display}.",
+            )
+
+        years = [str(self._parse_date(s.get("eventDate", "")).year)
+                 for s in matching_shows if self._parse_date(s.get("eventDate", ""))]
+        first_year = years[0] if years else "?"
+        last_year = years[-1] if years else "?"
+        venues = set(s.get("venue", {}).get("name", "Unknown") for s in matching_shows)
+
+        lines = [f"{self.band_name} has played **{count} shows** on {date_display}!\n"]
+        lines.append(f"First: {first_year} | Most Recent: {last_year}")
+        lines.append(f"Unique venues: {len(venues)}\n")
+
+        lines.append("Recent shows:")
+        for sl in reversed(matching_shows[-5:]):
+            date = self._format_date(sl.get("eventDate", ""))
+            venue = sl.get("venue", {}).get("name", "Unknown")
+            city = sl.get("venue", {}).get("city", {}).get("name", "")
+            state = sl.get("venue", {}).get("city", {}).get("stateCode", "")
+            location = f"{city}, {state}" if state else city
+            lines.append(f"  \u2022 {date}: {venue}" + (f", {location}" if location else ""))
+
+        return QueryResult(
+            success=True,
+            band=self.band_name,
+            answer="\n".join(lines),
+            highlight=str(count),
+        )
+
     # =========================================================================
     # MAIN QUERY ROUTER
     # =========================================================================
@@ -967,6 +1017,14 @@ class SetlistFMEngine:
         if is_random_show_query(q):
             year = extract_year_filter(question)
             return self.query_random_show(year=year)
+
+        # Shows on a specific month/day
+        if is_shows_on_date_query(q):
+            month_day = extract_month_day_from_query(question)
+            if month_day:
+                month, day = month_day
+                holiday_name = detect_holiday_name(q)
+                return self.query_shows_on_date(month, day, holiday_name)
 
         # Setlist queries
         if is_setlist_query(q):

@@ -99,6 +99,8 @@ DEAD_SONG_ALIASES = {
     "deal": "Deal",
     "loser": "Loser",
     "brown eyed women": "Brown Eyed Women",
+    "brown eyed woman": "Brown Eyed Women",
+    "brown-eyed women": "Brown Eyed Women",
     "brown eyed": "Brown Eyed Women",
     "bew": "Brown Eyed Women",
     "bird song": "Bird Song",
@@ -198,10 +200,14 @@ class ArchiveDeadEngine:
             if song.lower() == query_lower:
                 return song
 
-        # Partial match
+        # Partial match — prefer shortest matching song to avoid
+        # "Brown Eyed Woman" matching 'Tape Flip After"Brown Eyed Woman"'
+        partial_matches = []
         for song in self.songs:
             if query_lower in song.lower() or song.lower() in query_lower:
-                return song
+                partial_matches.append(song)
+        if partial_matches:
+            return min(partial_matches, key=len)
 
         # Fuzzy match
         matches = get_close_matches(query_lower, [s.lower() for s in self.songs], n=1, cutoff=0.7)
