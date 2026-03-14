@@ -2923,7 +2923,7 @@ class PhishStatsEngine:
             return QueryResult(
                 success=True,
                 answer=f"Phish has never played on {date_display}.",
-                related_queries=["how many shows on halloween", "how many shows on new years eve"]
+                related_queries=["Phish shows on Halloween", "Phish shows on New Years Eve"]
             )
 
         # Get years they played
@@ -2952,9 +2952,9 @@ class PhishStatsEngine:
         # Related queries
         related = []
         if holiday_name != "halloween":
-            related.append("how many shows on halloween")
+            related.append("Phish shows on Halloween")
         if holiday_name != "new years eve" and holiday_name != "nye":
-            related.append("how many shows on new years eve")
+            related.append("Phish shows on New Years Eve")
         if matching_shows:
             related.append(f"setlist from {matching_shows[-1].get('showdate', '')}")
 
