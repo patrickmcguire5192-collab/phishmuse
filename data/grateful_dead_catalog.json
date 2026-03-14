@@ -3,7 +3,7 @@
     "created": "2026-01-22T22:15:14.011097",
     "source": "archive.org",
     "band": "Grateful Dead",
-    "updated": "2026-03-13T20:15:16.237649"
+    "updated": "2026-03-13T20:42:11.955069"
   },
   "shows": [
     {
@@ -409445,27 +409445,6 @@
       "first_played": "1972-12-31",
       "last_played": "1972-12-31"
     },
-    "DJ": {
-      "performances": [
-        {
-          "date": "1972-12-31",
-          "duration": 18.76,
-          "duration_str": "0:18",
-          "venue": "Winterland Arena"
-        }
-      ],
-      "total_plays": 1,
-      "total_duration": 18.76,
-      "avg_duration": 18.76,
-      "longest": {
-        "date": "1972-12-31",
-        "duration": 18.76,
-        "duration_str": "0:18",
-        "venue": "Winterland Arena"
-      },
-      "first_played": "1972-12-31",
-      "last_played": "1972-12-31"
-    },
     "Drums and Bass": {
       "performances": [
         {
@@ -453422,27 +453401,6 @@
       "first_played": "1977-02-20",
       "last_played": "1995-06-28"
     },
-    "77": {
-      "performances": [
-        {
-          "date": "1977-03-01",
-          "duration": 544.37,
-          "duration_str": "9:04",
-          "venue": "Multiple"
-        }
-      ],
-      "total_plays": 1,
-      "total_duration": 544.37,
-      "avg_duration": 544.37,
-      "longest": {
-        "date": "1977-03-01",
-        "duration": 544.37,
-        "duration_str": "9:04",
-        "venue": "Multiple"
-      },
-      "first_played": "1977-03-01",
-      "last_played": "1977-03-01"
-    },
     "Full Mix": {
       "performances": [
         {
@@ -461636,27 +461594,6 @@
       "first_played": "1978-09-13",
       "last_played": "1978-12-30"
     },
-    "?": {
-      "performances": [
-        {
-          "date": "1978-09-13",
-          "duration": 886.13,
-          "duration_str": "14:46",
-          "venue": "Sphinx Theatre"
-        }
-      ],
-      "total_plays": 1,
-      "total_duration": 886.13,
-      "avg_duration": 886.13,
-      "longest": {
-        "date": "1978-09-13",
-        "duration": 886.13,
-        "duration_str": "14:46",
-        "venue": "Sphinx Theatre"
-      },
-      "first_played": "1978-09-13",
-      "last_played": "1978-09-13"
-    },
     "Me any My Uncle": {
       "performances": [
         {
@@ -465511,57 +465448,6 @@
       },
       "first_played": "1979-01-08",
       "last_played": "1994-07-24"
-    },
-    ".": {
-      "performances": [
-        {
-          "date": "1979-01-08",
-          "duration": 685.0,
-          "duration_str": "11:25",
-          "venue": "Madison Square Garden"
-        },
-        {
-          "date": "1984-10-14",
-          "duration": 462.0,
-          "duration_str": "7:42",
-          "venue": "Hartford Civic Center"
-        },
-        {
-          "date": "1987-04-10",
-          "duration": 455.0,
-          "duration_str": "7:35",
-          "venue": "UIC Pavilion"
-        },
-        {
-          "date": "1989-04-05",
-          "duration": 279.0,
-          "duration_str": "4:39",
-          "venue": "Crisler Arena - University of Michigan"
-        },
-        {
-          "date": "1989-09-30",
-          "duration": 602.0,
-          "duration_str": "10:02",
-          "venue": "Shoreline Amphitheatre"
-        },
-        {
-          "date": "1990-03-26",
-          "duration": 358.0,
-          "duration_str": "5:58",
-          "venue": "Knickerbocker Arena"
-        }
-      ],
-      "total_plays": 6,
-      "total_duration": 2841.0,
-      "avg_duration": 473.5,
-      "longest": {
-        "date": "1979-01-08",
-        "duration": 685.0,
-        "duration_str": "11:25",
-        "venue": "Madison Square Garden"
-      },
-      "first_played": "1979-01-08",
-      "last_played": "1990-03-26"
     },
     "Set Up": {
       "performances": [

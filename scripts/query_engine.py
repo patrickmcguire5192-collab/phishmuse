@@ -2954,8 +2954,8 @@ class PhishStatsEngine:
         if any(p in question_lower for p in ["career stats", "phish stats", "overall stats", "band stats"]):
             return self.query_career_stats()
 
-        # Pattern: Shows on specific date - "how many shows on 10/31", "shows on halloween"
-        if any(p in question_lower for p in ["shows on", "played on", "on halloween", "on nye", "on new year", "on christmas", "on july 4", "on 4th of july"]):
+        # Pattern: Shows on specific date - "shows on 10/31", "shows today", "shows 12/31"
+        if is_shows_on_date_query(question_lower):
             month_day = self._extract_month_day_from_query(question)
             if month_day:
                 month, day = month_day

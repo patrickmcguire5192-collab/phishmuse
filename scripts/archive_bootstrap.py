@@ -244,6 +244,9 @@ def extract_tracks(metadata: dict) -> list:
         normalized = normalize_song_name(title)
         if not normalized or normalized.lower() in ['stage announcements', 'stage anouncements', 'tuning', 'crowd']:
             continue
+        # Skip junk names (single chars, punctuation-only, pure numbers)
+        if len(normalized) <= 2 or all(c in '?!.-_/*\\;: ' for c in normalized):
+            continue
 
         tracks.append({
             'title': title,
@@ -380,6 +383,8 @@ def consolidate_catalog():
         for track in show.get('tracks', []):
             song = track['song']
             if not song or song.lower() in ['stage announcements', 'stage anouncements', 'tuning', 'crowd']:
+                continue
+            if len(song) <= 2 or all(c in '?!.-_/*\\;: ' for c in song):
                 continue
             song_lower = song.lower()
             if song_lower not in canonical_map:

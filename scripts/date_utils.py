@@ -196,8 +196,16 @@ _MONTHS_INT = {
 # Keywords that indicate a "shows on this date" query
 SHOWS_ON_DATE_KEYWORDS = [
     "shows on", "played on", "shows played on",
+    "shows today",
     "on halloween", "on nye", "on new year", "on christmas",
     "on july 4", "on 4th of july",
+]
+
+# Patterns for "shows 3/13", "shows march 13", "shows 12/31"
+_SHOWS_DATE_PATTERNS = [
+    r'shows\s+\d{1,2}/\d{1,2}',                          # "shows 3/13", "shows 12/31"
+    r'shows\s+(?:' + _MONTH_NAMES + r')\s+\d{1,2}',      # "shows march 13"
+    r'shows\s+(?:' + _MONTH_NAMES + r')$',                # "shows october" (month only — future use)
 ]
 
 
@@ -206,9 +214,15 @@ def extract_month_day_from_query(query: str) -> tuple:
     Extract month and day (no year) from a query.
     Returns (month, day) tuple or None.
 
-    Supports: "October 31", "Oct 31st", "31st of October", "10/31", holidays.
+    Supports: "October 31", "Oct 31st", "31st of October", "10/31", "today", holidays.
     """
     query_lower = query.lower()
+
+    # "today" → use current date
+    if 'today' in query_lower:
+        from datetime import datetime
+        now = datetime.now()
+        return (now.month, now.day)
 
     # Check holiday names first (longer names first to avoid substring issues)
     for holiday in sorted(HOLIDAYS.keys(), key=len, reverse=True):
@@ -241,7 +255,9 @@ def extract_month_day_from_query(query: str) -> tuple:
 
 def is_shows_on_date_query(question_lower: str) -> bool:
     """Check if a query is asking about shows on a specific month/day."""
-    return any(kw in question_lower for kw in SHOWS_ON_DATE_KEYWORDS)
+    if any(kw in question_lower for kw in SHOWS_ON_DATE_KEYWORDS):
+        return True
+    return any(re.search(pat, question_lower) for pat in _SHOWS_DATE_PATTERNS)
 
 
 def detect_holiday_name(question_lower: str) -> str:
@@ -261,6 +277,7 @@ ON_THIS_DAY_KEYWORDS = [
     "today in jam",
     "today in history",
     "today in jam history",
+    "shows today",
 ]
 
 
