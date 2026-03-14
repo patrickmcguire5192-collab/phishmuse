@@ -1852,6 +1852,8 @@ class UnifiedJamMuse:
             return "sts9"
         if any(word in q_lower for word in ["billy strings", "bmfs"]):
             return "billy"
+        if any(word in q_lower for word in ["spafford", "spaff"]):
+            return "spafford"
 
         # Check aliases - sort by length (longest first) to avoid partial matches
         # e.g., "fluffhead" should match before "head"

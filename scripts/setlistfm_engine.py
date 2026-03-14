@@ -495,6 +495,62 @@ SETLISTFM_BANDS = {
             "Red Daisy", "Know It All", "Secrets"
         ],
     },
+
+    "spafford": {
+        "name": "Spafford",
+        "mbid": "a4ad4581-721e-4123-aa3e-15b36490cf0f",
+        "aliases": ["spafford", "spaff"],
+
+        "song_aliases": {
+            "all in": "All In",
+            "ain't that wrong": "Ain't That Wrong",
+            "aint that wrong": "Ain't That Wrong",
+            "backdoor funkadelic": "Backdoor Funkadelic",
+            "bee jam": "Bee Jam",
+            "bees": "Bee Jam",
+            "burning down the house": "Burning Down the House",
+            "classin": "Classin'",
+            "dead end road": "Dead End Road",
+            "der": "Dead End Road",
+            "electric taco stand": "Electric Taco Stand",
+            "ets": "Electric Taco Stand",
+            "far away": "Far Away",
+            "from the dust": "From the Dust",
+            "ftd": "From the Dust",
+            "funkadelic": "Backdoor Funkadelic",
+            "galisteo way": "Galisteo Way",
+            "happy once again": "Happy Once Again",
+            "hearts a mess": "Heart's a Mess",
+            "heart's a mess": "Heart's a Mess",
+            "highway jones": "Highway Jones",
+            "in the eyes of the world": "In the Eyes of the World",
+            "leave the light on": "Leave the Light On",
+            "ltlo": "Leave the Light On",
+            "meander": "Meander",
+            "mind's eye": "Mind's Eye",
+            "minds eye": "Mind's Eye",
+            "minds lichen": "Mind's Lichen",
+            "mind's lichen": "Mind's Lichen",
+            "people watching": "People Watching",
+            "plan b": "Plan B",
+            "postcard from camp": "Postcard From Camp",
+            "red desert": "Red Desert",
+            "slip and squander": "Slip and Squander",
+            "slow burn": "Slow Burn",
+            "todds tots": "Todd's Tots",
+            "todd's tots": "Todd's Tots",
+            "virtual bean dip": "Virtual Bean Dip",
+            "vbd": "Virtual Bean Dip",
+            "weasel": "Weasel",
+        },
+
+        "jam_vehicles": [
+            "Electric Taco Stand", "Backdoor Funkadelic", "All In",
+            "Bee Jam", "Leave the Light On", "Mind's Lichen",
+            "Plan B", "Virtual Bean Dip", "People Watching",
+            "Ain't That Wrong", "Slip and Squander"
+        ],
+    },
 }
 
 
