@@ -1072,12 +1072,59 @@ class PhishStatsEngine:
             raw_data={"song_stats": stats, "duration_stats": duration_data}
         )
 
-    def query_last_played(self, song_name: str) -> QueryResult:
-        """Query for when a song was last played."""
+    def query_last_played(self, song_name: str, venue: str = None) -> QueryResult:
+        """Query for when a song was last played, optionally at a specific venue."""
         if song_name not in self.song_stats:
             return QueryResult(
                 success=False,
                 answer=f"I couldn't find '{song_name}' in the database."
+            )
+
+        if venue:
+            # Find all performances at this venue
+            slug = self._song_to_slug(song_name)
+            venue_display = self._get_equivalent_venue_display(venue) or venue
+
+            # Search through shows for this song at this venue
+            venue_plays = []
+            for show in self.shows:
+                if not self._match_venue(show.get("venue", ""), venue):
+                    continue
+                for song in show.get("songs", []):
+                    if song.get("song", "").lower() == song_name.lower():
+                        venue_plays.append(show)
+                        break
+
+            if not venue_plays:
+                return QueryResult(
+                    success=False,
+                    answer=f"I couldn't find any performances of {song_name} at {venue_display}.",
+                    related_queries=[f"last time they played {song_name}", f"longest {song_name} at {venue}"]
+                )
+
+            venue_plays.sort(key=lambda s: s.get("showdate", ""))
+            last_show = venue_plays[-1]
+            last_date = last_show.get("showdate", "")
+            count = len(venue_plays)
+
+            answer = f"{song_name} was last played at {venue_display} on {last_date}. It has been played there {count} times.\n\n{_phishin_link(last_date)}"
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=last_date,
+                card_data={
+                    "type": "count",
+                    "title": song_name,
+                    "stat": last_date,
+                    "stat_label": f"last at {venue_display}",
+                    "subtitle": f"Played {count} times at {venue_display}"
+                },
+                related_queries=[
+                    f"longest {song_name} at {venue}",
+                    f"last time they played {song_name}",
+                    f"{song_name} stats"
+                ],
             )
 
         stats = self.song_stats[song_name]
@@ -1105,12 +1152,69 @@ class PhishStatsEngine:
             raw_data=stats
         )
 
-    def query_gap(self, song_name: str) -> QueryResult:
-        """Query for how many shows since a song was last played."""
+    def query_gap(self, song_name: str, venue: str = None) -> QueryResult:
+        """Query for how many shows since a song was last played, optionally at a venue."""
         if song_name not in self.song_stats:
             return QueryResult(
                 success=False,
                 answer=f"I couldn't find '{song_name}' in the database."
+            )
+
+        if venue:
+            venue_display = self._get_equivalent_venue_display(venue) or venue
+
+            # Find all performances at this venue
+            venue_plays = []
+            for show in self.shows:
+                if not self._match_venue(show.get("venue", ""), venue):
+                    continue
+                for song in show.get("songs", []):
+                    if song.get("song", "").lower() == song_name.lower():
+                        venue_plays.append(show)
+                        break
+
+            if not venue_plays:
+                return QueryResult(
+                    success=False,
+                    answer=f"I couldn't find any performances of {song_name} at {venue_display}.",
+                    related_queries=[f"gap on {song_name}", f"longest {song_name} at {venue}"]
+                )
+
+            venue_plays.sort(key=lambda s: s.get("showdate", ""))
+            last_played = venue_plays[-1].get("showdate", "")
+            count = len(venue_plays)
+
+            # Count shows at this venue since last play
+            venue_shows = sorted(
+                [s for s in self.shows if self._match_venue(s.get("venue", ""), venue)],
+                key=lambda s: s["showdate"], reverse=True
+            )
+            gap = sum(1 for s in venue_shows if s["showdate"] > last_played)
+
+            if gap == 0:
+                answer = f"{song_name} was played at the most recent {venue_display} show ({last_played})!\n\n{_phishin_link(last_played)}"
+            else:
+                answer = f"{song_name} has a gap of {gap} {venue_display} shows. Last played there on {last_played}.\n\n{_phishin_link(last_played)}"
+
+            answer += f"\nPlayed {count} times at {venue_display} total."
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=str(gap),
+                card_data={
+                    "type": "count",
+                    "title": song_name,
+                    "stat": gap,
+                    "stat_label": f"show gap at {venue_display}",
+                    "subtitle": f"Last at {venue_display}: {last_played}",
+                    "extra": {"play_count": count, "last_played": last_played}
+                },
+                related_queries=[
+                    f"longest {song_name} at {venue}",
+                    f"gap on {song_name}",
+                    f"{song_name} stats"
+                ],
             )
 
         stats = self.song_stats[song_name]
@@ -3133,7 +3237,7 @@ class PhishStatsEngine:
             else:
                 song = self._normalize_song_name(base_question)
                 if song:
-                    return self.query_gap(song)
+                    return self.query_gap(song, venue=venue)
                 return QueryResult(
                     success=False,
                     answer="I couldn't identify which song you're asking about. Try 'how many shows since they played Harpua'."
@@ -3145,7 +3249,7 @@ class PhishStatsEngine:
             if not re.search(r'\d+\s*\+?\s*min|over\s+\d+', question_lower):
                 song = self._normalize_song_name(base_question)
                 if song:
-                    return self.query_last_played(song)
+                    return self.query_last_played(song, venue=venue)
                 return QueryResult(
                     success=False,
                     answer="I couldn't identify which song you're asking about."
