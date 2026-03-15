@@ -458,8 +458,8 @@ class ArchiveDeadEngine:
                 related_queries=[f"longest {canonical}", f"{canonical} stats"]
             )
 
-    def query_play_count(self, song_name: str) -> QueryResult:
-        """Get play count for a song."""
+    def query_play_count(self, song_name: str, year: int = None) -> QueryResult:
+        """Get play count for a song, optionally filtered by year."""
         canonical = self._resolve_song(song_name)
         if not canonical:
             return QueryResult(
@@ -468,16 +468,43 @@ class ArchiveDeadEngine:
             )
 
         song_data = self.songs.get(canonical, {})
-        count = song_data.get('total_plays', 0)
+        total_count = song_data.get('total_plays', 0)
+
+        if year:
+            year_str = str(year)
+            performances = song_data.get('performances', [])
+            year_perfs = [p for p in performances if p.get('date', '').startswith(year_str)]
+            count = len(year_perfs)
+
+            if count == 0:
+                answer = f"The Grateful Dead did not play {canonical} in {year}. It was played {total_count} times total."
+                related = [f"Dead {canonical} in {year - 1}", f"Dead {canonical} in {year + 1}", f"longest {canonical}"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                dates = sorted(p.get('date', '') for p in year_perfs)
+                answer = (
+                    f"The Grateful Dead played {canonical} **{count} times** in {year} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                if dates:
+                    answer += f"\n\nFirst in {year}: {dates[0]}\nLast in {year}: {dates[-1]}"
+                related = [f"longest {canonical} in {year}", f"Dead {canonical} in {year - 1}", f"Dead {canonical} in {year + 1}"]
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=str(count),
+                related_queries=related
+            )
 
         return QueryResult(
             success=True,
-            answer=f"The Grateful Dead played {canonical} {count} times.",
-            highlight=str(count),
+            answer=f"The Grateful Dead played {canonical} {total_count} times.",
+            highlight=str(total_count),
             card_data={
                 'type': 'count',
                 'title': canonical,
-                'stat': count,
+                'stat': total_count,
                 'stat_label': 'times played'
             },
             related_queries=[
@@ -956,7 +983,7 @@ class ArchiveDeadEngine:
             match = re.search(pattern, q)
             if match:
                 song = match.group(1).strip().rstrip('?')
-                return self.query_play_count(song)
+                return self.query_play_count(song, year=year)
 
         # First played
         first_match = re.search(r'(?:when|what).*first.*(?:play|perform)\w*\s+(.+)', q)

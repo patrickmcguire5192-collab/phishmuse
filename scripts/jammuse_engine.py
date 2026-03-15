@@ -690,8 +690,8 @@ class JamMuseEngine:
             ]
         )
 
-    def query_play_count(self, song_name: str) -> QueryResult:
-        """How many times has a song been played?"""
+    def query_play_count(self, song_name: str, year: int = None) -> QueryResult:
+        """How many times has a song been played, optionally filtered by year?"""
         normalized = self._normalize_song_name(song_name) or song_name
 
         # Find in songs
@@ -715,17 +715,43 @@ class JamMuseEngine:
         if self.artist_id:
             performances = [p for p in performances if p.get("artist_id") == self.artist_id]
 
-        count = len(set(p["showdate"] for p in performances if p.get("showdate")))
+        all_dates = sorted(set(p["showdate"] for p in performances if p.get("showdate")))
+        total_count = len(all_dates)
+
+        if year:
+            year_str = str(year)
+            year_dates = [d for d in all_dates if d.startswith(year_str)]
+            count = len(year_dates)
+
+            if count == 0:
+                answer = f"{self.band_name} did not play {normalized} in {year}. It has been played {total_count} times total."
+                related = [f"{normalized} in {year - 1}", f"{normalized} in {year + 1}", f"longest {normalized}"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                answer = (
+                    f"{self.band_name} played {normalized} **{count} times** in {year} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                answer += f"\n\nFirst in {year}: {year_dates[0]}\nLast in {year}: {year_dates[-1]}"
+                related = [f"longest {normalized} in {year}", f"{normalized} in {year - 1}", f"{normalized} in {year + 1}"]
+
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=answer,
+                highlight=str(count),
+                related_queries=related
+            )
 
         return QueryResult(
             success=True,
             band=self.band_name,
-            answer=f"{self.band_name} has played {normalized} {count} times.",
-            highlight=str(count),
+            answer=f"{self.band_name} has played {normalized} {total_count} times.",
+            highlight=str(total_count),
             card_data={
                 "type": "count",
                 "title": normalized,
-                "stat": count,
+                "stat": total_count,
                 "stat_label": "times played"
             }
         )
@@ -1533,7 +1559,7 @@ class JamMuseEngine:
         if any(word in q for word in ["how many times", "how often", "play count", "times played"]):
             song = self._normalize_song_name(base_question)
             if song:
-                return self.query_play_count(song)
+                return self.query_play_count(song, year=year)
 
         # Show count queries
         if any(word in q for word in ["how many shows", "show count", "total shows"]):

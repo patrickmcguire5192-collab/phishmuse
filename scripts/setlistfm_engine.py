@@ -714,13 +714,13 @@ class SetlistFMEngine:
     # QUERY METHODS
     # =========================================================================
 
-    def query_play_count(self, song_name: str) -> QueryResult:
-        """How many times has a song been played?"""
+    def query_play_count(self, song_name: str, year: int = None) -> QueryResult:
+        """How many times has a song been played, optionally filtered by year?"""
         normalized = self._normalize_song_name(song_name) or song_name
         performances = self._get_song_performances(normalized)
-        count = len(performances)
+        total_count = len(performances)
 
-        if count == 0:
+        if total_count == 0:
             return QueryResult(
                 success=False,
                 band=self.band_name,
@@ -728,15 +728,47 @@ class SetlistFMEngine:
                        f"Try one of their popular songs: {', '.join(self.config['jam_vehicles'][:3])}."
             )
 
+        if year:
+            year_str = str(year)
+            year_perfs = []
+            for p in performances:
+                dt = self._parse_date(p["date"])
+                if dt and dt.strftime("%Y") == year_str:
+                    year_perfs.append(p)
+            count = len(year_perfs)
+
+            if count == 0:
+                answer = f"{self.band_name} did not play {normalized} in {year}. It has been played {total_count} times total."
+                related = [f"{normalized} in {year - 1}", f"{normalized} in {year + 1}", f"longest {normalized}"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                year_dates = sorted(self._parse_date(p["date"]) for p in year_perfs)
+                first_date = year_dates[0].strftime("%Y-%m-%d")
+                last_date = year_dates[-1].strftime("%Y-%m-%d")
+                answer = (
+                    f"{self.band_name} played {normalized} **{count} times** in {year} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                answer += f"\n\nFirst in {year}: {first_date}\nLast in {year}: {last_date}"
+                related = [f"{normalized} in {year - 1}", f"{normalized} in {year + 1}"]
+
+            return QueryResult(
+                success=True,
+                band=self.band_name,
+                answer=answer,
+                highlight=str(count),
+                related_queries=related
+            )
+
         return QueryResult(
             success=True,
             band=self.band_name,
-            answer=f"{self.band_name} has played {normalized} {count} times.",
-            highlight=str(count),
+            answer=f"{self.band_name} has played {normalized} {total_count} times.",
+            highlight=str(total_count),
             card_data={
                 "type": "count",
                 "title": normalized,
-                "stat": count,
+                "stat": total_count,
                 "stat_label": "times played"
             },
             related_queries=[
@@ -1102,9 +1134,11 @@ class SetlistFMEngine:
 
         # Play count queries
         if any(word in q for word in ["how many times", "how often", "play count", "times played"]):
+            year_match = re.search(r'\b(20\d{2}|19\d{2})\b', question)
+            year = int(year_match.group(1)) if year_match else None
             song = self._normalize_song_name(question)
             if song:
-                return self.query_play_count(song)
+                return self.query_play_count(song, year=year)
 
         # Show count queries
         if any(word in q for word in ["how many shows", "show count", "total shows"]):
