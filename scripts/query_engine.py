@@ -970,17 +970,16 @@ class PhishStatsEngine:
         if year:
             year_str = str(year)
             count = 0
+            total_count = 0
             dates = []
             for show in self.shows:
-                if not show["showdate"].startswith(year_str):
-                    continue
                 for song in show.get("songs", []):
                     if song.get("song") == song_name:
-                        count += 1
-                        dates.append(show["showdate"])
+                        total_count += 1
+                        if show["showdate"].startswith(year_str):
+                            count += 1
+                            dates.append(show["showdate"])
                         break
-
-            total_count = stats["play_count"]
 
             if count == 0:
                 answer = f"{song_name} was not played in {year}. It has been played {total_count} times total."
@@ -1004,8 +1003,8 @@ class PhishStatsEngine:
                 raw_data={"count": count, "year": year, "dates": dates}
             )
 
-        # Default: total play count
-        count = stats["play_count"]
+        # Default: total play count (count from shows for accuracy)
+        count = sum(1 for show in self.shows for song in show.get("songs", []) if song.get("song") == song_name)
         first = stats["first_played"]
         last = stats["last_played"]
 
