@@ -237,6 +237,50 @@ class ArchiveDeadEngine:
             return int(match.group(1))
         return None
 
+    def _extract_decade_from_query(self, query: str) -> tuple:
+        """
+        Extract a decade from a query like 'longest dark star of the 70s'.
+        Returns (clean_query, decade_label, start_year, end_year) or (query, None, None, None).
+        """
+        q_lower = query.lower()
+
+        # Patterns: "the 70s", "the 80s", "the 1970s", "1980s", "70's", "the seventies"
+        decade_patterns = [
+            (r'\b(?:in|of|from|during)\s+the\s+(19)?(\d)0s\b', None),
+            (r'\b(?:in|of|from|during)\s+(19)?(\d)0s\b', None),
+            (r'\bthe\s+(19)?(\d)0\'?s\b', None),
+            (r'\b(19)(\d)0\'?s\b', None),
+        ]
+
+        for pattern, _ in decade_patterns:
+            match = re.search(pattern, q_lower)
+            if match:
+                decade_digit = int(match.group(2))
+                if decade_digit >= 6:  # 60s-90s
+                    start = 1960 + (decade_digit * 10 - 60)
+                    end = start + 9
+                    label = f"the {start // 10 % 10}0s"
+                else:
+                    continue
+                clean = re.sub(pattern, '', query, count=1, flags=re.IGNORECASE).strip()
+                clean = re.sub(r'\s+(in|of|from|during)$', '', clean, flags=re.IGNORECASE).strip()
+                return clean, label, start, end
+
+        # Word forms: "the sixties", "the seventies", etc.
+        word_decades = {
+            'sixties': (1960, 1969), 'seventies': (1970, 1979),
+            'eighties': (1980, 1989), 'nineties': (1990, 1999),
+        }
+        for word, (start, end) in word_decades.items():
+            pattern = rf'\b(?:in|of|from|during)?\s*the\s+{word}\b'
+            match = re.search(pattern, q_lower)
+            if match:
+                label = f"the {word}"
+                clean = re.sub(pattern, '', query, count=1, flags=re.IGNORECASE).strip()
+                return clean, label, start, end
+
+        return query, None, None, None
+
     # Top Dead venues with common shorthand aliases
     VENUE_ALIASES = {
         "msg": "Madison Square Garden",
@@ -335,7 +379,7 @@ class ArchiveDeadEngine:
 
         return False
 
-    def query_longest(self, song_name: str, top_n: int = 1, year: int = None, venue: str = None) -> QueryResult:
+    def query_longest(self, song_name: str, top_n: int = 1, year: int = None, venue: str = None, decade: str = None, decade_start: int = None, decade_end: int = None) -> QueryResult:
         """Find the longest version(s) of a song, optionally filtered by year or venue."""
         canonical = self._resolve_song(song_name)
         if not canonical:
@@ -364,6 +408,17 @@ class ArchiveDeadEngine:
                     related_queries=[f"longest {canonical}", f"{canonical} stats"]
                 )
 
+        # Filter by decade if specified
+        if decade_start and decade_end:
+            performances = [p for p in performances
+                           if p.get('date') and decade_start <= int(p['date'][:4]) <= decade_end]
+            if not performances:
+                return QueryResult(
+                    success=False,
+                    answer=f"No performances of {canonical} found in {decade}.",
+                    related_queries=[f"longest {canonical}", f"{canonical} stats"]
+                )
+
         # Filter by venue if specified
         if venue:
             performances = [p for p in performances if self._match_venue(p.get('venue', ''), venue)]
@@ -381,6 +436,8 @@ class ArchiveDeadEngine:
         context_parts = []
         if year:
             context_parts.append(f"in {year}")
+        if decade:
+            context_parts.append(f"in {decade}")
         if venue:
             context_parts.append(f"at {venue}")
         filter_context = " " + " ".join(context_parts) if context_parts else ""
@@ -458,8 +515,8 @@ class ArchiveDeadEngine:
                 related_queries=[f"longest {canonical}", f"{canonical} stats"]
             )
 
-    def query_play_count(self, song_name: str, year: int = None) -> QueryResult:
-        """Get play count for a song, optionally filtered by year."""
+    def query_play_count(self, song_name: str, year: int = None, decade: str = None, decade_start: int = None, decade_end: int = None) -> QueryResult:
+        """Get play count for a song, optionally filtered by year or decade."""
         canonical = self._resolve_song(song_name)
         if not canonical:
             return QueryResult(
@@ -469,10 +526,36 @@ class ArchiveDeadEngine:
 
         song_data = self.songs.get(canonical, {})
         total_count = song_data.get('total_plays', 0)
+        performances = song_data.get('performances', [])
+
+        # Decade filter
+        if decade_start and decade_end:
+            decade_perfs = [p for p in performances
+                          if p.get('date') and decade_start <= int(p['date'][:4]) <= decade_end]
+            count = len(decade_perfs)
+
+            if count == 0:
+                answer = f"The Grateful Dead did not play {canonical} in {decade}. It was played {total_count} times total."
+                related = [f"longest {canonical} in {decade}", f"{canonical} stats"]
+            else:
+                pct = (count / total_count) * 100 if total_count > 0 else 0
+                dates = sorted(p.get('date', '') for p in decade_perfs)
+                answer = (
+                    f"The Grateful Dead played {canonical} **{count} times** in {decade} "
+                    f"({pct:.1f}% of {total_count} total performances)."
+                )
+                answer += f"\n\nFirst in {decade}: {dates[0]}\nLast in {decade}: {dates[-1]}"
+                related = [f"longest {canonical} in {decade}", f"{canonical} stats"]
+
+            return QueryResult(
+                success=True,
+                answer=answer,
+                highlight=str(count),
+                related_queries=related
+            )
 
         if year:
             year_str = str(year)
-            performances = song_data.get('performances', [])
             year_perfs = [p for p in performances if p.get('date', '').startswith(year_str)]
             count = len(year_perfs)
 
@@ -953,8 +1036,14 @@ class ArchiveDeadEngine:
                 limit = 1
             return self.query_longest_overall(limit=limit)
 
+        # Extract decade if present (e.g., "longest Dark Star of the 70s")
+        q_base_for_decade = q_base
+        q_base_for_decade, decade, decade_start, decade_end = self._extract_decade_from_query(q_base_for_decade)
+        if decade:
+            q_base = q_base_for_decade
+
         # Extract year if present (e.g., "longest Dark Star in 1973", "longest Dark Star of 1977")
-        year = self._extract_year_from_query(q_base)
+        year = self._extract_year_from_query(q_base) if not decade else None
         # Remove year and preposition from query for cleaner song name extraction
         q_clean = re.sub(r'\s+(?:in|of|from|during)\s+(?:19[6-9]\d|20[0-2]\d)\b', '', q_base).strip()
         q_clean = re.sub(r'\b(?:19[6-9]\d|20[0-2]\d)\b', '', q_clean).strip()
@@ -964,13 +1053,13 @@ class ArchiveDeadEngine:
         if top_n_match:
             n = int(top_n_match.group(1))
             song = top_n_match.group(2).strip()
-            return self.query_longest(song, top_n=min(n, 25), year=year, venue=venue)
+            return self.query_longest(song, top_n=min(n, 25), year=year, venue=venue, decade=decade, decade_start=decade_start, decade_end=decade_end)
 
         # Longest patterns (for specific song)
         longest_match = re.search(r'longest\s+(.+?)(?:\s+ever|\s+version|\s+jam)?$', q_clean)
         if longest_match:
             song = longest_match.group(1).strip()
-            return self.query_longest(song, year=year, venue=venue)
+            return self.query_longest(song, year=year, venue=venue, decade=decade, decade_start=decade_start, decade_end=decade_end)
 
         # Play count patterns
         count_patterns = [
@@ -980,10 +1069,10 @@ class ArchiveDeadEngine:
             r'times played\s+(.+)',
         ]
         for pattern in count_patterns:
-            match = re.search(pattern, q)
+            match = re.search(pattern, q_clean)
             if match:
                 song = match.group(1).strip().rstrip('?')
-                return self.query_play_count(song, year=year)
+                return self.query_play_count(song, year=year, decade=decade, decade_start=decade_start, decade_end=decade_end)
 
         # First played
         first_match = re.search(r'(?:when|what).*first.*(?:play|perform)\w*\s+(.+)', q)
