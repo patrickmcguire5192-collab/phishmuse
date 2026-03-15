@@ -1616,6 +1616,22 @@ try:
 except ImportError:
     DEAD_AVAILABLE = False
 
+# Import Phantasy Tour engine (SCI, Disco Biscuits, Lotus)
+try:
+    from scripts.phantasytour_engine import PhantasyTourEngine, PT_BANDS, get_all_pt_aliases
+    PT_AVAILABLE = True
+except ImportError:
+    PT_AVAILABLE = False
+    PT_BANDS = {}
+
+# Import Relisten duration engine (supplementary duration data for PT/setlistfm bands)
+try:
+    from scripts.relisten_engine import RelistenDurationEngine, RELISTEN_BANDS
+    RELISTEN_AVAILABLE = True
+except ImportError:
+    RELISTEN_AVAILABLE = False
+    RELISTEN_BANDS = {}
+
 
 class UnifiedJamMuse:
     """
@@ -1626,12 +1642,14 @@ class UnifiedJamMuse:
     - Phish (via PhishStatsEngine)
     - Goose, King Gizzard (via Songfish/JamMuseEngine)
     - Umphrey's McGee, Widespread Panic, moe., STS9, Billy Strings (via setlist.fm)
+    - String Cheese Incident, Disco Biscuits, Lotus (via Phantasy Tour)
     """
 
     def __init__(self, include_phish: bool = True):
         """Initialize with all band engines."""
         self.engines = {}
         self.setlistfm_engines = {}
+        self.pt_engines = {}
         self._song_to_band = {}  # Maps song names to band keys
         self._alias_to_band = {}  # Maps aliases to band keys
         self.include_phish = include_phish
@@ -1647,6 +1665,11 @@ class UnifiedJamMuse:
             for band_key in SETLISTFM_BANDS:
                 self.setlistfm_engines[band_key] = SetlistFMEngine(band_key)
 
+        # Initialize Phantasy Tour engines (SCI, Disco Biscuits, Lotus)
+        if PT_AVAILABLE:
+            for band_key in PT_BANDS:
+                self.pt_engines[band_key] = PhantasyTourEngine(band_key)
+
         # Initialize Archive.org Grateful Dead engine
         if DEAD_AVAILABLE:
             try:
@@ -1654,6 +1677,30 @@ class UnifiedJamMuse:
             except Exception as e:
                 print(f"Warning: Could not load Dead engine: {e}")
                 self._dead_engine = None
+
+        # Initialize Relisten duration engines (supplementary for PT/setlistfm bands)
+        self.relisten_engines = {}
+        if RELISTEN_AVAILABLE:
+            for band_key in RELISTEN_BANDS:
+                # Only create for bands that use PT or setlistfm (not Songfish/Phish/Dead)
+                if band_key in self.pt_engines or band_key in self.setlistfm_engines:
+                    # Pass song_aliases and jam_vehicles from the primary engine config
+                    song_aliases = {}
+                    jam_vehicles = []
+                    if band_key in self.pt_engines:
+                        cfg = PT_BANDS.get(band_key, {})
+                        song_aliases = cfg.get("song_aliases", {})
+                        jam_vehicles = cfg.get("jam_vehicles", [])
+                    elif band_key in self.setlistfm_engines:
+                        cfg = SETLISTFM_BANDS.get(band_key, {})
+                        song_aliases = cfg.get("song_aliases", {})
+                        jam_vehicles = cfg.get("jam_vehicles", [])
+                    try:
+                        self.relisten_engines[band_key] = RelistenDurationEngine(
+                            band_key, song_aliases=song_aliases, jam_vehicles=jam_vehicles
+                        )
+                    except Exception as e:
+                        print(f"Warning: Could not load Relisten engine for {band_key}: {e}")
 
         # Build song lookup tables
         self._build_song_index()
@@ -1681,6 +1728,14 @@ class UnifiedJamMuse:
                     self._alias_to_band[alias.lower()] = band_key
 
                 # Index band name aliases
+                for alias in config.get("aliases", []):
+                    self._alias_to_band[alias.lower()] = band_key
+
+        # Index Phantasy Tour bands (SCI, Disco Biscuits, Lotus)
+        if PT_AVAILABLE:
+            for band_key, config in PT_BANDS.items():
+                for alias in config.get("song_aliases", {}).keys():
+                    self._alias_to_band[alias.lower()] = band_key
                 for alias in config.get("aliases", []):
                     self._alias_to_band[alias.lower()] = band_key
 
@@ -1880,6 +1935,13 @@ class UnifiedJamMuse:
             return "billy"
         if any(word in q_lower for word in ["spafford", "spaff"]):
             return "spafford"
+        # Phantasy Tour bands
+        if any(word in q_lower for word in ["string cheese", "sci ", "cheese incident"]):
+            return "sci"
+        if any(word in q_lower for word in ["disco biscuits", "biscuits", "bisco", "tdb "]):
+            return "biscuits"
+        if re.search(r'\blotus\b', q_lower):
+            return "lotus"
 
         # Check aliases - sort by length (longest first) to avoid partial matches
         # e.g., "fluffhead" should match before "head"
@@ -1953,6 +2015,8 @@ class UnifiedJamMuse:
             return self.engines[band_key]
         elif band_key in self.setlistfm_engines:
             return self.setlistfm_engines[band_key]
+        elif band_key in self.pt_engines:
+            return self.pt_engines[band_key]
         return None
 
     def query_on_this_day(self, month: int, day: int, holiday_name: str = None) -> QueryResult:
@@ -2061,6 +2125,46 @@ class UnifiedJamMuse:
                        "- 'when did they last play Chilly Water' (Widespread Panic)"
             )
 
+        # Duration queries → route to Relisten for bands whose primary engine lacks duration data
+        # Phish, Dead, Goose, KGLW already have native duration support — skip those
+        if band_key in self.relisten_engines:
+            q_lower_dur = question.lower()
+            year_filter = extract_year_filter(question)
+
+            if "longest" in q_lower_dur:
+                # Distinguish "longest {song}" vs "longest ever jams"
+                # Use [\w\s]* to allow band names between keywords
+                overall_patterns = [
+                    r"longest\s+ever[\w\s]*(jams?|songs?|versions?|performances?)",
+                    r"longest[\w\s]*(jams?|songs?|versions?|performances?)\s+ever",
+                    r"longest[\w\s]*(jams?|songs?|versions?|performances?)\s+of\s+all\s+time",
+                    r"longest\s+ever\s+played",
+                    r"longest\s+ever$",
+                    r"longest[\w\s]*(jams?|songs?|versions?|performances?)$",
+                ]
+                is_overall = any(re.search(pat, q_lower_dur) for pat in overall_patterns)
+
+                if is_overall:
+                    lim = 5 if any(w in q_lower_dur for w in ["jams", "songs", "versions"]) else 1
+                    return self._add_band_context(
+                        self.relisten_engines[band_key].query_longest_overall(limit=lim), band_key
+                    )
+                else:
+                    # Extract song name
+                    song = self.relisten_engines[band_key]._resolve_song_name(question)
+                    if song:
+                        return self._add_band_context(
+                            self.relisten_engines[band_key].query_longest(song, year=year_filter), band_key
+                        )
+
+            if any(w in q_lower_dur for w in ["how long", "average duration", "avg duration",
+                                                "average length", "typical length"]):
+                song = self.relisten_engines[band_key]._resolve_song_name(question)
+                if song:
+                    return self._add_band_context(
+                        self.relisten_engines[band_key].query_average_duration(song), band_key
+                    )
+
         # If query has a date but no setlist keyword, and no other intent,
         # treat it as a setlist lookup (e.g., "Grateful Dead 5/8/77")
         q_lower = question.lower()
@@ -2126,6 +2230,9 @@ class UnifiedJamMuse:
         elif band_key in self.setlistfm_engines:
             # Setlist.fm bands (Umphrey's, WSP, moe., STS9, Billy Strings)
             result = self.setlistfm_engines[band_key].query(normalized_question)
+        elif band_key in self.pt_engines:
+            # Phantasy Tour bands (SCI, Disco Biscuits, Lotus)
+            result = self.pt_engines[band_key].query(normalized_question)
         else:
             return QueryResult(
                 success=False,
@@ -2139,6 +2246,7 @@ class UnifiedJamMuse:
         """Return list of available bands."""
         bands = list(self.engines.keys())  # Songfish bands
         bands.extend(self.setlistfm_engines.keys())  # Setlist.fm bands
+        bands.extend(self.pt_engines.keys())  # Phantasy Tour bands
         if self.include_phish:
             bands.insert(0, "phish")
         if self._dead_engine:
