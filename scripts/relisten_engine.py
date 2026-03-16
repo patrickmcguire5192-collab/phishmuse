@@ -48,7 +48,8 @@ except OSError:
 # Index directory (same place)
 INDEX_DIR = CACHE_DIR
 
-CACHE_EXPIRY = 24 * 3600  # 24 hours
+CACHE_EXPIRY = 7 * 24 * 3600       # 7 days for per-show API responses
+INDEX_EXPIRY = 30 * 24 * 3600      # 30 days for compiled duration indexes
 
 API_BASE = "https://api.relisten.net/api/v2"
 
@@ -271,7 +272,7 @@ class RelistenDurationEngine:
         idx_path = self._index_path()
         if idx_path.exists():
             age = time.time() - idx_path.stat().st_mtime
-            if age < CACHE_EXPIRY:
+            if age < INDEX_EXPIRY:
                 try:
                     self._duration_index = json.loads(idx_path.read_text())
                     return self._duration_index
