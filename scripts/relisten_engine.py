@@ -271,15 +271,18 @@ class RelistenDurationEngine:
 
         idx_path = self._index_path()
         if idx_path.exists():
-            age = time.time() - idx_path.stat().st_mtime
-            if age < INDEX_EXPIRY:
-                try:
-                    self._duration_index = json.loads(idx_path.read_text())
+            try:
+                loaded = json.loads(idx_path.read_text())
+                # Check built_at timestamp inside the index (not filesystem mtime)
+                built_at = loaded.get("built_at", 0)
+                age = time.time() - built_at
+                if age < INDEX_EXPIRY:
+                    self._duration_index = loaded
                     return self._duration_index
-                except (json.JSONDecodeError, OSError):
-                    pass
+            except (json.JSONDecodeError, OSError):
+                pass
 
-        # Build index
+        # Build index (only happens locally or when index is truly expired)
         self._duration_index = self._build_duration_index()
         return self._duration_index
 
