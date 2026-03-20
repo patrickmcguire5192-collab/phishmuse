@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JamMuse - Ask Anything About Jam Bands</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
@@ -123,13 +124,15 @@
         </div>
         <span class="logo-text text-2xl"><span class="rainbow-text">Jam</span><span class="text-white">Muse</span></span>
       </div>
-      <div class="text-sm text-gray-500 hidden sm:block">
-        Grateful Dead | Phish | Goose | King Gizzard | Umphrey's | Widespread | moe. | STS9 | Billy Strings
-      </div>
+      <nav class="flex gap-1 bg-gray-900 rounded-lg p-1">
+        <button id="tabQuery" onclick="switchTab('query')" class="px-4 py-1.5 rounded-md text-sm font-medium transition bg-gray-700 text-white">Ask</button>
+        <button id="tabDashboard" onclick="switchTab('dashboard')" class="px-4 py-1.5 rounded-md text-sm font-medium transition text-gray-400 hover:text-white">Dashboard</button>
+      </nav>
     </div>
   </header>
 
   <!-- Main Content -->
+  <div id="queryView">
   <main class="max-w-4xl mx-auto px-4 py-12">
 
     <!-- Hero Section -->
@@ -186,6 +189,114 @@
     </div>
 
   </main>
+  </div>
+
+  <!-- Dashboard View -->
+  <div id="dashboardView" class="hidden">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- Dashboard Header -->
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Phish</span> <span class="text-white">Dashboard</span></h1>
+        <p class="text-gray-500 text-sm mt-1">JaaS — Jams as Awesome Stats</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label class="text-gray-400 text-sm">Years:</label>
+        <select id="dashStartYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+        <span class="text-gray-500">to</span>
+        <select id="dashEndYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+      </div>
+    </div>
+
+    <!-- KPI Cards -->
+    <div id="kpiCards" class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Total Shows</p>
+        <p id="kpiShows" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs</p>
+        <p id="kpiSongs" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">20+ Min Jams</p>
+        <p id="kpiMonsters" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs w/ 20+</p>
+        <p id="kpiMonsterSongs" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+    </div>
+
+    <!-- Song Deep Dive Section (hero feature) -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+        <h3 class="text-lg font-bold text-white">Song Deep Dive</h3>
+        <div class="flex items-center gap-3">
+          <label class="text-gray-400 text-sm">Song:</label>
+          <select id="deepDiveSongSelect" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 w-64"></select>
+        </div>
+      </div>
+      <!-- Duration Trend -->
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Average Duration Over Time</h4>
+        <div style="height: 300px;"><canvas id="durationTrendChart"></canvas></div>
+      </div>
+      <!-- Set Position + Longest Versions -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Set Position Breakdown</h4>
+          <div style="height: 280px;"><canvas id="setPositionChart"></canvas></div>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4>
+          <div style="height: 280px;"><canvas id="longestVersionsChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Top Songs Chart -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Top 25 Most Played Songs</h3>
+      <div style="height: 600px;"><canvas id="topSongsChart"></canvas></div>
+    </div>
+
+    <!-- Row 3: Monsters + Shows Per Year -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700">
+        <h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3>
+        <div style="height: 400px;"><canvas id="monstersChart"></canvas></div>
+      </div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700">
+        <h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3>
+        <div style="height: 400px;"><canvas id="showsPerYearChart"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Bustouts Table -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Biggest Bustouts</h3>
+      <p class="text-gray-500 text-sm mb-4">Songs returning after 50+ show gaps</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="text-gray-400 text-xs uppercase tracking-wider border-b border-gray-700">
+              <th class="text-left py-3 px-2">Song</th>
+              <th class="text-left py-3 px-2">Return Date</th>
+              <th class="text-left py-3 px-2">Venue</th>
+              <th class="text-right py-3 px-2">Gap (Shows)</th>
+              <th class="text-left py-3 px-2">Previous Date</th>
+            </tr>
+          </thead>
+          <tbody id="bustoutsBody" class="text-gray-300">
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </main>
+  </div>
 
   <!-- Footer -->
   <footer class="border-t border-gray-800 mt-24">
@@ -231,24 +342,46 @@
       "When did Umphrey's last play Mantis?",
       "Umphrey's Prowler stats",
       "What's the gap on Umphrey's All in Time?",
+      "Longest Umphrey's Wizard Burial Ground?",
+      "Longest Umphrey's Mantis?",
       // Widespread Panic
       "How many times has Widespread played Chilly Water?",
       "When did Panic last play Porch Song?",
       "Widespread Space Wrangler stats",
       "What's the gap on Panic Holden Oversoul?",
+      "Longest Widespread Panic Chilly Water?",
+      "Longest Panic Space Wrangler?",
       // moe.
       "How many times has moe. played Rebubula?",
       "When did moe. last play Buster?",
       "moe. Meat stats",
       "What's the gap on moe. Spine of a Dog?",
+      "Longest moe. Rebubula?",
+      "Longest moe. Meat?",
       // STS9
       "How many times has STS9 played Scheme?",
       "When did STS9 last play Kamuy?",
       "STS9 World Go Round stats",
+      "Longest STS9 World Go Round?",
+      "Longest STS9 Scheme?",
       // Billy Strings
       "How many times has Billy Strings played Dust in a Baggie?",
       "When did Billy Strings last play Meet Me at the Creek?",
       "Billy Strings Taking Water stats",
+      "Longest Billy Strings Meet Me at the Creek?",
+      "Longest Billy Strings Dust in a Baggie?",
+      // String Cheese Incident
+      "Longest String Cheese Incident Rivertrance?",
+      "Longest SCI Black Clouds?",
+      // Disco Biscuits
+      "Longest Disco Biscuits Basis for a Day?",
+      "Longest Biscuits Helicopters?",
+      // Lotus
+      "Longest Lotus Umbilical Moonrise?",
+      "Longest Lotus Spiritualize?",
+      // Spafford
+      "Longest Spafford Electric Taco Stand?",
+      "Longest Spafford Mind's Unchained?",
     ];
 
     // Band styling based on detected band
@@ -736,6 +869,16 @@
       "How many times has Phish played Ghost?",
       "How many times did the Dead play Scarlet Begonias?",
       "How many times has Goose played Arcadia?",
+
+      // Relisten bands - duration queries
+      "Longest Umphrey's Wizard Burial Ground?",
+      "Longest Widespread Panic Chilly Water?",
+      "Longest moe. Rebubula?",
+      "Longest STS9 World Go Round?",
+      "Longest Billy Strings Meet Me at the Creek?",
+      "Longest String Cheese Incident Rivertrance?",
+      "Longest Disco Biscuits Basis for a Day?",
+      "Longest Lotus Umbilical Moonrise?",
     ];
 
     function getRandomFeatured(count = 4) {
@@ -1154,6 +1297,424 @@
     });
 
     queryInput.focus();
+
+    // =========================================================================
+    // DASHBOARD - JaaS (Jams as Awesome Stats)
+    // =========================================================================
+
+    function switchTab(tab) {
+      const qv = document.getElementById('queryView');
+      const dv = document.getElementById('dashboardView');
+      const tq = document.getElementById('tabQuery');
+      const td = document.getElementById('tabDashboard');
+
+      if (tab === 'dashboard') {
+        qv.classList.add('hidden');
+        dv.classList.remove('hidden');
+        td.classList.add('bg-gray-700', 'text-white');
+        td.classList.remove('text-gray-400');
+        tq.classList.remove('bg-gray-700', 'text-white');
+        tq.classList.add('text-gray-400');
+        dashboard.init();
+      } else {
+        dv.classList.add('hidden');
+        qv.classList.remove('hidden');
+        tq.classList.add('bg-gray-700', 'text-white');
+        tq.classList.remove('text-gray-400');
+        td.classList.remove('bg-gray-700', 'text-white');
+        td.classList.add('text-gray-400');
+      }
+    }
+
+    class DashboardManager {
+      constructor() {
+        this.charts = {};
+        this.startYear = 1983;
+        this.endYear = 2026;
+        this.selectedSong = 'tweezer';
+        this.loaded = false;
+        this.songsList = [];
+      }
+
+      async init() {
+        if (this.loaded) return;
+        this.populateYearSelectors();
+        await this.loadSongsList();
+        await this.refresh();
+        this.bindEvents();
+        this.loaded = true;
+      }
+
+      populateYearSelectors() {
+        const startSel = document.getElementById('dashStartYear');
+        const endSel = document.getElementById('dashEndYear');
+        for (let y = 1983; y <= 2026; y++) {
+          startSel.add(new Option(y, y));
+          endSel.add(new Option(y, y));
+        }
+        startSel.value = 1983;
+        endSel.value = 2026;
+      }
+
+      bindEvents() {
+        document.getElementById('dashStartYear').addEventListener('change', (e) => {
+          this.startYear = parseInt(e.target.value);
+          this.refreshFiltered();
+        });
+        document.getElementById('dashEndYear').addEventListener('change', (e) => {
+          this.endYear = parseInt(e.target.value);
+          this.refreshFiltered();
+        });
+        document.getElementById('deepDiveSongSelect').addEventListener('change', (e) => {
+          this.selectedSong = e.target.value;
+          this.refreshSongDeepDive();
+        });
+      }
+
+      async loadSongsList() {
+        const res = await fetch('/api/dashboard/songs-list');
+        const data = await res.json();
+        this.songsList = data.songs;
+        const sel = document.getElementById('deepDiveSongSelect');
+        sel.innerHTML = '';
+        for (const s of data.songs) {
+          const opt = new Option(s.name, s.slug);
+          if (s.slug === 'tweezer') opt.selected = true;
+          sel.add(opt);
+        }
+      }
+
+      destroyChart(key) {
+        if (this.charts[key]) {
+          this.charts[key].destroy();
+          delete this.charts[key];
+        }
+      }
+
+      async refresh() {
+        await Promise.all([
+          this.loadTopSongs(),
+          this.loadMonsters(),
+          this.loadShowsPerYear(),
+          this.loadDurationTrend(),
+          this.loadSongDeepDive(),
+          this.loadBustouts(),
+        ]);
+      }
+
+      async refreshFiltered() {
+        await Promise.all([
+          this.loadTopSongs(),
+          this.loadMonsters(),
+        ]);
+      }
+
+      async refreshSongDeepDive() {
+        await Promise.all([
+          this.loadDurationTrend(),
+          this.loadSongDeepDive(),
+        ]);
+      }
+
+      yearParams() {
+        return `start_year=${this.startYear}&end_year=${this.endYear}`;
+      }
+
+      // -- Top Songs --
+      async loadTopSongs() {
+        // Fetch full list to get unique song count, then display top 25
+        const res = await fetch(`/api/dashboard/top-songs?${this.yearParams()}&limit=500`);
+        const data = await res.json();
+        const allSongs = data.songs;
+        document.getElementById('kpiSongs').textContent = allSongs.length.toLocaleString();
+        data.songs = allSongs.slice(0, 25);
+
+        this.destroyChart('topSongs');
+        const ctx = document.getElementById('topSongsChart');
+        this.charts.topSongs = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.songs.map(s => s.name),
+            datasets: [{
+              data: data.songs.map(s => s.play_count),
+              backgroundColor: data.songs.map((_, i) => {
+                const t = i / data.songs.length;
+                const r = Math.round(229 + t * (237 - 229));
+                const g = Math.round(62 + t * (137 - 62));
+                const b = Math.round(62 + t * (54 - 62));
+                return `rgba(${r},${g},${b},0.85)`;
+              }),
+              borderColor: 'transparent',
+              borderRadius: 4,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => `${ctx.raw} performances`
+                }
+              }
+            },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+              y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } }
+            }
+          }
+        });
+      }
+
+      // -- Monsters --
+      async loadMonsters() {
+        const res = await fetch(`/api/dashboard/monsters?${this.yearParams()}`);
+        const data = await res.json();
+
+        document.getElementById('kpiMonsters').textContent = data.total_count.toLocaleString();
+        document.getElementById('kpiMonsterSongs').textContent = data.unique_songs;
+
+        this.destroyChart('monsters');
+        const ctx = document.getElementById('monstersChart');
+        const songs = data.top_songs.slice(0, 15);
+        this.charts.monsters = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: songs.map(s => s.name),
+            datasets: [{
+              data: songs.map(s => s.count),
+              backgroundColor: 'rgba(229, 62, 62, 0.8)',
+              borderRadius: 4,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => `${ctx.raw} performances over 20 min`
+                }
+              }
+            },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+              y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } }
+            }
+          }
+        });
+      }
+
+      // -- Shows Per Year --
+      async loadShowsPerYear() {
+        const res = await fetch('/api/dashboard/shows-per-year');
+        const data = await res.json();
+
+        // KPI: total shows
+        const totalShows = data.years.reduce((a, y) => a + y.show_count, 0);
+        document.getElementById('kpiShows').textContent = totalShows.toLocaleString();
+
+        this.destroyChart('showsPerYear');
+        const ctx = document.getElementById('showsPerYearChart');
+        this.charts.showsPerYear = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.years.map(y => y.year),
+            datasets: [{
+              data: data.years.map(y => y.show_count),
+              backgroundColor: data.years.map(y => {
+                if (y.show_count === 0) return 'rgba(100,100,100,0.3)';
+                const intensity = Math.min(y.show_count / 80, 1);
+                return `rgba(237, 137, 54, ${0.4 + intensity * 0.5})`;
+              }),
+              borderRadius: 2,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => `${ctx.raw} shows`
+                }
+              }
+            },
+            scales: {
+              x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 10 }, maxRotation: 45 } },
+              y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } }
+            }
+          }
+        });
+      }
+
+      // -- Duration Trend --
+      async loadDurationTrend() {
+        const res = await fetch(`/api/dashboard/duration-trend?song=${this.selectedSong}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        this.destroyChart('durationTrend');
+        const ctx = document.getElementById('durationTrendChart');
+        this.charts.durationTrend = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: data.years.map(y => y.year),
+            datasets: [
+              {
+                label: 'Avg Duration (min)',
+                data: data.years.map(y => y.avg_min),
+                borderColor: '#e53e3e',
+                backgroundColor: 'rgba(229, 62, 62, 0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 4,
+                pointHoverRadius: 6,
+              },
+              {
+                label: 'Max Duration (min)',
+                data: data.years.map(y => y.max_min),
+                borderColor: 'rgba(237, 137, 54, 0.5)',
+                borderDash: [5, 5],
+                fill: false,
+                tension: 0.3,
+                pointRadius: 3,
+                pointHoverRadius: 5,
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { color: '#9ca3af' } },
+              tooltip: {
+                callbacks: {
+                  afterLabel: (ctx) => {
+                    const yr = data.years[ctx.dataIndex];
+                    return `${yr.count} performances`;
+                  }
+                }
+              }
+            },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+              y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af', callback: v => v + ' min' } }
+            }
+          }
+        });
+      }
+
+      // -- Song Deep Dive (set positions + venues) --
+      async loadSongDeepDive() {
+        const res = await fetch(`/api/dashboard/song-deep-dive?song=${this.selectedSong}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Set Position donut
+        this.destroyChart('setPosition');
+        const posCtx = document.getElementById('setPositionChart');
+        const posLabels = Object.keys(data.set_positions);
+        const posValues = Object.values(data.set_positions);
+        const posColors = [
+          '#e53e3e', '#ed8936', '#ecc94b', '#48bb78', '#4299e1',
+          '#9f7aea', '#ed64a6', '#a0aec0', '#fc8181', '#f6ad55'
+        ];
+        this.charts.setPosition = new Chart(posCtx, {
+          type: 'doughnut',
+          data: {
+            labels: posLabels,
+            datasets: [{
+              data: posValues,
+              backgroundColor: posColors.slice(0, posLabels.length),
+              borderColor: '#111827',
+              borderWidth: 2,
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: {
+                position: 'right',
+                labels: { color: '#d1d5db', font: { size: 11 }, padding: 12 }
+              },
+              tooltip: {
+                callbacks: {
+                  label: (ctx) => {
+                    const pct = ((ctx.raw / data.total_plays) * 100).toFixed(1);
+                    return `${ctx.label}: ${ctx.raw} (${pct}%)`;
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        // Longest Versions bar
+        this.destroyChart('longestVersions');
+        const lvCtx = document.getElementById('longestVersionsChart');
+        const versions = data.longest_versions || [];
+        this.charts.longestVersions = new Chart(lvCtx, {
+          type: 'bar',
+          data: {
+            labels: versions.map(v => v.date),
+            datasets: [{
+              data: versions.map(v => v.duration_min),
+              backgroundColor: versions.map((_, i) => {
+                const t = i / Math.max(versions.length - 1, 1);
+                return `rgba(229, ${62 + t * 75}, ${62 + t * 50}, ${0.9 - t * 0.3})`;
+              }),
+              borderRadius: 4,
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  title: (items) => {
+                    const v = versions[items[0].dataIndex];
+                    return `${v.date} — ${v.venue}`;
+                  },
+                  label: (ctx) => `${ctx.raw} minutes`
+                }
+              }
+            },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af', callback: v => v + ' min' } },
+              y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } }
+            }
+          }
+        });
+      }
+
+      // -- Bustouts --
+      async loadBustouts() {
+        const res = await fetch('/api/dashboard/bustouts?min_gap=50');
+        const data = await res.json();
+        const tbody = document.getElementById('bustoutsBody');
+        tbody.innerHTML = data.bustouts.slice(0, 30).map(b => `
+          <tr class="border-b border-gray-800 hover:bg-gray-800/50 transition">
+            <td class="py-3 px-2 font-medium text-white">${escapeHtml(b.song)}</td>
+            <td class="py-3 px-2">${b.date}</td>
+            <td class="py-3 px-2 text-gray-400">${escapeHtml(b.venue)}</td>
+            <td class="py-3 px-2 text-right font-bold phish-gradient">${b.gap_shows}</td>
+            <td class="py-3 px-2 text-gray-500">${b.previous_date}</td>
+          </tr>
+        `).join('');
+      }
+    }
+
+    const dashboard = new DashboardManager();
   </script>
 
 </body>
