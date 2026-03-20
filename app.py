@@ -25,6 +25,33 @@ CORS(app)
 engine = PhishStatsEngine()
 engine.load_data()
 
+# Load Dead catalog and Umphrey's duration index for dashboards
+import json as _json
+
+_dead_catalog = None
+_umphreys_index = None
+
+def _get_dead_catalog():
+    global _dead_catalog
+    if _dead_catalog is None:
+        with open(Path(__file__).parent / 'data' / 'grateful_dead_catalog.json') as f:
+            _dead_catalog = _json.load(f)
+        print(f"  Loaded Dead catalog: {len(_dead_catalog['songs'])} songs, {len(_dead_catalog['shows'])} shows")
+    return _dead_catalog
+
+def _get_umphreys_index():
+    global _umphreys_index
+    if _umphreys_index is None:
+        with open(Path(__file__).parent / 'data' / 'relisten_cache' / 'umphreys_duration_index.json') as f:
+            _umphreys_index = _json.load(f)
+        print(f"  Loaded Umphrey's index: {len(_umphreys_index['tracks'])} tracks, {_umphreys_index['total_shows']} shows")
+    return _umphreys_index
+
+# Filter junk tracks from Relisten indexes
+UMPHREYS_SKIP_TRACKS = {'intro', 'encore break', 'jam', 'set break', 'intermission',
+                         'crowd', 'tuning', 'banter', 'stage banter', 'soundcheck'}
+DEAD_SKIP_SONGS = {'Drums', 'Space', 'Drums/Space', 'Jam', 'Tuning', 'Introduction'}
+
 # Initialize unified JamMuse engine (handles all bands including Phish)
 unified_engine = None
 
@@ -354,6 +381,206 @@ def dashboard_bustouts():
 
     bustouts.sort(key=lambda x: -x['gap_shows'])
     return jsonify({'bustouts': bustouts[:50]})
+
+
+# =============================================================================
+# GRATEFUL DATA - DEAD DASHBOARD ENDPOINTS
+# =============================================================================
+
+@app.route('/api/dashboard/dead/top-songs')
+def dead_top_songs():
+    catalog = _get_dead_catalog()
+    limit = request.args.get('limit', 10, type=int)
+    songs = catalog['songs']
+    top = sorted(((n, s) for n, s in songs.items() if n not in DEAD_SKIP_SONGS),
+                 key=lambda x: -x[1].get('total_plays', 0))[:limit]
+    return jsonify({'songs': [{'name': n, 'play_count': s['total_plays']} for n, s in top]})
+
+
+@app.route('/api/dashboard/dead/songs-list')
+def dead_songs_list():
+    catalog = _get_dead_catalog()
+    # Only songs with enough performances to make a meaningful chart
+    songs = [{'name': n, 'slug': n} for n, s in catalog['songs'].items()
+             if len(s.get('performances', [])) >= 10 and n not in DEAD_SKIP_SONGS]
+    songs.sort(key=lambda x: x['name'])
+    return jsonify({'songs': songs})
+
+
+@app.route('/api/dashboard/dead/duration-trend')
+def dead_duration_trend():
+    catalog = _get_dead_catalog()
+    song_name = request.args.get('song', '')
+    if not song_name or song_name not in catalog['songs']:
+        return jsonify({'error': 'Song not found'}), 404
+
+    song_data = catalog['songs'][song_name]
+    by_year = defaultdict(list)
+    for p in song_data.get('performances', []):
+        dur_sec = p.get('duration', 0)
+        if dur_sec <= 0:
+            continue
+        year = int(p['date'][:4])
+        by_year[year].append(dur_sec / 60.0)
+
+    years = []
+    for year in sorted(by_year.keys()):
+        durations = by_year[year]
+        years.append({
+            'year': year,
+            'avg_min': round(statistics.mean(durations), 2),
+            'max_min': round(max(durations), 2),
+            'min_min': round(min(durations), 2),
+            'count': len(durations)
+        })
+
+    return jsonify({'song_name': song_name, 'slug': song_name, 'years': years})
+
+
+@app.route('/api/dashboard/dead/song-deep-dive')
+def dead_song_deep_dive():
+    catalog = _get_dead_catalog()
+    song_name = request.args.get('song', '')
+    if not song_name or song_name not in catalog['songs']:
+        return jsonify({'error': 'Song not found'}), 404
+
+    song_data = catalog['songs'][song_name]
+    perfs = song_data.get('performances', [])
+
+    # Set positions from show data
+    set_positions = defaultdict(int)
+    for show in catalog['shows']:
+        tracks = show.get('tracks', [])
+        song_indices = [i for i, t in enumerate(tracks) if t.get('song', '') == song_name]
+        for idx in song_indices:
+            if idx == 0:
+                set_positions['Opener'] += 1
+            elif idx == len(tracks) - 1:
+                set_positions['Closer'] += 1
+            else:
+                set_positions['Mid-Set'] += 1
+
+    total_plays = song_data.get('total_plays', len(perfs))
+
+    # Longest versions
+    sorted_perfs = sorted(perfs, key=lambda p: -p.get('duration', 0))
+    longest_versions = [{'date': p['date'],
+                         'duration_min': round(p.get('duration', 0) / 60.0, 1),
+                         'venue': p.get('venue', '')}
+                        for p in sorted_perfs[:10] if p.get('duration', 0) > 0]
+
+    return jsonify({
+        'song_name': song_name,
+        'slug': song_name,
+        'total_plays': total_plays,
+        'set_positions': dict(set_positions),
+        'longest_versions': longest_versions
+    })
+
+
+# =============================================================================
+# UMPHREYS DB - UMPHREY'S McGEE DASHBOARD ENDPOINTS
+# =============================================================================
+
+def _umphreys_top_tracks(limit=10):
+    """Get top Umphrey's tracks by performance count, filtering junk."""
+    idx = _get_umphreys_index()
+    tracks = idx['tracks']
+    display = idx['display_names']
+    counts = []
+    for key, perfs in tracks.items():
+        name = display.get(key, key)
+        if name.lower() in UMPHREYS_SKIP_TRACKS:
+            continue
+        counts.append((name, key, len(perfs)))
+    counts.sort(key=lambda x: -x[2])
+    return counts[:limit]
+
+
+@app.route('/api/dashboard/umphreys/top-songs')
+def umphreys_top_songs():
+    limit = request.args.get('limit', 10, type=int)
+    top = _umphreys_top_tracks(limit)
+    return jsonify({'songs': [{'name': n, 'play_count': c} for n, _, c in top]})
+
+
+@app.route('/api/dashboard/umphreys/songs-list')
+def umphreys_songs_list():
+    idx = _get_umphreys_index()
+    tracks = idx['tracks']
+    display = idx['display_names']
+    songs = []
+    for key, perfs in tracks.items():
+        name = display.get(key, key)
+        if name.lower() in UMPHREYS_SKIP_TRACKS:
+            continue
+        if len(perfs) >= 10:
+            songs.append({'name': name, 'slug': key})
+    songs.sort(key=lambda x: x['name'])
+    return jsonify({'songs': songs})
+
+
+@app.route('/api/dashboard/umphreys/duration-trend')
+def umphreys_duration_trend():
+    idx = _get_umphreys_index()
+    song_key = request.args.get('song', '')
+    if not song_key or song_key not in idx['tracks']:
+        return jsonify({'error': 'Song not found'}), 404
+
+    display = idx['display_names']
+    song_name = display.get(song_key, song_key)
+
+    by_year = defaultdict(list)
+    for p in idx['tracks'][song_key]:
+        dur_sec = p.get('duration_sec', 0)
+        if dur_sec <= 0:
+            continue
+        year = int(p['date'][:4])
+        by_year[year].append(dur_sec / 60.0)
+
+    years = []
+    for year in sorted(by_year.keys()):
+        durations = by_year[year]
+        years.append({
+            'year': year,
+            'avg_min': round(statistics.mean(durations), 2),
+            'max_min': round(max(durations), 2),
+            'min_min': round(min(durations), 2),
+            'count': len(durations)
+        })
+
+    return jsonify({'song_name': song_name, 'slug': song_key, 'years': years})
+
+
+@app.route('/api/dashboard/umphreys/song-deep-dive')
+def umphreys_song_deep_dive():
+    idx = _get_umphreys_index()
+    song_key = request.args.get('song', '')
+    if not song_key or song_key not in idx['tracks']:
+        return jsonify({'error': 'Song not found'}), 404
+
+    display = idx['display_names']
+    song_name = display.get(song_key, song_key)
+    perfs = idx['tracks'][song_key]
+    total_plays = len(perfs)
+
+    # No set position data from Relisten (just duration), so skip donut
+    set_positions = {}
+
+    # Longest versions
+    sorted_perfs = sorted(perfs, key=lambda p: -p.get('duration_sec', 0))
+    longest_versions = [{'date': p['date'],
+                         'duration_min': round(p.get('duration_sec', 0) / 60.0, 1),
+                         'venue': p.get('venue', '')}
+                        for p in sorted_perfs[:10] if p.get('duration_sec', 0) > 0]
+
+    return jsonify({
+        'song_name': song_name,
+        'slug': song_key,
+        'total_plays': total_plays,
+        'set_positions': set_positions,
+        'longest_versions': longest_versions
+    })
 
 
 if __name__ == '__main__':

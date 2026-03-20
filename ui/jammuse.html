@@ -125,8 +125,10 @@
         <span class="logo-text text-2xl"><span class="rainbow-text">Jam</span><span class="text-white">Muse</span></span>
       </div>
       <nav class="flex gap-1 bg-gray-900 rounded-lg p-1">
-        <button id="tabQuery" onclick="switchTab('query')" class="px-4 py-1.5 rounded-md text-sm font-medium transition bg-gray-700 text-white">Ask</button>
-        <button id="tabDashboard" onclick="switchTab('dashboard')" class="px-4 py-1.5 rounded-md text-sm font-medium transition text-gray-400 hover:text-white">Dashboard</button>
+        <button id="tabQuery" onclick="switchTab('query')" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium transition bg-gray-700 text-white">Ask</button>
+        <button id="tabPhish" onclick="switchTab('phish')" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium transition text-gray-400 hover:text-white">Phishboard</button>
+        <button id="tabDead" onclick="switchTab('dead')" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium transition text-gray-400 hover:text-white">Grateful Data</button>
+        <button id="tabUmphreys" onclick="switchTab('umphreys')" class="tab-btn px-3 py-1.5 rounded-md text-sm font-medium transition text-gray-400 hover:text-white">Umphrey's DB</button>
       </nav>
     </div>
   </header>
@@ -192,13 +194,13 @@
   </div>
 
   <!-- Dashboard View -->
-  <div id="dashboardView" class="hidden">
+  <div id="phishView" class="hidden">
   <main class="max-w-6xl mx-auto px-4 py-8">
 
     <!-- Dashboard Header -->
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
       <div>
-        <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Phish</span> <span class="text-white">Dashboard</span></h1>
+        <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Phishboard</span></h1>
         <p class="text-gray-500 text-sm mt-1">JaaS — Jams as Awesome Stats</p>
       </div>
       <div class="flex items-center gap-3">
@@ -258,8 +260,8 @@
 
     <!-- Top Songs Chart -->
     <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
-      <h3 class="text-lg font-bold text-white mb-4">Top 25 Most Played Songs</h3>
-      <div style="height: 600px;"><canvas id="topSongsChart"></canvas></div>
+      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
+      <div style="height: 400px;"><canvas id="topSongsChart"></canvas></div>
     </div>
 
     <!-- Row 3: Monsters + Shows Per Year -->
@@ -295,6 +297,82 @@
       </div>
     </div>
 
+  </main>
+  </div>
+
+  <!-- Grateful Data View -->
+  <div id="deadView" class="hidden">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-extrabold"><span class="dead-gradient">Grateful Data</span></h1>
+      <p class="text-gray-500 text-sm mt-1">Every note, every show, every stat</p>
+    </div>
+
+    <!-- Top 10 Songs -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
+      <div style="height: 400px;"><canvas id="deadTopSongsChart"></canvas></div>
+    </div>
+
+    <!-- Song Deep Dive -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+        <h3 class="text-lg font-bold text-white">Song Deep Dive</h3>
+        <div class="flex items-center gap-3">
+          <label class="text-gray-400 text-sm">Song:</label>
+          <select id="deadSongSelect" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 w-64"></select>
+        </div>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Average Duration Over Time</h4>
+        <div style="height: 300px;"><canvas id="deadDurationTrendChart"></canvas></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Set Position Breakdown</h4>
+          <div style="height: 280px;"><canvas id="deadSetPositionChart"></canvas></div>
+        </div>
+        <div>
+          <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4>
+          <div style="height: 280px;"><canvas id="deadLongestVersionsChart"></canvas></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  </div>
+
+  <!-- Umphrey's DB View -->
+  <div id="umphreysView" class="hidden">
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Umphrey's DB</span></h1>
+      <p class="text-gray-500 text-sm mt-1">The database of improvisation</p>
+    </div>
+
+    <!-- Top 10 Songs -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
+      <div style="height: 400px;"><canvas id="umphreysTopSongsChart"></canvas></div>
+    </div>
+
+    <!-- Song Deep Dive -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3">
+        <h3 class="text-lg font-bold text-white">Song Deep Dive</h3>
+        <div class="flex items-center gap-3">
+          <label class="text-gray-400 text-sm">Song:</label>
+          <select id="umphreysSongSelect" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500 w-64"></select>
+        </div>
+      </div>
+      <div class="mb-6">
+        <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Average Duration Over Time</h4>
+        <div style="height: 300px;"><canvas id="umphreysDurationTrendChart"></canvas></div>
+      </div>
+      <div>
+        <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4>
+        <div style="height: 280px;"><canvas id="umphreysLongestVersionsChart"></canvas></div>
+      </div>
+    </div>
   </main>
   </div>
 
@@ -1302,28 +1380,25 @@
     // DASHBOARD - JaaS (Jams as Awesome Stats)
     // =========================================================================
 
-    function switchTab(tab) {
-      const qv = document.getElementById('queryView');
-      const dv = document.getElementById('dashboardView');
-      const tq = document.getElementById('tabQuery');
-      const td = document.getElementById('tabDashboard');
+    const ALL_VIEWS = ['query', 'phish', 'dead', 'umphreys'];
+    const VIEW_IDS = { query: 'queryView', phish: 'phishView', dead: 'deadView', umphreys: 'umphreysView' };
+    const TAB_IDS = { query: 'tabQuery', phish: 'tabPhish', dead: 'tabDead', umphreys: 'tabUmphreys' };
 
-      if (tab === 'dashboard') {
-        qv.classList.add('hidden');
-        dv.classList.remove('hidden');
-        td.classList.add('bg-gray-700', 'text-white');
-        td.classList.remove('text-gray-400');
-        tq.classList.remove('bg-gray-700', 'text-white');
-        tq.classList.add('text-gray-400');
-        dashboard.init();
-      } else {
-        dv.classList.add('hidden');
-        qv.classList.remove('hidden');
-        tq.classList.add('bg-gray-700', 'text-white');
-        tq.classList.remove('text-gray-400');
-        td.classList.remove('bg-gray-700', 'text-white');
-        td.classList.add('text-gray-400');
+    function switchTab(tab) {
+      for (const v of ALL_VIEWS) {
+        document.getElementById(VIEW_IDS[v]).classList.toggle('hidden', v !== tab);
+        const btn = document.getElementById(TAB_IDS[v]);
+        if (v === tab) {
+          btn.classList.add('bg-gray-700', 'text-white');
+          btn.classList.remove('text-gray-400');
+        } else {
+          btn.classList.remove('bg-gray-700', 'text-white');
+          btn.classList.add('text-gray-400');
+        }
       }
+      if (tab === 'phish') phishDash.init();
+      if (tab === 'dead') deadDash.init();
+      if (tab === 'umphreys') umphreysDash.init();
     }
 
     class DashboardManager {
@@ -1427,7 +1502,7 @@
         const data = await res.json();
         const allSongs = data.songs;
         document.getElementById('kpiSongs').textContent = allSongs.length.toLocaleString();
-        data.songs = allSongs.slice(0, 25);
+        data.songs = allSongs.slice(0, 10);
 
         this.destroyChart('topSongs');
         const ctx = document.getElementById('topSongsChart');
@@ -1714,7 +1789,230 @@
       }
     }
 
-    const dashboard = new DashboardManager();
+    const phishDash = new DashboardManager();
+
+    // =========================================================================
+    // BAND DASHBOARD - Reusable for Dead & Umphrey's (Song Deep Dive + Top 10)
+    // =========================================================================
+
+    class BandDashboard {
+      constructor(config) {
+        this.prefix = config.prefix;           // 'dead' or 'umphreys'
+        this.apiBase = config.apiBase;         // '/api/dashboard/dead' or '/api/dashboard/umphreys'
+        this.defaultSong = config.defaultSong;
+        this.colors = config.colors;           // {primary, secondary}
+        this.topSongsId = config.topSongsId;
+        this.songSelectId = config.songSelectId;
+        this.durationChartId = config.durationChartId;
+        this.setPositionId = config.setPositionId;
+        this.longestId = config.longestId;
+        this.hasSetPosition = config.hasSetPosition !== false;
+        this.charts = {};
+        this.selectedSong = config.defaultSong;
+        this.loaded = false;
+      }
+
+      async init() {
+        if (this.loaded) return;
+        await this.loadSongsList();
+        await Promise.all([
+          this.loadTopSongs(),
+          this.loadDurationTrend(),
+          this.loadDeepDive(),
+        ]);
+        this.bindEvents();
+        this.loaded = true;
+      }
+
+      destroyChart(key) {
+        if (this.charts[key]) { this.charts[key].destroy(); delete this.charts[key]; }
+      }
+
+      async loadSongsList() {
+        const res = await fetch(`${this.apiBase}/songs-list`);
+        const data = await res.json();
+        const sel = document.getElementById(this.songSelectId);
+        sel.innerHTML = '';
+        for (const s of data.songs) {
+          const opt = new Option(s.name, s.slug);
+          if (s.slug === this.defaultSong) opt.selected = true;
+          sel.add(opt);
+        }
+      }
+
+      bindEvents() {
+        document.getElementById(this.songSelectId).addEventListener('change', (e) => {
+          this.selectedSong = e.target.value;
+          this.loadDurationTrend();
+          this.loadDeepDive();
+        });
+      }
+
+      async loadTopSongs() {
+        const res = await fetch(`${this.apiBase}/top-songs?limit=10`);
+        const data = await res.json();
+
+        this.destroyChart('topSongs');
+        const ctx = document.getElementById(this.topSongsId);
+        this.charts.topSongs = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.songs.map(s => s.name),
+            datasets: [{
+              data: data.songs.map(s => s.play_count),
+              backgroundColor: data.songs.map((_, i) => {
+                const t = i / data.songs.length;
+                return `rgba(${this.colors.r(t)}, ${this.colors.g(t)}, ${this.colors.b(t)}, 0.85)`;
+              }),
+              borderRadius: 4,
+            }]
+          },
+          options: {
+            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.raw} performances` } } },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+              y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } }
+            }
+          }
+        });
+      }
+
+      async loadDurationTrend() {
+        const res = await fetch(`${this.apiBase}/duration-trend?song=${encodeURIComponent(this.selectedSong)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        this.destroyChart('durationTrend');
+        const ctx = document.getElementById(this.durationChartId);
+        this.charts.durationTrend = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: data.years.map(y => y.year),
+            datasets: [
+              {
+                label: 'Avg Duration (min)', data: data.years.map(y => y.avg_min),
+                borderColor: this.colors.primary, backgroundColor: this.colors.primary + '1a',
+                fill: true, tension: 0.3, pointRadius: 4, pointHoverRadius: 6,
+              },
+              {
+                label: 'Max Duration (min)', data: data.years.map(y => y.max_min),
+                borderColor: this.colors.secondary + '80', borderDash: [5, 5],
+                fill: false, tension: 0.3, pointRadius: 3, pointHoverRadius: 5,
+              }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { labels: { color: '#9ca3af' } },
+              tooltip: { callbacks: { afterLabel: ctx => { const yr = data.years[ctx.dataIndex]; return `${yr.count} performances`; } } }
+            },
+            scales: {
+              x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } },
+              y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af', callback: v => v + ' min' } }
+            }
+          }
+        });
+      }
+
+      async loadDeepDive() {
+        const res = await fetch(`${this.apiBase}/song-deep-dive?song=${encodeURIComponent(this.selectedSong)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+
+        // Set Position donut (if available)
+        if (this.hasSetPosition && this.setPositionId) {
+          this.destroyChart('setPosition');
+          const posCtx = document.getElementById(this.setPositionId);
+          const posLabels = Object.keys(data.set_positions || {});
+          const posValues = Object.values(data.set_positions || {});
+          if (posLabels.length > 0) {
+            const posColors = ['#e53e3e','#ed8936','#ecc94b','#48bb78','#4299e1','#9f7aea','#ed64a6','#a0aec0'];
+            this.charts.setPosition = new Chart(posCtx, {
+              type: 'doughnut',
+              data: {
+                labels: posLabels,
+                datasets: [{ data: posValues, backgroundColor: posColors.slice(0, posLabels.length), borderColor: '#111827', borderWidth: 2 }]
+              },
+              options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: {
+                  legend: { position: 'right', labels: { color: '#d1d5db', font: { size: 11 }, padding: 12 } },
+                  tooltip: { callbacks: { label: ctx => { const pct = ((ctx.raw / data.total_plays) * 100).toFixed(1); return `${ctx.label}: ${ctx.raw} (${pct}%)`; } } }
+                }
+              }
+            });
+          }
+        }
+
+        // Longest Versions
+        this.destroyChart('longest');
+        const lvCtx = document.getElementById(this.longestId);
+        const versions = data.longest_versions || [];
+        if (versions.length > 0) {
+          this.charts.longest = new Chart(lvCtx, {
+            type: 'bar',
+            data: {
+              labels: versions.map(v => v.date),
+              datasets: [{
+                data: versions.map(v => v.duration_min),
+                backgroundColor: versions.map((_, i) => {
+                  const t = i / Math.max(versions.length - 1, 1);
+                  return `rgba(${this.colors.r(t)}, ${this.colors.g(t)}, ${this.colors.b(t)}, ${0.9 - t * 0.3})`;
+                }),
+                borderRadius: 4,
+              }]
+            },
+            options: {
+              indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+              plugins: {
+                legend: { display: false },
+                tooltip: { callbacks: { title: items => { const v = versions[items[0].dataIndex]; return `${v.date} — ${v.venue}`; }, label: ctx => `${ctx.raw} minutes` } }
+              },
+              scales: {
+                x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af', callback: v => v + ' min' } },
+                y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } }
+              }
+            }
+          });
+        }
+      }
+    }
+
+    // Dead: red/purple/blue gradient
+    const deadDash = new BandDashboard({
+      prefix: 'dead',
+      apiBase: '/api/dashboard/dead',
+      defaultSong: 'Dark Star',
+      colors: {
+        primary: '#dc2626', secondary: '#7c3aed',
+        r: t => Math.round(220 - t * 96), g: t => Math.round(38 + t * 20), b: t => Math.round(38 + t * 195)
+      },
+      topSongsId: 'deadTopSongsChart',
+      songSelectId: 'deadSongSelect',
+      durationChartId: 'deadDurationTrendChart',
+      setPositionId: 'deadSetPositionChart',
+      longestId: 'deadLongestVersionsChart',
+      hasSetPosition: true,
+    });
+
+    // Umphrey's: orange/red gradient (no set position data from Relisten)
+    const umphreysDash = new BandDashboard({
+      prefix: 'umphreys',
+      apiBase: '/api/dashboard/umphreys',
+      defaultSong: 'nothing too fancy',
+      colors: {
+        primary: '#e53e3e', secondary: '#ed8936',
+        r: t => Math.round(229 + t * 8), g: t => Math.round(62 + t * 75), b: t => Math.round(62 - t * 8)
+      },
+      topSongsId: 'umphreysTopSongsChart',
+      songSelectId: 'umphreysSongSelect',
+      durationChartId: 'umphreysDurationTrendChart',
+      setPositionId: null,
+      longestId: 'umphreysLongestVersionsChart',
+      hasSetPosition: false,
+    });
   </script>
 
 </body>
