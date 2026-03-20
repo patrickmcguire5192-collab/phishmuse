@@ -263,6 +263,50 @@ def dashboard_duration_trend():
     return jsonify({'song_name': song_name, 'slug': song_slug, 'years': years})
 
 
+@app.route('/api/dashboard/summary')
+def dashboard_summary():
+    """Phish KPI summary — year-filterable."""
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+
+    total_shows = 0
+    unique_songs = set()
+    for show in engine.shows:
+        year = int(show['showdate'][:4])
+        if start_year and year < start_year:
+            continue
+        if end_year and year > end_year:
+            continue
+        total_shows += 1
+        for s in show.get('songs', []):
+            name = s.get('song', '')
+            if name:
+                unique_songs.add(name)
+
+    slug_names = _slug_to_name()
+    monster_count = 0
+    monster_songs = set()
+    for slug, perfs in engine.raw_durations.items():
+        song_name = slug_names.get(slug, slug)
+        for p in perfs:
+            if p.get('duration_min', 0) < 20:
+                continue
+            year = int(p['date'][:4])
+            if start_year and year < start_year:
+                continue
+            if end_year and year > end_year:
+                continue
+            monster_count += 1
+            monster_songs.add(song_name)
+
+    return jsonify({
+        'total_shows': total_shows,
+        'unique_songs': len(unique_songs),
+        'monster_count': monster_count,
+        'monster_songs': len(monster_songs)
+    })
+
+
 @app.route('/api/dashboard/songs-list')
 def dashboard_songs_list():
     slug_names = _slug_to_name()
@@ -391,10 +435,76 @@ def dashboard_bustouts():
 def dead_top_songs():
     catalog = _get_dead_catalog()
     limit = request.args.get('limit', 10, type=int)
-    songs = catalog['songs']
-    top = sorted(((n, s) for n, s in songs.items() if n not in DEAD_SKIP_SONGS),
-                 key=lambda x: -x[1].get('total_plays', 0))[:limit]
-    return jsonify({'songs': [{'name': n, 'play_count': s['total_plays']} for n, s in top]})
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+
+    if start_year or end_year:
+        song_counts = defaultdict(int)
+        for show in catalog['shows']:
+            year = int(show['date'][:4])
+            if start_year and year < start_year:
+                continue
+            if end_year and year > end_year:
+                continue
+            for t in show.get('tracks', []):
+                name = t.get('song', '')
+                if name and name not in DEAD_SKIP_SONGS:
+                    song_counts[name] += 1
+        songs = [{'name': n, 'play_count': c} for n, c in
+                 sorted(song_counts.items(), key=lambda x: -x[1])[:limit]]
+    else:
+        songs_data = catalog['songs']
+        top = sorted(((n, s) for n, s in songs_data.items() if n not in DEAD_SKIP_SONGS),
+                     key=lambda x: -x[1].get('total_plays', 0))[:limit]
+        songs = [{'name': n, 'play_count': s['total_plays']} for n, s in top]
+    return jsonify({'songs': songs})
+
+
+@app.route('/api/dashboard/dead/summary')
+def dead_summary():
+    """KPI summary: total shows, unique songs, monsters — all year-filterable."""
+    catalog = _get_dead_catalog()
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+
+    total_shows = 0
+    unique_songs = set()
+    for show in catalog['shows']:
+        year = int(show['date'][:4])
+        if start_year and year < start_year:
+            continue
+        if end_year and year > end_year:
+            continue
+        total_shows += 1
+        for t in show.get('tracks', []):
+            name = t.get('song', '')
+            if name and name not in DEAD_SKIP_SONGS:
+                unique_songs.add(name)
+
+    # Monsters from song performances
+    monster_count = 0
+    monster_songs = set()
+    for name, sdata in catalog['songs'].items():
+        if name in DEAD_SKIP_SONGS:
+            continue
+        for p in sdata.get('performances', []):
+            dur_sec = p.get('duration', 0)
+            if dur_sec < 1200:  # 20 min
+                continue
+            year = int(p['date'][:4])
+            if start_year and year < start_year:
+                continue
+            if end_year and year > end_year:
+                continue
+            monster_count += 1
+            monster_songs.add(name)
+
+    return jsonify({
+        'total_shows': total_shows,
+        'unique_songs': len(unique_songs),
+        'monster_count': monster_count,
+        'monster_songs': len(monster_songs)
+    })
 
 
 @app.route('/api/dashboard/dead/songs-list')
@@ -500,8 +610,62 @@ def _umphreys_top_tracks(limit=10):
 @app.route('/api/dashboard/umphreys/top-songs')
 def umphreys_top_songs():
     limit = request.args.get('limit', 10, type=int)
-    top = _umphreys_top_tracks(limit)
-    return jsonify({'songs': [{'name': n, 'play_count': c} for n, _, c in top]})
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+    idx = _get_umphreys_index()
+
+    if start_year or end_year:
+        counts = []
+        for key, perfs in idx['tracks'].items():
+            name = idx['display_names'].get(key, key)
+            if name.lower() in UMPHREYS_SKIP_TRACKS:
+                continue
+            filtered = [p for p in perfs
+                        if (not start_year or int(p['date'][:4]) >= start_year)
+                        and (not end_year or int(p['date'][:4]) <= end_year)]
+            if filtered:
+                counts.append({'name': name, 'play_count': len(filtered)})
+        counts.sort(key=lambda x: -x['play_count'])
+        return jsonify({'songs': counts[:limit]})
+    else:
+        top = _umphreys_top_tracks(limit)
+        return jsonify({'songs': [{'name': n, 'play_count': c} for n, _, c in top]})
+
+
+@app.route('/api/dashboard/umphreys/summary')
+def umphreys_summary():
+    """KPI summary for Umphrey's — year-filterable."""
+    idx = _get_umphreys_index()
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+
+    show_dates = set()
+    unique_songs = set()
+    monster_count = 0
+    monster_songs = set()
+
+    for key, perfs in idx['tracks'].items():
+        name = idx['display_names'].get(key, key)
+        if name.lower() in UMPHREYS_SKIP_TRACKS:
+            continue
+        for p in perfs:
+            year = int(p['date'][:4])
+            if start_year and year < start_year:
+                continue
+            if end_year and year > end_year:
+                continue
+            show_dates.add(p['date'])
+            unique_songs.add(name)
+            if p.get('duration_sec', 0) >= 1200:  # 20 min
+                monster_count += 1
+                monster_songs.add(name)
+
+    return jsonify({
+        'total_shows': len(show_dates),
+        'unique_songs': len(unique_songs),
+        'monster_count': monster_count,
+        'monster_songs': len(monster_songs)
+    })
 
 
 @app.route('/api/dashboard/umphreys/songs-list')

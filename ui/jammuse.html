@@ -303,15 +303,37 @@
   <!-- Grateful Data View -->
   <div id="deadView" class="hidden">
   <main class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-extrabold"><span class="dead-gradient">Grateful Data</span></h1>
-      <p class="text-gray-500 text-sm mt-1">Every note, every show, every stat</p>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-extrabold"><span class="dead-gradient">Grateful Data</span></h1>
+        <p class="text-gray-500 text-sm mt-1">Every note, every show, every stat</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label class="text-gray-400 text-sm">Years:</label>
+        <select id="deadStartYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+        <span class="text-gray-500">to</span>
+        <select id="deadEndYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+      </div>
     </div>
 
-    <!-- Top 10 Songs -->
-    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
-      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
-      <div style="height: 400px;"><canvas id="deadTopSongsChart"></canvas></div>
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Total Shows</p>
+        <p id="deadKpiShows" class="text-3xl font-extrabold dead-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs</p>
+        <p id="deadKpiSongs" class="text-3xl font-extrabold dead-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">20+ Min Jams</p>
+        <p id="deadKpiMonsters" class="text-3xl font-extrabold dead-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs w/ 20+</p>
+        <p id="deadKpiMonsterSongs" class="text-3xl font-extrabold dead-gradient">—</p>
+      </div>
     </div>
 
     <!-- Song Deep Dive -->
@@ -338,21 +360,49 @@
         </div>
       </div>
     </div>
+
+    <!-- Top 10 Songs -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
+      <div style="height: 400px;"><canvas id="deadTopSongsChart"></canvas></div>
+    </div>
   </main>
   </div>
 
   <!-- Umphrey's DB View -->
   <div id="umphreysView" class="hidden">
   <main class="max-w-6xl mx-auto px-4 py-8">
-    <div class="mb-8">
-      <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Umphrey's DB</span></h1>
-      <p class="text-gray-500 text-sm mt-1">The database of improvisation</p>
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4">
+      <div>
+        <h1 class="text-3xl font-extrabold"><span class="phish-gradient">Umphrey's DB</span></h1>
+        <p class="text-gray-500 text-sm mt-1">The database of improvisation</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <label class="text-gray-400 text-sm">Years:</label>
+        <select id="umphreysStartYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+        <span class="text-gray-500">to</span>
+        <select id="umphreysEndYear" class="bg-gray-800 border border-gray-700 rounded-lg px-3 py-1.5 text-sm text-white focus:outline-none focus:border-purple-500"></select>
+      </div>
     </div>
 
-    <!-- Top 10 Songs -->
-    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
-      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
-      <div style="height: 400px;"><canvas id="umphreysTopSongsChart"></canvas></div>
+    <!-- KPI Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Total Shows</p>
+        <p id="umphreysKpiShows" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs</p>
+        <p id="umphreysKpiSongs" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">20+ Min Jams</p>
+        <p id="umphreysKpiMonsters" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
+      <div class="stat-card rounded-2xl p-5 border border-gray-700 text-center">
+        <p class="text-gray-400 text-xs uppercase tracking-wider mb-1">Unique Songs w/ 20+</p>
+        <p id="umphreysKpiMonsterSongs" class="text-3xl font-extrabold phish-gradient">—</p>
+      </div>
     </div>
 
     <!-- Song Deep Dive -->
@@ -372,6 +422,12 @@
         <h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4>
         <div style="height: 280px;"><canvas id="umphreysLongestVersionsChart"></canvas></div>
       </div>
+    </div>
+
+    <!-- Top 10 Songs -->
+    <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8">
+      <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
+      <div style="height: 400px;"><canvas id="umphreysTopSongsChart"></canvas></div>
     </div>
   </main>
   </div>
@@ -1468,6 +1524,7 @@
 
       async refresh() {
         await Promise.all([
+          this.loadSummary(),
           this.loadTopSongs(),
           this.loadMonsters(),
           this.loadShowsPerYear(),
@@ -1479,6 +1536,7 @@
 
       async refreshFiltered() {
         await Promise.all([
+          this.loadSummary(),
           this.loadTopSongs(),
           this.loadMonsters(),
         ]);
@@ -1495,14 +1553,20 @@
         return `start_year=${this.startYear}&end_year=${this.endYear}`;
       }
 
+      // -- Summary KPIs --
+      async loadSummary() {
+        const res = await fetch(`/api/dashboard/summary?${this.yearParams()}`);
+        const data = await res.json();
+        document.getElementById('kpiShows').textContent = data.total_shows.toLocaleString();
+        document.getElementById('kpiSongs').textContent = data.unique_songs.toLocaleString();
+        document.getElementById('kpiMonsters').textContent = data.monster_count.toLocaleString();
+        document.getElementById('kpiMonsterSongs').textContent = data.monster_songs;
+      }
+
       // -- Top Songs --
       async loadTopSongs() {
-        // Fetch full list to get unique song count, then display top 25
-        const res = await fetch(`/api/dashboard/top-songs?${this.yearParams()}&limit=500`);
+        const res = await fetch(`/api/dashboard/top-songs?${this.yearParams()}&limit=10`);
         const data = await res.json();
-        const allSongs = data.songs;
-        document.getElementById('kpiSongs').textContent = allSongs.length.toLocaleString();
-        data.songs = allSongs.slice(0, 10);
 
         this.destroyChart('topSongs');
         const ctx = document.getElementById('topSongsChart');
@@ -1548,9 +1612,6 @@
         const res = await fetch(`/api/dashboard/monsters?${this.yearParams()}`);
         const data = await res.json();
 
-        document.getElementById('kpiMonsters').textContent = data.total_count.toLocaleString();
-        document.getElementById('kpiMonsterSongs').textContent = data.unique_songs;
-
         this.destroyChart('monsters');
         const ctx = document.getElementById('monstersChart');
         const songs = data.top_songs.slice(0, 15);
@@ -1588,10 +1649,6 @@
       async loadShowsPerYear() {
         const res = await fetch('/api/dashboard/shows-per-year');
         const data = await res.json();
-
-        // KPI: total shows
-        const totalShows = data.years.reduce((a, y) => a + y.show_count, 0);
-        document.getElementById('kpiShows').textContent = totalShows.toLocaleString();
 
         this.destroyChart('showsPerYear');
         const ctx = document.getElementById('showsPerYearChart');
@@ -1797,31 +1854,54 @@
 
     class BandDashboard {
       constructor(config) {
-        this.prefix = config.prefix;           // 'dead' or 'umphreys'
-        this.apiBase = config.apiBase;         // '/api/dashboard/dead' or '/api/dashboard/umphreys'
+        this.prefix = config.prefix;
+        this.apiBase = config.apiBase;
         this.defaultSong = config.defaultSong;
-        this.colors = config.colors;           // {primary, secondary}
+        this.colors = config.colors;
+        this.yearRange = config.yearRange || [1965, 2026];
         this.topSongsId = config.topSongsId;
         this.songSelectId = config.songSelectId;
         this.durationChartId = config.durationChartId;
         this.setPositionId = config.setPositionId;
         this.longestId = config.longestId;
         this.hasSetPosition = config.hasSetPosition !== false;
+        this.startYearId = config.startYearId;
+        this.endYearId = config.endYearId;
+        this.kpiIds = config.kpiIds; // {shows, songs, monsters, monsterSongs}
         this.charts = {};
         this.selectedSong = config.defaultSong;
+        this.startYear = this.yearRange[0];
+        this.endYear = this.yearRange[1];
         this.loaded = false;
+      }
+
+      yearParams() {
+        return `start_year=${this.startYear}&end_year=${this.endYear}`;
       }
 
       async init() {
         if (this.loaded) return;
+        this.populateYearSelectors();
         await this.loadSongsList();
         await Promise.all([
+          this.loadSummary(),
           this.loadTopSongs(),
           this.loadDurationTrend(),
           this.loadDeepDive(),
         ]);
         this.bindEvents();
         this.loaded = true;
+      }
+
+      populateYearSelectors() {
+        const startSel = document.getElementById(this.startYearId);
+        const endSel = document.getElementById(this.endYearId);
+        for (let y = this.yearRange[0]; y <= this.yearRange[1]; y++) {
+          startSel.add(new Option(y, y));
+          endSel.add(new Option(y, y));
+        }
+        startSel.value = this.yearRange[0];
+        endSel.value = this.yearRange[1];
       }
 
       destroyChart(key) {
@@ -1846,10 +1926,31 @@
           this.loadDurationTrend();
           this.loadDeepDive();
         });
+        document.getElementById(this.startYearId).addEventListener('change', (e) => {
+          this.startYear = parseInt(e.target.value);
+          this.refreshFiltered();
+        });
+        document.getElementById(this.endYearId).addEventListener('change', (e) => {
+          this.endYear = parseInt(e.target.value);
+          this.refreshFiltered();
+        });
+      }
+
+      async refreshFiltered() {
+        await Promise.all([this.loadSummary(), this.loadTopSongs()]);
+      }
+
+      async loadSummary() {
+        const res = await fetch(`${this.apiBase}/summary?${this.yearParams()}`);
+        const data = await res.json();
+        document.getElementById(this.kpiIds.shows).textContent = data.total_shows.toLocaleString();
+        document.getElementById(this.kpiIds.songs).textContent = data.unique_songs.toLocaleString();
+        document.getElementById(this.kpiIds.monsters).textContent = data.monster_count.toLocaleString();
+        document.getElementById(this.kpiIds.monsterSongs).textContent = data.monster_songs;
       }
 
       async loadTopSongs() {
-        const res = await fetch(`${this.apiBase}/top-songs?limit=10`);
+        const res = await fetch(`${this.apiBase}/top-songs?limit=10&${this.yearParams()}`);
         const data = await res.json();
 
         this.destroyChart('topSongs');
@@ -1985,6 +2086,7 @@
       prefix: 'dead',
       apiBase: '/api/dashboard/dead',
       defaultSong: 'Dark Star',
+      yearRange: [1965, 1995],
       colors: {
         primary: '#dc2626', secondary: '#7c3aed',
         r: t => Math.round(220 - t * 96), g: t => Math.round(38 + t * 20), b: t => Math.round(38 + t * 195)
@@ -1994,6 +2096,9 @@
       durationChartId: 'deadDurationTrendChart',
       setPositionId: 'deadSetPositionChart',
       longestId: 'deadLongestVersionsChart',
+      startYearId: 'deadStartYear',
+      endYearId: 'deadEndYear',
+      kpiIds: { shows: 'deadKpiShows', songs: 'deadKpiSongs', monsters: 'deadKpiMonsters', monsterSongs: 'deadKpiMonsterSongs' },
       hasSetPosition: true,
     });
 
@@ -2002,6 +2107,7 @@
       prefix: 'umphreys',
       apiBase: '/api/dashboard/umphreys',
       defaultSong: 'nothing too fancy',
+      yearRange: [1998, 2026],
       colors: {
         primary: '#e53e3e', secondary: '#ed8936',
         r: t => Math.round(229 + t * 8), g: t => Math.round(62 + t * 75), b: t => Math.round(62 - t * 8)
@@ -2011,6 +2117,9 @@
       durationChartId: 'umphreysDurationTrendChart',
       setPositionId: null,
       longestId: 'umphreysLongestVersionsChart',
+      startYearId: 'umphreysStartYear',
+      endYearId: 'umphreysEndYear',
+      kpiIds: { shows: 'umphreysKpiShows', songs: 'umphreysKpiSongs', monsters: 'umphreysKpiMonsters', monsterSongs: 'umphreysKpiMonsterSongs' },
       hasSetPosition: false,
     });
   </script>
