@@ -29,7 +29,7 @@ engine.load_data()
 import json as _json
 
 _dead_catalog = None
-_umphreys_index = None
+_relisten_indexes = {}
 
 def _get_dead_catalog():
     global _dead_catalog
@@ -39,17 +39,20 @@ def _get_dead_catalog():
         print(f"  Loaded Dead catalog: {len(_dead_catalog['songs'])} songs, {len(_dead_catalog['shows'])} shows")
     return _dead_catalog
 
-def _get_umphreys_index():
-    global _umphreys_index
-    if _umphreys_index is None:
-        with open(Path(__file__).parent / 'data' / 'relisten_cache' / 'umphreys_duration_index.json') as f:
-            _umphreys_index = _json.load(f)
-        print(f"  Loaded Umphrey's index: {len(_umphreys_index['tracks'])} tracks, {_umphreys_index['total_shows']} shows")
-    return _umphreys_index
+def _get_relisten_index(band_key):
+    """Load any Relisten duration index by band key."""
+    if band_key not in _relisten_indexes:
+        fpath = Path(__file__).parent / 'data' / 'relisten_cache' / f'{band_key}_duration_index.json'
+        with open(fpath) as f:
+            _relisten_indexes[band_key] = _json.load(f)
+        idx = _relisten_indexes[band_key]
+        print(f"  Loaded {band_key} index: {len(idx['tracks'])} tracks, {idx['total_shows']} shows")
+    return _relisten_indexes[band_key]
 
 # Filter junk tracks from Relisten indexes
-UMPHREYS_SKIP_TRACKS = {'intro', 'encore break', 'jam', 'set break', 'intermission',
-                         'crowd', 'tuning', 'banter', 'stage banter', 'soundcheck'}
+RELISTEN_SKIP_TRACKS = {'intro', 'encore break', 'jam', 'set break', 'intermission',
+                        'crowd', 'tuning', 'banter', 'stage banter', 'soundcheck',
+                        'drums', 'space', 'encore', 'introduction'}
 DEAD_SKIP_SONGS = {'Drums', 'Space', 'Drums/Space', 'Jam', 'Tuning', 'Introduction'}
 
 # Initialize unified JamMuse engine (handles all bands including Phish)
@@ -589,162 +592,120 @@ def dead_song_deep_dive():
 
 
 # =============================================================================
-# UMPHREYS DB - UMPHREY'S McGEE DASHBOARD ENDPOINTS
+# GENERIC RELISTEN DASHBOARD ENDPOINTS
 # =============================================================================
 
-def _umphreys_top_tracks(limit=10):
-    """Get top Umphrey's tracks by performance count, filtering junk."""
-    idx = _get_umphreys_index()
-    tracks = idx['tracks']
-    display = idx['display_names']
-    counts = []
-    for key, perfs in tracks.items():
-        name = display.get(key, key)
-        if name.lower() in UMPHREYS_SKIP_TRACKS:
-            continue
-        counts.append((name, key, len(perfs)))
-    counts.sort(key=lambda x: -x[2])
-    return counts[:limit]
+def _register_relisten_dashboard(route_prefix, band_key):
+    """Register top-songs, summary, songs-list, duration-trend, song-deep-dive
+    endpoints for any band with a Relisten duration index."""
 
-
-@app.route('/api/dashboard/umphreys/top-songs')
-def umphreys_top_songs():
-    limit = request.args.get('limit', 10, type=int)
-    start_year = request.args.get('start_year', type=int)
-    end_year = request.args.get('end_year', type=int)
-    idx = _get_umphreys_index()
-
-    if start_year or end_year:
+    @app.route(f'/api/dashboard/{route_prefix}/top-songs', endpoint=f'{route_prefix}_top_songs')
+    def top_songs():
+        limit = request.args.get('limit', 10, type=int)
+        start_year = request.args.get('start_year', type=int)
+        end_year = request.args.get('end_year', type=int)
+        idx = _get_relisten_index(band_key)
         counts = []
         for key, perfs in idx['tracks'].items():
             name = idx['display_names'].get(key, key)
-            if name.lower() in UMPHREYS_SKIP_TRACKS:
+            if name.lower() in RELISTEN_SKIP_TRACKS:
                 continue
-            filtered = [p for p in perfs
-                        if (not start_year or int(p['date'][:4]) >= start_year)
-                        and (not end_year or int(p['date'][:4]) <= end_year)]
-            if filtered:
-                counts.append({'name': name, 'play_count': len(filtered)})
+            if start_year or end_year:
+                perfs = [p for p in perfs
+                         if (not start_year or int(p['date'][:4]) >= start_year)
+                         and (not end_year or int(p['date'][:4]) <= end_year)]
+            if perfs:
+                counts.append({'name': name, 'play_count': len(perfs)})
         counts.sort(key=lambda x: -x['play_count'])
         return jsonify({'songs': counts[:limit]})
-    else:
-        top = _umphreys_top_tracks(limit)
-        return jsonify({'songs': [{'name': n, 'play_count': c} for n, _, c in top]})
 
-
-@app.route('/api/dashboard/umphreys/summary')
-def umphreys_summary():
-    """KPI summary for Umphrey's — year-filterable."""
-    idx = _get_umphreys_index()
-    start_year = request.args.get('start_year', type=int)
-    end_year = request.args.get('end_year', type=int)
-
-    show_dates = set()
-    unique_songs = set()
-    monster_count = 0
-    monster_songs = set()
-
-    for key, perfs in idx['tracks'].items():
-        name = idx['display_names'].get(key, key)
-        if name.lower() in UMPHREYS_SKIP_TRACKS:
-            continue
-        for p in perfs:
-            year = int(p['date'][:4])
-            if start_year and year < start_year:
+    @app.route(f'/api/dashboard/{route_prefix}/summary', endpoint=f'{route_prefix}_summary')
+    def summary():
+        idx = _get_relisten_index(band_key)
+        start_year = request.args.get('start_year', type=int)
+        end_year = request.args.get('end_year', type=int)
+        show_dates = set()
+        unique_songs = set()
+        monster_count = 0
+        monster_songs = set()
+        for key, perfs in idx['tracks'].items():
+            name = idx['display_names'].get(key, key)
+            if name.lower() in RELISTEN_SKIP_TRACKS:
                 continue
-            if end_year and year > end_year:
-                continue
-            show_dates.add(p['date'])
-            unique_songs.add(name)
-            if p.get('duration_sec', 0) >= 1200:  # 20 min
-                monster_count += 1
-                monster_songs.add(name)
-
-    return jsonify({
-        'total_shows': len(show_dates),
-        'unique_songs': len(unique_songs),
-        'monster_count': monster_count,
-        'monster_songs': len(monster_songs)
-    })
-
-
-@app.route('/api/dashboard/umphreys/songs-list')
-def umphreys_songs_list():
-    idx = _get_umphreys_index()
-    tracks = idx['tracks']
-    display = idx['display_names']
-    songs = []
-    for key, perfs in tracks.items():
-        name = display.get(key, key)
-        if name.lower() in UMPHREYS_SKIP_TRACKS:
-            continue
-        if len(perfs) >= 10:
-            songs.append({'name': name, 'slug': key})
-    songs.sort(key=lambda x: x['name'])
-    return jsonify({'songs': songs})
-
-
-@app.route('/api/dashboard/umphreys/duration-trend')
-def umphreys_duration_trend():
-    idx = _get_umphreys_index()
-    song_key = request.args.get('song', '')
-    if not song_key or song_key not in idx['tracks']:
-        return jsonify({'error': 'Song not found'}), 404
-
-    display = idx['display_names']
-    song_name = display.get(song_key, song_key)
-
-    by_year = defaultdict(list)
-    for p in idx['tracks'][song_key]:
-        dur_sec = p.get('duration_sec', 0)
-        if dur_sec <= 0:
-            continue
-        year = int(p['date'][:4])
-        by_year[year].append(dur_sec / 60.0)
-
-    years = []
-    for year in sorted(by_year.keys()):
-        durations = by_year[year]
-        years.append({
-            'year': year,
-            'avg_min': round(statistics.mean(durations), 2),
-            'max_min': round(max(durations), 2),
-            'min_min': round(min(durations), 2),
-            'count': len(durations)
+            for p in perfs:
+                year = int(p['date'][:4])
+                if start_year and year < start_year:
+                    continue
+                if end_year and year > end_year:
+                    continue
+                show_dates.add(p['date'])
+                unique_songs.add(name)
+                if p.get('duration_sec', 0) >= 1200:
+                    monster_count += 1
+                    monster_songs.add(name)
+        return jsonify({
+            'total_shows': len(show_dates),
+            'unique_songs': len(unique_songs),
+            'monster_count': monster_count,
+            'monster_songs': len(monster_songs)
         })
 
-    return jsonify({'song_name': song_name, 'slug': song_key, 'years': years})
+    @app.route(f'/api/dashboard/{route_prefix}/songs-list', endpoint=f'{route_prefix}_songs_list')
+    def songs_list():
+        idx = _get_relisten_index(band_key)
+        songs = []
+        for key, perfs in idx['tracks'].items():
+            name = idx['display_names'].get(key, key)
+            if name.lower() in RELISTEN_SKIP_TRACKS:
+                continue
+            if len(perfs) >= 10:
+                songs.append({'name': name, 'slug': key})
+        songs.sort(key=lambda x: x['name'])
+        return jsonify({'songs': songs})
+
+    @app.route(f'/api/dashboard/{route_prefix}/duration-trend', endpoint=f'{route_prefix}_duration_trend')
+    def duration_trend():
+        idx = _get_relisten_index(band_key)
+        song_key = request.args.get('song', '')
+        if not song_key or song_key not in idx['tracks']:
+            return jsonify({'error': 'Song not found'}), 404
+        song_name = idx['display_names'].get(song_key, song_key)
+        by_year = defaultdict(list)
+        for p in idx['tracks'][song_key]:
+            dur_sec = p.get('duration_sec', 0)
+            if dur_sec <= 0:
+                continue
+            by_year[int(p['date'][:4])].append(dur_sec / 60.0)
+        years = [{'year': y, 'avg_min': round(statistics.mean(d), 2),
+                  'max_min': round(max(d), 2), 'min_min': round(min(d), 2),
+                  'count': len(d)} for y, d in sorted(by_year.items())]
+        return jsonify({'song_name': song_name, 'slug': song_key, 'years': years})
+
+    @app.route(f'/api/dashboard/{route_prefix}/song-deep-dive', endpoint=f'{route_prefix}_song_deep_dive')
+    def song_deep_dive():
+        idx = _get_relisten_index(band_key)
+        song_key = request.args.get('song', '')
+        if not song_key or song_key not in idx['tracks']:
+            return jsonify({'error': 'Song not found'}), 404
+        song_name = idx['display_names'].get(song_key, song_key)
+        perfs = idx['tracks'][song_key]
+        sorted_perfs = sorted(perfs, key=lambda p: -p.get('duration_sec', 0))
+        longest = [{'date': p['date'],
+                    'duration_min': round(p.get('duration_sec', 0) / 60.0, 1),
+                    'venue': p.get('venue', '')}
+                   for p in sorted_perfs[:10] if p.get('duration_sec', 0) > 0]
+        return jsonify({
+            'song_name': song_name, 'slug': song_key,
+            'total_plays': len(perfs), 'set_positions': {},
+            'longest_versions': longest
+        })
 
 
-@app.route('/api/dashboard/umphreys/song-deep-dive')
-def umphreys_song_deep_dive():
-    idx = _get_umphreys_index()
-    song_key = request.args.get('song', '')
-    if not song_key or song_key not in idx['tracks']:
-        return jsonify({'error': 'Song not found'}), 404
-
-    display = idx['display_names']
-    song_name = display.get(song_key, song_key)
-    perfs = idx['tracks'][song_key]
-    total_plays = len(perfs)
-
-    # No set position data from Relisten (just duration), so skip donut
-    set_positions = {}
-
-    # Longest versions
-    sorted_perfs = sorted(perfs, key=lambda p: -p.get('duration_sec', 0))
-    longest_versions = [{'date': p['date'],
-                         'duration_min': round(p.get('duration_sec', 0) / 60.0, 1),
-                         'venue': p.get('venue', '')}
-                        for p in sorted_perfs[:10] if p.get('duration_sec', 0) > 0]
-
-    return jsonify({
-        'song_name': song_name,
-        'slug': song_key,
-        'total_plays': total_plays,
-        'set_positions': set_positions,
-        'longest_versions': longest_versions
-    })
+# Register all Relisten-backed band dashboards
+_register_relisten_dashboard('umphreys', 'umphreys')
+_register_relisten_dashboard('sci', 'sci')
+_register_relisten_dashboard('wsp', 'wsp')
+_register_relisten_dashboard('spafford', 'spafford')
 
 
 if __name__ == '__main__':
