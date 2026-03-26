@@ -510,6 +510,42 @@ def dead_summary():
     })
 
 
+@app.route('/api/dashboard/dead/monsters')
+def dead_monsters():
+    catalog = _get_dead_catalog()
+    start_year = request.args.get('start_year', type=int)
+    end_year = request.args.get('end_year', type=int)
+    song_monster_counts = defaultdict(int)
+    total = 0
+    for name, sdata in catalog['songs'].items():
+        if name in DEAD_SKIP_SONGS:
+            continue
+        for p in sdata.get('performances', []):
+            dur_sec = p.get('duration', 0)
+            if dur_sec < 1200:
+                continue
+            year = int(p['date'][:4])
+            if start_year and year < start_year:
+                continue
+            if end_year and year > end_year:
+                continue
+            song_monster_counts[name] += 1
+            total += 1
+    top_songs = [{'name': n, 'count': c} for n, c in
+                 sorted(song_monster_counts.items(), key=lambda x: -x[1])[:15]]
+    return jsonify({'top_songs': top_songs, 'total_count': total, 'unique_songs': len(song_monster_counts)})
+
+
+@app.route('/api/dashboard/dead/shows-per-year')
+def dead_shows_per_year():
+    catalog = _get_dead_catalog()
+    by_year = defaultdict(int)
+    for show in catalog['shows']:
+        by_year[int(show['date'][:4])] += 1
+    years = [{'year': y, 'show_count': c} for y, c in sorted(by_year.items())]
+    return jsonify({'years': years})
+
+
 @app.route('/api/dashboard/dead/songs-list')
 def dead_songs_list():
     catalog = _get_dead_catalog()
@@ -649,6 +685,44 @@ def _register_relisten_dashboard(route_prefix, band_key):
             'monster_count': monster_count,
             'monster_songs': len(monster_songs)
         })
+
+    @app.route(f'/api/dashboard/{route_prefix}/monsters', endpoint=f'{route_prefix}_monsters')
+    def monsters():
+        idx = _get_relisten_index(band_key)
+        start_year = request.args.get('start_year', type=int)
+        end_year = request.args.get('end_year', type=int)
+        song_monster_counts = defaultdict(int)
+        total = 0
+        for key, perfs in idx['tracks'].items():
+            name = idx['display_names'].get(key, key)
+            if name.lower() in RELISTEN_SKIP_TRACKS:
+                continue
+            for p in perfs:
+                if p.get('duration_sec', 0) < 1200:
+                    continue
+                year = int(p['date'][:4])
+                if start_year and year < start_year:
+                    continue
+                if end_year and year > end_year:
+                    continue
+                song_monster_counts[name] += 1
+                total += 1
+        top_songs = [{'name': n, 'count': c} for n, c in
+                     sorted(song_monster_counts.items(), key=lambda x: -x[1])[:15]]
+        return jsonify({'top_songs': top_songs, 'total_count': total, 'unique_songs': len(song_monster_counts)})
+
+    @app.route(f'/api/dashboard/{route_prefix}/shows-per-year', endpoint=f'{route_prefix}_shows_per_year')
+    def shows_per_year():
+        idx = _get_relisten_index(band_key)
+        by_year = defaultdict(set)
+        for key, perfs in idx['tracks'].items():
+            name = idx['display_names'].get(key, key)
+            if name.lower() in RELISTEN_SKIP_TRACKS:
+                continue
+            for p in perfs:
+                by_year[int(p['date'][:4])].add(p['date'])
+        years = [{'year': y, 'show_count': len(dates)} for y, dates in sorted(by_year.items())]
+        return jsonify({'years': years})
 
     @app.route(f'/api/dashboard/{route_prefix}/songs-list', endpoint=f'{route_prefix}_songs_list')
     def songs_list():

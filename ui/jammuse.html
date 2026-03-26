@@ -390,6 +390,11 @@
       <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
       <div style="height: 400px;"><canvas id="deadTopSongsChart"></canvas></div>
     </div>
+    <!-- Monsters + Shows Per Year -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3><div style="height: 400px;"><canvas id="deadMonstersChart"></canvas></div></div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3><div style="height: 400px;"><canvas id="deadShowsPerYearChart"></canvas></div></div>
+    </div>
   </main>
   </div>
 
@@ -453,6 +458,10 @@
       <h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3>
       <div style="height: 400px;"><canvas id="umphreysTopSongsChart"></canvas></div>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3><div style="height: 400px;"><canvas id="umphreysMonstersChart"></canvas></div></div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3><div style="height: 400px;"><canvas id="umphreysShowsPerYearChart"></canvas></div></div>
+    </div>
   </main>
   </div>
 
@@ -486,6 +495,10 @@
       <div><h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4><div style="height: 280px;"><canvas id="sciLongestVersionsChart"></canvas></div></div>
     </div>
     <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8"><h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3><div style="height: 400px;"><canvas id="sciTopSongsChart"></canvas></div></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3><div style="height: 400px;"><canvas id="sciMonstersChart"></canvas></div></div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3><div style="height: 400px;"><canvas id="sciShowsPerYearChart"></canvas></div></div>
+    </div>
   </main>
   </div>
 
@@ -519,6 +532,10 @@
       <div><h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4><div style="height: 280px;"><canvas id="wspLongestVersionsChart"></canvas></div></div>
     </div>
     <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8"><h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3><div style="height: 400px;"><canvas id="wspTopSongsChart"></canvas></div></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3><div style="height: 400px;"><canvas id="wspMonstersChart"></canvas></div></div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3><div style="height: 400px;"><canvas id="wspShowsPerYearChart"></canvas></div></div>
+    </div>
   </main>
   </div>
 
@@ -552,6 +569,10 @@
       <div><h4 class="text-sm font-semibold text-gray-400 uppercase tracking-wider mb-3">Longest Versions</h4><div style="height: 280px;"><canvas id="spaffordLongestVersionsChart"></canvas></div></div>
     </div>
     <div class="stat-card rounded-2xl p-6 border border-gray-700 mb-8"><h3 class="text-lg font-bold text-white mb-4">Top 10 Most Played Songs</h3><div style="height: 400px;"><canvas id="spaffordTopSongsChart"></canvas></div></div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Monster Jams (20+ Minutes)</h3><div style="height: 400px;"><canvas id="spaffordMonstersChart"></canvas></div></div>
+      <div class="stat-card rounded-2xl p-6 border border-gray-700"><h3 class="text-lg font-bold text-white mb-4">Shows Per Year</h3><div style="height: 400px;"><canvas id="spaffordShowsPerYearChart"></canvas></div></div>
+    </div>
   </main>
   </div>
 
@@ -2009,6 +2030,8 @@
         await Promise.all([
           this.loadSummary(),
           this.loadTopSongs(),
+          this.loadMonsters(),
+          this.loadShowsPerYear(),
           this.loadDurationTrend(),
           this.loadDeepDive(),
         ]);
@@ -2060,7 +2083,56 @@
       }
 
       async refreshFiltered() {
-        await Promise.all([this.loadSummary(), this.loadTopSongs()]);
+        await Promise.all([this.loadSummary(), this.loadTopSongs(), this.loadMonsters()]);
+      }
+
+      async loadMonsters() {
+        const res = await fetch(`${this.apiBase}/monsters?${this.yearParams()}`);
+        const data = await res.json();
+        this.destroyChart('monsters');
+        const ctx = document.getElementById(`${this.prefix}MonstersChart`);
+        if (!ctx) return;
+        const songs = data.top_songs.slice(0, 15);
+        this.charts.monsters = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: songs.map(s => s.name),
+            datasets: [{ data: songs.map(s => s.count), backgroundColor: this.colors.primary + 'cc', borderRadius: 4 }]
+          },
+          options: {
+            indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.raw} performances over 20 min` } } },
+            scales: { x: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } }, y: { grid: { display: false }, ticks: { color: '#e5e7eb', font: { size: 11 } } } }
+          }
+        });
+      }
+
+      async loadShowsPerYear() {
+        const res = await fetch(`${this.apiBase}/shows-per-year`);
+        const data = await res.json();
+        this.destroyChart('showsPerYear');
+        const ctx = document.getElementById(`${this.prefix}ShowsPerYearChart`);
+        if (!ctx) return;
+        this.charts.showsPerYear = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: data.years.map(y => y.year),
+            datasets: [{
+              data: data.years.map(y => y.show_count),
+              backgroundColor: data.years.map(y => {
+                const maxShows = Math.max(...data.years.map(y => y.show_count));
+                const intensity = Math.min(y.show_count / maxShows, 1);
+                return this.colors.secondary + Math.round(65 + intensity * 128).toString(16).padStart(2, '0');
+              }),
+              borderRadius: 2,
+            }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.raw} shows` } } },
+            scales: { x: { grid: { display: false }, ticks: { color: '#9ca3af', font: { size: 10 }, maxRotation: 45 } }, y: { grid: { color: '#1f2937' }, ticks: { color: '#9ca3af' } } }
+          }
+        });
       }
 
       async loadSummary() {
