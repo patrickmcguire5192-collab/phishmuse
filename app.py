@@ -53,7 +53,18 @@ def _get_relisten_index(band_key):
 RELISTEN_SKIP_TRACKS = {'intro', 'encore break', 'jam', 'set break', 'intermission',
                         'crowd', 'tuning', 'banter', 'stage banter', 'soundcheck',
                         'drums', 'space', 'encore', 'introduction'}
-DEAD_SKIP_SONGS = {'Drums', 'Space', 'Drums/Space', 'Jam', 'Tuning', 'Introduction'}
+DEAD_SKIP_EXACT = {'Drums', 'Space', 'Drums/Space', 'Jam', 'Tuning', 'Introduction',
+                   'Encore Break', 'Banter', 'Stage Banter', 'Crowd Noise', 'Dead Air'}
+DEAD_SKIP_PATTERNS = ['tuning', 'set break', 'kpfa', 'crowd/tuning', 'crowd noise',
+                      'dead air', 'stage banter', 'banter/tuning', 'sound check',
+                      'crowd and tuning', 'crowd & tuning', 'drums -> space',
+                      'drums > space', 'drums/space', 'seastones']
+
+def _is_dead_junk(name):
+    if name in DEAD_SKIP_EXACT:
+        return True
+    nl = name.lower()
+    return any(p in nl for p in DEAD_SKIP_PATTERNS)
 
 # Initialize unified JamMuse engine (handles all bands including Phish)
 unified_engine = None
@@ -451,13 +462,13 @@ def dead_top_songs():
                 continue
             for t in show.get('tracks', []):
                 name = t.get('song', '')
-                if name and name not in DEAD_SKIP_SONGS:
+                if name and not _is_dead_junk(name):
                     song_counts[name] += 1
         songs = [{'name': n, 'play_count': c} for n, c in
                  sorted(song_counts.items(), key=lambda x: -x[1])[:limit]]
     else:
         songs_data = catalog['songs']
-        top = sorted(((n, s) for n, s in songs_data.items() if n not in DEAD_SKIP_SONGS),
+        top = sorted(((n, s) for n, s in songs_data.items() if not _is_dead_junk(n)),
                      key=lambda x: -x[1].get('total_plays', 0))[:limit]
         songs = [{'name': n, 'play_count': s['total_plays']} for n, s in top]
     return jsonify({'songs': songs})
@@ -481,14 +492,14 @@ def dead_summary():
         total_shows += 1
         for t in show.get('tracks', []):
             name = t.get('song', '')
-            if name and name not in DEAD_SKIP_SONGS:
+            if name and not _is_dead_junk(name):
                 unique_songs.add(name)
 
     # Monsters from song performances
     monster_count = 0
     monster_songs = set()
     for name, sdata in catalog['songs'].items():
-        if name in DEAD_SKIP_SONGS:
+        if _is_dead_junk(name):
             continue
         for p in sdata.get('performances', []):
             dur_sec = p.get('duration', 0)
@@ -518,7 +529,7 @@ def dead_monsters():
     song_monster_counts = defaultdict(int)
     total = 0
     for name, sdata in catalog['songs'].items():
-        if name in DEAD_SKIP_SONGS:
+        if _is_dead_junk(name):
             continue
         for p in sdata.get('performances', []):
             dur_sec = p.get('duration', 0)
@@ -551,7 +562,7 @@ def dead_songs_list():
     catalog = _get_dead_catalog()
     # Only songs with enough performances to make a meaningful chart
     songs = [{'name': n, 'slug': n} for n, s in catalog['songs'].items()
-             if len(s.get('performances', [])) >= 10 and n not in DEAD_SKIP_SONGS]
+             if len(s.get('performances', [])) >= 10 and not _is_dead_junk(n)]
     songs.sort(key=lambda x: x['name'])
     return jsonify({'songs': songs})
 
