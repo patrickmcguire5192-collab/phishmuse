@@ -31,10 +31,19 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 from fastmcp import FastMCP
 from scripts.query_engine import PhishStatsEngine
 
-# Boot the engine once at import time
+# Boot the Phish engine eagerly (cheap, single dataset)
 _engine = PhishStatsEngine()
 _engine.load_data()
 _engine._load_tours()
+
+# Lazy-load the unified multi-band engine (loads 10+ band caches on first call)
+_unified = None
+def _get_unified():
+    global _unified
+    if _unified is None:
+        from scripts.jammuse_engine import get_unified_engine
+        _unified = get_unified_engine()
+    return _unified
 
 mcp = FastMCP(
     name="JamMuse",
@@ -367,6 +376,68 @@ def search_songs(query: str, limit: int = 10) -> dict:
 def get_band_overview() -> dict:
     """Phish career overview: total shows, total songs, peak year, biggest gaps, etc."""
     return _qr_to_dict(_engine.query_career_stats())
+
+
+# ============================================================
+# Multi-band tools (non-Phish: Goose, KGLW, Dead, UM, WSP, moe.,
+# STS9, Billy Strings, SCI, Disco Biscuits, Spafford, Lotus)
+# ============================================================
+
+@mcp.tool
+def list_bands() -> dict:
+    """List every band JamMuse can answer questions about, with the data backing each one.
+
+    Use this when the user asks what bands you support, or when you're unsure
+    whether a specific band has data available.
+    """
+    catalog = [
+        {"key": "phish", "name": "Phish", "data": "Phish.net setlists + Phish.in durations", "tools": "use the typed Phish tools (get_song_stats, get_setlist, etc.)"},
+        {"key": "goose", "name": "Goose", "data": "Songfish (elgoose.net)", "tools": "use ask_jam_band"},
+        {"key": "kglw", "name": "King Gizzard & The Lizard Wizard", "data": "Songfish (kglw.net)", "tools": "use ask_jam_band"},
+        {"key": "dead", "name": "Grateful Dead", "data": "Archive.org", "tools": "use ask_jam_band"},
+        {"key": "umphreys", "name": "Umphrey's McGee", "data": "Setlist.fm + Relisten", "tools": "use ask_jam_band"},
+        {"key": "wsp", "name": "Widespread Panic", "data": "Setlist.fm + Relisten", "tools": "use ask_jam_band"},
+        {"key": "moe", "name": "moe.", "data": "Setlist.fm + Relisten", "tools": "use ask_jam_band"},
+        {"key": "sts9", "name": "STS9 (Sound Tribe Sector 9)", "data": "Setlist.fm + Relisten", "tools": "use ask_jam_band"},
+        {"key": "billy", "name": "Billy Strings", "data": "Setlist.fm + Relisten", "tools": "use ask_jam_band"},
+        {"key": "sci", "name": "String Cheese Incident", "data": "Phantasy Tour + Relisten", "tools": "use ask_jam_band"},
+        {"key": "biscuits", "name": "Disco Biscuits", "data": "Phantasy Tour + Relisten", "tools": "use ask_jam_band"},
+        {"key": "spafford", "name": "Spafford", "data": "Relisten only (durations)", "tools": "use ask_jam_band"},
+        {"key": "lotus", "name": "Lotus", "data": "Relisten only (durations)", "tools": "use ask_jam_band"},
+    ]
+    return {
+        "summary": f"{len(catalog)} bands supported. Phish has rich typed tools; all others use ask_jam_band.",
+        "data": {"count": len(catalog), "bands": catalog},
+        "success": True,
+    }
+
+
+@mcp.tool
+def ask_jam_band(band: str, question: str) -> dict:
+    """Ask a natural-language question about any non-Phish band JamMuse supports.
+
+    For Phish, prefer the typed tools (get_song_stats, get_longest_versions, etc.) — they're
+    richer. Use THIS tool for: Goose, KGLW, Dead, Umphrey's McGee (umphreys), Widespread Panic
+    (wsp), moe., STS9 (sts9), Billy Strings (billy), String Cheese Incident (sci), Disco
+    Biscuits (biscuits), Spafford, or Lotus.
+
+    Capability per band varies by data source — Relisten-only bands (Spafford, Lotus) only
+    have duration data, while Setlist.fm and Phantasy Tour bands also support setlist queries.
+    Call list_bands first if you need to check what's supported.
+
+    Args:
+        band: Band key from list_bands (e.g., 'goose', 'umphreys', 'dead', 'sci').
+        question: A natural-language question (e.g., 'longest Mantis ever', 'when was the
+            last time they played Arcadia', 'how many times have they covered Tom Petty').
+            Don't need to repeat the band name in the question — this tool prepends it.
+    """
+    unified = _get_unified()
+    # Prepend band name to help UnifiedJamMuse's auto-detect lock onto the right engine.
+    # Most engines look for band-specific keywords; mentioning the band explicitly is robust.
+    band_hint = band.lower().strip()
+    full_question = f"{band_hint} — {question}"
+    result = unified.query(full_question)
+    return _qr_to_dict(result)
 
 
 # ============================================================
