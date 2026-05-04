@@ -20,7 +20,7 @@
     },
     {
       "src": "/mcp(/.*)?",
-      "dest": "api/mcp.py"
+      "dest": "/api/mcp"
     },
     {
       "src": "/(.*)",
