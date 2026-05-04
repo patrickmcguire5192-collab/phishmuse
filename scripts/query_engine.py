@@ -3028,6 +3028,298 @@ class PhishStatsEngine:
             related_queries=related
         )
 
+    # ============================================================
+    # NEW: Tour, geography, segue, and bustout queries
+    # ============================================================
+
+    def _load_tours(self):
+        """Lazy-load tour catalog. Safe to call repeatedly."""
+        if hasattr(self, "tours") and self.tours:
+            return
+        self.tours = []
+        self.tours_by_id = {}
+        try:
+            with open(RAW_DIR / "tours.json") as f:
+                self.tours = json.load(f)
+            self.tours_by_id = {t["tourid"]: t for t in self.tours}
+        except FileNotFoundError:
+            pass
+
+    # Words too common to count as a distinctive tour identifier
+    _TOUR_STOPWORDS = {"tour", "run", "the", "a", "of", "from", "in", "show", "shows",
+                       "setlist", "setlists", "list", "me", "and", "to", "for", "with",
+                       "phish", "destroys", "america"}
+
+    def _resolve_tour(self, query: str) -> Optional[dict]:
+        """Find a tour by partial name match. Robust to extra noise words.
+
+        Strategy: build inverse-frequency weights for words across all tour names.
+        A query word that appears in only 1 tour is highly diagnostic.
+        """
+        self._load_tours()
+        if not self.tours:
+            return None
+        candidates = [t for t in self.tours if t.get("name") and "not part" not in t["name"].lower()]
+        if not candidates:
+            return None
+
+        def keywords(text: str) -> set:
+            return {w for w in re.findall(r"\w+", text.lower()) if w not in self._TOUR_STOPWORDS}
+
+        # Build word -> document frequency across all tour names+when fields
+        word_df = {}
+        tour_keywords = []
+        for t in candidates:
+            kws = keywords(t["name"]) | keywords(t.get("when") or "")
+            tour_keywords.append(kws)
+            for w in kws:
+                word_df[w] = word_df.get(w, 0) + 1
+
+        q = query.lower().strip().rstrip("?.,!")
+        q_kws = keywords(q)
+        if not q_kws:
+            return None
+
+        scored = []
+        for t, kws in zip(candidates, tour_keywords):
+            name = t["name"].lower()
+            # Direct substring match (best signal)
+            if q == name:
+                scored.append((10000, t))
+                continue
+            if name in q:
+                scored.append((5000 + len(name), t))
+                continue
+
+            overlap = q_kws & kws
+            if not overlap:
+                continue
+            # Score: sum of (1/df) for each overlapping word, scaled
+            score = sum(100.0 / word_df[w] for w in overlap)
+            # Bonus: if ALL of this tour's keywords are in the query
+            if kws and kws.issubset(q_kws):
+                score += 500
+            scored.append((score, t))
+
+        if not scored:
+            return None
+        scored.sort(key=lambda x: -x[0])
+        return scored[0][1]
+
+    def query_tour_shows(self, tour_query: str) -> QueryResult:
+        """List shows from a named tour (e.g., 'Island Tour', 'Fall Tour 1997')."""
+        self._load_tours()
+        tour = self._resolve_tour(tour_query)
+        if not tour:
+            return QueryResult(
+                success=False,
+                answer=f"I couldn't find a tour matching \"{tour_query}\". Try names like 'Island Tour', 'Fall Tour 1997', or 'Summer 1998'.",
+                related_queries=["Island Tour", "Fall Tour 1997", "Summer 1998"],
+            )
+        dates = tour.get("show_dates", [])
+        # Hydrate with venue/city for display
+        shows_by_date = {s["showdate"]: s for s in self.shows}
+        rows = []
+        for d in dates:
+            s = shows_by_date.get(d)
+            if s:
+                loc = s.get("city", "")
+                if s.get("state"):
+                    loc = f"{loc}, {s['state']}" if loc else s["state"]
+                rows.append({"date": d, "venue": s.get("venue", "?"), "location": loc, "song_count": len(s.get("songs", []))})
+            else:
+                rows.append({"date": d, "venue": "?", "location": "", "song_count": 0})
+        when = tour.get("when") or ""
+        answer = f"**{tour['name']}** ({when}) — {len(rows)} show{'s' if len(rows) != 1 else ''}"
+        return QueryResult(
+            success=True,
+            answer=answer,
+            highlight=tour["name"],
+            card_data={
+                "type": "tour_shows",
+                "tour_name": tour["name"],
+                "tour_when": when,
+                "show_count": len(rows),
+                "shows": rows,
+            },
+            related_queries=[f"setlist {rows[0]['date']}" if rows else "Fall Tour 1997"],
+            raw_data=tour,
+        )
+
+    def query_song_followers(self, song_name: str, limit: int = 10, segue_only: bool = False) -> QueryResult:
+        """What songs typically follow a given song? Scans all setlists."""
+        target = song_name.lower().strip()
+        followers = {}
+        total = 0
+        for show in self.shows:
+            songs = sorted(show.get("songs", []), key=lambda s: (s.get("set", ""), s.get("position", 0)))
+            for i, s in enumerate(songs[:-1]):
+                if (s.get("song") or "").lower() != target:
+                    continue
+                nxt = songs[i + 1]
+                # Only count if next song is in the same set (otherwise it's a set break)
+                if s.get("set") != nxt.get("set"):
+                    continue
+                if segue_only and not s.get("transition"):
+                    continue
+                name = nxt.get("song", "?")
+                followers[name] = followers.get(name, 0) + 1
+                total += 1
+        if not followers:
+            return QueryResult(
+                success=False,
+                answer=f"I couldn't find any in-set follower data for {song_name}. Check the spelling?",
+                related_queries=[f"what follows Tweezer", f"what follows Mike's Song"],
+            )
+        ranked = sorted(followers.items(), key=lambda x: -x[1])[:limit]
+        top = ranked[0]
+        pct = top[1] / total * 100
+        answer = f"**{top[0]}** is the most common follower of {song_name} — {top[1]} of {total} times ({pct:.0f}%)."
+        return QueryResult(
+            success=True,
+            answer=answer,
+            highlight=f"{top[0]} ({top[1]}×)",
+            card_data={
+                "type": "song_followers",
+                "song": song_name,
+                "total_transitions": total,
+                "top_followers": [{"song": s, "count": c, "pct": round(c / total * 100, 1)} for s, c in ranked],
+            },
+        )
+
+    # US states for geography filtering
+    US_STATES = {
+        "alabama": "AL", "alaska": "AK", "arizona": "AZ", "arkansas": "AR", "california": "CA",
+        "colorado": "CO", "connecticut": "CT", "delaware": "DE", "florida": "FL", "georgia": "GA",
+        "hawaii": "HI", "idaho": "ID", "illinois": "IL", "indiana": "IN", "iowa": "IA",
+        "kansas": "KS", "kentucky": "KY", "louisiana": "LA", "maine": "ME", "maryland": "MD",
+        "massachusetts": "MA", "michigan": "MI", "minnesota": "MN", "mississippi": "MS", "missouri": "MO",
+        "montana": "MT", "nebraska": "NE", "nevada": "NV", "new hampshire": "NH", "new jersey": "NJ",
+        "new mexico": "NM", "new york": "NY", "north carolina": "NC", "north dakota": "ND", "ohio": "OH",
+        "oklahoma": "OK", "oregon": "OR", "pennsylvania": "PA", "rhode island": "RI", "south carolina": "SC",
+        "south dakota": "SD", "tennessee": "TN", "texas": "TX", "utah": "UT", "vermont": "VT",
+        "virginia": "VA", "washington": "WA", "west virginia": "WV", "wisconsin": "WI", "wyoming": "WY",
+        "district of columbia": "DC", "dc": "DC",
+    }
+
+    def _resolve_state(self, query: str) -> Optional[str]:
+        """Resolve a state name or abbreviation from a query string."""
+        q = query.lower().strip()
+        if q in self.US_STATES:
+            return self.US_STATES[q]
+        if len(q) == 2 and q.upper() in self.US_STATES.values():
+            return q.upper()
+        for full, abbr in self.US_STATES.items():
+            if full in q:
+                return abbr
+        return None
+
+    def query_venues_by_geography(self, state: str = None, country: str = None, limit: int = 10) -> QueryResult:
+        """Most-played venues filtered by state or country."""
+        state_code = self._resolve_state(state) if state else None
+        country_filter = country.strip().lower() if country else None
+
+        venue_counts = {}
+        for show in self.shows:
+            if state_code and show.get("state") != state_code:
+                continue
+            if country_filter and (show.get("country") or "").lower() != country_filter:
+                continue
+            v = show.get("venue") or "Unknown"
+            city = show.get("city", "")
+            key = (v, city, show.get("state", ""))
+            venue_counts[key] = venue_counts.get(key, 0) + 1
+
+        if not venue_counts:
+            scope = state or country or "anywhere"
+            return QueryResult(
+                success=False,
+                answer=f"No shows found in {scope}.",
+                related_queries=["venues in California", "venues in Colorado"],
+            )
+
+        ranked = sorted(venue_counts.items(), key=lambda x: -x[1])[:limit]
+        scope_label = state_code or country or ""
+        total_shows = sum(c for _, c in venue_counts.items())
+        top_v, top_c = ranked[0]
+        answer = f"**{top_v[0]}** in {top_v[1]} — {top_c} show{'s' if top_c != 1 else ''}"
+        if scope_label:
+            answer += f" (top venue in {scope_label}, {len(venue_counts)} unique venues, {total_shows} total shows)"
+        return QueryResult(
+            success=True,
+            answer=answer,
+            highlight=top_v[0],
+            card_data={
+                "type": "venues_by_geography",
+                "scope": scope_label,
+                "total_unique_venues": len(venue_counts),
+                "total_shows": total_shows,
+                "venues": [
+                    {"venue": v[0], "city": v[1], "state": v[2], "show_count": c}
+                    for v, c in ranked
+                ],
+            },
+        )
+
+    def query_biggest_bustouts(self, year: int = None, tour_query: str = None, limit: int = 10) -> QueryResult:
+        """Biggest bustouts (largest gaps at time of play). Filterable by year or tour."""
+        target_dates = None
+        scope_label = None
+        if tour_query:
+            self._load_tours()
+            tour = self._resolve_tour(tour_query)
+            if not tour:
+                return QueryResult(
+                    success=False,
+                    answer=f"Couldn't find tour \"{tour_query}\".",
+                    related_queries=["biggest bustouts of 2024", "Fall Tour 1997 bustouts"],
+                )
+            target_dates = set(tour.get("show_dates", []))
+            scope_label = tour["name"]
+
+        bustouts = []
+        for show in self.shows:
+            date = show.get("showdate", "")
+            if year and not date.startswith(str(year)):
+                continue
+            if target_dates is not None and date not in target_dates:
+                continue
+            for s in show.get("songs", []):
+                gap = s.get("gap")
+                if gap is None or gap < 25:  # Only count real bustouts (25+ shows)
+                    continue
+                bustouts.append({
+                    "song": s.get("song"),
+                    "date": date,
+                    "venue": show.get("venue"),
+                    "city": show.get("city"),
+                    "state": show.get("state"),
+                    "gap": gap,
+                })
+
+        if not bustouts:
+            scope = scope_label or (str(year) if year else "the data")
+            return QueryResult(
+                success=False,
+                answer=f"No notable bustouts (25+ show gap) found in {scope}.",
+                related_queries=["biggest bustouts of 2024", "biggest bustouts of 2023"],
+            )
+
+        bustouts.sort(key=lambda x: -x["gap"])
+        top = bustouts[:limit]
+        scope = scope_label or (str(year) if year else "all-time")
+        answer = f"Biggest bustout in {scope}: **{top[0]['song']}** on {top[0]['date']} after a {top[0]['gap']}-show gap"
+        return QueryResult(
+            success=True,
+            answer=answer,
+            highlight=f"{top[0]['song']} ({top[0]['gap']}-show gap)",
+            card_data={
+                "type": "biggest_bustouts",
+                "scope": scope,
+                "bustouts": top,
+            },
+        )
+
     def query(self, question: str) -> QueryResult:
         """
         Main query entry point. Parses the question and routes to appropriate handler.
@@ -3047,6 +3339,38 @@ class PhishStatsEngine:
 
         # Extract era if present (e.g., "longest Tweezer of 1.0")
         base_question, era, era_start, era_end = self._extract_era_from_query(base_question)
+
+        # Pattern: Song followers / segues - "what follows X", "what comes after X", "what songs follow X"
+        follower_triggers = ["what follows", "what comes after", "what typically follows", "songs that follow", "what usually follows", "song after"]
+        if any(p in question_lower for p in follower_triggers):
+            song = self._normalize_song_name(base_question)
+            if song:
+                return self.query_song_followers(song)
+
+        # Pattern: Biggest bustouts - "biggest bustouts of 2024", "bustouts in Fall Tour 1997"
+        if "bustout" in question_lower:
+            year = self._extract_year_from_query(question)
+            tour_match = re.search(r"(?:in|from|of|during)\s+(?:the\s+)?([\w\s]+?)\s+tour", question_lower)
+            if not year and tour_match:
+                return self.query_biggest_bustouts(tour_query=tour_match.group(1) + " tour")
+            return self.query_biggest_bustouts(year=year)
+
+        # Pattern: Tour shows - "shows from Island Tour", "list shows from Fall Tour 1997", "Island Tour setlist"
+        if any(kw in question_lower for kw in (" tour", " run ", " nye")):
+            # Just hand the whole question to the tour resolver — it handles noise
+            result = self.query_tour_shows(question)
+            if result.success:
+                return result
+
+        # Pattern: Venues by geography - "venues in California", "most played venues in CA", "which venues in NY"
+        geo_triggers = ["venues in ", "venues at ", "most played venues", "which venues", "what venues"]
+        if any(p in question_lower for p in geo_triggers):
+            # Extract state name
+            geo_match = re.search(r"(?:in|at|across|throughout)\s+([\w\s]+?)(?:\?|$|\.|,)", question_lower)
+            if geo_match:
+                place = geo_match.group(1).strip()
+                if self._resolve_state(place):
+                    return self.query_venues_by_geography(state=place)
 
         # Pattern: Random show - "random show", "give me a show to listen to"
         if is_random_show_query(question_lower):

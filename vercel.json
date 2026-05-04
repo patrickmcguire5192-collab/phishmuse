@@ -5,6 +5,10 @@
       "use": "@vercel/python"
     },
     {
+      "src": "api/mcp.py",
+      "use": "@vercel/python"
+    },
+    {
       "src": "public/**",
       "use": "@vercel/static"
     }
@@ -13,6 +17,10 @@
     {
       "src": "/images/(.*)",
       "dest": "/public/images/$1"
+    },
+    {
+      "src": "/mcp(/.*)?",
+      "dest": "api/mcp.py"
     },
     {
       "src": "/(.*)",

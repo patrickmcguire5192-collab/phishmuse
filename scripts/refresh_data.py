@@ -37,7 +37,13 @@ COMPUTED_DIR.mkdir(parents=True, exist_ok=True)
 def fetch_json(url, headers=None):
     """Fetch JSON from URL with error handling."""
     try:
-        req = urllib.request.Request(url, headers=headers or {})
+        default_headers = {
+            'User-Agent': 'PhishStats/1.0 (https://github.com/phishstats; contact@phishstats.com)',
+            'Accept': 'application/json'
+        }
+        if headers:
+            default_headers.update(headers)
+        req = urllib.request.Request(url, headers=default_headers)
         with urllib.request.urlopen(req, timeout=30) as response:
             return json.loads(response.read().decode())
     except Exception as e:
@@ -76,6 +82,9 @@ def pull_phishnet_shows(years=None):
                         "state": entry.get("state"),
                         "country": entry.get("country"),
                         "venueid": entry.get("venueid"),
+                        "tourid": entry.get("tourid"),
+                        "tourname": entry.get("tourname"),
+                        "tourwhen": entry.get("tourwhen"),
                         "songs": []
                     }
 
