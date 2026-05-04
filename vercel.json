@@ -22,10 +22,7 @@
       "src": "/mcp(/.*)?",
       "dest": "/api/mcp"
     },
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
-    },
+    { "handle": "filesystem" },
     {
       "src": "/(.*)",
       "dest": "app.py"
