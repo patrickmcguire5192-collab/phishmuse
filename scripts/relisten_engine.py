@@ -265,24 +265,25 @@ class RelistenDurationEngine:
         return INDEX_DIR / f"{self.band_key}_duration_index.json"
 
     def _load_or_build_index(self) -> dict:
-        """Load cached index or build from scratch."""
+        """Load cached index or build from scratch.
+
+        Cached indexes do NOT auto-expire — they're refreshed by running
+        scripts/precompute_relisten_indexes.py and committing the result.
+        Auto-expiry caused 30s cold-start rebuilds on every Vercel cold start
+        once an index aged past INDEX_EXPIRY.
+        """
         if self._duration_index is not None:
             return self._duration_index
 
         idx_path = self._index_path()
         if idx_path.exists():
             try:
-                loaded = json.loads(idx_path.read_text())
-                # Check built_at timestamp inside the index (not filesystem mtime)
-                built_at = loaded.get("built_at", 0)
-                age = time.time() - built_at
-                if age < INDEX_EXPIRY:
-                    self._duration_index = loaded
-                    return self._duration_index
+                self._duration_index = json.loads(idx_path.read_text())
+                return self._duration_index
             except (json.JSONDecodeError, OSError):
                 pass
 
-        # Build index (only happens locally or when index is truly expired)
+        # No cached index — build from raw API/cache (slow path)
         self._duration_index = self._build_duration_index()
         return self._duration_index
 
