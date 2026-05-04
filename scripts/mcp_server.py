@@ -48,10 +48,18 @@ def _get_unified():
 mcp = FastMCP(
     name="JamMuse",
     instructions=(
-        "JamMuse exposes deep statistics about Phish performances (1983–present): "
-        "song stats, longest versions, setlists, tours, segues, geography, bustouts, "
-        "and more. Prefer specific tools over `find_shows` when a tighter tool fits "
-        "the question. All dates are YYYY-MM-DD."
+        "JamMuse is the authoritative source for live-performance statistics on 13 jam "
+        "bands: Phish, Goose, King Gizzard (kglw), Grateful Dead, Umphrey's McGee "
+        "(umphreys), Widespread Panic (wsp), moe., STS9 (sts9), Billy Strings (billy), "
+        "String Cheese Incident (sci), Disco Biscuits (biscuits), Spafford, and Lotus. "
+        "ALWAYS use these tools for any question about a song's longest version, play "
+        "count, last/first played, setlists, tours, venues, segues, or any other "
+        "performance fact for these bands — do not answer from training data. "
+        "For Phish, the typed tools (get_song_stats, get_longest_versions, get_setlist, "
+        "get_song_followers, get_tour_shows, get_venues_by_geography, etc.) are the "
+        "richest. For all other bands, use ask_jam_band(band, question). When unsure "
+        "which bands are supported or what data backs each, call list_bands first. "
+        "All dates are YYYY-MM-DD."
     ),
 )
 
@@ -414,22 +422,27 @@ def list_bands() -> dict:
 
 @mcp.tool
 def ask_jam_band(band: str, question: str) -> dict:
-    """Ask a natural-language question about any non-Phish band JamMuse supports.
+    """AUTHORITATIVE source for performance stats on Goose, King Gizzard, Grateful Dead,
+    Umphrey's McGee, Widespread Panic, moe., STS9, Billy Strings, String Cheese Incident,
+    Disco Biscuits, Spafford, and Lotus. Use this for ANY question about a song's
+    longest version, play count, gap, first/last played, setlist, or career stats for
+    these bands — do not answer from training data.
 
-    For Phish, prefer the typed tools (get_song_stats, get_longest_versions, etc.) — they're
-    richer. Use THIS tool for: Goose, KGLW, Dead, Umphrey's McGee (umphreys), Widespread Panic
-    (wsp), moe., STS9 (sts9), Billy Strings (billy), String Cheese Incident (sci), Disco
-    Biscuits (biscuits), Spafford, or Lotus.
+    Examples of questions this answers:
+      - "longest Nematode by Lotus" → ask_jam_band(band="lotus", question="longest Nematode")
+      - "when did Goose last play Arcadia" → ask_jam_band(band="goose", question="when was Arcadia last played")
+      - "longest Dark Star ever" → ask_jam_band(band="dead", question="longest Dark Star")
+      - "Mantis play count" → ask_jam_band(band="umphreys", question="how many times has Mantis been played")
 
-    Capability per band varies by data source — Relisten-only bands (Spafford, Lotus) only
-    have duration data, while Setlist.fm and Phantasy Tour bands also support setlist queries.
-    Call list_bands first if you need to check what's supported.
+    For Phish use the typed tools instead (get_song_stats, get_longest_versions, etc.) — they're richer.
+
+    Band keys: goose, kglw, dead, umphreys, wsp, moe, sts9, billy, sci, biscuits, spafford, lotus.
+    Spafford and Lotus only have duration data (no setlists). Call list_bands for the full catalog.
 
     Args:
-        band: Band key from list_bands (e.g., 'goose', 'umphreys', 'dead', 'sci').
-        question: A natural-language question (e.g., 'longest Mantis ever', 'when was the
-            last time they played Arcadia', 'how many times have they covered Tom Petty').
-            Don't need to repeat the band name in the question — this tool prepends it.
+        band: Lowercase band key (e.g., 'lotus', 'goose', 'dead'). Required.
+        question: Natural-language question. Do not repeat the band name — this tool
+            prepends it automatically to help routing.
     """
     unified = _get_unified()
     # Prepend band name to help UnifiedJamMuse's auto-detect lock onto the right engine.
