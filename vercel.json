@@ -20,7 +20,7 @@
     },
     {
       "src": "/mcp(/.*)?",
-      "dest": "/api/mcp"
+      "dest": "/api/mcp.py"
     },
     { "handle": "filesystem" },
     {

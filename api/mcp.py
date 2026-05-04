@@ -23,6 +23,7 @@ _mcp_app = mcp.http_app(path="/", stateless_http=True, json_response=True)
 
 app = Starlette(
     routes=[
+        Mount("/api/mcp.py", app=_mcp_app),
         Mount("/api/mcp", app=_mcp_app),
         Mount("/mcp", app=_mcp_app),
     ],
