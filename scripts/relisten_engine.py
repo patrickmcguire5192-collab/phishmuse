@@ -203,6 +203,16 @@ class RelistenDurationEngine:
         """Resolve a user query to a normalized song name using aliases."""
         q = query.lower().strip()
 
+        # Strip year filters BEFORE filler/band processing — otherwise a query
+        # like "longest ocean billy in 2021" leaves "ocean in 2021" as the song
+        # name, which won't match any track. The year itself is extracted
+        # upstream by date_utils.extract_year_filter() and passed separately
+        # via the `year=` kwarg, so we only need to remove it from the song
+        # string here. Patterns mirror extract_year_filter().
+        q = re.sub(r'\b(?:from|in|of)\s+(?:19|20)\d{2}\b', ' ', q)
+        q = re.sub(r'\b(?:from|in|of)\s+\d{2}\b', ' ', q)
+        q = re.sub(r'\b(?:19|20)\d{2}\b', ' ', q)
+
         # Remove common filler words
         filler_phrases = [
             "how many times", "when did they", "tell me about",
