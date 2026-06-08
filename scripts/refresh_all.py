@@ -84,11 +84,24 @@ def refresh_pt(bands):
 
 def refresh_relisten(bands):
     print(f"\n=== Relisten duration indexes ({len(bands)} bands) ===")
-    cmd = [sys.executable, str(ROOT / "scripts" / "precompute_relisten_indexes.py"), "--force"]
-    if len(bands) == 1:
-        cmd += ["--band", bands[0]]
-    # precompute already loops all RELISTEN_BANDS when no --band is given
-    rc = subprocess.call(cmd, cwd=str(ROOT))
+    if not bands:
+        print("  (none selected — skipping)")
+        return 0
+    # precompute rebuilds ALL bands when no --band is given, so only pass --force
+    # bare when we actually want every band. With a subset, invoke per-band.
+    if set(bands) == set(RELISTEN_BANDS.keys()):
+        rc = subprocess.call(
+            [sys.executable, str(ROOT / "scripts" / "precompute_relisten_indexes.py"), "--force"],
+            cwd=str(ROOT),
+        )
+    else:
+        rc = 0
+        for band in bands:
+            rc |= subprocess.call(
+                [sys.executable, str(ROOT / "scripts" / "precompute_relisten_indexes.py"),
+                 "--force", "--band", band],
+                cwd=str(ROOT),
+            )
     if rc != 0:
         print(f"  WARNING: precompute exited with code {rc}")
     return rc
@@ -96,7 +109,11 @@ def refresh_relisten(bands):
 
 def refresh_phish():
     print("\n=== Phish (.net + .in) ===")
-    cmd = [sys.executable, str(ROOT / "scripts" / "refresh_data.py"), "--recent"]
+    # Use --full (not --recent): --recent recomputes song_stats from only the
+    # current 2-year pull, which clobbers full-career play counts. --full pulls
+    # every year (1983-present, ~44 cheap API calls), saves setlists, and
+    # computes complete stats. --durations refreshes Phish.in track lengths.
+    cmd = [sys.executable, str(ROOT / "scripts" / "refresh_data.py"), "--full", "--durations"]
     rc = subprocess.call(cmd, cwd=str(ROOT))
     if rc != 0:
         print(f"  WARNING: refresh_data exited with code {rc}")
