@@ -12,6 +12,7 @@ so we can answer play counts, gaps, setlists, debuts - but not "longest" or "bes
 
 import json
 import re
+import time
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -34,6 +35,12 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # API Key
 SETLISTFM_API_KEY = "TRwP_Xfw6E0DTrr4WA7rDsbHluE-1zA4v5hE"
+
+# Live-fetch throttling. Only applies on cache miss (network fetch), never on
+# cache hits, so it has no effect on production serving of the committed snapshot.
+# setlist.fm allows ~2 req/sec; 0.6s keeps us comfortably under that.
+REQUEST_DELAY_SEC = 0.6
+MAX_RETRIES = 4
 
 
 @dataclass
@@ -593,26 +600,44 @@ class SetlistFMEngine:
             param_str = "&".join(f"{k}={v}" for k, v in params.items())
             url += f"?{param_str}"
 
-        try:
-            req = urllib.request.Request(url, headers={
-                "x-api-key": SETLISTFM_API_KEY,
-                "Accept": "application/json",
-                "User-Agent": "JamMuse/1.0"
-            })
-            with urllib.request.urlopen(req, timeout=30) as response:
-                data = json.loads(response.read().decode())
+        # Live fetch with throttle + 429 backoff (cache misses only).
+        last_err = None
+        for attempt in range(MAX_RETRIES):
+            time.sleep(REQUEST_DELAY_SEC)
+            try:
+                req = urllib.request.Request(url, headers={
+                    "x-api-key": SETLISTFM_API_KEY,
+                    "Accept": "application/json",
+                    "User-Agent": "JamMuse/1.0"
+                })
+                with urllib.request.urlopen(req, timeout=30) as response:
+                    data = json.loads(response.read().decode())
 
-            # Cache response
-            with open(cache_file, 'w') as f:
-                json.dump(data, f)
+                # Cache response (best-effort; read-only FS on Vercel will skip)
+                try:
+                    with open(cache_file, 'w') as f:
+                        json.dump(data, f)
+                except OSError:
+                    pass
 
-            return data
-        except Exception as e:
-            print(f"API error for {url}: {e}")
-            if cache_file.exists():
-                with open(cache_file) as f:
-                    return json.load(f)
-            return {}
+                return data
+            except urllib.error.HTTPError as e:
+                last_err = e
+                if e.code == 429:
+                    retry_after = int(e.headers.get("Retry-After", 2 ** attempt))
+                    print(f"  setlist.fm 429 — backing off {retry_after}s (attempt {attempt + 1}/{MAX_RETRIES})")
+                    time.sleep(retry_after)
+                    continue
+                break
+            except Exception as e:
+                last_err = e
+                break
+
+        print(f"API error for {url}: {last_err}")
+        if cache_file.exists():
+            with open(cache_file) as f:
+                return json.load(f)
+        return {}
 
     def _get_all_setlists(self, max_pages: int = 50) -> List[dict]:
         """Get all setlists for this band (paginated)."""

@@ -18,6 +18,7 @@ PT API:
 
 import json
 import re
+import time
 import urllib.request
 import urllib.error
 from pathlib import Path
@@ -245,6 +246,10 @@ PT_BANDS = {
 
 PT_API_BASE = "https://www.phantasytour.com/api"
 
+# Live-fetch throttling (cache misses only; no effect on cache hits / production serving).
+PT_REQUEST_DELAY_SEC = 0.3
+PT_MAX_RETRIES = 4
+
 
 class PhantasyTourEngine:
     """Query engine for Phantasy Tour bands."""
@@ -278,29 +283,44 @@ class PhantasyTourEngine:
                 with open(cache_file) as f:
                     return json.load(f)
 
-        try:
-            req = urllib.request.Request(url, headers={
-                "Accept": "application/json",
-                "User-Agent": "JamMuse/1.0"
-            })
-            with urllib.request.urlopen(req, timeout=30) as response:
-                data = json.loads(response.read().decode())
-
-            # Cache response
+        # Live fetch with throttle + 429 backoff (cache misses only).
+        last_err = None
+        for attempt in range(PT_MAX_RETRIES):
+            time.sleep(PT_REQUEST_DELAY_SEC)
             try:
-                with open(cache_file, 'w') as f:
-                    json.dump(data, f)
-            except OSError:
-                pass
+                req = urllib.request.Request(url, headers={
+                    "Accept": "application/json",
+                    "User-Agent": "JamMuse/1.0"
+                })
+                with urllib.request.urlopen(req, timeout=30) as response:
+                    data = json.loads(response.read().decode())
 
-            return data
-        except Exception as e:
-            print(f"PT API error for {url}: {e}")
-            # Stale cache fallback
-            if cache_file.exists():
-                with open(cache_file) as f:
-                    return json.load(f)
-            return []
+                # Cache response
+                try:
+                    with open(cache_file, 'w') as f:
+                        json.dump(data, f)
+                except OSError:
+                    pass
+
+                return data
+            except urllib.error.HTTPError as e:
+                last_err = e
+                if e.code == 429:
+                    retry_after = int(e.headers.get("Retry-After", 2 ** attempt))
+                    print(f"  PT 429 — backing off {retry_after}s (attempt {attempt + 1}/{PT_MAX_RETRIES})")
+                    time.sleep(retry_after)
+                    continue
+                break
+            except Exception as e:
+                last_err = e
+                break
+
+        print(f"PT API error for {url}: {last_err}")
+        # Stale cache fallback
+        if cache_file.exists():
+            with open(cache_file) as f:
+                return json.load(f)
+        return []
 
     def _get_all_shows(self) -> List[dict]:
         """Get all shows for this band (paginated)."""

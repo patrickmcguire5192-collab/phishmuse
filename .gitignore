@@ -19,6 +19,15 @@ data/cache/
 data/analysis_results/
 *.pkl
 
+# Relisten raw per-show API caches are local build artifacts (10k+ tiny files).
+# Only the compiled duration indexes ship in git and get deployed.
+data/relisten_cache/*
+!data/relisten_cache/*_duration_index.json
+
+# Phantasy Tour cache is local-only — production serves SCI/Biscuits/Lotus from
+# the Relisten duration index, so these have never been (and need not be) deployed.
+data/pt_cache/
+
 # Jupyter
 .ipynb_checkpoints/
 *.ipynb_checkpoints

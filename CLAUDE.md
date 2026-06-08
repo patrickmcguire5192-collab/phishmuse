@@ -48,7 +48,6 @@ scripts/
 ui/
   jammuse.html                  # Main frontend
   app.html                      # Legacy PhishStats frontend
-  ARCHITECTURE.md               # Original architecture doc
 data/
   jammuse_cache/                # Songfish API cache (Goose, KGLW)
   setlistfm_cache/              # Setlist.fm API cache
@@ -80,8 +79,43 @@ The MCP tools wrap engine methods on `PhishStatsEngine`. New engine methods adde
 to support MCP tools are ALSO routed through the rule-based NL parser at
 `/api/query`, so the existing UI gains the same capabilities.
 
+## Data Refresh (IMPORTANT — data is a checked-in snapshot, NOT live)
+
+Production (Vercel) has a **read-only filesystem** and there is **no live refresh on the
+request path**. Every band serves a *snapshot of cache files committed to git*. The 1-hour
+(setlist.fm/PT) and 7-day (Relisten) cache expiries only matter when running locally; on
+Vercel they can't rewrite the bundled cache, so data is frozen at the last deploy. If a band
+looks stale (e.g. "Umphrey's has only played 4 shows since January"), the snapshot is old.
+
+**To refresh:** run locally, then commit `data/` and push (push → Vercel redeploy).
+```
+python scripts/refresh_all.py                 # all bands (setlist.fm + PT + Relisten + Phish)
+python scripts/refresh_all.py --skip-phish     # non-Phish only
+python scripts/refresh_all.py --bands umphreys  # one band, across all its sources
+python scripts/refresh_all.py --relisten-only   # just duration indexes
+```
+`scripts/refresh_all.py` reuses each engine's loader (which re-pulls live because the caches
+are past their expiry) and rewrites the cache files. Relisten rebuilds delegate to
+`precompute_relisten_indexes.py --force`.
+
+**Automated:** `.github/workflows/weekly-refresh.yml` runs the full refresh every Monday
+08:00 UTC and commits the result (no secrets needed — all API keys are currently hardcoded
+in the engines; see security note below). Trigger manually from the Actions tab anytime.
+
+> Security note: Phish.net, setlist.fm keys are hardcoded in `scripts/refresh_data.py` and
+> `scripts/setlistfm_engine.py`. Fine for now (no secret wiring needed for CI) but worth
+> moving to env vars / GH secrets eventually.
+
 ## Recent Changes
 <!-- When you make changes, add an entry here with the date and a brief description. Keep the 5 most recent. -->
+- **2026-06-07**: Added `scripts/refresh_all.py` — one orchestrator that refreshes every band's
+  cache (setlist.fm, Phantasy Tour, Relisten, Phish) and a weekly GitHub Action
+  (`.github/workflows/weekly-refresh.yml`) that runs it + commits, so data no longer goes stale
+  silently. Root issue was that the deployed snapshot was frozen at the last manual deploy (UM
+  data had stopped in mid-March). Added gentle live-fetch throttling + HTTP 429 backoff to the
+  setlist.fm and Phantasy Tour engines (cache-miss path only; no effect on production serving).
+  Deleted the outdated `ui/ARCHITECTURE.md` (described an aspirational Claude-powered query path;
+  the live `/api/jammuse/query` is actually the rule-based `UnifiedJamMuse.query()`).
 - **2026-05-13 (latest)**: Fixed year-filtered duration queries for Relisten bands (`longest ocean billy in 2021` etc.). `relisten_engine._resolve_song_name()` was stripping filler words and band names from the raw question but leaving year tokens behind — so the song string passed downstream became `"ocean in 2021"`, which didn't match the index. Added regex year-stripping at the top of the resolver (mirrors `date_utils.extract_year_filter` patterns); the year itself is still pulled out upstream and passed via `year=` kwarg. Verified across UM, WSP, others.
 - **2026-05-03**: Fixed Vercel cold-start hot-path. Relisten indexes were being rebuilt every cold start because the engine had a 30-day expiry on the cached JSON files (and Vercel's ephemeral disk meant the cache was always stale by that measure on a fresh container). Removed the auto-expiry; cached indexes are refreshed manually via `scripts/precompute_relisten_indexes.py` and checked in. Cold-start per-band Relisten cost dropped from ~30s to ~500ms.
 - **2026-05-03 (later)**: MCP server now multi-band. Added `list_bands` (catalog of all 13 supported bands) and `ask_jam_band(band, question)` tools that delegate to `UnifiedJamMuse.query()`. Phish keeps its 18 typed tools; everything else (Goose, KGLW, Dead, UM, WSP, moe, STS9, Billy, SCI, Biscuits, Spafford, Lotus) routes through the unified engine. UnifiedJamMuse is lazy-loaded.
