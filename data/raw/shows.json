@@ -303696,7 +303696,7 @@
         "song": "Light",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 2
       },
       {
@@ -303808,7 +303808,7 @@
         "song": "Sigma Oasis",
         "position": 6,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
@@ -303836,7 +303836,7 @@
         "song": "Simple",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -303927,7 +303927,7 @@
         "song": "Gumbo",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
@@ -303962,28 +303962,28 @@
         "song": "Fuego",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
         "song": "Dark Puddle",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
         "song": "Golden Age",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 3
       },
       {
         "song": "Fuego",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
@@ -304060,7 +304060,7 @@
         "song": "Set Your Soul Free",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 23
       },
       {
@@ -304116,14 +304116,14 @@
         "song": "What's Going Through Your Mind",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
         "song": "Piper",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -304207,14 +304207,14 @@
         "song": "Axilla (Part II)",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
         "song": "Cities",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 19
       },
       {
@@ -304242,7 +304242,7 @@
         "song": "Halley's Comet",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
@@ -304256,7 +304256,7 @@
         "song": "Chalk Dust Torture",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -304340,7 +304340,7 @@
         "song": "Leaves",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 18
       },
       {
@@ -304361,7 +304361,7 @@
         "song": "Punch You in the Eye",
         "position": 7,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 13
       },
       {
@@ -304375,14 +304375,14 @@
         "song": "A Song I Heard the Ocean Sing",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
         "song": "A Wave of Hope",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -304403,7 +304403,7 @@
         "song": "Runaway Jim",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 20
       },
       {
@@ -304424,7 +304424,7 @@
         "song": "The Sloth",
         "position": 16,
         "set": "e",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 98
       },
       {
@@ -304536,21 +304536,21 @@
         "song": "Seven Below",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 29
       },
       {
         "song": "Plasma",
         "position": 14,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 13
       },
       {
         "song": "Crosseyed and Painless",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
@@ -304585,7 +304585,7 @@
         "song": "Saw It Again",
         "position": 20,
         "set": "e",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 55
       },
       {
@@ -304641,7 +304641,7 @@
         "song": "Ether Edge",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 17
       },
       {
@@ -304690,14 +304690,14 @@
         "song": "Kill Devil Falls",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
         "song": "Ruby Waves",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -304711,7 +304711,7 @@
         "song": "My Friend, My Friend",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
