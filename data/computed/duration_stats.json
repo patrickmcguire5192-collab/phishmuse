@@ -854,6 +854,155 @@
       }
     ]
   },
+  "maze": {
+    "track_count": 344,
+    "avg_duration_min": 10.477302567829458,
+    "median_duration_min": 10.18035,
+    "min_duration_min": 1.0692833333333334,
+    "max_duration_min": 18.0284,
+    "longest": {
+      "date": "2003-07-12",
+      "duration_min": 18.0284,
+      "venue": "Gorge Amphitheatre"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "weekapaug-groove": {
+    "track_count": 499,
+    "avg_duration_min": 8.150908283233134,
+    "median_duration_min": 7.583783333333334,
+    "min_duration_min": 0.9991833333333333,
+    "max_duration_min": 35.74551666666667,
+    "longest": {
+      "date": "1995-06-10",
+      "duration_min": 35.74551666666667,
+      "venue": "Red Rocks Amphitheatre"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.002004008016032064,
+    "monsters": [
+      {
+        "date": "1995-06-10",
+        "duration_min": 35.7,
+        "venue": "Red Rocks Amphitheatre"
+      }
+    ]
+  },
+  "prince-caspian": {
+    "track_count": 185,
+    "avg_duration_min": 7.653130360360361,
+    "median_duration_min": 7.49235,
+    "min_duration_min": 0.9272,
+    "max_duration_min": 18.40065,
+    "longest": {
+      "date": "1997-12-12",
+      "duration_min": 18.40065,
+      "venue": "Pepsi Arena"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "tube": {
+    "track_count": 195,
+    "avg_duration_min": 6.414694786324786,
+    "median_duration_min": 5.809633333333333,
+    "min_duration_min": 1.6172,
+    "max_duration_min": 17.554283333333334,
+    "longest": {
+      "date": "2000-09-15",
+      "duration_min": 17.554283333333334,
+      "venue": "Hersheypark Stadium"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "crosseyed-and-painless": {
+    "track_count": 71,
+    "avg_duration_min": 12.89648028169014,
+    "median_duration_min": 12.48305,
+    "min_duration_min": 2.7350166666666667,
+    "max_duration_min": 33.0264,
+    "longest": {
+      "date": "2017-07-25",
+      "duration_min": 33.0264,
+      "venue": "Madison Square Garden"
+    },
+    "monster_count": 2,
+    "monster_rate": 0.028169014084507043,
+    "monsters": [
+      {
+        "date": "2017-07-25",
+        "duration_min": 33.0,
+        "venue": "Madison Square Garden"
+      },
+      {
+        "date": "2003-07-29",
+        "duration_min": 26.5,
+        "venue": "Post-Gazette Pavilion at Star Lake"
+      }
+    ]
+  },
+  "possum": {
+    "track_count": 525,
+    "avg_duration_min": 9.669805460317459,
+    "median_duration_min": 9.4056,
+    "min_duration_min": 1.4606833333333333,
+    "max_duration_min": 23.963866666666668,
+    "longest": {
+      "date": "2011-05-31",
+      "duration_min": 23.963866666666668,
+      "venue": "PNC Bank Arts Center"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "free": {
+    "track_count": 233,
+    "avg_duration_min": 9.05739105865522,
+    "median_duration_min": 8.6732,
+    "min_duration_min": 2.3423166666666666,
+    "max_duration_min": 33.173766666666666,
+    "longest": {
+      "date": "1995-11-22",
+      "duration_min": 33.173766666666666,
+      "venue": "USAir Arena"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.004291845493562232,
+    "monsters": [
+      {
+        "date": "1995-11-22",
+        "duration_min": 33.2,
+        "venue": "USAir Arena"
+      }
+    ]
+  },
+  "blaze-on": {
+    "track_count": 94,
+    "avg_duration_min": 10.562000531914894,
+    "median_duration_min": 9.3076,
+    "min_duration_min": 1.9288,
+    "max_duration_min": 27.782966666666667,
+    "longest": {
+      "date": "2021-08-06",
+      "duration_min": 27.782966666666667,
+      "venue": "Ruoff Music Center"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.010638297872340425,
+    "monsters": [
+      {
+        "date": "2021-08-06",
+        "duration_min": 27.8,
+        "venue": "Ruoff Music Center"
+      }
+    ]
+  },
   "waves": {
     "track_count": 57,
     "avg_duration_min": 10.208547368421053,
@@ -901,6 +1050,83 @@
       }
     ]
   },
+  "golden-age": {
+    "track_count": 85,
+    "avg_duration_min": 12.720165490196079,
+    "median_duration_min": 11.92055,
+    "min_duration_min": 5.717766666666667,
+    "max_duration_min": 26.5004,
+    "longest": {
+      "date": "2025-06-27",
+      "duration_min": 26.5004,
+      "venue": "Moody Center"
+    },
+    "monster_count": 2,
+    "monster_rate": 0.023529411764705882,
+    "monsters": [
+      {
+        "date": "2025-06-27",
+        "duration_min": 26.5,
+        "venue": "Moody Center"
+      },
+      {
+        "date": "2016-10-28",
+        "duration_min": 25.6,
+        "venue": "MGM Grand Garden Arena"
+      }
+    ]
+  },
+  "birds-of-a-feather": {
+    "track_count": 143,
+    "avg_duration_min": 8.712722494172494,
+    "median_duration_min": 7.659966666666667,
+    "min_duration_min": 4.895783333333333,
+    "max_duration_min": 25.391016666666665,
+    "longest": {
+      "date": "1999-07-23",
+      "duration_min": 25.391016666666665,
+      "venue": "Polaris Amphitheater"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.006993006993006993,
+    "monsters": [
+      {
+        "date": "1999-07-23",
+        "duration_min": 25.4,
+        "venue": "Polaris Amphitheater"
+      }
+    ]
+  },
+  "steam": {
+    "track_count": 68,
+    "avg_duration_min": 8.913957598039216,
+    "median_duration_min": 9.075816666666666,
+    "min_duration_min": 1.1062833333333333,
+    "max_duration_min": 14.283316666666666,
+    "longest": {
+      "date": "2017-12-30",
+      "duration_min": 14.283316666666666,
+      "venue": "Madison Square Garden"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "cities": {
+    "track_count": 104,
+    "avg_duration_min": 8.102348237179488,
+    "median_duration_min": 6.926366666666667,
+    "min_duration_min": 0.7662666666666667,
+    "max_duration_min": 23.41485,
+    "longest": {
+      "date": "1997-08-10",
+      "duration_min": 23.41485,
+      "venue": "Deer Creek Music Center"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
   "scents-and-subtle-sounds": {
     "track_count": 50,
     "avg_duration_min": 12.491663333333333,
@@ -921,5 +1147,50 @@
         "venue": "Tweeter Center at the Waterfront"
       }
     ]
+  },
+  "theme-from-the-bottom": {
+    "track_count": 196,
+    "avg_duration_min": 9.875075425170067,
+    "median_duration_min": 9.5132,
+    "min_duration_min": 6.8053333333333335,
+    "max_duration_min": 24.206,
+    "longest": {
+      "date": "2025-12-28",
+      "duration_min": 24.206,
+      "venue": "Madison Square Garden"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "limb-by-limb": {
+    "track_count": 163,
+    "avg_duration_min": 9.493398977505112,
+    "median_duration_min": 9.170283333333334,
+    "min_duration_min": 3.4094166666666665,
+    "max_duration_min": 16.577733333333335,
+    "longest": {
+      "date": "1999-12-03",
+      "duration_min": 16.577733333333335,
+      "venue": "Firstar Center"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "ya-mar": {
+    "track_count": 230,
+    "avg_duration_min": 8.217492536231884,
+    "median_duration_min": 7.6521333333333335,
+    "min_duration_min": 3.9257666666666666,
+    "max_duration_min": 18.8443,
+    "longest": {
+      "date": "1988-05-24",
+      "duration_min": 18.8443,
+      "venue": "Nectar's"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
   }
 }
