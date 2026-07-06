@@ -93723,6 +93723,34 @@
     ]
   },
   {
+    "showid": 1251342678,
+    "showdate": "1993-04-01",
+    "venue": "Gov. Tom McCall Waterfront Park",
+    "city": "Portland",
+    "state": "OR",
+    "country": "USA",
+    "venueid": 301,
+    "tourid": 61,
+    "tourname": "Not Part of a Tour",
+    "tourwhen": "No Tour",
+    "songs": [
+      {
+        "song": "Amazing Grace",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "I Didn't Know",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      }
+    ]
+  },
+  {
     "showid": 1251266239,
     "showdate": "1993-04-01",
     "venue": "Roseland Theater",
@@ -93901,34 +93929,6 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 3
-      }
-    ]
-  },
-  {
-    "showid": 1251342678,
-    "showdate": "1993-04-01",
-    "venue": "Gov. Tom McCall Waterfront Park",
-    "city": "Portland",
-    "state": "OR",
-    "country": "USA",
-    "venueid": 301,
-    "tourid": 61,
-    "tourname": "Not Part of a Tour",
-    "tourwhen": "No Tour",
-    "songs": [
-      {
-        "song": "Amazing Grace",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 3
-      },
-      {
-        "song": "I Didn't Know",
-        "position": 2,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 2
       }
     ]
   },
@@ -114443,6 +114443,34 @@
     ]
   },
   {
+    "showid": 1330048157,
+    "showdate": "1994-06-18",
+    "venue": "The Loop 97.9 Studios",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "USA",
+    "venueid": 1190,
+    "tourid": 61,
+    "tourname": "Not Part of a Tour",
+    "tourwhen": "No Tour",
+    "songs": [
+      {
+        "song": "Sweet Adeline",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Dog Faced Boy",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      }
+    ]
+  },
+  {
     "showid": 1251776394,
     "showdate": "1994-06-18",
     "venue": "UIC Pavilion, University of Illinois",
@@ -114607,34 +114635,6 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 6
-      }
-    ]
-  },
-  {
-    "showid": 1330048157,
-    "showdate": "1994-06-18",
-    "venue": "The Loop 97.9 Studios",
-    "city": "Chicago",
-    "state": "IL",
-    "country": "USA",
-    "venueid": 1190,
-    "tourid": 61,
-    "tourname": "Not Part of a Tour",
-    "tourwhen": "No Tour",
-    "songs": [
-      {
-        "song": "Sweet Adeline",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Dog Faced Boy",
-        "position": 2,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
       }
     ]
   },
@@ -123452,6 +123452,104 @@
     ]
   },
   {
+    "showid": 1253219798,
+    "showdate": "1994-11-19",
+    "venue": "Parking Lot, Indiana University Auditorium",
+    "city": "Bloomington",
+    "state": "IN",
+    "country": "USA",
+    "venueid": 747,
+    "tourid": 61,
+    "tourname": "Not Part of a Tour",
+    "tourwhen": "No Tour",
+    "songs": [
+      {
+        "song": "Blackberry Blossom",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Tennessee Waltz",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "The Old Home Place",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Dooley",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Mountain Dew",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "John Hardy",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Roll in My Sweet Baby's Arms",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "My Long Journey Home",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Little Tiny Butter Biscuits",
+        "position": 9,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "I'm Blue, I'm Lonesome",
+        "position": 10,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Midnight Moonlight",
+        "position": 11,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Will the Circle Be Unbroken?",
+        "position": 12,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      }
+    ]
+  },
+  {
     "showid": 1253219629,
     "showdate": "1994-11-19",
     "venue": "Indiana University Auditorium",
@@ -123623,104 +123721,6 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 6
-      }
-    ]
-  },
-  {
-    "showid": 1253219798,
-    "showdate": "1994-11-19",
-    "venue": "Parking Lot, Indiana University Auditorium",
-    "city": "Bloomington",
-    "state": "IN",
-    "country": "USA",
-    "venueid": 747,
-    "tourid": 61,
-    "tourname": "Not Part of a Tour",
-    "tourwhen": "No Tour",
-    "songs": [
-      {
-        "song": "Blackberry Blossom",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Tennessee Waltz",
-        "position": 2,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 4
-      },
-      {
-        "song": "The Old Home Place",
-        "position": 3,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 2
-      },
-      {
-        "song": "Dooley",
-        "position": 4,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Mountain Dew",
-        "position": 5,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "John Hardy",
-        "position": 6,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Roll in My Sweet Baby's Arms",
-        "position": 7,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "My Long Journey Home",
-        "position": 8,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Little Tiny Butter Biscuits",
-        "position": 9,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "I'm Blue, I'm Lonesome",
-        "position": 10,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 3
-      },
-      {
-        "song": "Midnight Moonlight",
-        "position": 11,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Will the Circle Be Unbroken?",
-        "position": 12,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
       }
     ]
   },
@@ -126574,27 +126574,6 @@
     ]
   },
   {
-    "showid": 1253148945,
-    "showdate": "1994-12-30",
-    "venue": "Ed Sullivan Theater",
-    "city": "New York",
-    "state": "NY",
-    "country": "USA",
-    "venueid": 228,
-    "tourid": 61,
-    "tourname": "Not Part of a Tour",
-    "tourwhen": "No Tour",
-    "songs": [
-      {
-        "song": "Chalk Dust Torture",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      }
-    ]
-  },
-  {
     "showid": 1253149166,
     "showdate": "1994-12-30",
     "venue": "Madison Square Garden",
@@ -126738,6 +126717,27 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 6
+      }
+    ]
+  },
+  {
+    "showid": 1253148945,
+    "showdate": "1994-12-30",
+    "venue": "Ed Sullivan Theater",
+    "city": "New York",
+    "state": "NY",
+    "country": "USA",
+    "venueid": 228,
+    "tourid": 61,
+    "tourname": "Not Part of a Tour",
+    "tourwhen": "No Tour",
+    "songs": [
+      {
+        "song": "Chalk Dust Torture",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
       }
     ]
   },
@@ -151326,55 +151326,6 @@
     ]
   },
   {
-    "showid": 1252370557,
-    "showdate": "1997-02-26",
-    "venue": "SWF3 Studios",
-    "city": "Baden-Baden",
-    "state": "",
-    "country": "Germany",
-    "venueid": 465,
-    "tourid": 61,
-    "tourname": "Not Part of a Tour",
-    "tourwhen": "No Tour",
-    "songs": [
-      {
-        "song": "Talk",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Waste",
-        "position": 2,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Train Song",
-        "position": 3,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Walfredo",
-        "position": 4,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      },
-      {
-        "song": "Goodbye Jam",
-        "position": 5,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 0
-      }
-    ]
-  },
-  {
     "showid": 1252371176,
     "showdate": "1997-02-26",
     "venue": "Longhorn",
@@ -151539,6 +151490,55 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 18
+      }
+    ]
+  },
+  {
+    "showid": 1252370557,
+    "showdate": "1997-02-26",
+    "venue": "SWF3 Studios",
+    "city": "Baden-Baden",
+    "state": "",
+    "country": "Germany",
+    "venueid": 465,
+    "tourid": 61,
+    "tourname": "Not Part of a Tour",
+    "tourwhen": "No Tour",
+    "songs": [
+      {
+        "song": "Talk",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Waste",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Train Song",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Walfredo",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Goodbye Jam",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
       }
     ]
   },
@@ -173579,69 +173579,6 @@
     ]
   },
   {
-    "showid": 1252121711,
-    "showdate": "1999-07-30",
-    "venue": "Naeba Ski Resort",
-    "city": "Niigata",
-    "state": "",
-    "country": "Japan",
-    "venueid": 409,
-    "tourid": 64,
-    "tourname": "1999 Summer Japan Tour",
-    "tourwhen": "1999 Summer",
-    "songs": [
-      {
-        "song": "Chalk Dust Torture",
-        "position": 1,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 4
-      },
-      {
-        "song": "Guyute",
-        "position": 2,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 4
-      },
-      {
-        "song": "Wolfman's Brother",
-        "position": 3,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 2
-      },
-      {
-        "song": "Taste",
-        "position": 4,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 6
-      },
-      {
-        "song": "Punch You in the Eye",
-        "position": 5,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 5
-      },
-      {
-        "song": "Waste",
-        "position": 6,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 4
-      },
-      {
-        "song": "Hello My Baby",
-        "position": 7,
-        "set": "1",
-        "isjamchart": 0,
-        "gap": 7
-      }
-    ]
-  },
-  {
     "showid": 1252121943,
     "showdate": "1999-07-30",
     "venue": "Naeba Ski Resort",
@@ -173771,6 +173708,69 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 2
+      }
+    ]
+  },
+  {
+    "showid": 1252121711,
+    "showdate": "1999-07-30",
+    "venue": "Naeba Ski Resort",
+    "city": "Niigata",
+    "state": "",
+    "country": "Japan",
+    "venueid": 409,
+    "tourid": 64,
+    "tourname": "1999 Summer Japan Tour",
+    "tourwhen": "1999 Summer",
+    "songs": [
+      {
+        "song": "Chalk Dust Torture",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Guyute",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Wolfman's Brother",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Taste",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Punch You in the Eye",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Waste",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Hello My Baby",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
       }
     ]
   },
