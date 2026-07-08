@@ -108,6 +108,7 @@ in the engines; see security note below). Trigger manually from the Actions tab 
 
 ## Recent Changes
 <!-- When you make changes, add an entry here with the date and a brief description. Keep the 5 most recent. -->
+- **2026-07-07 (latest)**: Added `scripts/build_phanduel_duration_index.py` — one-shot script that pulls every Phish track from Phish.in v2 (~36k tracks, ~130 pages), groups by show date to identify the true longest song of each show, and aggregates per-song stats (plays, longest-of-show rate, 20+/25+ min rates, mean/p90/max minutes) for the 28 jam vehicles PhanDuel predicts on. Writes JSON to a `--out` path (typically `phanduel-app/public/duration_index.json`). Not run automatically — refresh manually after monster-jam nights. Consumed by PhanDuel's new "Longest (v2)" tab (segregated from the old hardcoded engine so both can be compared side-by-side).
 - **2026-06-07**: Added `scripts/refresh_all.py` — one orchestrator that refreshes every band's
   cache (setlist.fm, Phantasy Tour, Relisten, Phish) and a weekly GitHub Action
   (`.github/workflows/weekly-refresh.yml`) that runs it + commits, so data no longer goes stale
