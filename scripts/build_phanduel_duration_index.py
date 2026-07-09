@@ -1,87 +1,82 @@
 #!/usr/bin/env python3
 """
-Build the PhanDuel duration index.
+Build the PhanDuel duration index (v2 — time-decay weighted).
 
 Iterates every Phish track in Phish.in v2, groups by show to compute the
-"longest of show" for every date, then aggregates per-song stats for the
-jam-vehicle roster PhanDuel actually predicts on.
+"longest of show" for every date, then aggregates per-song stats with an
+EXPONENTIAL TIME DECAY so the index models the band as it plays *today*,
+not the 43-year institution. A 1994 Bowie should not out-vote a 2026 Fuego.
+
+Weighting: each performance gets weight 0.5 ** (age_years / half_life).
+With the default 1.5y half-life, a show from last summer weighs ~0.6,
+a 2021 show ~0.1, and the 90s effectively zero. Rates are shrunk toward
+the pooled prior (Bayesian, K effective plays) so a song with 3 recent
+plays and 2 longest-of-show wins ranks high but doesn't run the table.
+
+The candidate list is DATA-DERIVED (top N by weighted longest-of-show
+score), not hand-picked — this is how What's Going Through Your Mind,
+A Wave of Hope, and A Song I Heard the Ocean Sing get in, and how
+David Bowie (99 all-time wins, none since the 90s mattered) drops out.
 
 Output shape:
 {
   "meta": {
-    "generated_at": "...",
-    "shows_analyzed": <int>,
-    "total_tracks": <int>,
-    "jam_vehicles": [...],
-    "source": "phish.in v2"
+    "generated_at", "reference_date", "source", "endpoint",
+    "half_life_years", "shrink_k", "candidate_floor_weighted_plays",
+    "shows_analyzed", "total_tracks", "weighted_shows",
+    "prior_longest_rate", "prior_twenty_plus_rate",
+    "coverage_by_topn": {"10": 0.55, "15": 0.68, ...}   # weighted share of
+        # shows whose longest song is inside the top-N emitted candidates —
+        # the engine uses this to price the "Other" bucket honestly.
   },
   "songs": {
     "Tweezer": {
-      "plays": 456,
-      "longest_of_show_count": 87,
-      "longest_of_show_rate": 0.191,
-      "fifteen_plus_count": 132,
-      "twenty_plus_count": 61,
-      "twenty_five_plus_count": 27,
-      "twenty_plus_rate": 0.134,
-      "twenty_five_plus_rate": 0.059,
-      "mean_min": 12.4,
-      "median_min": 10.9,
-      "p90_min": 22.3,
-      "max_min": 51.7,
-      "slug": "tweezer"
-    },
-    ...
+      "weighted_plays": 19.3,
+      "play_rate": 0.234,            # weighted P(played on a given night)
+      "longest_rate": 0.535,         # weighted+shrunk P(longest of show | played)
+      "twenty_plus_rate": 0.301,     # weighted+shrunk P(20+ min | played)
+      "recent_mean_min": 15.8,       # last-3y unweighted display stats
+      "recent_p90_min": 25.1,
+      "recent_max_min": 30.3,
+      "plays_alltime": 429,
+      "longest_of_show_alltime": 95,
+      "max_min_alltime": 50.3,
+      "last_played": "2026-04-25"
+    }, ...
   }
 }
 
 Consumed by phanduel-app/src/services/durationEngine.js (checked into
 phanduel-app/public/duration_index.json).
 
-Not run automatically. Refresh manually when you want to fold in recent
-shows (e.g. mid-tour, after a monster jam night).
+Usage:
+  python3 scripts/build_phanduel_duration_index.py --out .../duration_index.json
+  # iterate on weights without re-pulling ~39k tracks (130 API pages):
+  python3 ... --tracks-cache /tmp/all_tracks.json
+
+Not run automatically. Refresh manually mid-tour (a couple minutes) so the
+decay reference date tracks the latest show.
 """
 from __future__ import annotations
 
+import argparse
 import json
-import re
 import sys
 import time
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
-from statistics import mean, median
+from statistics import mean
 
 import urllib.request
 import urllib.error
 
-# The 28 songs the current App.js hardcodes as jam-vehicle candidates.
-# Keep this list in sync with App.js's jamVehicleData dict.
-JAM_VEHICLES = [
-    "You Enjoy Myself", "Ruby Waves", "Soul Planet", "Fluffhead", "Drowned",
-    "Mercury", "Everything's Right", "Ghost", "David Bowie", "Tweezer",
-    "Harry Hood", "Down with Disease", "Simple", "Piper", "Bathtub Gin",
-    "Light", "Carini", "Stash", "Run Like an Antelope", "Chalk Dust Torture",
-    "Split Open and Melt", "Sand", "Slave to the Traffic Light", "Mike's Song",
-    "Reba", "Fuego", "No Men In No Man's Land", "Waves",
-]
+USER_AGENT = "phanduel-duration-index/2.0 (+https://phanduel-app.vercel.app)"
 
-# Alias table for names that don't slugify cleanly. Phish.in slugs are
-# stable so we can hand-curate the awkward ones.
-SLUG_OVERRIDES = {
-    "No Men In No Man's Land": "no-men-in-no-mans-land",
-}
-
-
-def song_to_slug(name: str) -> str:
-    if name in SLUG_OVERRIDES:
-        return SLUG_OVERRIDES[name]
-    s = name.lower()
-    s = re.sub(r"[‘’']", "", s)
-    s = re.sub(r"[^a-z0-9]+", "-", s)
-    return s.strip("-")
-
-
-USER_AGENT = "phanduel-duration-index/1.0 (+https://phanduel-app.vercel.app)"
+DEFAULT_HALF_LIFE_YEARS = 1.5
+DEFAULT_SHRINK_K = 3.0
+DEFAULT_CANDIDATE_FLOOR = 1.0   # min weighted plays to be considered at all
+DEFAULT_TOP_N = 40              # candidates emitted to JSON
+RECENT_WINDOW_YEARS = 3         # unweighted display stats window
 
 
 def fetch_json(url: str, retries: int = 3) -> dict:
@@ -101,8 +96,8 @@ def fetch_json(url: str, retries: int = 3) -> dict:
 
 
 def paginate_all_tracks() -> list[dict]:
-    """Pull every Phish track from Phish.in v2. ~26k tracks / ~130 pages."""
-    per_page = 200
+    """Pull every Phish track from Phish.in v2. ~39k tracks."""
+    per_page = 500
     page = 1
     all_tracks: list[dict] = []
     while True:
@@ -114,11 +109,9 @@ def paginate_all_tracks() -> list[dict]:
         for t in tracks:
             all_tracks.append({
                 "date": t.get("show_date"),
-                "slug": t.get("slug"),
                 "title": t.get("title"),
+                "slug": t.get("slug"),
                 "duration_ms": t.get("duration") or 0,
-                "position": t.get("position"),
-                "venue": t.get("venue_name"),
                 "exclude": bool(t.get("exclude_from_stats")),
             })
         total_pages = data.get("total_pages") or 1
@@ -126,8 +119,13 @@ def paginate_all_tracks() -> list[dict]:
         if page >= total_pages:
             break
         page += 1
-        time.sleep(0.25)  # be polite
+        time.sleep(0.25)
     return all_tracks
+
+
+def parse_date(s: str) -> date:
+    y, m, d = map(int, s.split("-"))
+    return date(y, m, d)
 
 
 def percentile(values: list[float], pct: float) -> float:
@@ -141,102 +139,159 @@ def percentile(values: list[float], pct: float) -> float:
     return values[lo] * (1 - frac) + values[hi] * frac
 
 
-def aggregate(tracks: list[dict], jam_vehicles: list[str]) -> dict:
-    # Only real performances contribute — Phish.in flags jam breakouts,
-    # crowd noise, tuning, etc. with exclude_from_stats.
+def aggregate(tracks: list[dict], half_life_years: float, shrink_k: float,
+              candidate_floor: float, top_n: int) -> dict:
+    # Only real performances — Phish.in flags soundchecks/banter/etc.
     tracks = [t for t in tracks if not t["exclude"] and t["duration_ms"] > 0 and t["date"]]
 
-    # Longest track per show (by date) — used to count "was longest of show".
-    longest_by_date: dict[str, dict] = {}
-    for t in tracks:
-        cur = longest_by_date.get(t["date"])
-        if cur is None or t["duration_ms"] > cur["duration_ms"]:
-            longest_by_date[t["date"]] = t
+    ref_date = max(parse_date(t["date"]) for t in tracks)
+    hl_days = 365.25 * half_life_years
 
-    # Index tracks by canonical title for the jam vehicles.
-    # Phish.in titles match Phish.net titles closely, but we normalize case
-    # and strip whitespace to avoid surprises.
-    canonical = {name.strip().lower(): name for name in jam_vehicles}
-    per_song: dict[str, dict] = {name: {
-        "plays": 0, "longest_of_show_count": 0,
-        "fifteen_plus_count": 0, "twenty_plus_count": 0, "twenty_five_plus_count": 0,
-        "durations_min": [],
-        "slug": song_to_slug(name),
-    } for name in jam_vehicles}
+    def weight(date_str: str) -> float:
+        return 0.5 ** ((ref_date - parse_date(date_str)).days / hl_days)
 
+    # Group by show; find the longest track of each show.
+    by_show: dict[str, list[dict]] = {}
     for t in tracks:
-        title = (t["title"] or "").strip().lower()
-        display = canonical.get(title)
-        if not display:
+        by_show.setdefault(t["date"], []).append(t)
+    longest_of: dict[str, str] = {
+        d: max(ts, key=lambda x: x["duration_ms"])["title"] for d, ts in by_show.items()
+    }
+
+    show_weights = {d: weight(d) for d in by_show}
+    weighted_shows = sum(show_weights.values())
+
+    recent_cutoff = date(ref_date.year - RECENT_WINDOW_YEARS, ref_date.month, ref_date.day).isoformat()
+
+    # Per-song accumulation.
+    agg: dict[str, dict] = {}
+    for t in tracks:
+        s = agg.setdefault(t["title"], {
+            "wplays": 0.0, "wlongest": 0.0, "wtwenty": 0.0,
+            "plays_alltime": 0, "longest_alltime": 0,
+            "max_ms_alltime": 0, "last_played": t["date"],
+            "recent_durations_min": [], "slug": t["slug"],
+        })
+        w = weight(t["date"])
+        s["wplays"] += w
+        s["plays_alltime"] += 1
+        s["max_ms_alltime"] = max(s["max_ms_alltime"], t["duration_ms"])
+        s["last_played"] = max(s["last_played"], t["date"])
+        if longest_of[t["date"]] == t["title"]:
+            s["wlongest"] += w
+            s["longest_alltime"] += 1
+        if t["duration_ms"] >= 20 * 60000:
+            s["wtwenty"] += w
+        if t["date"] >= recent_cutoff:
+            s["recent_durations_min"].append(t["duration_ms"] / 60000.0)
+
+    # Pooled priors. Exactly one longest per show → prior P(longest|played)
+    # is weighted_shows / total weighted plays (~1/22 songs a night).
+    total_wplays = sum(s["wplays"] for s in agg.values())
+    prior_longest = weighted_shows / total_wplays
+    prior_twenty = sum(s["wtwenty"] for s in agg.values()) / total_wplays
+
+    def shrunk(hits: float, n: float, prior: float) -> float:
+        return (hits + shrink_k * prior) / (n + shrink_k)
+
+    # Score + rank candidates.
+    scored = []
+    for title, s in agg.items():
+        if s["wplays"] < candidate_floor:
             continue
-        s = per_song[display]
-        d_min = t["duration_ms"] / 60000.0
-        s["plays"] += 1
-        s["durations_min"].append(d_min)
-        if d_min >= 15: s["fifteen_plus_count"] += 1
-        if d_min >= 20: s["twenty_plus_count"] += 1
-        if d_min >= 25: s["twenty_five_plus_count"] += 1
-        # was this THE longest of its show?
-        longest = longest_by_date.get(t["date"])
-        if longest and longest.get("title") and longest["title"].strip().lower() == title \
-                and longest.get("duration_ms") == t.get("duration_ms"):
-            s["longest_of_show_count"] += 1
+        play_rate = s["wplays"] / weighted_shows
+        longest_rate = shrunk(s["wlongest"], s["wplays"], prior_longest)
+        score = play_rate * longest_rate
+        scored.append((score, title))
+    scored.sort(reverse=True)
+    candidates = [title for _, title in scored[:top_n]]
+
+    # Coverage of the top-N emitted sets — lets the engine price "Other"
+    # from measurement instead of a hardcoded 85%.
+    coverage_by_topn = {}
+    for n in range(10, top_n + 1, 5):
+        names = set(candidates[:n])
+        cov = sum(w for d, w in show_weights.items() if longest_of[d] in names) / weighted_shows
+        coverage_by_topn[str(n)] = round(cov, 4)
 
     out_songs = {}
-    for name, s in per_song.items():
-        durations = s["durations_min"]
-        plays = s["plays"]
-        if plays == 0:
-            print(f"  ⚠️  {name}: 0 plays — slug '{s['slug']}' may be wrong", file=sys.stderr)
-            continue
-        out_songs[name] = {
+    for title in candidates:
+        s = agg[title]
+        recent = s["recent_durations_min"]
+        out_songs[title] = {
             "slug": s["slug"],
-            "plays": plays,
-            "longest_of_show_count": s["longest_of_show_count"],
-            "longest_of_show_rate": round(s["longest_of_show_count"] / plays, 4),
-            "fifteen_plus_count": s["fifteen_plus_count"],
-            "twenty_plus_count": s["twenty_plus_count"],
-            "twenty_five_plus_count": s["twenty_five_plus_count"],
-            "fifteen_plus_rate": round(s["fifteen_plus_count"] / plays, 4),
-            "twenty_plus_rate": round(s["twenty_plus_count"] / plays, 4),
-            "twenty_five_plus_rate": round(s["twenty_five_plus_count"] / plays, 4),
-            "mean_min": round(mean(durations), 2),
-            "median_min": round(median(durations), 2),
-            "p90_min": round(percentile(durations, 0.90), 2),
-            "max_min": round(max(durations), 2),
+            "weighted_plays": round(s["wplays"], 2),
+            "play_rate": round(s["wplays"] / weighted_shows, 4),
+            "longest_rate": round(shrunk(s["wlongest"], s["wplays"], prior_longest), 4),
+            "twenty_plus_rate": round(shrunk(s["wtwenty"], s["wplays"], prior_twenty), 4),
+            "recent_mean_min": round(mean(recent), 2) if recent else None,
+            "recent_p90_min": round(percentile(recent, 0.90), 2) if recent else None,
+            "recent_max_min": round(max(recent), 2) if recent else None,
+            "recent_plays": len(recent),
+            "plays_alltime": s["plays_alltime"],
+            "longest_of_show_alltime": s["longest_alltime"],
+            "max_min_alltime": round(s["max_ms_alltime"] / 60000.0, 2),
+            "last_played": s["last_played"],
         }
 
     return {
         "meta": {
             "generated_at": datetime.utcnow().isoformat() + "Z",
-            "shows_analyzed": len(longest_by_date),
-            "total_tracks": len(tracks),
-            "jam_vehicles": jam_vehicles,
+            "reference_date": ref_date.isoformat(),
             "source": "phish.in v2",
             "endpoint": "/api/v2/tracks",
+            "half_life_years": half_life_years,
+            "shrink_k": shrink_k,
+            "candidate_floor_weighted_plays": candidate_floor,
+            "recent_window_years": RECENT_WINDOW_YEARS,
+            "shows_analyzed": len(by_show),
+            "total_tracks": len(tracks),
+            "weighted_shows": round(weighted_shows, 1),
+            "prior_longest_rate": round(prior_longest, 4),
+            "prior_twenty_plus_rate": round(prior_twenty, 4),
+            "coverage_by_topn": coverage_by_topn,
         },
         "songs": out_songs,
     }
 
 
 def main():
-    out_arg = None
-    for i, a in enumerate(sys.argv[1:]):
-        if a == "--out" and i + 1 < len(sys.argv) - 1:
-            out_arg = sys.argv[i + 2]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--out", help="output JSON path (stdout if omitted)")
+    ap.add_argument("--half-life", type=float, default=DEFAULT_HALF_LIFE_YEARS)
+    ap.add_argument("--shrink-k", type=float, default=DEFAULT_SHRINK_K)
+    ap.add_argument("--floor", type=float, default=DEFAULT_CANDIDATE_FLOOR)
+    ap.add_argument("--top", type=int, default=DEFAULT_TOP_N)
+    ap.add_argument("--tracks-cache",
+                    help="path to cache the raw track pull; reused if it exists")
+    args = ap.parse_args()
 
-    print("Pulling every Phish track from Phish.in v2...", file=sys.stderr)
-    t0 = time.time()
-    tracks = paginate_all_tracks()
-    dt = time.time() - t0
-    print(f"Pulled {len(tracks)} tracks in {dt:.1f}s", file=sys.stderr)
+    tracks = None
+    if args.tracks_cache and Path(args.tracks_cache).exists():
+        print(f"Loading cached tracks from {args.tracks_cache}", file=sys.stderr)
+        raw = json.loads(Path(args.tracks_cache).read_text())
+        # Accept both this script's cache shape and the scratch shape {ms, excl}
+        tracks = [{
+            "date": t["date"], "title": t["title"], "slug": t.get("slug"),
+            "duration_ms": t.get("duration_ms", t.get("ms", 0)),
+            "exclude": t.get("exclude", t.get("excl", False)),
+        } for t in raw]
+    if tracks is None:
+        print("Pulling every Phish track from Phish.in v2...", file=sys.stderr)
+        t0 = time.time()
+        tracks = paginate_all_tracks()
+        print(f"Pulled {len(tracks)} tracks in {time.time()-t0:.1f}s", file=sys.stderr)
+        if args.tracks_cache:
+            Path(args.tracks_cache).write_text(json.dumps(tracks))
+            print(f"Cached tracks to {args.tracks_cache}", file=sys.stderr)
 
-    print("Aggregating jam-vehicle stats...", file=sys.stderr)
-    result = aggregate(tracks, JAM_VEHICLES)
+    print(f"Aggregating (half-life {args.half_life}y, K={args.shrink_k}, "
+          f"floor {args.floor}, top {args.top})...", file=sys.stderr)
+    result = aggregate(tracks, args.half_life, args.shrink_k, args.floor, args.top)
 
-    if out_arg:
-        Path(out_arg).write_text(json.dumps(result, indent=2))
-        print(f"Wrote {out_arg}", file=sys.stderr)
+    if args.out:
+        Path(args.out).write_text(json.dumps(result, indent=2))
+        print(f"Wrote {args.out}", file=sys.stderr)
     else:
         json.dump(result, sys.stdout, indent=2)
 
