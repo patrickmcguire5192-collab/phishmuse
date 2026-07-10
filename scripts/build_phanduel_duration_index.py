@@ -234,6 +234,69 @@ def aggregate(tracks: list[dict], half_life_years: float, shrink_k: float,
             "last_played": s["last_played"],
         }
 
+    # ---- Over/Under markets, from the same weighted per-show distributions ----
+    # Longest-of-show minutes: line ladder around the weighted median.
+    longest_min_by_show = {d: max(x["duration_ms"] for x in ts) / 60000.0
+                           for d, ts in by_show.items()}
+    sorted_pairs = sorted((longest_min_by_show[d], show_weights[d]) for d in by_show)
+    cum, wmedian = 0.0, sorted_pairs[-1][0]
+    for v, wt in sorted_pairs:
+        cum += wt
+        if cum >= weighted_shows / 2:
+            wmedian = v
+            break
+    wmean_longest = sum(longest_min_by_show[d] * show_weights[d] for d in by_show) / weighted_shows
+
+    def p_over_line(line: float) -> float:
+        return sum(show_weights[d] for d in by_show
+                   if longest_min_by_show[d] > line) / weighted_shows
+
+    # Half-minute lines only (no pushes); pick whichever brackets the
+    # weighted median with p_over closest to a fair coin flip.
+    lo_line = int(wmedian) + 0.5 if wmedian % 1 >= 0.5 else int(wmedian) - 0.5
+    hi_line = lo_line + 1
+    primary_line = min((lo_line, hi_line), key=lambda l: abs(p_over_line(l) - 0.5))
+    line_ladder = []
+    for line in [primary_line - 2, primary_line, primary_line + 2]:
+        line_ladder.append({"line": round(line, 1), "p_over": round(p_over_line(line), 4)})
+
+    # 20+ min jams per show: weighted empirical PMF. Modern data is UNDER-
+    # dispersed vs Poisson (var/mean ~0.7): most shows have exactly one big
+    # jam — the band rations, it doesn't cluster. Price from the PMF, never
+    # from a Poisson fit (it would overprice 0 and 3+ and underprice 1).
+    count20_by_show = {d: sum(1 for x in ts if x["duration_ms"] >= 20 * 60000)
+                       for d, ts in by_show.items()}
+    pmf_w: dict[int, float] = {}
+    for d in by_show:
+        k = min(count20_by_show[d], 3)
+        pmf_w[k] = pmf_w.get(k, 0.0) + show_weights[d]
+    pmf = {("3plus" if k == 3 else str(k)): round(v / weighted_shows, 4)
+           for k, v in sorted(pmf_w.items())}
+    mean20 = sum(count20_by_show[d] * show_weights[d] for d in by_show) / weighted_shows
+    var20 = sum((count20_by_show[d] - mean20) ** 2 * show_weights[d] for d in by_show) / weighted_shows
+    p0 = pmf.get("0", 0.0)
+    p_over_05 = round(1 - p0, 4)
+    p_over_15 = round(pmf.get("2", 0.0) + pmf.get("3plus", 0.0), 4)
+
+    over_unders = {
+        "longest_minutes": {
+            "weighted_mean": round(wmean_longest, 2),
+            "weighted_median": round(wmedian, 2),
+            "primary_line": primary_line,
+            "lines": line_ladder,
+        },
+        "twenty_plus_count": {
+            "weighted_mean": round(mean20, 3),
+            "variance": round(var20, 3),
+            "dispersion_vs_poisson": round(var20 / mean20, 3) if mean20 else None,
+            "pmf": pmf,
+            "lines": [
+                {"line": 0.5, "p_over": p_over_05},
+                {"line": 1.5, "p_over": p_over_15},
+            ],
+        },
+    }
+
     return {
         "meta": {
             "generated_at": datetime.utcnow().isoformat() + "Z",
@@ -252,6 +315,7 @@ def aggregate(tracks: list[dict], half_life_years: float, shrink_k: float,
             "coverage_by_topn": coverage_by_topn,
         },
         "songs": out_songs,
+        "over_unders": over_unders,
     }
 
 
