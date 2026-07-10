@@ -278,12 +278,39 @@ def aggregate(tracks: list[dict], half_life_years: float, shrink_k: float,
     p_over_05 = round(1 - p0, 4)
     p_over_15 = round(pmf.get("2", 0.0) + pmf.get("3plus", 0.0), 4)
 
+    # Total minutes of music per show (all sets + encore).
+    total_min_by_show = {d: sum(x["duration_ms"] for x in ts) / 60000.0
+                         for d, ts in by_show.items()}
+
+    def p_over_total(line: float) -> float:
+        return sum(show_weights[d] for d in by_show
+                   if total_min_by_show[d] > line) / weighted_shows
+
+    t_pairs = sorted((total_min_by_show[d], show_weights[d]) for d in by_show)
+    cum, t_median = 0.0, t_pairs[-1][0]
+    for v, wt in t_pairs:
+        cum += wt
+        if cum >= weighted_shows / 2:
+            t_median = v
+            break
+    t_mean = sum(total_min_by_show[d] * show_weights[d] for d in by_show) / weighted_shows
+    t_lo = int(t_median) + 0.5 if t_median % 1 >= 0.5 else int(t_median) - 0.5
+    t_primary = min((t_lo, t_lo + 1), key=lambda l: abs(p_over_total(l) - 0.5))
+    total_ladder = [{"line": round(t_primary + off, 1), "p_over": round(p_over_total(t_primary + off), 4)}
+                    for off in (-10, 0, 10)]
+
     over_unders = {
         "longest_minutes": {
             "weighted_mean": round(wmean_longest, 2),
             "weighted_median": round(wmedian, 2),
             "primary_line": primary_line,
             "lines": line_ladder,
+        },
+        "total_minutes": {
+            "weighted_mean": round(t_mean, 1),
+            "weighted_median": round(t_median, 1),
+            "primary_line": t_primary,
+            "lines": total_ladder,
         },
         "twenty_plus_count": {
             "weighted_mean": round(mean20, 3),

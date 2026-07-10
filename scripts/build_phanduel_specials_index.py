@@ -176,11 +176,14 @@ def fetch_phishnet_year_data(years: list[int]) -> dict:
                 notes = (r.get("setlistnotes") or "") + " " + (r.get("footnote") or "")
                 if re.search(r"vacuum", notes, re.IGNORECASE):
                     vacuum = True
+            encore_count = sum(1 for r in rs if str(r.get("set")) in ("e", "e2"))
             shows[d] = {
                 "vacuum": vacuum,
                 "bustout": bustout,
                 "dup": dup,
                 "five_set2": 0 < set2_count <= 5,
+                "set2_count": set2_count,
+                "encore_count": encore_count,
             }
         print(f"  phish.net {y}: {len(rows)} rows / {len(per_show)} shows", file=sys.stderr)
         time.sleep(0.5)
@@ -271,6 +274,43 @@ def build(tracks: list[dict], half_life: float, shrink_k: float) -> dict:
             "note": NOTES[k],
         }
 
+    # ---- Setlist-settled Over/Under markets (official Phish.net counts) ----
+    # Weighted distributions over shows that have Phish.net rows; the balanced
+    # primary line is whichever half-count bracket of the median prices
+    # closest to a coin flip.
+    def ou_market(count_by_date: dict, ladder_offsets: list[float]) -> dict:
+        ds = [d for d in count_by_date if d in show_weights]
+        w_total = sum(show_weights[d] for d in ds)
+
+        def p_over(line: float) -> float:
+            return sum(show_weights[d] for d in ds if count_by_date[d] > line) / w_total
+
+        pairs = sorted((count_by_date[d], show_weights[d]) for d in ds)
+        cum, med = 0.0, pairs[-1][0]
+        for v, wt in pairs:
+            cum += wt
+            if cum >= w_total / 2:
+                med = v
+                break
+        wmean = sum(count_by_date[d] * show_weights[d] for d in ds) / w_total
+        lo, hi = med - 0.5, med + 0.5
+        primary = min((lo, hi), key=lambda l: abs(p_over(l) - 0.5))
+        lines = [{"line": round(primary + off, 1), "p_over": round(p_over(primary + off), 4)}
+                 for off in ladder_offsets]
+        return {
+            "weighted_mean": round(wmean, 2),
+            "weighted_median": round(med, 1),
+            "primary_line": primary,
+            "lines": lines,
+        }
+
+    set2_counts = {d: v["set2_count"] for d, v in pn_shows.items() if v["set2_count"] > 0}
+    encore_counts = {d: v["encore_count"] for d, v in pn_shows.items()}
+    over_unders = {
+        "set2_songs": ou_market(set2_counts, [-1, 0, 1]),
+        "encore_songs": ou_market(encore_counts, [0]),
+    }
+
     return {
         "meta": {
             "generated_at": datetime.utcnow().isoformat() + "Z",
@@ -284,6 +324,7 @@ def build(tracks: list[dict], half_life: float, shrink_k: float) -> dict:
             "recent_window_years": RECENT_WINDOW_YEARS,
         },
         "markets": markets,
+        "over_unders": over_unders,
     }
 
 
