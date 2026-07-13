@@ -4080,6 +4080,13 @@
       "duration_min": 17.4724,
       "venue": "Sphere",
       "position": 14
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 1541736,
+      "duration_min": 25.6956,
+      "venue": "Ruoff Music Center",
+      "position": 12
     }
   ],
   "tweezer": [
@@ -7197,6 +7204,20 @@
       "duration_min": 18.44,
       "venue": "Sphere",
       "position": 12
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 1998624,
+      "duration_min": 33.3104,
+      "venue": "Ruoff Music Center",
+      "position": 10
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 162672,
+      "duration_min": 2.7112,
+      "venue": "Ruoff Music Center",
+      "position": 13
     }
   ],
   "down-with-disease": [
@@ -9530,6 +9551,13 @@
       "duration_min": 18.1868,
       "venue": "Sphere",
       "position": 10
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 1147848,
+      "duration_min": 19.1308,
+      "venue": "Ruoff Music Center",
+      "position": 11
     }
   ],
   "ghost": [
@@ -11149,6 +11177,13 @@
       "duration_min": 12.6568,
       "venue": "Sphere",
       "position": 15
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 832752,
+      "duration_min": 13.8792,
+      "venue": "Kohl Center",
+      "position": 2
     }
   ],
   "david-bowie": [
@@ -17334,6 +17369,13 @@
       "duration_min": 14.5848,
       "venue": "Sphere",
       "position": 17
+    },
+    {
+      "date": "2026-07-08",
+      "duration_ms": 846288,
+      "duration_min": 14.1048,
+      "venue": "Kohl Center",
+      "position": 14
     }
   ],
   "ruby-waves": [
@@ -17637,6 +17679,13 @@
       "duration_min": 21.374,
       "venue": "Sphere",
       "position": 14
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 969576,
+      "duration_min": 16.1596,
+      "venue": "Kohl Center",
+      "position": 15
     }
   ],
   "soul-planet": [
@@ -28937,6 +28986,13 @@
       "duration_min": 11.4612,
       "venue": "Sphere",
       "position": 15
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 624216,
+      "duration_min": 10.4036,
+      "venue": "Kohl Center",
+      "position": 11
     }
   ],
   "chalk-dust-torture": [
@@ -32530,6 +32586,13 @@
       "duration_min": 26.1936,
       "venue": "Sphere",
       "position": 11
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 604128,
+      "duration_min": 10.0688,
+      "venue": "Kohl Center",
+      "position": 1
     }
   ],
   "stash": [
@@ -38435,6 +38498,13 @@
       "duration_min": 13.7252,
       "venue": "Sphere",
       "position": 3
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 759720,
+      "duration_min": 12.662,
+      "venue": "Ruoff Music Center",
+      "position": 6
     }
   ],
   "slave-to-the-traffic-light": [
@@ -40425,6 +40495,13 @@
       "duration_min": 10.5712,
       "venue": "Sphere",
       "position": 18
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 534360,
+      "duration_min": 8.906,
+      "venue": "Kohl Center",
+      "position": 17
     }
   ],
   "light": [
@@ -42452,6 +42529,13 @@
       "duration_min": 12.0148,
       "venue": "Sphere",
       "position": 19
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 460512,
+      "duration_min": 7.6752,
+      "venue": "Ruoff Music Center",
+      "position": 15
     }
   ],
   "fuego": [
@@ -43139,6 +43223,13 @@
       "duration_ms": 302688,
       "duration_min": 5.0448,
       "venue": "Sphere",
+      "position": 12
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 1525368,
+      "duration_min": 25.4228,
+      "venue": "Kohl Center",
       "position": 12
     }
   ],
@@ -44248,6 +44339,13 @@
       "duration_min": 13.9908,
       "venue": "Sphere",
       "position": 18
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 906480,
+      "duration_min": 15.108,
+      "venue": "Kohl Center",
+      "position": 14
     }
   ],
   "twist": [
@@ -45566,6 +45664,13 @@
       "duration_min": 11.7388,
       "venue": "Sphere",
       "position": 14
+    },
+    {
+      "date": "2026-07-08",
+      "duration_ms": 614616,
+      "duration_min": 10.2436,
+      "venue": "Kohl Center",
+      "position": 10
     }
   ],
   "split-open-and-melt": [
@@ -53867,6 +53972,13 @@
       "duration_min": 7.6804,
       "venue": "Sphere",
       "position": 15
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 447456,
+      "duration_min": 7.4576,
+      "venue": "Kohl Center",
+      "position": 8
     }
   ],
   "prince-caspian": [
@@ -55164,6 +55276,13 @@
       "duration_min": 9.0132,
       "venue": "Sphere",
       "position": 11
+    },
+    {
+      "date": "2026-07-08",
+      "duration_ms": 594696,
+      "duration_min": 9.9116,
+      "venue": "Kohl Center",
+      "position": 9
     }
   ],
   "tube": [
@@ -56531,6 +56650,13 @@
       "duration_min": 9.5292,
       "venue": "Sphere",
       "position": 17
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 534360,
+      "duration_min": 8.906,
+      "venue": "Ruoff Music Center",
+      "position": 5
     }
   ],
   "crosseyed-and-painless": [
@@ -60707,6 +60833,13 @@
       "duration_min": 8.6392,
       "venue": "Sphere",
       "position": 15
+    },
+    {
+      "date": "2026-07-08",
+      "duration_ms": 606744,
+      "duration_min": 10.1124,
+      "venue": "Kohl Center",
+      "position": 12
     }
   ],
   "free": [
@@ -62340,6 +62473,13 @@
       "duration_min": 10.568,
       "venue": "Sphere",
       "position": 1
+    },
+    {
+      "date": "2026-07-07",
+      "duration_ms": 504216,
+      "duration_min": 8.4036,
+      "venue": "Kohl Center",
+      "position": 4
     }
   ],
   "blaze-on": [
@@ -63000,6 +63140,20 @@
       "duration_min": 14.672,
       "venue": "Sphere",
       "position": 10
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 748296,
+      "duration_min": 12.4716,
+      "venue": "Ruoff Music Center",
+      "position": 1
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 89016,
+      "duration_min": 1.4836,
+      "venue": "Ruoff Music Center",
+      "position": 3
     }
   ],
   "waves": [
@@ -64314,6 +64468,13 @@
       "duration_ms": 712272,
       "duration_min": 11.8712,
       "venue": "Sphere",
+      "position": 11
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 652032,
+      "duration_min": 10.8672,
+      "venue": "Ruoff Music Center",
       "position": 11
     }
   ],
@@ -66526,6 +66687,13 @@
       "duration_min": 16.6864,
       "venue": "Sphere",
       "position": 5
+    },
+    {
+      "date": "2026-07-08",
+      "duration_ms": 1153272,
+      "duration_min": 19.2212,
+      "venue": "Kohl Center",
+      "position": 4
     }
   ],
   "scents-and-subtle-sounds": [
@@ -68252,6 +68420,13 @@
       "duration_min": 12.892,
       "venue": "Sphere",
       "position": 4
+    },
+    {
+      "date": "2026-07-11",
+      "duration_ms": 806760,
+      "duration_min": 13.446,
+      "venue": "Ruoff Music Center",
+      "position": 3
     }
   ],
   "limb-by-limb": [
@@ -69395,6 +69570,13 @@
       "duration_min": 10.3556,
       "venue": "Sphere",
       "position": 8
+    },
+    {
+      "date": "2026-07-10",
+      "duration_ms": 508824,
+      "duration_min": 8.4804,
+      "venue": "Ruoff Music Center",
+      "position": 7
     }
   ],
   "ya-mar": [
