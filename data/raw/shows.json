@@ -305387,5 +305387,628 @@
         "gap": 4
       }
     ]
+  },
+  {
+    "showid": 1771438965,
+    "showdate": "2026-07-14",
+    "venue": "Enmarket Arena",
+    "city": "Savannah",
+    "state": "GA",
+    "country": "USA",
+    "venueid": 1674,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "David Bowie",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Gumbo",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Birds of a Feather",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "The Old Home Place",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 28
+      },
+      {
+        "song": "Steam",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "The Curtain With",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Horn",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Split Open and Melt",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Sand",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "It's Ice",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "About to Run",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Piper",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Walls of the Cave",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "The Squirming Coil",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Fire",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 132
+      }
+    ]
+  },
+  {
+    "showid": 1771438986,
+    "showdate": "2026-07-15",
+    "venue": "Enmarket Arena",
+    "city": "Savannah",
+    "state": "GA",
+    "country": "USA",
+    "venueid": 1674,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "Dinner and a Movie",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 82
+      },
+      {
+        "song": "Vultures",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Taste",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "The Wedge",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Pebbles and Marbles",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Divided Sky",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Halley's Comet",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Drift While You're Sleeping",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Sightless Escape",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 43
+      },
+      {
+        "song": "A Song I Heard the Ocean Sing",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Crosseyed and Painless",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Farmhouse",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Scents and Subtle Sounds",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Ghost",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Rock and Roll",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 7
+      }
+    ]
+  },
+  {
+    "showid": 1771439028,
+    "showdate": "2026-07-17",
+    "venue": "Coastal Credit Union Music Park at Walnut Creek",
+    "city": "Raleigh",
+    "state": "NC",
+    "country": "USA",
+    "venueid": 1436,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "Buried Alive",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Character Zero",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Llama",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Mercury",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Sample in a Jar",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Destiny Unbound",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 43
+      },
+      {
+        "song": "Guyute",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "Golgi Apparatus",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Harry Hood",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Fuego",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "The Lizards",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "A Wave of Hope",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Fee",
+        "position": 13,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "Meatstick",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "The Mango Song",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 45
+      },
+      {
+        "song": "Izabella",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 25
+      }
+    ]
+  },
+  {
+    "showid": 1771439049,
+    "showdate": "2026-07-18",
+    "venue": "Merriweather Post Pavilion",
+    "city": "Columbia",
+    "state": "MD",
+    "country": "USA",
+    "venueid": 9,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "What's Going Through Your Mind",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Contact",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 95
+      },
+      {
+        "song": "You Enjoy Myself",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Axilla (Part II)",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "McGrupp and the Watchful Hosemasters",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Have Mercy",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 241
+      },
+      {
+        "song": "McGrupp and the Watchful Hosemasters",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Shade",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Runaway Jim",
+        "position": 9,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Life Saving Gun",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Gotta Jibboo",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 16
+      },
+      {
+        "song": "Ether Edge",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Lifeboy",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 16
+      },
+      {
+        "song": "Boogie On Reggae Woman",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Free",
+        "position": 15,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Monsters",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "If I Could",
+        "position": 17,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 63
+      },
+      {
+        "song": "Run Like an Antelope",
+        "position": 18,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 7
+      }
+    ]
+  },
+  {
+    "showid": 1771439079,
+    "showdate": "2026-07-19",
+    "venue": "Merriweather Post Pavilion",
+    "city": "Columbia",
+    "state": "MD",
+    "country": "USA",
+    "venueid": 9,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "Undermind",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Back on the Train",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Ass Handed",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 138
+      },
+      {
+        "song": "The Moma Dance",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Fast Enough for You",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 54
+      },
+      {
+        "song": "NICU",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "Oblivion",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Possum",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Carini",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "No Men In No Man's Land",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Beneath a Sea of Stars Part 1",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 16
+      },
+      {
+        "song": "Ruby Waves",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Backwards Down the Number Line",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "I Am the Walrus",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "First Tube",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 7
+      }
+    ]
   }
 ]

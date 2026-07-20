@@ -4087,6 +4087,13 @@
       "duration_min": 25.6956,
       "venue": "Ruoff Music Center",
       "position": 12
+    },
+    {
+      "date": "2026-07-18",
+      "duration_ms": 1037784,
+      "duration_min": 17.2964,
+      "venue": "Merriweather Post Pavilion",
+      "position": 3
     }
   ],
   "tweezer": [
@@ -17376,6 +17383,13 @@
       "duration_min": 14.1048,
       "venue": "Kohl Center",
       "position": 14
+    },
+    {
+      "date": "2026-07-17",
+      "duration_ms": 1089600,
+      "duration_min": 18.16,
+      "venue": "Coastal Credit Union Music Park at Walnut Creek",
+      "position": 9
     }
   ],
   "ruby-waves": [
@@ -18187,6 +18201,13 @@
       "duration_min": 17.3696,
       "venue": "Sphere",
       "position": 12
+    },
+    {
+      "date": "2026-07-17",
+      "duration_ms": 611976,
+      "duration_min": 10.1996,
+      "venue": "Coastal Credit Union Music Park at Walnut Creek",
+      "position": 4
     }
   ],
   "fluffhead": [
@@ -20100,6 +20121,13 @@
       "duration_min": 17.45,
       "venue": "Sphere",
       "position": 20
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 1069512,
+      "duration_min": 17.8252,
+      "venue": "Ruoff Music Center",
+      "position": 15
     }
   ],
   "drowned": [
@@ -21931,6 +21959,13 @@
       "duration_min": 25.0936,
       "venue": "Sphere",
       "position": 11
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 2263848,
+      "duration_min": 37.7308,
+      "venue": "Ruoff Music Center",
+      "position": 8
     }
   ],
   "piper": [
@@ -25568,6 +25603,13 @@
       "duration_min": 15.7532,
       "venue": "Sphere",
       "position": 9
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 1249080,
+      "duration_min": 20.818,
+      "venue": "Ruoff Music Center",
+      "position": 4
     }
   ],
   "run-like-an-antelope": [
@@ -28993,6 +29035,13 @@
       "duration_min": 10.4036,
       "venue": "Kohl Center",
       "position": 11
+    },
+    {
+      "date": "2026-07-18",
+      "duration_ms": 582864,
+      "duration_min": 9.7144,
+      "venue": "Merriweather Post Pavilion",
+      "position": 18
     }
   ],
   "chalk-dust-torture": [
@@ -35703,6 +35752,13 @@
       "duration_min": 12.5124,
       "venue": "Sphere",
       "position": 7
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 726672,
+      "duration_min": 12.1112,
+      "venue": "Ruoff Music Center",
+      "position": 7
     }
   ],
   "reba": [
@@ -41435,6 +41491,13 @@
       "duration_min": 23.3776,
       "venue": "Sphere",
       "position": 11
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 769896,
+      "duration_min": 12.8316,
+      "venue": "Ruoff Music Center",
+      "position": 10
     }
   ],
   "carini": [
@@ -43231,6 +43294,13 @@
       "duration_min": 25.4228,
       "venue": "Kohl Center",
       "position": 12
+    },
+    {
+      "date": "2026-07-17",
+      "duration_ms": 1304712,
+      "duration_min": 21.7452,
+      "venue": "Coastal Credit Union Music Park at Walnut Creek",
+      "position": 10
     }
   ],
   "sand": [
@@ -50477,6 +50547,13 @@
       "duration_min": 9.986,
       "venue": "Sphere",
       "position": 3
+    },
+    {
+      "date": "2026-07-12",
+      "duration_ms": 577128,
+      "duration_min": 9.6188,
+      "venue": "Ruoff Music Center",
+      "position": 5
     }
   ],
   "weekapaug-groove": [
@@ -62480,6 +62557,13 @@
       "duration_min": 8.4036,
       "venue": "Kohl Center",
       "position": 4
+    },
+    {
+      "date": "2026-07-18",
+      "duration_ms": 575496,
+      "duration_min": 9.5916,
+      "venue": "Merriweather Post Pavilion",
+      "position": 15
     }
   ],
   "blaze-on": [
