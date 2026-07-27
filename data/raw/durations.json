@@ -4484,8 +4484,8 @@
     },
     {
       "date": "1994-11-28",
-      "duration_ms": 2641711,
-      "duration_min": 44.02851666666667,
+      "duration_ms": 200496,
+      "duration_min": 3.3416,
       "venue": "Brick Breeden Fieldhouse, Montana State University",
       "position": 12
     },
@@ -5660,8 +5660,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 1005610,
-      "duration_min": 16.760166666666667,
+      "duration_ms": 1000856,
+      "duration_min": 16.680933333333332,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 16
     },
@@ -7171,6 +7171,13 @@
       "position": 10
     },
     {
+      "date": "1992-04-04",
+      "duration_ms": 670824,
+      "duration_min": 11.1804,
+      "venue": "Balch Fieldhouse, University of Colorado",
+      "position": 18
+    },
+    {
       "date": "2025-07-22",
       "duration_ms": 917616,
       "duration_min": 15.2936,
@@ -7225,6 +7232,48 @@
       "duration_min": 2.7112,
       "venue": "Ruoff Music Center",
       "position": 13
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 1071456,
+      "duration_min": 17.8576,
+      "venue": "Madison Square Garden",
+      "position": 8
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 236160,
+      "duration_min": 3.936,
+      "venue": "Madison Square Garden",
+      "position": 10
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 254592,
+      "duration_min": 4.2432,
+      "venue": "Madison Square Garden",
+      "position": 12
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 146832,
+      "duration_min": 2.4472,
+      "venue": "Madison Square Garden",
+      "position": 15
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 385344,
+      "duration_min": 6.4224,
+      "venue": "Madison Square Garden",
+      "position": 17
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 681120,
+      "duration_min": 11.352,
+      "venue": "Madison Square Garden",
+      "position": 19
     }
   ],
   "down-with-disease": [
@@ -9565,6 +9614,20 @@
       "duration_min": 19.1308,
       "venue": "Ruoff Music Center",
       "position": 11
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 806712,
+      "duration_min": 13.4452,
+      "venue": "Madison Square Garden",
+      "position": 7
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 85608,
+      "duration_min": 1.4268,
+      "venue": "Madison Square Garden",
+      "position": 9
     }
   ],
   "ghost": [
@@ -9892,8 +9955,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 902583,
-      "duration_min": 15.04305,
+      "duration_ms": 901303,
+      "duration_min": 15.021716666666666,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 11
     },
@@ -11191,6 +11254,13 @@
       "duration_min": 13.8792,
       "venue": "Kohl Center",
       "position": 2
+    },
+    {
+      "date": "2026-07-21",
+      "duration_ms": 646248,
+      "duration_min": 10.7708,
+      "venue": "Empower FCU Amphitheater at Lakeview",
+      "position": 7
     }
   ],
   "david-bowie": [
@@ -11413,8 +11483,8 @@
     },
     {
       "date": "1992-08-02",
-      "duration_ms": 715677,
-      "duration_min": 11.92795,
+      "duration_ms": 741912,
+      "duration_min": 12.3652,
       "venue": "Riverport Amphitheater",
       "position": 6
     },
@@ -14366,6 +14436,20 @@
       "position": 9
     },
     {
+      "date": "1992-12-01",
+      "duration_ms": 19200,
+      "duration_min": 0.32,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 25
+    },
+    {
+      "date": "1992-12-01",
+      "duration_ms": 712008,
+      "duration_min": 11.8668,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 27
+    },
+    {
       "date": "2025-09-16",
       "duration_ms": 691320,
       "duration_min": 11.522,
@@ -14378,6 +14462,20 @@
       "duration_min": 14.7796,
       "venue": "Sphere",
       "position": 11
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 49080,
+      "duration_min": 0.818,
+      "venue": "Madison Square Garden",
+      "position": 13
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 594960,
+      "duration_min": 9.916,
+      "venue": "Madison Square Garden",
+      "position": 15
     }
   ],
   "harry-hood": [
@@ -15762,8 +15860,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 902635,
-      "duration_min": 15.043916666666666,
+      "duration_ms": 905038,
+      "duration_min": 15.083966666666667,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 22
     },
@@ -17390,6 +17488,13 @@
       "duration_min": 18.16,
       "venue": "Coastal Credit Union Music Park at Walnut Creek",
       "position": 9
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 721080,
+      "duration_min": 12.018,
+      "venue": "Madison Square Garden",
+      "position": 23
     }
   ],
   "ruby-waves": [
@@ -17700,6 +17805,13 @@
       "duration_min": 16.1596,
       "venue": "Kohl Center",
       "position": 15
+    },
+    {
+      "date": "2026-07-19",
+      "duration_ms": 883272,
+      "duration_min": 14.7212,
+      "venue": "Merriweather Post Pavilion",
+      "position": 12
     }
   ],
   "soul-planet": [
@@ -20095,6 +20207,13 @@
       "position": 4
     },
     {
+      "date": "1992-12-01",
+      "duration_ms": 828816,
+      "duration_min": 13.8136,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 7
+    },
+    {
       "date": "2025-07-26",
       "duration_ms": 944568,
       "duration_min": 15.7428,
@@ -20128,6 +20247,13 @@
       "duration_min": 17.8252,
       "venue": "Ruoff Music Center",
       "position": 15
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 982872,
+      "duration_min": 16.3812,
+      "venue": "Madison Square Garden",
+      "position": 23
     }
   ],
   "drowned": [
@@ -20632,8 +20758,8 @@
     },
     {
       "date": "1994-11-28",
-      "duration_ms": 445309,
-      "duration_min": 7.4218166666666665,
+      "duration_ms": 445800,
+      "duration_min": 7.43,
       "venue": "Brick Breeden Fieldhouse, Montana State University",
       "position": 7
     },
@@ -21101,8 +21227,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 493662,
-      "duration_min": 8.2277,
+      "duration_ms": 494341,
+      "duration_min": 8.239016666666666,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 30
     },
@@ -21966,6 +22092,13 @@
       "duration_min": 37.7308,
       "venue": "Ruoff Music Center",
       "position": 8
+    },
+    {
+      "date": "2026-07-25",
+      "duration_ms": 1204128,
+      "duration_min": 20.0688,
+      "venue": "Madison Square Garden",
+      "position": 2
     }
   ],
   "piper": [
@@ -25610,6 +25743,13 @@
       "duration_min": 20.818,
       "venue": "Ruoff Music Center",
       "position": 4
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 1078440,
+      "duration_min": 17.974,
+      "venue": "Madison Square Garden",
+      "position": 2
     }
   ],
   "run-like-an-antelope": [
@@ -27519,8 +27659,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 977058,
-      "duration_min": 16.2843,
+      "duration_ms": 978521,
+      "duration_min": 16.308683333333335,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 26
     },
@@ -28995,6 +29135,13 @@
       "position": 19
     },
     {
+      "date": "1992-05-05",
+      "duration_ms": 665256,
+      "duration_min": 11.0876,
+      "venue": "Bogart's",
+      "position": 11
+    },
+    {
       "date": "2025-07-25",
       "duration_ms": 691728,
       "duration_min": 11.5288,
@@ -29042,6 +29189,13 @@
       "duration_min": 9.7144,
       "venue": "Merriweather Post Pavilion",
       "position": 18
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 633432,
+      "duration_min": 10.5572,
+      "venue": "Madison Square Garden",
+      "position": 27
     }
   ],
   "chalk-dust-torture": [
@@ -30972,8 +31126,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 512261,
-      "duration_min": 8.537683333333334,
+      "duration_ms": 490056,
+      "duration_min": 8.1676,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 24
     },
@@ -32588,6 +32742,20 @@
       "position": 16
     },
     {
+      "date": "1992-12-01",
+      "duration_ms": 397536,
+      "duration_min": 6.6256,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 16
+    },
+    {
+      "date": "1994-11-28",
+      "duration_ms": 383448,
+      "duration_min": 6.3908,
+      "venue": "Brick Breeden Fieldhouse, Montana State University",
+      "position": 1
+    },
+    {
       "date": "2025-07-19",
       "duration_ms": 594840,
       "duration_min": 9.914,
@@ -32642,6 +32810,13 @@
       "duration_min": 10.0688,
       "venue": "Kohl Center",
       "position": 1
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 948576,
+      "duration_min": 15.8096,
+      "venue": "Madison Square Garden",
+      "position": 13
     }
   ],
   "stash": [
@@ -35719,6 +35894,20 @@
       "position": 5
     },
     {
+      "date": "1992-05-05",
+      "duration_ms": 522360,
+      "duration_min": 8.706,
+      "venue": "Bogart's",
+      "position": 4
+    },
+    {
+      "date": "1994-11-28",
+      "duration_ms": 654072,
+      "duration_min": 10.9012,
+      "venue": "Brick Breeden Fieldhouse, Montana State University",
+      "position": 4
+    },
+    {
       "date": "2025-07-22",
       "duration_ms": 628176,
       "duration_min": 10.4696,
@@ -35759,6 +35948,13 @@
       "duration_min": 12.1112,
       "venue": "Ruoff Music Center",
       "position": 7
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 778752,
+      "duration_min": 12.9792,
+      "venue": "Madison Square Garden",
+      "position": 5
     }
   ],
   "reba": [
@@ -38561,6 +38757,13 @@
       "duration_min": 12.662,
       "venue": "Ruoff Music Center",
       "position": 6
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 711000,
+      "duration_min": 11.85,
+      "venue": "Madison Square Garden",
+      "position": 11
     }
   ],
   "slave-to-the-traffic-light": [
@@ -40558,6 +40761,13 @@
       "duration_min": 8.906,
       "venue": "Kohl Center",
       "position": 17
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 566760,
+      "duration_min": 9.446,
+      "venue": "Madison Square Garden",
+      "position": 15
     }
   ],
   "light": [
@@ -41498,6 +41708,13 @@
       "duration_min": 12.8316,
       "venue": "Ruoff Music Center",
       "position": 10
+    },
+    {
+      "date": "2026-07-21",
+      "duration_ms": 903912,
+      "duration_min": 15.0652,
+      "venue": "Empower FCU Amphitheater at Lakeview",
+      "position": 11
     }
   ],
   "carini": [
@@ -42599,6 +42816,13 @@
       "duration_min": 7.6752,
       "venue": "Ruoff Music Center",
       "position": 15
+    },
+    {
+      "date": "2026-07-19",
+      "duration_ms": 2404464,
+      "duration_min": 40.0744,
+      "venue": "Merriweather Post Pavilion",
+      "position": 9
     }
   ],
   "fuego": [
@@ -44416,6 +44640,13 @@
       "duration_min": 15.108,
       "venue": "Kohl Center",
       "position": 14
+    },
+    {
+      "date": "2026-07-21",
+      "duration_ms": 1112904,
+      "duration_min": 18.5484,
+      "venue": "Empower FCU Amphitheater at Lakeview",
+      "position": 8
     }
   ],
   "twist": [
@@ -48111,6 +48342,13 @@
       "position": 11
     },
     {
+      "date": "1992-12-01",
+      "duration_ms": 462576,
+      "duration_min": 7.7096,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 3
+    },
+    {
       "date": "2025-07-27",
       "duration_ms": 785976,
       "duration_min": 13.0996,
@@ -48137,6 +48375,13 @@
       "duration_min": 14.9392,
       "venue": "Sphere",
       "position": 8
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 772992,
+      "duration_min": 12.8832,
+      "venue": "Madison Square Garden",
+      "position": 21
     }
   ],
   "maze": [
@@ -50535,6 +50780,13 @@
       "position": 17
     },
     {
+      "date": "1992-12-01",
+      "duration_ms": 590760,
+      "duration_min": 9.846,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 8
+    },
+    {
       "date": "2025-09-16",
       "duration_ms": 616176,
       "duration_min": 10.2696,
@@ -50554,6 +50806,13 @@
       "duration_min": 9.6188,
       "venue": "Ruoff Music Center",
       "position": 5
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 565152,
+      "duration_min": 9.4192,
+      "venue": "Madison Square Garden",
+      "position": 4
     }
   ],
   "weekapaug-groove": [
@@ -52603,8 +52862,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 593789,
-      "duration_min": 9.896483333333334,
+      "duration_ms": 603840,
+      "duration_min": 10.064,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 32
     },
@@ -54002,6 +54261,20 @@
       "position": 11
     },
     {
+      "date": "1992-04-04",
+      "duration_ms": 399624,
+      "duration_min": 6.6604,
+      "venue": "Balch Fieldhouse, University of Colorado",
+      "position": 14
+    },
+    {
+      "date": "1992-12-01",
+      "duration_ms": 427800,
+      "duration_min": 7.13,
+      "venue": "Livingston Gymnasium, Denison University",
+      "position": 13
+    },
+    {
       "date": "2025-07-20",
       "duration_ms": 355608,
       "duration_min": 5.9268,
@@ -54056,6 +54329,13 @@
       "duration_min": 7.4576,
       "venue": "Kohl Center",
       "position": 8
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 427200,
+      "duration_min": 7.12,
+      "venue": "Madison Square Garden",
+      "position": 18
     }
   ],
   "prince-caspian": [
@@ -55360,6 +55640,13 @@
       "duration_min": 9.9116,
       "venue": "Kohl Center",
       "position": 9
+    },
+    {
+      "date": "2026-07-21",
+      "duration_ms": 299496,
+      "duration_min": 4.9916,
+      "venue": "Empower FCU Amphitheater at Lakeview",
+      "position": 14
     }
   ],
   "tube": [
@@ -56734,6 +57021,13 @@
       "duration_min": 8.906,
       "venue": "Ruoff Music Center",
       "position": 5
+    },
+    {
+      "date": "2026-07-24",
+      "duration_ms": 360648,
+      "duration_min": 6.0108,
+      "venue": "Madison Square Garden",
+      "position": 10
     }
   ],
   "crosseyed-and-painless": [
@@ -59352,8 +59646,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 532193,
-      "duration_min": 8.869883333333334,
+      "duration_ms": 531644,
+      "duration_min": 8.860733333333334,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 9
     },
@@ -60916,6 +61210,20 @@
       "duration_ms": 606744,
       "duration_min": 10.1124,
       "venue": "Kohl Center",
+      "position": 12
+    },
+    {
+      "date": "2026-07-19",
+      "duration_ms": 582336,
+      "duration_min": 9.7056,
+      "venue": "Merriweather Post Pavilion",
+      "position": 8
+    },
+    {
+      "date": "2026-07-22",
+      "duration_ms": 511920,
+      "duration_min": 8.532,
+      "venue": "Madison Square Garden",
       "position": 12
     }
   ],
@@ -63238,6 +63546,13 @@
       "duration_min": 1.4836,
       "venue": "Ruoff Music Center",
       "position": 3
+    },
+    {
+      "date": "2026-07-21",
+      "duration_ms": 653736,
+      "duration_min": 10.8956,
+      "venue": "Empower FCU Amphitheater at Lakeview",
+      "position": 13
     }
   ],
   "waves": [
@@ -68831,8 +69146,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 684173,
-      "duration_min": 11.402883333333333,
+      "duration_ms": 683712,
+      "duration_min": 11.3952,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 5
     },
@@ -70695,8 +71010,8 @@
     },
     {
       "date": "1999-12-30",
-      "duration_ms": 588408,
-      "duration_min": 9.8068,
+      "duration_ms": 588487,
+      "duration_min": 9.808116666666667,
       "venue": "Big Cypress Seminole Indian Reservation",
       "position": 12
     },
