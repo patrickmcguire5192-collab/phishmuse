@@ -100,8 +100,8 @@
     },
     {
       "date": "1992-03-19",
-      "duration_ms": 1230158,
-      "duration_min": 20.502633333333332,
+      "duration_ms": 1149832,
+      "duration_min": 19.163866666666667,
       "venue": "Palace Theatre",
       "position": 29
     },
@@ -268,8 +268,8 @@
     },
     {
       "date": "1992-10-30",
-      "duration_ms": 996833,
-      "duration_min": 16.613883333333334,
+      "duration_ms": 991451,
+      "duration_min": 16.524183333333333,
       "venue": "Boston Garden",
       "position": 9
     },
@@ -310,8 +310,8 @@
     },
     {
       "date": "1992-12-04",
-      "duration_ms": 1194527,
-      "duration_min": 19.908783333333332,
+      "duration_ms": 1138651,
+      "duration_min": 18.977516666666666,
       "venue": "Mississippi Nights",
       "position": 21
     },
@@ -387,8 +387,8 @@
     },
     {
       "date": "1994-04-20",
-      "duration_ms": 1251004,
-      "duration_min": 20.850066666666667,
+      "duration_ms": 1228251,
+      "duration_min": 20.47085,
       "venue": "Virginia Horse Center",
       "position": 17
     },
@@ -450,8 +450,8 @@
     },
     {
       "date": "1994-05-20",
-      "duration_ms": 1302439,
-      "duration_min": 21.707316666666667,
+      "duration_ms": 1302480,
+      "duration_min": 21.708,
       "venue": "Campus Recreation Center, Evergreen College",
       "position": 17
     },
@@ -471,8 +471,8 @@
     },
     {
       "date": "1994-05-28",
-      "duration_ms": 1405544,
-      "duration_min": 23.425733333333334,
+      "duration_ms": 1344648,
+      "duration_min": 22.4108,
       "venue": "Laguna Seca Raceway",
       "position": 18
     },
@@ -618,8 +618,8 @@
     },
     {
       "date": "1994-12-07",
-      "duration_ms": 1333656,
-      "duration_min": 22.2276,
+      "duration_ms": 1240346,
+      "duration_min": 20.672433333333334,
       "venue": "Spreckels Theatre",
       "position": 17
     },
@@ -870,8 +870,8 @@
     },
     {
       "date": "1993-05-05",
-      "duration_ms": 1942230,
-      "duration_min": 32.3705,
+      "duration_ms": 1932147,
+      "duration_min": 32.20245,
       "venue": "Palace Theatre",
       "position": 20
     },
@@ -1269,8 +1269,8 @@
     },
     {
       "date": "1991-04-18",
-      "duration_ms": 985757,
-      "duration_min": 16.429283333333334,
+      "duration_ms": 960000,
+      "duration_min": 16.0,
       "venue": "Dionysus Club, The 'Sco, Oberlin College",
       "position": 10
     },
@@ -1552,7 +1552,7 @@
       "duration_ms": 925466,
       "duration_min": 15.424433333333333,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 3
+      "position": 4
     },
     {
       "date": "1989-04-14",
@@ -1619,8 +1619,8 @@
     },
     {
       "date": "1989-05-28",
-      "duration_ms": 1122168,
-      "duration_min": 18.7028,
+      "duration_ms": 1005576,
+      "duration_min": 16.7596,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
       "position": 8
     },
@@ -1892,8 +1892,8 @@
     },
     {
       "date": "1995-10-03",
-      "duration_ms": 1219971,
-      "duration_min": 20.33285,
+      "duration_ms": 1177656,
+      "duration_min": 19.6276,
       "venue": "Seattle Center Arena",
       "position": 11
     },
@@ -2354,8 +2354,8 @@
     },
     {
       "date": "1996-11-07",
-      "duration_ms": 1851507,
-      "duration_min": 30.85845,
+      "duration_ms": 1655928,
+      "duration_min": 27.5988,
       "venue": "Rupp Arena",
       "position": 14
     },
@@ -2403,8 +2403,8 @@
     },
     {
       "date": "1996-07-13",
-      "duration_ms": 1124833,
-      "duration_min": 18.747216666666667,
+      "duration_ms": 1083552,
+      "duration_min": 18.0592,
       "venue": "Dour Festival",
       "position": 12
     },
@@ -2438,8 +2438,8 @@
     },
     {
       "date": "1996-10-22",
-      "duration_ms": 1302387,
-      "duration_min": 21.70645,
+      "duration_ms": 1284744,
+      "duration_min": 21.4124,
       "venue": "Madison Square Garden",
       "position": 9
     },
@@ -2627,15 +2627,15 @@
     },
     {
       "date": "1998-07-28",
-      "duration_ms": 1548826,
-      "duration_min": 25.813766666666666,
+      "duration_ms": 1419576,
+      "duration_min": 23.6596,
       "venue": "Sandstone Amphitheatre",
       "position": 18
     },
     {
       "date": "1998-08-06",
-      "duration_ms": 1136065,
-      "duration_min": 18.934416666666667,
+      "duration_ms": 1119024,
+      "duration_min": 18.6504,
       "venue": "Lakewood Amphitheatre",
       "position": 22
     },
@@ -2655,8 +2655,8 @@
     },
     {
       "date": "1998-11-09",
-      "duration_ms": 1313437,
-      "duration_min": 21.890616666666666,
+      "duration_ms": 1285080,
+      "duration_min": 21.418,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 17
     },
@@ -2669,8 +2669,8 @@
     },
     {
       "date": "1998-11-19",
-      "duration_ms": 1416908,
-      "duration_min": 23.615133333333333,
+      "duration_ms": 1370227,
+      "duration_min": 22.837116666666667,
       "venue": "Lawrence Joel Veterans Memorial Coliseum",
       "position": 18
     },
@@ -2697,8 +2697,8 @@
     },
     {
       "date": "1999-07-25",
-      "duration_ms": 1061407,
-      "duration_min": 17.69011666666667,
+      "duration_ms": 1045838,
+      "duration_min": 17.430633333333333,
       "venue": "Deer Creek Music Center",
       "position": 14
     },
@@ -2725,8 +2725,8 @@
     },
     {
       "date": "1999-07-15",
-      "duration_ms": 1488771,
-      "duration_min": 24.81285,
+      "duration_ms": 1477329,
+      "duration_min": 24.62215,
       "venue": "PNC Bank Arts Center",
       "position": 10
     },
@@ -2760,8 +2760,8 @@
     },
     {
       "date": "1999-09-12",
-      "duration_ms": 1392327,
-      "duration_min": 23.20545,
+      "duration_ms": 1278851,
+      "duration_min": 21.314183333333332,
       "venue": "Portland Meadows",
       "position": 15
     },
@@ -2774,8 +2774,8 @@
     },
     {
       "date": "1999-09-28",
-      "duration_ms": 1567869,
-      "duration_min": 26.13115,
+      "duration_ms": 1339742,
+      "duration_min": 22.329033333333335,
       "venue": "Oak Mountain Amphitheatre",
       "position": 15
     },
@@ -2809,15 +2809,15 @@
     },
     {
       "date": "1999-12-18",
-      "duration_ms": 1391125,
-      "duration_min": 23.185416666666665,
+      "duration_ms": 1377072,
+      "duration_min": 22.9512,
       "venue": "Hampton Coliseum",
       "position": 9
     },
     {
       "date": "2000-06-15",
-      "duration_ms": 1503478,
-      "duration_min": 25.057966666666665,
+      "duration_ms": 1476441,
+      "duration_min": 24.60735,
       "venue": "Big Cat",
       "position": 17
     },
@@ -2844,8 +2844,8 @@
     },
     {
       "date": "2000-06-22",
-      "duration_ms": 1312340,
-      "duration_min": 21.872333333333334,
+      "duration_ms": 1277649,
+      "duration_min": 21.29415,
       "venue": "AmSouth Amphitheatre",
       "position": 20
     },
@@ -2858,22 +2858,22 @@
     },
     {
       "date": "2000-07-15",
-      "duration_ms": 1402593,
-      "duration_min": 23.37655,
+      "duration_ms": 1211350,
+      "duration_min": 20.189166666666665,
       "venue": "Polaris Amphitheater",
       "position": 16
     },
     {
       "date": "2000-07-06",
-      "duration_ms": 1245414,
-      "duration_min": 20.7569,
+      "duration_ms": 1222584,
+      "duration_min": 20.3764,
       "venue": "Molson Amphitheatre",
       "position": 12
     },
     {
       "date": "2000-09-11",
-      "duration_ms": 1472418,
-      "duration_min": 24.5403,
+      "duration_ms": 1319628,
+      "duration_min": 21.9938,
       "venue": "Tweeter Center",
       "position": 14
     },
@@ -3796,8 +3796,8 @@
     },
     {
       "date": "2020-02-20",
-      "duration_ms": 1052976,
-      "duration_min": 17.5496,
+      "duration_ms": 1032144,
+      "duration_min": 17.2024,
       "venue": "Moon Palace",
       "position": 17
     },
@@ -4047,6 +4047,13 @@
       "position": 20
     },
     {
+      "date": "1991-11-02",
+      "duration_ms": 1029072,
+      "duration_min": 17.1512,
+      "venue": "Lory Student Center Theatre, Colorado State University",
+      "position": 25
+    },
+    {
       "date": "2025-07-27",
       "duration_ms": 1037376,
       "duration_min": 17.2896,
@@ -4094,6 +4101,13 @@
       "duration_min": 17.2964,
       "venue": "Merriweather Post Pavilion",
       "position": 3
+    },
+    {
+      "date": "2026-07-29",
+      "duration_ms": 2186400,
+      "duration_min": 36.44,
+      "venue": "Madison Square Garden",
+      "position": 12
     }
   ],
   "tweezer": [
@@ -4484,8 +4498,8 @@
     },
     {
       "date": "1994-11-28",
-      "duration_ms": 200496,
-      "duration_min": 3.3416,
+      "duration_ms": 2633400,
+      "duration_min": 43.89,
       "venue": "Brick Breeden Fieldhouse, Montana State University",
       "position": 12
     },
@@ -4879,7 +4893,7 @@
       "duration_ms": 590237,
       "duration_min": 9.837283333333334,
       "venue": "Rick's Caf\u00e9",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1991-04-20",
@@ -7274,6 +7288,27 @@
       "duration_min": 11.352,
       "venue": "Madison Square Garden",
       "position": 19
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 755304,
+      "duration_min": 12.5884,
+      "venue": "Fenway Park",
+      "position": 2
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 150816,
+      "duration_min": 2.5136,
+      "venue": "Fenway Park",
+      "position": 4
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 39432,
+      "duration_min": 0.6572,
+      "venue": "Fenway Park",
+      "position": 7
     }
   ],
   "down-with-disease": [
@@ -7629,8 +7664,8 @@
     },
     {
       "date": "1994-11-17",
-      "duration_ms": 564663,
-      "duration_min": 9.41105,
+      "duration_ms": 551549,
+      "duration_min": 9.192483333333334,
       "venue": "Hara Arena",
       "position": 10
     },
@@ -8098,8 +8133,8 @@
     },
     {
       "date": "1999-12-11",
-      "duration_ms": 809822,
-      "duration_min": 13.497033333333333,
+      "duration_ms": 623438,
+      "duration_min": 10.390633333333334,
       "venue": "First Union Spectrum",
       "position": 13
     },
@@ -8147,15 +8182,15 @@
     },
     {
       "date": "1999-09-19",
-      "duration_ms": 675631,
-      "duration_min": 11.260516666666666,
+      "duration_ms": 611135,
+      "duration_min": 10.185583333333334,
       "venue": "Irvine Meadows",
       "position": 14
     },
     {
       "date": "1999-09-26",
-      "duration_ms": 736313,
-      "duration_min": 12.271883333333333,
+      "duration_ms": 700630,
+      "duration_min": 11.677166666666666,
       "venue": "Kiefer UNO Lakefront Arena, University of New Orleans",
       "position": 17
     },
@@ -8917,8 +8952,8 @@
     },
     {
       "date": "1994-11-03",
-      "duration_ms": 510589,
-      "duration_min": 8.509816666666667,
+      "duration_ms": 474932,
+      "duration_min": 7.915533333333333,
       "venue": "Mullins Center, University of Massachusetts",
       "position": 9
     },
@@ -9920,8 +9955,8 @@
     },
     {
       "date": "1998-11-11",
-      "duration_ms": 1085440,
-      "duration_min": 18.090666666666667,
+      "duration_ms": 946080,
+      "duration_min": 15.768,
       "venue": "Van Andel Arena",
       "position": 14
     },
@@ -10032,8 +10067,8 @@
     },
     {
       "date": "2000-07-01",
-      "duration_ms": 1225953,
-      "duration_min": 20.43255,
+      "duration_ms": 989649,
+      "duration_min": 16.49415,
       "venue": "Meadows Music Theatre",
       "position": 21
     },
@@ -11261,6 +11296,13 @@
       "duration_min": 10.7708,
       "venue": "Empower FCU Amphitheater at Lakeview",
       "position": 7
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 1000944,
+      "duration_min": 16.6824,
+      "venue": "Fenway Park",
+      "position": 14
     }
   ],
   "david-bowie": [
@@ -11413,8 +11455,8 @@
     },
     {
       "date": "1992-04-29",
-      "duration_ms": 650188,
-      "duration_min": 10.836466666666666,
+      "duration_ms": 633234,
+      "duration_min": 10.5539,
       "venue": "First Avenue",
       "position": 11
     },
@@ -11455,8 +11497,8 @@
     },
     {
       "date": "1992-06-28",
-      "duration_ms": 754129,
-      "duration_min": 12.568816666666667,
+      "duration_ms": 723749,
+      "duration_min": 12.062483333333333,
       "venue": "Roskilde Festival",
       "position": 10
     },
@@ -11490,8 +11532,8 @@
     },
     {
       "date": "1992-08-17",
-      "duration_ms": 778188,
-      "duration_min": 12.9698,
+      "duration_ms": 763141,
+      "duration_min": 12.719016666666667,
       "venue": "The Coach House",
       "position": 11
     },
@@ -11511,8 +11553,8 @@
     },
     {
       "date": "1992-11-23",
-      "duration_ms": 812539,
-      "duration_min": 13.542316666666666,
+      "duration_ms": 794149,
+      "duration_min": 13.235816666666667,
       "venue": "Broome County Forum",
       "position": 14
     },
@@ -11532,8 +11574,8 @@
     },
     {
       "date": "1992-12-11",
-      "duration_ms": 929959,
-      "duration_min": 15.499316666666667,
+      "duration_ms": 918544,
+      "duration_min": 15.309066666666666,
       "venue": "Michigan Theater",
       "position": 11
     },
@@ -11686,15 +11728,15 @@
     },
     {
       "date": "1994-07-03",
-      "duration_ms": 886256,
-      "duration_min": 14.770933333333334,
+      "duration_ms": 878629,
+      "duration_min": 14.643816666666666,
       "venue": "The Ballpark",
       "position": 10
     },
     {
       "date": "1994-07-06",
-      "duration_ms": 1015876,
-      "duration_min": 16.931266666666666,
+      "duration_ms": 996545,
+      "duration_min": 16.609083333333334,
       "venue": "Theatre St. Denis",
       "position": 9
     },
@@ -11742,8 +11784,8 @@
     },
     {
       "date": "1994-10-26",
-      "duration_ms": 891847,
-      "duration_min": 14.864116666666666,
+      "duration_ms": 735138,
+      "duration_min": 12.2523,
       "venue": "Varsity Gym, Appalachian State University",
       "position": 17
     },
@@ -11840,8 +11882,8 @@
     },
     {
       "date": "1993-02-22",
-      "duration_ms": 756793,
-      "duration_min": 12.613216666666666,
+      "duration_ms": 750733,
+      "duration_min": 12.512216666666667,
       "venue": "The Moon",
       "position": 10
     },
@@ -11861,8 +11903,8 @@
     },
     {
       "date": "1993-02-05",
-      "duration_ms": 919562,
-      "duration_min": 15.326033333333333,
+      "duration_ms": 906945,
+      "duration_min": 15.11575,
       "venue": "Roseland Ballroom",
       "position": 10
     },
@@ -11910,8 +11952,8 @@
     },
     {
       "date": "1993-03-27",
-      "duration_ms": 947278,
-      "duration_min": 15.787966666666666,
+      "duration_ms": 928549,
+      "duration_min": 15.475816666666667,
       "venue": "Warfield Theatre",
       "position": 10
     },
@@ -11987,8 +12029,8 @@
     },
     {
       "date": "1993-07-30",
-      "duration_ms": 666227,
-      "duration_min": 11.103783333333332,
+      "duration_ms": 653531,
+      "duration_min": 10.892183333333334,
       "venue": "The Veranda at Starwood",
       "position": 19
     },
@@ -12085,8 +12127,8 @@
     },
     {
       "date": "1988-11-05",
-      "duration_ms": 754678,
-      "duration_min": 12.577966666666667,
+      "duration_ms": 741642,
+      "duration_min": 12.3607,
       "venue": "Sigma Phi Fraternity, Hamilton College",
       "position": 11
     },
@@ -12267,15 +12309,15 @@
     },
     {
       "date": "1991-09-26",
-      "duration_ms": 694962,
-      "duration_min": 11.5827,
+      "duration_ms": 679080,
+      "duration_min": 11.318,
       "venue": "State Theatre Of Ithaca",
       "position": 10
     },
     {
       "date": "1991-09-29",
-      "duration_ms": 906423,
-      "duration_min": 15.10705,
+      "duration_ms": 797231,
+      "duration_min": 13.287183333333333,
       "venue": "The Agora Ballroom",
       "position": 20
     },
@@ -12603,8 +12645,8 @@
     },
     {
       "date": "1995-10-02",
-      "duration_ms": 889443,
-      "duration_min": 14.82405,
+      "duration_ms": 883331,
+      "duration_min": 14.722183333333334,
       "venue": "Seattle Center Arena",
       "position": 10
     },
@@ -12624,8 +12666,8 @@
     },
     {
       "date": "1995-10-15",
-      "duration_ms": 1070028,
-      "duration_min": 17.8338,
+      "duration_ms": 1049731,
+      "duration_min": 17.495516666666667,
       "venue": "Austin Music Hall",
       "position": 10
     },
@@ -12750,8 +12792,8 @@
     },
     {
       "date": "1990-05-13",
-      "duration_ms": 886152,
-      "duration_min": 14.7692,
+      "duration_ms": 874344,
+      "duration_min": 14.5724,
       "venue": "The Front",
       "position": 10
     },
@@ -12813,8 +12855,8 @@
     },
     {
       "date": "1990-11-02",
-      "duration_ms": 943151,
-      "duration_min": 15.719183333333334,
+      "duration_ms": 910341,
+      "duration_min": 15.17235,
       "venue": "Glenn Miller Ballroom, University of Colorado",
       "position": 21
     },
@@ -12876,8 +12918,8 @@
     },
     {
       "date": "1996-10-29",
-      "duration_ms": 866769,
-      "duration_min": 14.44615,
+      "duration_ms": 853133,
+      "duration_min": 14.218883333333334,
       "venue": "Leon County Civic Center",
       "position": 11
     },
@@ -12946,15 +12988,15 @@
     },
     {
       "date": "1996-10-17",
-      "duration_ms": 959948,
-      "duration_min": 15.999133333333333,
+      "duration_ms": 821551,
+      "duration_min": 13.692516666666666,
       "venue": "Bryce Jordan Center, Penn State University",
       "position": 18
     },
     {
       "date": "1996-10-21",
-      "duration_ms": 744072,
-      "duration_min": 12.4012,
+      "duration_ms": 728033,
+      "duration_min": 12.133883333333333,
       "venue": "Madison Square Garden",
       "position": 21
     },
@@ -13100,15 +13142,15 @@
     },
     {
       "date": "1998-04-04",
-      "duration_ms": 1152758,
-      "duration_min": 19.212633333333333,
+      "duration_ms": 907080,
+      "duration_min": 15.118,
       "venue": "Providence Civic Center",
       "position": 14
     },
     {
       "date": "1998-06-30",
-      "duration_ms": 777744,
-      "duration_min": 12.9624,
+      "duration_ms": 756950,
+      "duration_min": 12.615833333333333,
       "venue": "The Grey Hall",
       "position": 21
     },
@@ -13149,8 +13191,8 @@
     },
     {
       "date": "1998-10-29",
-      "duration_ms": 1155056,
-      "duration_min": 19.250933333333332,
+      "duration_ms": 943647,
+      "duration_min": 15.72745,
       "venue": "Greek Theatre",
       "position": 17
     },
@@ -13226,8 +13268,8 @@
     },
     {
       "date": "1999-09-10",
-      "duration_ms": 1521136,
-      "duration_min": 25.352266666666665,
+      "duration_ms": 1285329,
+      "duration_min": 21.42215,
       "venue": "Gorge Amphitheatre",
       "position": 17
     },
@@ -13310,15 +13352,15 @@
     },
     {
       "date": "2000-06-30",
-      "duration_ms": 797597,
-      "duration_min": 13.293283333333333,
+      "duration_ms": 783543,
+      "duration_min": 13.05905,
       "venue": "Meadows Music Theatre",
       "position": 19
     },
     {
       "date": "2000-07-10",
-      "duration_ms": 888529,
-      "duration_min": 14.808816666666667,
+      "duration_ms": 878132,
+      "duration_min": 14.635533333333333,
       "venue": "Deer Creek Music Center",
       "position": 13
     },
@@ -13912,8 +13954,8 @@
     },
     {
       "date": "1998-12-28",
-      "duration_ms": 937378,
-      "duration_min": 15.622966666666667,
+      "duration_ms": 908826,
+      "duration_min": 15.1471,
       "venue": "Madison Square Garden",
       "position": 16
     },
@@ -14405,7 +14447,7 @@
       "duration_ms": 439144,
       "duration_min": 7.319066666666667,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 23
+      "position": 25
     },
     {
       "date": "2025-04-23",
@@ -14649,8 +14691,8 @@
     },
     {
       "date": "1994-04-10",
-      "duration_ms": 868728,
-      "duration_min": 14.4788,
+      "duration_ms": 754129,
+      "duration_min": 12.568816666666667,
       "venue": "Alumni Arena, SUNY Buffalo",
       "position": 17
     },
@@ -15090,8 +15132,8 @@
     },
     {
       "date": "1991-05-02",
-      "duration_ms": 732108,
-      "duration_min": 12.2018,
+      "duration_ms": 689544,
+      "duration_min": 11.4924,
       "venue": "The Chance",
       "position": 22
     },
@@ -15125,8 +15167,8 @@
     },
     {
       "date": "1991-10-19",
-      "duration_ms": 700604,
-      "duration_min": 11.676733333333333,
+      "duration_ms": 637848,
+      "duration_min": 10.6308,
       "venue": "The Catalyst",
       "position": 20
     },
@@ -15205,7 +15247,7 @@
       "duration_ms": 809456,
       "duration_min": 13.490933333333333,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 21
+      "position": 22
     },
     {
       "date": "1989-05-06",
@@ -15398,8 +15440,8 @@
     },
     {
       "date": "1995-11-30",
-      "duration_ms": 958093,
-      "duration_min": 15.968216666666667,
+      "duration_ms": 920033,
+      "duration_min": 15.333883333333333,
       "venue": "Ervin J. Nutter Center, Wright State University",
       "position": 19
     },
@@ -15538,15 +15580,15 @@
     },
     {
       "date": "1996-08-16",
-      "duration_ms": 1218064,
-      "duration_min": 20.301066666666667,
+      "duration_ms": 1026576,
+      "duration_min": 17.1096,
       "venue": "Plattsburgh Air Force Base",
       "position": 27
     },
     {
       "date": "1996-10-18",
-      "duration_ms": 821342,
-      "duration_min": 13.689033333333333,
+      "duration_ms": 701649,
+      "duration_min": 11.69415,
       "venue": "Civic Arena",
       "position": 16
     },
@@ -15566,8 +15608,8 @@
     },
     {
       "date": "1996-11-29",
-      "duration_ms": 1039752,
-      "duration_min": 17.3292,
+      "duration_ms": 881633,
+      "duration_min": 14.693883333333334,
       "venue": "The Cow Palace",
       "position": 18
     },
@@ -15769,8 +15811,8 @@
     },
     {
       "date": "1998-04-04",
-      "duration_ms": 1007543,
-      "duration_min": 16.792383333333333,
+      "duration_ms": 983327,
+      "duration_min": 16.388783333333333,
       "venue": "Providence Civic Center",
       "position": 15
     },
@@ -15797,8 +15839,8 @@
     },
     {
       "date": "1998-08-08",
-      "duration_ms": 930717,
-      "duration_min": 15.51195,
+      "duration_ms": 762044,
+      "duration_min": 12.700733333333334,
       "venue": "Merriweather Post Pavilion",
       "position": 16
     },
@@ -15846,8 +15888,8 @@
     },
     {
       "date": "1999-12-03",
-      "duration_ms": 1109107,
-      "duration_min": 18.485116666666666,
+      "duration_ms": 1027840,
+      "duration_min": 17.130666666666666,
       "venue": "Firstar Center",
       "position": 13
     },
@@ -15881,8 +15923,8 @@
     },
     {
       "date": "1999-09-11",
-      "duration_ms": 1093747,
-      "duration_min": 18.229116666666666,
+      "duration_ms": 940848,
+      "duration_min": 15.6808,
       "venue": "Gorge Amphitheatre",
       "position": 15
     },
@@ -15895,8 +15937,8 @@
     },
     {
       "date": "1999-09-28",
-      "duration_ms": 924813,
-      "duration_min": 15.41355,
+      "duration_ms": 905927,
+      "duration_min": 15.098783333333333,
       "venue": "Oak Mountain Amphitheatre",
       "position": 8
     },
@@ -15951,8 +15993,8 @@
     },
     {
       "date": "2000-06-11",
-      "duration_ms": 1045002,
-      "duration_min": 17.4167,
+      "duration_ms": 920947,
+      "duration_min": 15.349116666666667,
       "venue": "Hibiya Outdoor Theatre",
       "position": 17
     },
@@ -16455,8 +16497,8 @@
     },
     {
       "date": "1996-11-23",
-      "duration_ms": 932911,
-      "duration_min": 15.548516666666666,
+      "duration_ms": 914547,
+      "duration_min": 15.24245,
       "venue": "Pacific Coliseum",
       "position": 19
     },
@@ -16490,8 +16532,8 @@
     },
     {
       "date": "1991-08-03",
-      "duration_ms": 768984,
-      "duration_min": 12.8164,
+      "duration_ms": 718440,
+      "duration_min": 11.974,
       "venue": "Larrabee Farm, a.k.a. Amy\u2019s Farm",
       "position": 38
     },
@@ -16658,8 +16700,8 @@
     },
     {
       "date": "1999-07-18",
-      "duration_ms": 1130632,
-      "duration_min": 18.843866666666667,
+      "duration_ms": 971128,
+      "duration_min": 16.185466666666667,
       "venue": "Oswego County Airport",
       "position": 26
     },
@@ -17337,8 +17379,8 @@
     },
     {
       "date": "2024-07-19",
-      "duration_ms": 715656,
-      "duration_min": 11.9276,
+      "duration_ms": 696624,
+      "duration_min": 11.6104,
       "venue": "Xfinity Center",
       "position": 16
     },
@@ -17495,6 +17537,13 @@
       "duration_min": 12.018,
       "venue": "Madison Square Garden",
       "position": 23
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 817920,
+      "duration_min": 13.632,
+      "venue": "Fenway Park",
+      "position": 7
     }
   ],
   "ruby-waves": [
@@ -17812,6 +17861,13 @@
       "duration_min": 14.7212,
       "venue": "Merriweather Post Pavilion",
       "position": 12
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 1079256,
+      "duration_min": 17.9876,
+      "venue": "Fenway Park",
+      "position": 10
     }
   ],
   "soul-planet": [
@@ -18349,7 +18405,7 @@
       "duration_ms": 719334,
       "duration_min": 11.9889,
       "venue": "The Ranch",
-      "position": 5
+      "position": 6
     },
     {
       "date": "1987-02-13",
@@ -19431,8 +19487,8 @@
     },
     {
       "date": "1999-07-10",
-      "duration_ms": 1319262,
-      "duration_min": 21.9877,
+      "duration_ms": 1038237,
+      "duration_min": 17.30395,
       "venue": "E Centre",
       "position": 13
     },
@@ -19816,8 +19872,8 @@
     },
     {
       "date": "1999-07-18",
-      "duration_ms": 1364088,
-      "duration_min": 22.7348,
+      "duration_ms": 1031064,
+      "duration_min": 17.1844,
       "venue": "Oswego County Airport",
       "position": 25
     },
@@ -20357,8 +20413,8 @@
     },
     {
       "date": "2000-09-20",
-      "duration_ms": 685113,
-      "duration_min": 11.41855,
+      "duration_ms": 547135,
+      "duration_min": 9.118916666666667,
       "venue": "Riverbend Music Center",
       "position": 18
     },
@@ -20585,6 +20641,13 @@
       "duration_min": 8.59,
       "venue": "United Center",
       "position": 11
+    },
+    {
+      "date": "2026-07-27",
+      "duration_ms": 1736904,
+      "duration_min": 28.9484,
+      "venue": "Madison Square Garden",
+      "position": 14
     }
   ],
   "simple": [
@@ -21241,8 +21304,8 @@
     },
     {
       "date": "1999-07-08",
-      "duration_ms": 783700,
-      "duration_min": 13.061666666666667,
+      "duration_ms": 655752,
+      "duration_min": 10.9292,
       "venue": "GTE Virginia Beach Amphitheater",
       "position": 15
     },
@@ -21262,8 +21325,8 @@
     },
     {
       "date": "1999-07-31",
-      "duration_ms": 791040,
-      "duration_min": 13.184,
+      "duration_ms": 776438,
+      "duration_min": 12.940633333333333,
       "venue": "Naeba Ski Resort",
       "position": 17
     },
@@ -23929,7 +23992,7 @@
       "duration_ms": 349806,
       "duration_min": 5.8301,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1989-06-30",
@@ -24556,8 +24619,8 @@
     },
     {
       "date": "2000-05-22",
-      "duration_ms": 980506,
-      "duration_min": 16.34176666666667,
+      "duration_ms": 947088,
+      "duration_min": 15.7848,
       "venue": "Radio City Music Hall",
       "position": 9
     },
@@ -25825,8 +25888,8 @@
     },
     {
       "date": "1992-03-31",
-      "duration_ms": 560536,
-      "duration_min": 9.342266666666667,
+      "duration_ms": 545933,
+      "duration_min": 9.098883333333333,
       "venue": "The Blue Note",
       "position": 11
     },
@@ -25895,8 +25958,8 @@
     },
     {
       "date": "1992-07-10",
-      "duration_ms": 679576,
-      "duration_min": 11.326266666666667,
+      "duration_ms": 644336,
+      "duration_min": 10.738933333333334,
       "venue": "Empire Court",
       "position": 9
     },
@@ -25923,8 +25986,8 @@
     },
     {
       "date": "1992-11-22",
-      "duration_ms": 685662,
-      "duration_min": 11.4277,
+      "duration_ms": 663850,
+      "duration_min": 11.064166666666667,
       "venue": "Bailey Hall, Cornell University",
       "position": 13
     },
@@ -26007,8 +26070,8 @@
     },
     {
       "date": "1994-04-16",
-      "duration_ms": 748565,
-      "duration_min": 12.476083333333333,
+      "duration_ms": 724488,
+      "duration_min": 12.0748,
       "venue": "Mullins Center, University of Massachusetts",
       "position": 8
     },
@@ -26154,8 +26217,8 @@
     },
     {
       "date": "1994-12-28",
-      "duration_ms": 737254,
-      "duration_min": 12.287566666666667,
+      "duration_ms": 724036,
+      "duration_min": 12.067266666666667,
       "venue": "Civic Center",
       "position": 10
     },
@@ -26266,8 +26329,8 @@
     },
     {
       "date": "1994-12-09",
-      "duration_ms": 902113,
-      "duration_min": 15.035216666666667,
+      "duration_ms": 886440,
+      "duration_min": 14.774,
       "venue": "Mesa Amphitheatre",
       "position": 8
     },
@@ -26315,8 +26378,8 @@
     },
     {
       "date": "1993-02-18",
-      "duration_ms": 741825,
-      "duration_min": 12.36375,
+      "duration_ms": 728242,
+      "duration_min": 12.137366666666667,
       "venue": "Electric Ballroom",
       "position": 10
     },
@@ -26399,8 +26462,8 @@
     },
     {
       "date": "1993-04-12",
-      "duration_ms": 667455,
-      "duration_min": 11.12425,
+      "duration_ms": 647136,
+      "duration_min": 10.7856,
       "venue": "Iowa Memorial Union Main Lounge, University of Iowa",
       "position": 11
     },
@@ -26420,8 +26483,8 @@
     },
     {
       "date": "1993-04-03",
-      "duration_ms": 642351,
-      "duration_min": 10.70585,
+      "duration_ms": 628245,
+      "duration_min": 10.47075,
       "venue": "86th Street Music Hall",
       "position": 10
     },
@@ -26504,8 +26567,8 @@
     },
     {
       "date": "1993-08-02",
-      "duration_ms": 763296,
-      "duration_min": 12.7216,
+      "duration_ms": 667872,
+      "duration_min": 11.1312,
       "venue": "Ritz Theatre",
       "position": 23
     },
@@ -26801,7 +26864,7 @@
       "duration_ms": 596349,
       "duration_min": 9.93915,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 7
+      "position": 8
     },
     {
       "date": "1989-03-04",
@@ -27001,8 +27064,8 @@
     },
     {
       "date": "1995-12-30",
-      "duration_ms": 637597,
-      "duration_min": 10.626616666666667,
+      "duration_ms": 619176,
+      "duration_min": 10.3196,
       "venue": "Madison Square Garden",
       "position": 18
     },
@@ -27015,8 +27078,8 @@
     },
     {
       "date": "1995-06-15",
-      "duration_ms": 774322,
-      "duration_min": 12.905366666666668,
+      "duration_ms": 743445,
+      "duration_min": 12.39075,
       "venue": "Lakewood Amphitheatre",
       "position": 10
     },
@@ -27036,8 +27099,8 @@
     },
     {
       "date": "1995-06-26",
-      "duration_ms": 722495,
-      "duration_min": 12.041583333333334,
+      "duration_ms": 688744,
+      "duration_min": 11.479066666666666,
       "venue": "Saratoga Performing Arts Center",
       "position": 16
     },
@@ -27057,15 +27120,15 @@
     },
     {
       "date": "1995-10-02",
-      "duration_ms": 677224,
-      "duration_min": 11.287066666666666,
+      "duration_ms": 658834,
+      "duration_min": 10.980566666666666,
       "venue": "Seattle Center Arena",
       "position": 20
     },
     {
       "date": "1995-10-07",
-      "duration_ms": 720379,
-      "duration_min": 12.006316666666667,
+      "duration_ms": 713448,
+      "duration_min": 11.8908,
       "venue": "Spokane Opera House",
       "position": 9
     },
@@ -27106,8 +27169,8 @@
     },
     {
       "date": "1995-11-11",
-      "duration_ms": 862485,
-      "duration_min": 14.37475,
+      "duration_ms": 717349,
+      "duration_min": 11.955816666666667,
       "venue": "The Fox Theatre",
       "position": 21
     },
@@ -27183,8 +27246,8 @@
     },
     {
       "date": "1990-03-09",
-      "duration_ms": 703896,
-      "duration_min": 11.7316,
+      "duration_ms": 662936,
+      "duration_min": 11.048933333333334,
       "venue": "The Front",
       "position": 11
     },
@@ -27344,15 +27407,15 @@
     },
     {
       "date": "1990-12-31",
-      "duration_ms": 632895,
-      "duration_min": 10.54825,
+      "duration_ms": 587184,
+      "duration_min": 9.7864,
       "venue": "Boston World Trade Center Exhibition Hall",
       "position": 23
     },
     {
       "date": "1996-11-08",
-      "duration_ms": 698149,
-      "duration_min": 11.635816666666667,
+      "duration_ms": 677851,
+      "duration_min": 11.297516666666667,
       "venue": "Assembly Hall, University of Illinois",
       "position": 9
     },
@@ -27393,8 +27456,8 @@
     },
     {
       "date": "1996-08-02",
-      "duration_ms": 801541,
-      "duration_min": 13.359016666666667,
+      "duration_ms": 699141,
+      "duration_min": 11.65235,
       "venue": "Wolf Mountain Amphitheatre",
       "position": 20
     },
@@ -27428,8 +27491,8 @@
     },
     {
       "date": "1996-10-26",
-      "duration_ms": 809064,
-      "duration_min": 13.4844,
+      "duration_ms": 790944,
+      "duration_min": 13.1824,
       "venue": "Charlotte Coliseum",
       "position": 16
     },
@@ -27449,8 +27512,8 @@
     },
     {
       "date": "1996-12-01",
-      "duration_ms": 724584,
-      "duration_min": 12.0764,
+      "duration_ms": 713544,
+      "duration_min": 11.8924,
       "venue": "Pauley Pavilion, University of California Los Angeles",
       "position": 12
     },
@@ -27631,22 +27694,22 @@
     },
     {
       "date": "1998-11-08",
-      "duration_ms": 897176,
-      "duration_min": 14.952933333333334,
+      "duration_ms": 738638,
+      "duration_min": 12.310633333333334,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 17
     },
     {
       "date": "1998-11-13",
-      "duration_ms": 1032960,
-      "duration_min": 17.216,
+      "duration_ms": 1017443,
+      "duration_min": 16.957383333333333,
       "venue": "CSU Convocation Center",
       "position": 10
     },
     {
       "date": "1998-11-27",
-      "duration_ms": 1081443,
-      "duration_min": 18.02405,
+      "duration_ms": 932937,
+      "duration_min": 15.54895,
       "venue": "Worcester Centrum Centre",
       "position": 35
     },
@@ -27687,8 +27750,8 @@
     },
     {
       "date": "1999-09-16",
-      "duration_ms": 837146,
-      "duration_min": 13.952433333333333,
+      "duration_ms": 817737,
+      "duration_min": 13.62895,
       "venue": "Shoreline Amphitheatre",
       "position": 14
     },
@@ -27736,15 +27799,15 @@
     },
     {
       "date": "2000-09-22",
-      "duration_ms": 877531,
-      "duration_min": 14.625516666666666,
+      "duration_ms": 695088,
+      "duration_min": 11.5848,
       "venue": "Allstate Arena",
       "position": 16
     },
     {
       "date": "2000-09-09",
-      "duration_ms": 706220,
-      "duration_min": 11.770333333333333,
+      "duration_ms": 704088,
+      "duration_min": 11.7348,
       "venue": "Pepsi Arena",
       "position": 8
     },
@@ -28289,8 +28352,8 @@
     },
     {
       "date": "1994-11-16",
-      "duration_ms": 929620,
-      "duration_min": 15.493666666666666,
+      "duration_ms": 717349,
+      "duration_min": 11.955816666666667,
       "venue": "Hill Auditorium, University of Michigan",
       "position": 17
     },
@@ -29135,6 +29198,13 @@
       "position": 19
     },
     {
+      "date": "1991-11-02",
+      "duration_ms": 362184,
+      "duration_min": 6.0364,
+      "venue": "Lory Student Center Theatre, Colorado State University",
+      "position": 16
+    },
+    {
       "date": "1992-05-05",
       "duration_ms": 665256,
       "duration_min": 11.0876,
@@ -29196,6 +29266,13 @@
       "duration_min": 10.5572,
       "venue": "Madison Square Garden",
       "position": 27
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 733944,
+      "duration_min": 12.2324,
+      "venue": "Fenway Park",
+      "position": 13
     }
   ],
   "chalk-dust-torture": [
@@ -29229,8 +29306,8 @@
     },
     {
       "date": "1992-03-26",
-      "duration_ms": 391967,
-      "duration_min": 6.532783333333334,
+      "duration_ms": 375432,
+      "duration_min": 6.2572,
       "venue": "Ziggy's",
       "position": 27
     },
@@ -29530,8 +29607,8 @@
     },
     {
       "date": "1994-05-20",
-      "duration_ms": 413127,
-      "duration_min": 6.88545,
+      "duration_ms": 383138,
+      "duration_min": 6.385633333333334,
       "venue": "Campus Recreation Center, Evergreen College",
       "position": 18
     },
@@ -29544,8 +29621,8 @@
     },
     {
       "date": "1994-05-25",
-      "duration_ms": 440973,
-      "duration_min": 7.34955,
+      "duration_ms": 391340,
+      "duration_min": 6.522333333333333,
       "venue": "Warfield Theatre",
       "position": 11
     },
@@ -29670,8 +29747,8 @@
     },
     {
       "date": "1994-11-04",
-      "duration_ms": 457639,
-      "duration_min": 7.627316666666666,
+      "duration_ms": 437342,
+      "duration_min": 7.289033333333333,
       "venue": "Onondaga War Memorial Auditorium",
       "position": 9
     },
@@ -29792,7 +29869,7 @@
       "duration_ms": 375458,
       "duration_min": 6.257633333333334,
       "venue": "The Greek Theatre",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1993-03-02",
@@ -29866,8 +29943,8 @@
     },
     {
       "date": "1993-04-02",
-      "duration_ms": 431882,
-      "duration_min": 7.198033333333333,
+      "duration_ms": 381336,
+      "duration_min": 6.3556,
       "venue": "Mt. Baker Theatre",
       "position": 25
     },
@@ -29957,8 +30034,8 @@
     },
     {
       "date": "1993-07-28",
-      "duration_ms": 407693,
-      "duration_min": 6.794883333333333,
+      "duration_ms": 389251,
+      "duration_min": 6.487516666666667,
       "venue": "Grady Cole Center",
       "position": 21
     },
@@ -30013,8 +30090,8 @@
     },
     {
       "date": "1993-08-28",
-      "duration_ms": 520464,
-      "duration_min": 8.6744,
+      "duration_ms": 412735,
+      "duration_min": 6.878916666666667,
       "venue": "William Randolph Hearst Greek Theatre, University of California, Berkeley ",
       "position": 20
     },
@@ -30142,7 +30219,7 @@
       "duration_ms": 362553,
       "duration_min": 6.04255,
       "venue": "Rick's Caf\u00e9",
-      "position": 13
+      "position": 14
     },
     {
       "date": "1991-04-18",
@@ -30517,8 +30594,8 @@
     },
     {
       "date": "1995-06-08",
-      "duration_ms": 503406,
-      "duration_min": 8.3901,
+      "duration_ms": 494064,
+      "duration_min": 8.2344,
       "venue": "The Delta Center",
       "position": 9
     },
@@ -30566,8 +30643,8 @@
     },
     {
       "date": "1995-09-29",
-      "duration_ms": 409835,
-      "duration_min": 6.830583333333333,
+      "duration_ms": 386638,
+      "duration_min": 6.443966666666666,
       "venue": "Greek Theatre",
       "position": 17
     },
@@ -30727,8 +30804,8 @@
     },
     {
       "date": "1996-10-23",
-      "duration_ms": 435513,
-      "duration_min": 7.25855,
+      "duration_ms": 426744,
+      "duration_min": 7.1124,
       "venue": "Hartford Civic Center",
       "position": 18
     },
@@ -30972,8 +31049,8 @@
     },
     {
       "date": "1998-04-02",
-      "duration_ms": 669910,
-      "duration_min": 11.165166666666666,
+      "duration_ms": 656664,
+      "duration_min": 10.9444,
       "venue": "Nassau Veterans Memorial Coliseum",
       "position": 8
     },
@@ -31070,8 +31147,8 @@
     },
     {
       "date": "1998-11-24",
-      "duration_ms": 524539,
-      "duration_min": 8.742316666666667,
+      "duration_ms": 499827,
+      "duration_min": 8.33045,
       "venue": "New Haven Veterans Memorial Coliseum",
       "position": 9
     },
@@ -31147,8 +31224,8 @@
     },
     {
       "date": "1999-07-15",
-      "duration_ms": 1012428,
-      "duration_min": 16.8738,
+      "duration_ms": 730932,
+      "duration_min": 12.1822,
       "venue": "PNC Bank Arts Center",
       "position": 16
     },
@@ -31196,8 +31273,8 @@
     },
     {
       "date": "1999-12-12",
-      "duration_ms": 550531,
-      "duration_min": 9.175516666666667,
+      "duration_ms": 537835,
+      "duration_min": 8.963916666666666,
       "venue": "Hartford Civic Center",
       "position": 8
     },
@@ -31245,15 +31322,15 @@
     },
     {
       "date": "2000-06-22",
-      "duration_ms": 595252,
-      "duration_min": 9.920866666666667,
+      "duration_ms": 577332,
+      "duration_min": 9.6222,
       "venue": "AmSouth Amphitheatre",
       "position": 9
     },
     {
       "date": "2000-06-09",
-      "duration_ms": 608836,
-      "duration_min": 10.147266666666667,
+      "duration_ms": 592327,
+      "duration_min": 9.872116666666667,
       "venue": "On Air East",
       "position": 9
     },
@@ -31763,8 +31840,8 @@
     },
     {
       "date": "2000-09-17",
-      "duration_ms": 526707,
-      "duration_min": 8.77845,
+      "duration_ms": 512627,
+      "duration_min": 8.543783333333334,
       "venue": "Merriweather Post Pavilion",
       "position": 9
     },
@@ -31805,8 +31882,8 @@
     },
     {
       "date": "1994-06-18",
-      "duration_ms": 405969,
-      "duration_min": 6.76615,
+      "duration_ms": 387527,
+      "duration_min": 6.458783333333334,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 24
     },
@@ -31938,8 +32015,8 @@
     },
     {
       "date": "1999-09-24",
-      "duration_ms": 543007,
-      "duration_min": 9.050116666666666,
+      "duration_ms": 492576,
+      "duration_min": 8.2096,
       "venue": "South Park Meadows",
       "position": 18
     },
@@ -31952,8 +32029,8 @@
     },
     {
       "date": "1995-12-31",
-      "duration_ms": 473313,
-      "duration_min": 7.88855,
+      "duration_ms": 444343,
+      "duration_min": 7.405716666666667,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -32817,6 +32894,13 @@
       "duration_min": 15.8096,
       "venue": "Madison Square Garden",
       "position": 13
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 577392,
+      "duration_min": 9.6232,
+      "venue": "Fenway Park",
+      "position": 5
     }
   ],
   "stash": [
@@ -33088,8 +33172,8 @@
     },
     {
       "date": "1992-12-08",
-      "duration_ms": 620591,
-      "duration_min": 10.343183333333334,
+      "duration_ms": 611840,
+      "duration_min": 10.197333333333333,
       "venue": "Barrymore Theatre",
       "position": 12
     },
@@ -34138,8 +34222,8 @@
     },
     {
       "date": "1995-06-17",
-      "duration_ms": 1045055,
-      "duration_min": 17.417583333333333,
+      "duration_ms": 1015249,
+      "duration_min": 16.920816666666667,
       "venue": "Nissan Pavilion at Stone Ridge",
       "position": 9
     },
@@ -34201,8 +34285,8 @@
     },
     {
       "date": "1995-10-22",
-      "duration_ms": 773721,
-      "duration_min": 12.89535,
+      "duration_ms": 758230,
+      "duration_min": 12.637166666666667,
       "venue": "Assembly Hall, University of Illinois",
       "position": 12
     },
@@ -35955,6 +36039,13 @@
       "duration_min": 12.9792,
       "venue": "Madison Square Garden",
       "position": 5
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 561576,
+      "duration_min": 9.3596,
+      "venue": "Fenway Park",
+      "position": 6
     }
   ],
   "reba": [
@@ -36747,7 +36838,7 @@
       "duration_ms": 624196,
       "duration_min": 10.403266666666667,
       "venue": "Rick's Caf\u00e9",
-      "position": 12
+      "position": 13
     },
     {
       "date": "1991-04-18",
@@ -36943,7 +37034,7 @@
       "duration_ms": 693316,
       "duration_min": 11.555266666666666,
       "venue": "Lory Student Center Theatre, Colorado State University",
-      "position": 4
+      "position": 8
     },
     {
       "date": "1991-11-07",
@@ -38807,7 +38898,7 @@
       "duration_ms": 428931,
       "duration_min": 7.14885,
       "venue": "The Ranch",
-      "position": 8
+      "position": 9
     },
     {
       "date": "1987-02-13",
@@ -38881,8 +38972,8 @@
     },
     {
       "date": "1994-04-14",
-      "duration_ms": 732578,
-      "duration_min": 12.209633333333333,
+      "duration_ms": 620147,
+      "duration_min": 10.335783333333334,
       "venue": "Beacon Theatre",
       "position": 18
     },
@@ -38923,8 +39014,8 @@
     },
     {
       "date": "1994-06-23",
-      "duration_ms": 731298,
-      "duration_min": 12.1883,
+      "duration_ms": 600529,
+      "duration_min": 10.008816666666666,
       "venue": "Phoenix Plaza Theatre",
       "position": 18
     },
@@ -38944,22 +39035,22 @@
     },
     {
       "date": "1994-12-31",
-      "duration_ms": 798563,
-      "duration_min": 13.309383333333333,
+      "duration_ms": 689450,
+      "duration_min": 11.490833333333333,
       "venue": "Boston Garden",
       "position": 29
     },
     {
       "date": "1994-10-10",
-      "duration_ms": 703582,
-      "duration_min": 11.726366666666667,
+      "duration_ms": 598727,
+      "duration_min": 9.978783333333332,
       "venue": "Palace Theatre",
       "position": 22
     },
     {
       "date": "1994-10-21",
-      "duration_ms": 567066,
-      "duration_min": 9.4511,
+      "duration_ms": 530939,
+      "duration_min": 8.848983333333333,
       "venue": "Sunrise Musical Theatre",
       "position": 20
     },
@@ -39231,8 +39322,8 @@
     },
     {
       "date": "1995-06-15",
-      "duration_ms": 883174,
-      "duration_min": 14.719566666666667,
+      "duration_ms": 770247,
+      "duration_min": 12.83745,
       "venue": "Lakewood Amphitheatre",
       "position": 18
     },
@@ -39266,8 +39357,8 @@
     },
     {
       "date": "1995-10-06",
-      "duration_ms": 817058,
-      "duration_min": 13.617633333333334,
+      "duration_ms": 661342,
+      "duration_min": 11.022366666666667,
       "venue": "The Orpheum Theatre",
       "position": 17
     },
@@ -39413,15 +39504,15 @@
     },
     {
       "date": "1996-12-01",
-      "duration_ms": 784144,
-      "duration_min": 13.069066666666666,
+      "duration_ms": 673149,
+      "duration_min": 11.21915,
       "venue": "Pauley Pavilion, University of California Los Angeles",
       "position": 22
     },
     {
       "date": "1996-12-30",
-      "duration_ms": 822439,
-      "duration_min": 13.707316666666667,
+      "duration_ms": 685427,
+      "duration_min": 11.423783333333333,
       "venue": "FleetCenter",
       "position": 17
     },
@@ -39637,8 +39728,8 @@
     },
     {
       "date": "2000-06-25",
-      "duration_ms": 914599,
-      "duration_min": 15.243316666666667,
+      "duration_ms": 713848,
+      "duration_min": 11.897466666666666,
       "venue": "ALLTEL Pavilion at Walnut Creek",
       "position": 17
     },
@@ -39952,8 +40043,8 @@
     },
     {
       "date": "1995-11-29",
-      "duration_ms": 799321,
-      "duration_min": 13.322016666666666,
+      "duration_ms": 695040,
+      "duration_min": 11.584,
       "venue": "Municipal Auditorium",
       "position": 20
     },
@@ -40057,8 +40148,8 @@
     },
     {
       "date": "1998-07-16",
-      "duration_ms": 872803,
-      "duration_min": 14.546716666666667,
+      "duration_ms": 746344,
+      "duration_min": 12.439066666666667,
       "venue": "Gorge Amphitheatre",
       "position": 14
     },
@@ -40085,8 +40176,8 @@
     },
     {
       "date": "2000-07-04",
-      "duration_ms": 757708,
-      "duration_min": 12.628466666666666,
+      "duration_ms": 740728,
+      "duration_min": 12.345466666666667,
       "venue": "E Centre",
       "position": 14
     },
@@ -41715,6 +41806,13 @@
       "duration_min": 15.0652,
       "venue": "Empower FCU Amphitheater at Lakeview",
       "position": 11
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 957192,
+      "duration_min": 15.9532,
+      "venue": "Fenway Park",
+      "position": 12
     }
   ],
   "carini": [
@@ -42823,6 +42921,13 @@
       "duration_min": 40.0744,
       "venue": "Merriweather Post Pavilion",
       "position": 9
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 1074552,
+      "duration_min": 17.9092,
+      "venue": "Fenway Park",
+      "position": 1
     }
   ],
   "fuego": [
@@ -43525,6 +43630,13 @@
       "duration_min": 21.7452,
       "venue": "Coastal Credit Union Music Park at Walnut Creek",
       "position": 10
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 940320,
+      "duration_min": 15.672,
+      "venue": "Fenway Park",
+      "position": 9
     }
   ],
   "sand": [
@@ -44647,6 +44759,13 @@
       "duration_min": 18.5484,
       "venue": "Empower FCU Amphitheater at Lakeview",
       "position": 8
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 798576,
+      "duration_min": 13.3096,
+      "venue": "Fenway Park",
+      "position": 8
     }
   ],
   "twist": [
@@ -45688,8 +45807,8 @@
     },
     {
       "date": "2020-02-22",
-      "duration_ms": 516816,
-      "duration_min": 8.6136,
+      "duration_ms": 501336,
+      "duration_min": 8.3556,
       "venue": "Moon Palace",
       "position": 12
     },
@@ -47009,7 +47128,7 @@
       "duration_ms": 602410,
       "duration_min": 10.040166666666666,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 19
+      "position": 20
     },
     {
       "date": "1989-08-19",
@@ -47524,8 +47643,8 @@
     },
     {
       "date": "1999-07-26",
-      "duration_ms": 933956,
-      "duration_min": 15.565933333333334,
+      "duration_ms": 918439,
+      "duration_min": 15.307316666666667,
       "venue": "Deer Creek Music Center",
       "position": 17
     },
@@ -47594,8 +47713,8 @@
     },
     {
       "date": "2000-07-01",
-      "duration_ms": 762096,
-      "duration_min": 12.7016,
+      "duration_ms": 745639,
+      "duration_min": 12.427316666666666,
       "venue": "Meadows Music Theatre",
       "position": 11
     },
@@ -47846,8 +47965,8 @@
     },
     {
       "date": "1995-11-29",
-      "duration_ms": 699272,
-      "duration_min": 11.654533333333333,
+      "duration_ms": 677952,
+      "duration_min": 11.2992,
       "venue": "Municipal Auditorium",
       "position": 9
     },
@@ -48318,7 +48437,7 @@
       "duration_ms": 404036,
       "duration_min": 6.733933333333334,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 21
+      "position": 23
     },
     {
       "date": "2025-04-22",
@@ -48340,6 +48459,13 @@
       "duration_min": 12.9052,
       "venue": "TD Pavilion at the Mann",
       "position": 11
+    },
+    {
+      "date": "1991-02-01",
+      "duration_ms": 454440,
+      "duration_min": 7.574,
+      "venue": "Alumnae Hall, Brown University",
+      "position": 8
     },
     {
       "date": "1992-12-01",
@@ -51070,8 +51196,8 @@
     },
     {
       "date": "1999-09-22",
-      "duration_ms": 683416,
-      "duration_min": 11.390266666666667,
+      "duration_ms": 552647,
+      "duration_min": 9.210783333333334,
       "venue": "Pan American Center",
       "position": 19
     },
@@ -51504,8 +51630,8 @@
     },
     {
       "date": "1988-11-11",
-      "duration_ms": 463360,
-      "duration_min": 7.722666666666667,
+      "duration_ms": 448340,
+      "duration_min": 7.472333333333333,
       "venue": "Old Stone Church",
       "position": 13
     },
@@ -51714,8 +51840,8 @@
     },
     {
       "date": "1991-07-25",
-      "duration_ms": 542589,
-      "duration_min": 9.04315,
+      "duration_ms": 368592,
+      "duration_min": 6.1432,
       "venue": "Cat's Cradle",
       "position": 23
     },
@@ -51784,8 +51910,8 @@
     },
     {
       "date": "1991-10-04",
-      "duration_ms": 463099,
-      "duration_min": 7.7183166666666665,
+      "duration_ms": 353616,
+      "duration_min": 5.8936,
       "venue": "Barrymore Theatre",
       "position": 22
     },
@@ -51854,8 +51980,8 @@
     },
     {
       "date": "1991-12-31",
-      "duration_ms": 429061,
-      "duration_min": 7.151016666666667,
+      "duration_ms": 385045,
+      "duration_min": 6.417416666666667,
       "venue": "Worcester Memorial Auditorium",
       "position": 27
     },
@@ -51941,7 +52067,7 @@
       "duration_ms": 1059500,
       "duration_min": 17.658333333333335,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1989-05-06",
@@ -52211,8 +52337,8 @@
     },
     {
       "date": "1990-02-10",
-      "duration_ms": 399151,
-      "duration_min": 6.652516666666667,
+      "duration_ms": 390243,
+      "duration_min": 6.50405,
       "venue": "23 East Cabaret",
       "position": 20
     },
@@ -52386,8 +52512,8 @@
     },
     {
       "date": "1990-06-08",
-      "duration_ms": 414015,
-      "duration_min": 6.90025,
+      "duration_ms": 391920,
+      "duration_min": 6.532,
       "venue": "23 East Cabaret",
       "position": 16
     },
@@ -52596,8 +52722,8 @@
     },
     {
       "date": "1996-11-08",
-      "duration_ms": 620774,
-      "duration_min": 10.346233333333334,
+      "duration_ms": 426384,
+      "duration_min": 7.1064,
       "venue": "Assembly Hall, University of Illinois",
       "position": 17
     },
@@ -52624,8 +52750,8 @@
     },
     {
       "date": "1996-10-22",
-      "duration_ms": 543634,
-      "duration_min": 9.060566666666666,
+      "duration_ms": 519336,
+      "duration_min": 8.6556,
       "venue": "Madison Square Garden",
       "position": 18
     },
@@ -52638,8 +52764,8 @@
     },
     {
       "date": "1996-11-15",
-      "duration_ms": 367412,
-      "duration_min": 6.1235333333333335,
+      "duration_ms": 223152,
+      "duration_min": 3.7192,
       "venue": "Kiel Center",
       "position": 22
     },
@@ -52792,8 +52918,8 @@
     },
     {
       "date": "1998-08-07",
-      "duration_ms": 754416,
-      "duration_min": 12.5736,
+      "duration_ms": 634749,
+      "duration_min": 10.57915,
       "venue": "Walnut Creek Amphitheater",
       "position": 18
     },
@@ -52876,8 +53002,8 @@
     },
     {
       "date": "1999-07-09",
-      "duration_ms": 585430,
-      "duration_min": 9.757166666666667,
+      "duration_ms": 571350,
+      "duration_min": 9.5225,
       "venue": "Merriweather Post Pavilion",
       "position": 15
     },
@@ -52967,8 +53093,8 @@
     },
     {
       "date": "2000-07-14",
-      "duration_ms": 678609,
-      "duration_min": 11.31015,
+      "duration_ms": 493140,
+      "duration_min": 8.219,
       "venue": "Polaris Amphitheater",
       "position": 19
     },
@@ -52981,8 +53107,8 @@
     },
     {
       "date": "2000-09-12",
-      "duration_ms": 562390,
-      "duration_min": 9.373166666666666,
+      "duration_ms": 395651,
+      "duration_min": 6.5941833333333335,
       "venue": "Tweeter Center",
       "position": 15
     },
@@ -53709,8 +53835,8 @@
     },
     {
       "date": "1991-04-03",
-      "duration_ms": 432248,
-      "duration_min": 7.204133333333333,
+      "duration_ms": 409051,
+      "duration_min": 6.817516666666666,
       "venue": "Britt Ballroom, Southern Oregon State College",
       "position": 12
     },
@@ -54237,7 +54363,7 @@
       "duration_ms": 399768,
       "duration_min": 6.6628,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 14
+      "position": 16
     },
     {
       "date": "2025-04-22",
@@ -54258,6 +54384,13 @@
       "duration_ms": 504840,
       "duration_min": 8.414,
       "venue": "North Charleston Coliseum",
+      "position": 11
+    },
+    {
+      "date": "1990-12-08",
+      "duration_ms": 347832,
+      "duration_min": 5.7972,
+      "venue": "The Chance",
       "position": 11
     },
     {
@@ -54336,6 +54469,13 @@
       "duration_min": 7.12,
       "venue": "Madison Square Garden",
       "position": 18
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 316968,
+      "duration_min": 5.2828,
+      "venue": "Fenway Park",
+      "position": 13
     }
   ],
   "prince-caspian": [
@@ -54866,8 +55006,8 @@
     },
     {
       "date": "2000-06-24",
-      "duration_ms": 619389,
-      "duration_min": 10.32315,
+      "duration_ms": 591830,
+      "duration_min": 9.863833333333334,
       "venue": "Lakewood Amphitheatre",
       "position": 14
     },
@@ -55647,6 +55787,13 @@
       "duration_min": 4.9916,
       "venue": "Empower FCU Amphitheater at Lakeview",
       "position": 14
+    },
+    {
+      "date": "2026-07-27",
+      "duration_ms": 958248,
+      "duration_min": 15.9708,
+      "venue": "Madison Square Garden",
+      "position": 13
     }
   ],
   "tube": [
@@ -57527,6 +57674,13 @@
       "duration_min": 19.1364,
       "venue": "Sphere",
       "position": 15
+    },
+    {
+      "date": "2026-07-29",
+      "duration_ms": 1895856,
+      "duration_min": 31.5976,
+      "venue": "Madison Square Garden",
+      "position": 17
     }
   ],
   "possum": [
@@ -57630,15 +57784,15 @@
     },
     {
       "date": "1992-03-06",
-      "duration_ms": 637910,
-      "duration_min": 10.631833333333333,
+      "duration_ms": 572447,
+      "duration_min": 9.540783333333334,
       "venue": "The Music Hall",
       "position": 20
     },
     {
       "date": "1992-03-14",
-      "duration_ms": 578873,
-      "duration_min": 9.647883333333333,
+      "duration_ms": 549433,
+      "duration_min": 9.157216666666667,
       "venue": "Roseland Ballroom",
       "position": 25
     },
@@ -57651,15 +57805,15 @@
     },
     {
       "date": "1992-03-26",
-      "duration_ms": 720118,
-      "duration_min": 12.001966666666666,
+      "duration_ms": 582984,
+      "duration_min": 9.7164,
       "venue": "Ziggy's",
       "position": 25
     },
     {
       "date": "1992-03-31",
-      "duration_ms": 679471,
-      "duration_min": 11.324516666666666,
+      "duration_ms": 584472,
+      "duration_min": 9.7412,
       "venue": "The Blue Note",
       "position": 23
     },
@@ -57721,8 +57875,8 @@
     },
     {
       "date": "1992-05-07",
-      "duration_ms": 775053,
-      "duration_min": 12.91755,
+      "duration_ms": 748042,
+      "duration_min": 12.467366666666667,
       "venue": "The Agora Theatre",
       "position": 11
     },
@@ -57756,8 +57910,8 @@
     },
     {
       "date": "1992-07-12",
-      "duration_ms": 729809,
-      "duration_min": 12.163483333333334,
+      "duration_ms": 696529,
+      "duration_min": 11.608816666666666,
       "venue": "Jones Beach Amphitheater",
       "position": 9
     },
@@ -57819,8 +57973,8 @@
     },
     {
       "date": "1992-12-11",
-      "duration_ms": 846393,
-      "duration_min": 14.10655,
+      "duration_ms": 734328,
+      "duration_min": 12.2388,
       "venue": "Michigan Theater",
       "position": 22
     },
@@ -57882,8 +58036,8 @@
     },
     {
       "date": "1994-05-23",
-      "duration_ms": 827977,
-      "duration_min": 13.799616666666667,
+      "duration_ms": 693838,
+      "duration_min": 11.563966666666667,
       "venue": "Civic Auditorium",
       "position": 17
     },
@@ -57945,8 +58099,8 @@
     },
     {
       "date": "1994-10-25",
-      "duration_ms": 747912,
-      "duration_min": 12.4652,
+      "duration_ms": 727536,
+      "duration_min": 12.1256,
       "venue": "Atlanta Civic Center",
       "position": 20
     },
@@ -57994,8 +58148,8 @@
     },
     {
       "date": "1993-02-10",
-      "duration_ms": 636604,
-      "duration_min": 10.610066666666667,
+      "duration_ms": 524147,
+      "duration_min": 8.735783333333334,
       "venue": "Smith Opera House",
       "position": 21
     },
@@ -58022,8 +58176,8 @@
     },
     {
       "date": "1993-02-03",
-      "duration_ms": 770299,
-      "duration_min": 12.838316666666667,
+      "duration_ms": 649536,
+      "duration_min": 10.8256,
       "venue": "Portland Expo",
       "position": 21
     },
@@ -58463,15 +58617,15 @@
     },
     {
       "date": "1991-05-02",
-      "duration_ms": 649796,
-      "duration_min": 10.829933333333333,
+      "duration_ms": 606024,
+      "duration_min": 10.1004,
       "venue": "The Chance",
       "position": 21
     },
     {
       "date": "1991-05-04",
-      "duration_ms": 552751,
-      "duration_min": 9.212516666666666,
+      "duration_ms": 490728,
+      "duration_min": 8.1788,
       "venue": "Somerville Theatre",
       "position": 19
     },
@@ -58484,8 +58638,8 @@
     },
     {
       "date": "1991-07-18",
-      "duration_ms": 540709,
-      "duration_min": 9.011816666666666,
+      "duration_ms": 495024,
+      "duration_min": 8.2504,
       "venue": "Hampton Casino Ballroom",
       "position": 19
     },
@@ -58571,7 +58725,7 @@
       "duration_ms": 499853,
       "duration_min": 8.330883333333333,
       "venue": "Lory Student Center Theatre, Colorado State University",
-      "position": 10
+      "position": 14
     },
     {
       "date": "1991-11-07",
@@ -58589,15 +58743,15 @@
     },
     {
       "date": "1991-11-13",
-      "duration_ms": 586188,
-      "duration_min": 9.7698,
+      "duration_ms": 514272,
+      "duration_min": 8.5712,
       "venue": "Love Auditorium, Davidson College",
       "position": 19
     },
     {
       "date": "1991-11-15",
-      "duration_ms": 528013,
-      "duration_min": 8.800216666666667,
+      "duration_ms": 507246,
+      "duration_min": 8.4541,
       "venue": "Trax",
       "position": 28
     },
@@ -58711,7 +58865,7 @@
       "duration_ms": 540656,
       "duration_min": 9.010933333333334,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1989-05-06",
@@ -58967,8 +59121,8 @@
     },
     {
       "date": "1995-10-27",
-      "duration_ms": 896522,
-      "duration_min": 14.942033333333333,
+      "duration_ms": 843546,
+      "duration_min": 14.0591,
       "venue": "Wing's Stadium",
       "position": 18
     },
@@ -58988,8 +59142,8 @@
     },
     {
       "date": "1995-12-28",
-      "duration_ms": 797074,
-      "duration_min": 13.284566666666667,
+      "duration_ms": 773851,
+      "duration_min": 12.897516666666666,
       "venue": "Worcester Centrum Centre",
       "position": 9
     },
@@ -59478,15 +59632,15 @@
     },
     {
       "date": "1996-11-30",
-      "duration_ms": 596114,
-      "duration_min": 9.935233333333333,
+      "duration_ms": 580127,
+      "duration_min": 9.668783333333334,
       "venue": "ARCO Arena",
       "position": 22
     },
     {
       "date": "1996-12-30",
-      "duration_ms": 740415,
-      "duration_min": 12.34025,
+      "duration_ms": 719647,
+      "duration_min": 11.994116666666667,
       "venue": "FleetCenter",
       "position": 18
     },
@@ -59737,8 +59891,8 @@
     },
     {
       "date": "2000-10-05",
-      "duration_ms": 596976,
-      "duration_min": 9.9496,
+      "duration_ms": 568033,
+      "duration_min": 9.467216666666667,
       "venue": "Verizon Wireless Amphitheater",
       "position": 10
     },
@@ -59765,15 +59919,15 @@
     },
     {
       "date": "2000-07-08",
-      "duration_ms": 813140,
-      "duration_min": 13.552333333333333,
+      "duration_ms": 650240,
+      "duration_min": 10.837333333333333,
       "venue": "Alpine Valley Music Theatre",
       "position": 18
     },
     {
       "date": "2000-09-15",
-      "duration_ms": 671687,
-      "duration_min": 11.194783333333334,
+      "duration_ms": 641750,
+      "duration_min": 10.695833333333333,
       "venue": "Hersheypark Stadium",
       "position": 14
     },
@@ -60759,8 +60913,8 @@
     },
     {
       "date": "1992-03-13",
-      "duration_ms": 815987,
-      "duration_min": 13.599783333333333,
+      "duration_ms": 732072,
+      "duration_min": 12.2012,
       "venue": "Campus Club",
       "position": 24
     },
@@ -60864,8 +61018,8 @@
     },
     {
       "date": "2020-02-21",
-      "duration_ms": 599424,
-      "duration_min": 9.9904,
+      "duration_ms": 584328,
+      "duration_min": 9.7388,
       "venue": "Moon Palace",
       "position": 12
     },
@@ -61133,7 +61287,7 @@
       "duration_ms": 518034,
       "duration_min": 8.6339,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 16
+      "position": 18
     },
     {
       "date": "2025-04-18",
@@ -61225,6 +61379,13 @@
       "duration_min": 8.532,
       "venue": "Madison Square Garden",
       "position": 12
+    },
+    {
+      "date": "2026-08-01",
+      "duration_ms": 434832,
+      "duration_min": 7.2472,
+      "venue": "Fenway Park",
+      "position": 15
     }
   ],
   "free": [
@@ -62872,6 +63033,20 @@
       "duration_min": 9.5916,
       "venue": "Merriweather Post Pavilion",
       "position": 15
+    },
+    {
+      "date": "2026-07-27",
+      "duration_ms": 614592,
+      "duration_min": 10.2432,
+      "venue": "Madison Square Garden",
+      "position": 18
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 506016,
+      "duration_min": 8.4336,
+      "venue": "Fenway Park",
+      "position": 4
     }
   ],
   "blaze-on": [
@@ -64875,6 +65050,13 @@
       "duration_min": 10.8672,
       "venue": "Ruoff Music Center",
       "position": 11
+    },
+    {
+      "date": "2026-07-31",
+      "duration_ms": 402960,
+      "duration_min": 6.716,
+      "venue": "Fenway Park",
+      "position": 12
     }
   ],
   "birds-of-a-feather": [
@@ -64929,8 +65111,8 @@
     },
     {
       "date": "1998-07-29",
-      "duration_ms": 350589,
-      "duration_min": 5.84315,
+      "duration_ms": 339226,
+      "duration_min": 5.653766666666667,
       "venue": "Riverport Amphitheater",
       "position": 8
     },
@@ -66557,8 +66739,8 @@
     },
     {
       "date": "1999-09-29",
-      "duration_ms": 411585,
-      "duration_min": 6.85975,
+      "duration_ms": 363096,
+      "duration_min": 6.0516,
       "venue": "Pyramid Arena",
       "position": 23
     },
@@ -67968,8 +68150,8 @@
     },
     {
       "date": "1999-09-12",
-      "duration_ms": 630988,
-      "duration_min": 10.516466666666666,
+      "duration_ms": 611135,
+      "duration_min": 10.185583333333334,
       "venue": "Portland Meadows",
       "position": 16
     },
@@ -68826,6 +69008,13 @@
       "duration_min": 13.446,
       "venue": "Ruoff Music Center",
       "position": 3
+    },
+    {
+      "date": "2026-07-27",
+      "duration_ms": 649440,
+      "duration_min": 10.824,
+      "venue": "Madison Square Garden",
+      "position": 5
     }
   ],
   "limb-by-limb": [
@@ -70054,7 +70243,7 @@
       "duration_ms": 382668,
       "duration_min": 6.3778,
       "venue": "McAlister Auditorium, Tulane University",
-      "position": 23
+      "position": 24
     },
     {
       "date": "1994-10-27",
@@ -70327,7 +70516,7 @@
       "duration_ms": 465319,
       "duration_min": 7.755316666666666,
       "venue": "Ian McLean's Party, Connie Condon's Farm",
-      "position": 25
+      "position": 26
     },
     {
       "date": "1989-05-05",
