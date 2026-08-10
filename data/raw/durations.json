@@ -82,14 +82,14 @@
       "duration_ms": 811337,
       "duration_min": 13.522283333333334,
       "venue": "Hunt's",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1987-11-19",
       "duration_ms": 799112,
       "duration_min": 13.318533333333333,
       "venue": "Hunt's",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1992-03-12",
@@ -208,7 +208,7 @@
       "duration_ms": 1313802,
       "duration_min": 21.8967,
       "venue": "St. Lawrence University",
-      "position": 15
+      "position": 16
     },
     {
       "date": "1992-05-16",
@@ -355,7 +355,7 @@
       "duration_ms": 1091030,
       "duration_min": 18.183833333333332,
       "venue": "Symphony Hall",
-      "position": 15
+      "position": 16
     },
     {
       "date": "1994-04-05",
@@ -670,7 +670,7 @@
       "duration_ms": 1356669,
       "duration_min": 22.61115,
       "venue": "Benton Convention Center",
-      "position": 20
+      "position": 21
     },
     {
       "date": "1993-02-19",
@@ -684,7 +684,7 @@
       "duration_ms": 1285460,
       "duration_min": 21.424333333333333,
       "venue": "The Moon",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1993-02-25",
@@ -733,7 +733,7 @@
       "duration_ms": 1455621,
       "duration_min": 24.26035,
       "venue": "Paul Wright Gym, Western State College",
-      "position": 14
+      "position": 17
     },
     {
       "date": "1993-03-16",
@@ -866,7 +866,7 @@
       "duration_ms": 1273443,
       "duration_min": 21.22405,
       "venue": "State Theatre",
-      "position": 18
+      "position": 19
     },
     {
       "date": "1993-05-05",
@@ -1157,8 +1157,8 @@
     },
     {
       "date": "1997-11-17",
-      "duration_ms": 1454263,
-      "duration_min": 24.237716666666667,
+      "duration_ms": 1312444,
+      "duration_min": 21.874066666666668,
       "venue": "McNichols Arena",
       "position": 11
     },
@@ -1503,7 +1503,7 @@
       "duration_ms": 947775,
       "duration_min": 15.79625,
       "venue": "McCullough Social Hall, McCullough Student Center, Middlebury College",
-      "position": 13
+      "position": 18
     },
     {
       "date": "1989-01-26",
@@ -1524,7 +1524,7 @@
       "duration_ms": 974550,
       "duration_min": 16.2425,
       "venue": "The Front",
-      "position": 12
+      "position": 13
     },
     {
       "date": "1989-02-06",
@@ -2126,7 +2126,7 @@
       "duration_ms": 816379,
       "duration_min": 13.606316666666666,
       "venue": "The Clarke Memorial Fountain, Notre Dame University",
-      "position": 4
+      "position": 6
     },
     {
       "date": "1990-04-26",
@@ -2336,7 +2336,7 @@
       "duration_ms": 1085597,
       "duration_min": 18.093283333333332,
       "venue": "The Chance",
-      "position": 21
+      "position": 22
     },
     {
       "date": "1990-12-29",
@@ -2529,8 +2529,8 @@
     },
     {
       "date": "1997-07-11",
-      "duration_ms": 1326707,
-      "duration_min": 22.11178333333333,
+      "duration_ms": 1241088,
+      "duration_min": 20.6848,
       "venue": "Doctor Music Festival",
       "position": 7
     },
@@ -2564,8 +2564,8 @@
     },
     {
       "date": "1997-08-06",
-      "duration_ms": 1467298,
-      "duration_min": 24.454966666666667,
+      "duration_ms": 1452643,
+      "duration_min": 24.210716666666666,
       "venue": "Riverport Amphitheater",
       "position": 8
     },
@@ -2585,8 +2585,8 @@
     },
     {
       "date": "1997-12-03",
-      "duration_ms": 1274462,
-      "duration_min": 21.241033333333334,
+      "duration_ms": 1239249,
+      "duration_min": 20.65415,
       "venue": "CoreStates Spectrum",
       "position": 7
     },
@@ -2921,22 +2921,22 @@
     },
     {
       "date": "2003-07-13",
-      "duration_ms": 1368059,
-      "duration_min": 22.800983333333335,
+      "duration_ms": 1346592,
+      "duration_min": 22.4432,
       "venue": "Gorge Amphitheatre",
       "position": 9
     },
     {
       "date": "2003-07-19",
-      "duration_ms": 1720398,
-      "duration_min": 28.6733,
+      "duration_ms": 1594436,
+      "duration_min": 26.573933333333333,
       "venue": "Alpine Valley Music Theatre",
       "position": 16
     },
     {
       "date": "2003-07-26",
-      "duration_ms": 1465130,
-      "duration_min": 24.418833333333332,
+      "duration_ms": 1311843,
+      "duration_min": 21.86405,
       "venue": "HiFi Buys Amphitheatre",
       "position": 16
     },
@@ -3061,8 +3061,8 @@
     },
     {
       "date": "2009-06-12",
-      "duration_ms": 425404,
-      "duration_min": 7.090066666666667,
+      "duration_ms": 412238,
+      "duration_min": 6.870633333333333,
       "venue": "Bonnaroo Music & Arts Festival",
       "position": 19
     },
@@ -3082,22 +3082,22 @@
     },
     {
       "date": "2009-06-04",
-      "duration_ms": 1256490,
-      "duration_min": 20.9415,
+      "duration_ms": 1245336,
+      "duration_min": 20.7556,
       "venue": "Nikon at Jones Beach Theater",
       "position": 16
     },
     {
       "date": "2009-08-14",
-      "duration_ms": 1110282,
-      "duration_min": 18.5047,
+      "duration_ms": 954072,
+      "duration_min": 15.9012,
       "venue": "The Comcast Theatre",
       "position": 21
     },
     {
       "date": "2009-08-16",
-      "duration_ms": 1217097,
-      "duration_min": 20.28495,
+      "duration_ms": 1212840,
+      "duration_min": 20.214,
       "venue": "Saratoga Performing Arts Center",
       "position": 21
     },
@@ -3131,8 +3131,8 @@
     },
     {
       "date": "2010-08-18",
-      "duration_ms": 1230707,
-      "duration_min": 20.511783333333334,
+      "duration_ms": 1103592,
+      "duration_min": 18.3932,
       "venue": "Nikon at Jones Beach Theater",
       "position": 21
     },
@@ -3166,8 +3166,8 @@
     },
     {
       "date": "2010-10-08",
-      "duration_ms": 1230237,
-      "duration_min": 20.50395,
+      "duration_ms": 1119634,
+      "duration_min": 18.660566666666668,
       "venue": "Zilker Park",
       "position": 12
     },
@@ -3187,8 +3187,8 @@
     },
     {
       "date": "2011-06-17",
-      "duration_ms": 1154325,
-      "duration_min": 19.23875,
+      "duration_ms": 1012532,
+      "duration_min": 16.875533333333333,
       "venue": "Verizon Wireless Amphitheatre - Charlotte",
       "position": 23
     },
@@ -3229,8 +3229,8 @@
     },
     {
       "date": "2011-08-16",
-      "duration_ms": 1490469,
-      "duration_min": 24.84115,
+      "duration_ms": 1288584,
+      "duration_min": 21.4764,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 20
     },
@@ -3243,8 +3243,8 @@
     },
     {
       "date": "2012-07-08",
-      "duration_ms": 1234181,
-      "duration_min": 20.569683333333334,
+      "duration_ms": 1210540,
+      "duration_min": 20.175666666666668,
       "venue": "Saratoga Performing Arts Center",
       "position": 26
     },
@@ -3285,8 +3285,8 @@
     },
     {
       "date": "2012-12-31",
-      "duration_ms": 1127993,
-      "duration_min": 18.799883333333334,
+      "duration_ms": 1091631,
+      "duration_min": 18.19385,
       "venue": "Madison Square Garden",
       "position": 18
     },
@@ -3404,8 +3404,8 @@
     },
     {
       "date": "2013-07-14",
-      "duration_ms": 1415001,
-      "duration_min": 23.58335,
+      "duration_ms": 1288150,
+      "duration_min": 21.469166666666666,
       "venue": "Merriweather Post Pavilion",
       "position": 18
     },
@@ -3418,8 +3418,8 @@
     },
     {
       "date": "2013-10-22",
-      "duration_ms": 1312993,
-      "duration_min": 21.883216666666666,
+      "duration_ms": 1137633,
+      "duration_min": 18.96055,
       "venue": "BlueCross Arena",
       "position": 20
     },
@@ -3439,8 +3439,8 @@
     },
     {
       "date": "2013-12-31",
-      "duration_ms": 1196748,
-      "duration_min": 19.9458,
+      "duration_ms": 1139328,
+      "duration_min": 18.9888,
       "venue": "Madison Square Garden",
       "position": 24
     },
@@ -3481,8 +3481,8 @@
     },
     {
       "date": "1997-12-29",
-      "duration_ms": 1106991,
-      "duration_min": 18.44985,
+      "duration_ms": 1107024,
+      "duration_min": 18.4504,
       "venue": "Madison Square Garden",
       "position": 14
     },
@@ -3530,8 +3530,8 @@
     },
     {
       "date": "2014-07-27",
-      "duration_ms": 1292983,
-      "duration_min": 21.549716666666665,
+      "duration_ms": 1258080,
+      "duration_min": 20.968,
       "venue": "Merriweather Post Pavilion",
       "position": 11
     },
@@ -3561,7 +3561,7 @@
       "duration_ms": 983208,
       "duration_min": 16.3868,
       "venue": "Webster Hall, Dartmouth College",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1988-02-20",
@@ -3572,8 +3572,8 @@
     },
     {
       "date": "2015-07-25",
-      "duration_ms": 1284153,
-      "duration_min": 21.40255,
+      "duration_ms": 1251576,
+      "duration_min": 20.8596,
       "venue": "The Forum",
       "position": 18
     },
@@ -3586,15 +3586,15 @@
     },
     {
       "date": "2015-08-16",
-      "duration_ms": 1242697,
-      "duration_min": 20.711616666666668,
+      "duration_ms": 1075931,
+      "duration_min": 17.932183333333334,
       "venue": "Merriweather Post Pavilion",
       "position": 17
     },
     {
       "date": "2015-08-23",
-      "duration_ms": 1264692,
-      "duration_min": 21.0782,
+      "duration_ms": 1184592,
+      "duration_min": 19.7432,
       "venue": "Watkins Glen International",
       "position": 23
     },
@@ -3635,29 +3635,29 @@
     },
     {
       "date": "2016-06-28",
-      "duration_ms": 1061198,
-      "duration_min": 17.686633333333333,
+      "duration_ms": 1039008,
+      "duration_min": 17.3168,
       "venue": "The Mann Center for the Performing Arts",
       "position": 19
     },
     {
       "date": "2016-07-09",
-      "duration_ms": 1147193,
-      "duration_min": 19.119883333333334,
+      "duration_ms": 1094592,
+      "duration_min": 18.2432,
       "venue": "Xfinity Theatre",
       "position": 10
     },
     {
       "date": "2016-07-22",
-      "duration_ms": 1100696,
-      "duration_min": 18.344933333333334,
+      "duration_ms": 1089541,
+      "duration_min": 18.159016666666666,
       "venue": "The Forum",
       "position": 23
     },
     {
       "date": "2016-08-26",
-      "duration_ms": 1304592,
-      "duration_min": 21.7432,
+      "duration_ms": 1161072,
+      "duration_min": 19.3512,
       "venue": "Oak Ridge Farm",
       "position": 17
     },
@@ -3670,8 +3670,8 @@
     },
     {
       "date": "2016-12-30",
-      "duration_ms": 1113678,
-      "duration_min": 18.5613,
+      "duration_ms": 1064046,
+      "duration_min": 17.7341,
       "venue": "Madison Square Garden",
       "position": 12
     },
@@ -3719,15 +3719,15 @@
     },
     {
       "date": "2018-07-18",
-      "duration_ms": 1308369,
-      "duration_min": 21.80615,
+      "duration_ms": 1167047,
+      "duration_min": 19.450783333333334,
       "venue": "Lake Tahoe Outdoor Arena at Harveys",
       "position": 20
     },
     {
       "date": "2018-08-10",
-      "duration_ms": 1312810,
-      "duration_min": 21.880166666666668,
+      "duration_ms": 1169136,
+      "duration_min": 19.4856,
       "venue": "Coastal Credit Union Music Park at Walnut Creek",
       "position": 23
     },
@@ -3754,8 +3754,8 @@
     },
     {
       "date": "2019-06-18",
-      "duration_ms": 1045995,
-      "duration_min": 17.43325,
+      "duration_ms": 1028448,
+      "duration_min": 17.1408,
       "venue": "Budweiser Stage",
       "position": 11
     },
@@ -3964,8 +3964,8 @@
     },
     {
       "date": "1990-05-30",
-      "duration_ms": 1003008,
-      "duration_min": 16.7168,
+      "duration_ms": 995304,
+      "duration_min": 16.5884,
       "venue": "The Pterodactyl Club",
       "position": 1
     },
@@ -4047,6 +4047,13 @@
       "position": 20
     },
     {
+      "date": "1989-08-19",
+      "duration_ms": 1236167,
+      "duration_min": 20.602783333333335,
+      "venue": "Collis Center, Dartmouth College",
+      "position": 24
+    },
+    {
       "date": "1991-11-02",
       "duration_ms": 1029072,
       "duration_min": 17.1512,
@@ -4108,6 +4115,20 @@
       "duration_min": 36.44,
       "venue": "Madison Square Garden",
       "position": 12
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 854805,
+      "duration_min": 14.24675,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 6
+    },
+    {
+      "date": "1989-10-07",
+      "duration_ms": 1023816,
+      "duration_min": 17.0636,
+      "venue": "Chase Hall, Bates College",
+      "position": 22
     }
   ],
   "tweezer": [
@@ -4172,7 +4193,7 @@
       "duration_ms": 811572,
       "duration_min": 13.5262,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 15
+      "position": 17
     },
     {
       "date": "1992-04-23",
@@ -4291,7 +4312,7 @@
       "duration_ms": 744438,
       "duration_min": 12.4073,
       "venue": "The Vic Theatre",
-      "position": 14
+      "position": 19
     },
     {
       "date": "1992-12-12",
@@ -4564,7 +4585,7 @@
       "duration_ms": 742818,
       "duration_min": 12.3803,
       "venue": "Electric Ballroom",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1993-02-20",
@@ -4585,7 +4606,7 @@
       "duration_ms": 671425,
       "duration_min": 11.190416666666666,
       "venue": "The Moon",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1993-02-26",
@@ -4781,7 +4802,7 @@
       "duration_ms": 1175040,
       "duration_min": 19.584,
       "venue": "The Macauley Theater",
-      "position": 12
+      "position": 13
     },
     {
       "date": "1993-08-06",
@@ -5243,7 +5264,7 @@
       "duration_ms": 721215,
       "duration_min": 12.02025,
       "venue": "Hamilton College",
-      "position": 15
+      "position": 18
     },
     {
       "date": "1990-05-23",
@@ -5940,8 +5961,8 @@
     },
     {
       "date": "2009-06-07",
-      "duration_ms": 1027265,
-      "duration_min": 17.121083333333335,
+      "duration_ms": 835527,
+      "duration_min": 13.92545,
       "venue": "Susquehanna Bank Center",
       "position": 19
     },
@@ -6545,7 +6566,7 @@
       "duration_ms": 1056313,
       "duration_min": 17.605216666666667,
       "venue": "Watkins Glen International",
-      "position": 18
+      "position": 19
     },
     {
       "date": "2015-09-06",
@@ -6556,8 +6577,8 @@
     },
     {
       "date": "2016-01-02",
-      "duration_ms": 1346873,
-      "duration_min": 22.447883333333333,
+      "duration_ms": 1318844,
+      "duration_min": 21.980733333333333,
       "venue": "Madison Square Garden",
       "position": 11
     },
@@ -6584,8 +6605,8 @@
     },
     {
       "date": "2016-07-15",
-      "duration_ms": 721842,
-      "duration_min": 12.0307,
+      "duration_ms": 653349,
+      "duration_min": 10.88915,
       "venue": "Gorge Amphitheatre",
       "position": 1
     },
@@ -6818,7 +6839,7 @@
       "duration_ms": 765179,
       "duration_min": 12.752983333333333,
       "venue": "Fly Me to the Moon Saloon",
-      "position": 25
+      "position": 26
     },
     {
       "date": "2021-08-01",
@@ -9197,8 +9218,8 @@
     },
     {
       "date": "2017-01-15",
-      "duration_ms": 775314,
-      "duration_min": 12.9219,
+      "duration_ms": 757316,
+      "duration_min": 12.621933333333333,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 11
     },
@@ -9211,8 +9232,8 @@
     },
     {
       "date": "2017-07-22",
-      "duration_ms": 1128072,
-      "duration_min": 18.8012,
+      "duration_ms": 1118642,
+      "duration_min": 18.644033333333333,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -9225,8 +9246,8 @@
     },
     {
       "date": "2017-09-03",
-      "duration_ms": 1281358,
-      "duration_min": 21.355966666666667,
+      "duration_ms": 1271249,
+      "duration_min": 21.187483333333333,
       "venue": "Dick's Sporting Goods Park",
       "position": 11
     },
@@ -9766,8 +9787,8 @@
     },
     {
       "date": "1997-06-24",
-      "duration_ms": 983040,
-      "duration_min": 16.384,
+      "duration_ms": 873927,
+      "duration_min": 14.56545,
       "venue": "La Laiterie",
       "position": 17
     },
@@ -10683,8 +10704,8 @@
     },
     {
       "date": "2016-07-08",
-      "duration_ms": 728973,
-      "duration_min": 12.14955,
+      "duration_ms": 721450,
+      "duration_min": 12.024166666666666,
       "venue": "Xfinity Center",
       "position": 12
     },
@@ -10837,8 +10858,8 @@
     },
     {
       "date": "2018-10-16",
-      "duration_ms": 720640,
-      "duration_min": 12.010666666666667,
+      "duration_ms": 707239,
+      "duration_min": 11.787316666666667,
       "venue": "Times Union Center",
       "position": 10
     },
@@ -11303,6 +11324,13 @@
       "duration_min": 16.6824,
       "venue": "Fenway Park",
       "position": 14
+    },
+    {
+      "date": "2026-07-15",
+      "duration_ms": 676824,
+      "duration_min": 11.2804,
+      "venue": "Enmarket Arena",
+      "position": 14
     }
   ],
   "david-bowie": [
@@ -11437,7 +11465,7 @@
       "duration_ms": 759458,
       "duration_min": 12.657633333333333,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1992-04-24",
@@ -11598,14 +11626,14 @@
       "duration_ms": 377757,
       "duration_min": 6.29595,
       "venue": "Symphony Hall",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1992-12-30",
       "duration_ms": 694073,
       "duration_min": 11.567883333333333,
       "venue": "Symphony Hall",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1994-04-17",
@@ -11871,7 +11899,7 @@
       "duration_ms": 878524,
       "duration_min": 14.642066666666667,
       "venue": "Benton Convention Center",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1993-02-19",
@@ -11885,7 +11913,7 @@
       "duration_ms": 750733,
       "duration_min": 12.512216666666667,
       "venue": "The Moon",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-02-25",
@@ -11927,7 +11955,7 @@
       "duration_ms": 676571,
       "duration_min": 11.276183333333334,
       "venue": "Paul Wright Gym, Western State College",
-      "position": 12
+      "position": 15
     },
     {
       "date": "1993-03-18",
@@ -12123,7 +12151,7 @@
       "duration_ms": 562286,
       "duration_min": 9.371433333333334,
       "venue": "Molly's Cafe",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1988-11-05",
@@ -12347,7 +12375,7 @@
       "duration_ms": 764630,
       "duration_min": 12.743833333333333,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1991-10-28",
@@ -12361,7 +12389,7 @@
       "duration_ms": 835814,
       "duration_min": 13.930233333333334,
       "venue": "Armstrong Hall, Colorado College",
-      "position": 18
+      "position": 20
     },
     {
       "date": "1991-10-04",
@@ -12802,7 +12830,7 @@
       "duration_ms": 809117,
       "duration_min": 13.485283333333333,
       "venue": "Hamilton College",
-      "position": 19
+      "position": 22
     },
     {
       "date": "1990-06-05",
@@ -12834,8 +12862,8 @@
     },
     {
       "date": "1990-10-04",
-      "duration_ms": 881162,
-      "duration_min": 14.686033333333333,
+      "duration_ms": 871941,
+      "duration_min": 14.53235,
       "venue": "Field House, University of New Hampshire",
       "position": 10
     },
@@ -12851,7 +12879,7 @@
       "duration_ms": 764526,
       "duration_min": 12.7421,
       "venue": "El Dorado Caf\u00e9",
-      "position": 21
+      "position": 22
     },
     {
       "date": "1990-11-02",
@@ -13030,8 +13058,8 @@
     },
     {
       "date": "1997-07-02",
-      "duration_ms": 976771,
-      "duration_min": 16.279516666666666,
+      "duration_ms": 945450,
+      "duration_min": 15.7575,
       "venue": "Paradiso",
       "position": 14
     },
@@ -13408,8 +13436,8 @@
     },
     {
       "date": "2003-07-12",
-      "duration_ms": 798093,
-      "duration_min": 13.30155,
+      "duration_ms": 775920,
+      "duration_min": 12.932,
       "venue": "Gorge Amphitheatre",
       "position": 15
     },
@@ -13422,8 +13450,8 @@
     },
     {
       "date": "2003-07-25",
-      "duration_ms": 1201894,
-      "duration_min": 20.031566666666667,
+      "duration_ms": 932441,
+      "duration_min": 15.540683333333334,
       "venue": "Verizon Wireless Amphitheatre - Charlotte",
       "position": 15
     },
@@ -13450,8 +13478,8 @@
     },
     {
       "date": "2004-06-19",
-      "duration_ms": 742557,
-      "duration_min": 12.37595,
+      "duration_ms": 726544,
+      "duration_min": 12.109066666666667,
       "venue": "Saratoga Performing Arts Center",
       "position": 7
     },
@@ -13471,8 +13499,8 @@
     },
     {
       "date": "2004-08-09",
-      "duration_ms": 786651,
-      "duration_min": 13.11085,
+      "duration_ms": 757629,
+      "duration_min": 12.62715,
       "venue": "Hampton Coliseum",
       "position": 16
     },
@@ -13485,8 +13513,8 @@
     },
     {
       "date": "2009-11-18",
-      "duration_ms": 671869,
-      "duration_min": 11.197816666666666,
+      "duration_ms": 652931,
+      "duration_min": 10.882183333333334,
       "venue": "Cobo Arena",
       "position": 11
     },
@@ -13548,8 +13576,8 @@
     },
     {
       "date": "2009-07-30",
-      "duration_ms": 857391,
-      "duration_min": 14.28985,
+      "duration_ms": 711732,
+      "duration_min": 11.8622,
       "venue": "Red Rocks Amphitheatre",
       "position": 19
     },
@@ -13569,8 +13597,8 @@
     },
     {
       "date": "2009-08-05",
-      "duration_ms": 744072,
-      "duration_min": 12.4012,
+      "duration_ms": 719935,
+      "duration_min": 11.998916666666666,
       "venue": "Shoreline Amphitheatre",
       "position": 10
     },
@@ -13597,8 +13625,8 @@
     },
     {
       "date": "2010-10-16",
-      "duration_ms": 699167,
-      "duration_min": 11.652783333333334,
+      "duration_ms": 684456,
+      "duration_min": 11.4076,
       "venue": "North Charleston Coliseum",
       "position": 11
     },
@@ -13660,8 +13688,8 @@
     },
     {
       "date": "2010-06-29",
-      "duration_ms": 755749,
-      "duration_min": 12.595816666666666,
+      "duration_ms": 747840,
+      "duration_min": 12.464,
       "venue": "CMAC Performing Arts Center",
       "position": 10
     },
@@ -13702,8 +13730,8 @@
     },
     {
       "date": "2012-06-22",
-      "duration_ms": 639138,
-      "duration_min": 10.6523,
+      "duration_ms": 585744,
+      "duration_min": 9.7624,
       "venue": "Riverbend Music Center",
       "position": 12
     },
@@ -13723,15 +13751,15 @@
     },
     {
       "date": "2012-07-08",
-      "duration_ms": 705463,
-      "duration_min": 11.757716666666667,
+      "duration_ms": 571350,
+      "duration_min": 9.5225,
       "venue": "Saratoga Performing Arts Center",
       "position": 25
     },
     {
       "date": "2012-08-19",
-      "duration_ms": 686446,
-      "duration_min": 11.440766666666667,
+      "duration_ms": 672836,
+      "duration_min": 11.213933333333333,
       "venue": "Bill Graham Civic Auditorium",
       "position": 12
     },
@@ -13751,15 +13779,15 @@
     },
     {
       "date": "2011-06-19",
-      "duration_ms": 653427,
-      "duration_min": 10.89045,
+      "duration_ms": 617744,
+      "duration_min": 10.295733333333333,
       "venue": "nTelos Pavilion",
       "position": 12
     },
     {
       "date": "2011-07-03",
-      "duration_ms": 835683,
-      "duration_min": 13.92805,
+      "duration_ms": 788428,
+      "duration_min": 13.140466666666667,
       "venue": "Watkins Glen International",
       "position": 13
     },
@@ -13835,8 +13863,8 @@
     },
     {
       "date": "2013-07-05",
-      "duration_ms": 747207,
-      "duration_min": 12.45345,
+      "duration_ms": 701936,
+      "duration_min": 11.698933333333333,
       "venue": "Saratoga Performing Arts Center",
       "position": 12
     },
@@ -13849,15 +13877,15 @@
     },
     {
       "date": "2013-07-20",
-      "duration_ms": 717322,
-      "duration_min": 11.955366666666666,
+      "duration_ms": 698436,
+      "duration_min": 11.6406,
       "venue": "FirstMerit Bank Pavilion at Northerly Island",
       "position": 13
     },
     {
       "date": "2013-07-22",
-      "duration_ms": 807863,
-      "duration_min": 13.464383333333334,
+      "duration_ms": 772650,
+      "duration_min": 12.8775,
       "venue": "Molson Canadian Amphitheatre",
       "position": 21
     },
@@ -13912,22 +13940,22 @@
     },
     {
       "date": "2013-12-29",
-      "duration_ms": 893492,
-      "duration_min": 14.891533333333333,
+      "duration_ms": 718132,
+      "duration_min": 11.968866666666667,
       "venue": "Madison Square Garden",
       "position": 16
     },
     {
       "date": "2013-11-01",
-      "duration_ms": 711340,
-      "duration_min": 11.855666666666666,
+      "duration_ms": 672340,
+      "duration_min": 11.205666666666668,
       "venue": "Boardwalk Hall",
       "position": 11
     },
     {
       "date": "2011-08-05",
-      "duration_ms": 659096,
-      "duration_min": 10.984933333333334,
+      "duration_ms": 646426,
+      "duration_min": 10.773766666666667,
       "venue": "Gorge Amphitheatre",
       "position": 12
     },
@@ -13940,8 +13968,8 @@
     },
     {
       "date": "2003-08-02",
-      "duration_ms": 772728,
-      "duration_min": 12.8788,
+      "duration_ms": 750720,
+      "duration_min": 12.512,
       "venue": "Loring Commerce Centre",
       "position": 17
     },
@@ -13989,15 +14017,15 @@
     },
     {
       "date": "2014-07-05",
-      "duration_ms": 692532,
-      "duration_min": 11.5422,
+      "duration_ms": 642952,
+      "duration_min": 10.715866666666667,
       "venue": "Saratoga Performing Arts Center",
       "position": 11
     },
     {
       "date": "2014-07-15",
-      "duration_ms": 645094,
-      "duration_min": 10.751566666666667,
+      "duration_ms": 631432,
+      "duration_min": 10.523866666666667,
       "venue": "CMAC Performing Arts Center",
       "position": 10
     },
@@ -14017,8 +14045,8 @@
     },
     {
       "date": "2014-07-30",
-      "duration_ms": 735608,
-      "duration_min": 12.260133333333334,
+      "duration_ms": 710426,
+      "duration_min": 11.840433333333333,
       "venue": "nTelos Pavilion",
       "position": 12
     },
@@ -14062,7 +14090,7 @@
       "duration_ms": 808307,
       "duration_min": 13.471783333333333,
       "venue": "Tower Theater",
-      "position": 19
+      "position": 20
     },
     {
       "date": "2015-07-28",
@@ -14122,8 +14150,8 @@
     },
     {
       "date": "2016-07-20",
-      "duration_ms": 722051,
-      "duration_min": 12.034183333333333,
+      "duration_ms": 704627,
+      "duration_min": 11.743783333333333,
       "venue": "Bill Graham Civic Auditorium",
       "position": 14
     },
@@ -14136,8 +14164,8 @@
     },
     {
       "date": "2016-10-24",
-      "duration_ms": 755278,
-      "duration_min": 12.587966666666667,
+      "duration_ms": 697940,
+      "duration_min": 11.632333333333333,
       "venue": "Verizon Theatre at Grand Prairie",
       "position": 14
     },
@@ -14157,8 +14185,8 @@
     },
     {
       "date": "2017-07-30",
-      "duration_ms": 721392,
-      "duration_min": 12.0232,
+      "duration_ms": 679032,
+      "duration_min": 11.3172,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -14185,15 +14213,15 @@
     },
     {
       "date": "2018-08-07",
-      "duration_ms": 679602,
-      "duration_min": 11.3267,
+      "duration_ms": 664529,
+      "duration_min": 11.075483333333333,
       "venue": "BB&T Pavilion",
       "position": 11
     },
     {
       "date": "2018-10-27",
-      "duration_ms": 768758,
-      "duration_min": 12.812633333333334,
+      "duration_ms": 735451,
+      "duration_min": 12.257516666666668,
       "venue": "Allstate Arena",
       "position": 9
     },
@@ -14279,7 +14307,7 @@
       "duration_ms": 718707,
       "duration_min": 11.97845,
       "venue": "Fly Me to the Moon Saloon",
-      "position": 15
+      "position": 16
     },
     {
       "date": "2021-08-08",
@@ -14478,6 +14506,20 @@
       "position": 9
     },
     {
+      "date": "1989-01-26",
+      "duration_ms": 687047,
+      "duration_min": 11.450783333333334,
+      "venue": "The Paradise",
+      "position": 20
+    },
+    {
+      "date": "1989-08-19",
+      "duration_ms": 852219,
+      "duration_min": 14.20365,
+      "venue": "Collis Center, Dartmouth College",
+      "position": 20
+    },
+    {
       "date": "1992-12-01",
       "duration_ms": 19200,
       "duration_min": 0.32,
@@ -14518,6 +14560,27 @@
       "duration_min": 9.916,
       "venue": "Madison Square Garden",
       "position": 15
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 259030,
+      "duration_min": 4.317166666666667,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 17
+    },
+    {
+      "date": "1989-10-07",
+      "duration_ms": 764880,
+      "duration_min": 12.748,
+      "venue": "Chase Hall, Bates College",
+      "position": 18
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 768072,
+      "duration_min": 12.8012,
+      "venue": "Enmarket Arena",
+      "position": 1
     }
   ],
   "harry-hood": [
@@ -14582,7 +14645,7 @@
       "duration_ms": 701022,
       "duration_min": 11.6837,
       "venue": "Hunt's",
-      "position": 6
+      "position": 7
     },
     {
       "date": "1992-03-11",
@@ -14988,7 +15051,7 @@
       "duration_ms": 819069,
       "duration_min": 13.65115,
       "venue": "The Macauley Theater",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1993-08-08",
@@ -15044,7 +15107,7 @@
       "duration_ms": 855641,
       "duration_min": 14.260683333333333,
       "venue": "The Front",
-      "position": 15
+      "position": 16
     },
     {
       "date": "1988-08-03",
@@ -15184,14 +15247,14 @@
       "duration_ms": 739579,
       "duration_min": 12.326316666666667,
       "venue": "Armstrong Hall, Colorado College",
-      "position": 23
+      "position": 25
     },
     {
       "date": "1991-10-06",
       "duration_ms": 756924,
       "duration_min": 12.6154,
       "venue": "Cochran Lounge, Student Union, Macalester College",
-      "position": 18
+      "position": 20
     },
     {
       "date": "1991-11-12",
@@ -15216,8 +15279,8 @@
     },
     {
       "date": "2003-02-28",
-      "duration_ms": 893388,
-      "duration_min": 14.8898,
+      "duration_ms": 880248,
+      "duration_min": 14.6708,
       "venue": "Nassau Veterans Memorial Coliseum",
       "position": 13
     },
@@ -15307,8 +15370,8 @@
     },
     {
       "date": "1989-12-08",
-      "duration_ms": 823850,
-      "duration_min": 13.730833333333333,
+      "duration_ms": 818521,
+      "duration_min": 13.642016666666667,
       "venue": "Withey Hall Dining Room, Green Mountain College",
       "position": 12
     },
@@ -15468,8 +15531,8 @@
     },
     {
       "date": "1990-04-21",
-      "duration_ms": 827063,
-      "duration_min": 13.784383333333333,
+      "duration_ms": 796080,
+      "duration_min": 13.268,
       "venue": "Canyon West Room, Lincoln Center",
       "position": 12
     },
@@ -15485,7 +15548,7 @@
       "duration_ms": 635115,
       "duration_min": 10.58525,
       "venue": "Hamilton College",
-      "position": 16
+      "position": 19
     },
     {
       "date": "1990-05-24",
@@ -15685,8 +15748,8 @@
     },
     {
       "date": "1997-07-22",
-      "duration_ms": 850756,
-      "duration_min": 14.179266666666667,
+      "duration_ms": 831843,
+      "duration_min": 13.86405,
       "venue": "Walnut Creek Amphitheater",
       "position": 17
     },
@@ -15776,15 +15839,15 @@
     },
     {
       "date": "1997-12-03",
-      "duration_ms": 965016,
-      "duration_min": 16.0836,
+      "duration_ms": 919745,
+      "duration_min": 15.329083333333333,
       "venue": "CoreStates Spectrum",
       "position": 13
     },
     {
       "date": "1997-12-09",
-      "duration_ms": 865933,
-      "duration_min": 14.432216666666667,
+      "duration_ms": 818233,
+      "duration_min": 13.637216666666667,
       "venue": "Bryce Jordan Center, Penn State University",
       "position": 16
     },
@@ -16042,8 +16105,8 @@
     },
     {
       "date": "2003-02-15",
-      "duration_ms": 1284650,
-      "duration_min": 21.410833333333333,
+      "duration_ms": 1132330,
+      "duration_min": 18.872166666666665,
       "venue": "Thomas & Mack Center",
       "position": 13
     },
@@ -16084,8 +16147,8 @@
     },
     {
       "date": "2003-07-31",
-      "duration_ms": 1585685,
-      "duration_min": 26.428083333333333,
+      "duration_ms": 1430439,
+      "duration_min": 23.84065,
       "venue": "Tweeter Center at the Waterfront",
       "position": 16
     },
@@ -16112,8 +16175,8 @@
     },
     {
       "date": "2004-06-26",
-      "duration_ms": 968385,
-      "duration_min": 16.13975,
+      "duration_ms": 721946,
+      "duration_min": 12.032433333333334,
       "venue": "Alpine Valley Music Theatre",
       "position": 14
     },
@@ -16217,8 +16280,8 @@
     },
     {
       "date": "2009-08-01",
-      "duration_ms": 1023713,
-      "duration_min": 17.061883333333334,
+      "duration_ms": 886727,
+      "duration_min": 14.778783333333333,
       "venue": "Red Rocks Amphitheatre",
       "position": 15
     },
@@ -16364,8 +16427,8 @@
     },
     {
       "date": "2011-08-15",
-      "duration_ms": 912901,
-      "duration_min": 15.215016666666667,
+      "duration_ms": 874344,
+      "duration_min": 14.5724,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 24
     },
@@ -16553,8 +16616,8 @@
     },
     {
       "date": "2013-07-03",
-      "duration_ms": 933930,
-      "duration_min": 15.5655,
+      "duration_ms": 893936,
+      "duration_min": 14.898933333333334,
       "venue": "Darling's Waterfront Pavilion",
       "position": 21
     },
@@ -16609,8 +16672,8 @@
     },
     {
       "date": "2013-10-19",
-      "duration_ms": 956108,
-      "duration_min": 15.935133333333333,
+      "duration_ms": 757238,
+      "duration_min": 12.620633333333334,
       "venue": "Hampton Coliseum",
       "position": 20
     },
@@ -16843,7 +16906,7 @@
       "duration_ms": 657264,
       "duration_min": 10.9544,
       "venue": "Webster Hall, Dartmouth College",
-      "position": 20
+      "position": 22
     },
     {
       "date": "2015-07-29",
@@ -16875,8 +16938,8 @@
     },
     {
       "date": "2015-08-12",
-      "duration_ms": 787174,
-      "duration_min": 13.119566666666667,
+      "duration_ms": 756741,
+      "duration_min": 12.61235,
       "venue": "The Mann Center for the Performing Arts",
       "position": 15
     },
@@ -16924,8 +16987,8 @@
     },
     {
       "date": "2016-06-29",
-      "duration_ms": 911544,
-      "duration_min": 15.1924,
+      "duration_ms": 867240,
+      "duration_min": 14.454,
       "venue": "The Mann Center for the Performing Arts",
       "position": 22
     },
@@ -16966,8 +17029,8 @@
     },
     {
       "date": "2016-10-14",
-      "duration_ms": 821238,
-      "duration_min": 13.6873,
+      "duration_ms": 802847,
+      "duration_min": 13.380783333333333,
       "venue": "North Charleston Coliseum",
       "position": 18
     },
@@ -17001,8 +17064,8 @@
     },
     {
       "date": "2016-12-29",
-      "duration_ms": 803265,
-      "duration_min": 13.38775,
+      "duration_ms": 761339,
+      "duration_min": 12.688983333333333,
       "venue": "Madison Square Garden",
       "position": 19
     },
@@ -17022,8 +17085,8 @@
     },
     {
       "date": "2017-07-29",
-      "duration_ms": 1206962,
-      "duration_min": 20.116033333333334,
+      "duration_ms": 966844,
+      "duration_min": 16.114066666666666,
       "venue": "Madison Square Garden",
       "position": 20
     },
@@ -17043,8 +17106,8 @@
     },
     {
       "date": "2018-07-17",
-      "duration_ms": 1104640,
-      "duration_min": 18.410666666666668,
+      "duration_ms": 921130,
+      "duration_min": 15.352166666666667,
       "venue": "Lake Tahoe Outdoor Arena at Harveys",
       "position": 14
     },
@@ -17064,8 +17127,8 @@
     },
     {
       "date": "2018-08-12",
-      "duration_ms": 816264,
-      "duration_min": 13.6044,
+      "duration_ms": 781032,
+      "duration_min": 13.0172,
       "venue": "Merriweather Post Pavilion",
       "position": 17
     },
@@ -17078,8 +17141,8 @@
     },
     {
       "date": "2018-10-16",
-      "duration_ms": 765127,
-      "duration_min": 12.752116666666666,
+      "duration_ms": 752039,
+      "duration_min": 12.533983333333333,
       "venue": "Times Union Center",
       "position": 17
     },
@@ -17134,8 +17197,8 @@
     },
     {
       "date": "2019-07-13",
-      "duration_ms": 813976,
-      "duration_min": 13.566266666666667,
+      "duration_ms": 783543,
+      "duration_min": 13.05905,
       "venue": "Alpine Valley Music Theatre",
       "position": 20
     },
@@ -17148,8 +17211,8 @@
     },
     {
       "date": "2019-11-30",
-      "duration_ms": 886848,
-      "duration_min": 14.7808,
+      "duration_ms": 870840,
+      "duration_min": 14.514,
       "venue": "Dunkin' Donuts Center",
       "position": 18
     },
@@ -17172,7 +17235,7 @@
       "duration_ms": 610011,
       "duration_min": 10.16685,
       "venue": "Fly Me to the Moon Saloon",
-      "position": 21
+      "position": 22
     },
     {
       "date": "2021-07-30",
@@ -17467,6 +17530,13 @@
       "duration_min": 14.7256,
       "venue": "North Charleston Coliseum",
       "position": 15
+    },
+    {
+      "date": "1989-08-19",
+      "duration_ms": 714266,
+      "duration_min": 11.904433333333333,
+      "venue": "Collis Center, Dartmouth College",
+      "position": 25
     },
     {
       "date": "2025-07-18",
@@ -18416,17 +18486,17 @@
     },
     {
       "date": "1987-02-21",
-      "duration_ms": 583053,
-      "duration_min": 9.71755,
+      "duration_ms": 566184,
+      "duration_min": 9.4364,
       "venue": "Slade Hall, University of Vermont",
       "position": 2
     },
     {
       "date": "1987-03-23",
-      "duration_ms": 540473,
-      "duration_min": 9.007883333333334,
+      "duration_ms": 487248,
+      "duration_min": 8.1208,
       "venue": "Nectar's",
-      "position": 6
+      "position": 7
     },
     {
       "date": "1987-04-24",
@@ -18482,14 +18552,14 @@
       "duration_ms": 896731,
       "duration_min": 14.945516666666666,
       "venue": "Hunt's",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1987-11-19",
       "duration_ms": 983615,
       "duration_min": 16.393583333333332,
       "venue": "Hunt's",
-      "position": 9
+      "position": 10
     },
     {
       "date": "1992-03-26",
@@ -18664,7 +18734,7 @@
       "duration_ms": 819931,
       "duration_min": 13.665516666666667,
       "venue": "Veterans Memorial Auditorium",
-      "position": 21
+      "position": 24
     },
     {
       "date": "1994-07-01",
@@ -18741,7 +18811,7 @@
       "duration_ms": 828264,
       "duration_min": 13.8044,
       "venue": "Benton Convention Center",
-      "position": 9
+      "position": 10
     },
     {
       "date": "1993-02-20",
@@ -18969,8 +19039,8 @@
     },
     {
       "date": "1988-10-29",
-      "duration_ms": 902818,
-      "duration_min": 15.046966666666666,
+      "duration_ms": 891298,
+      "duration_min": 14.854966666666666,
       "venue": "Sculpture Room, Goddard College",
       "position": 20
     },
@@ -18979,7 +19049,7 @@
       "duration_ms": 908147,
       "duration_min": 15.135783333333332,
       "venue": "Molly's Cafe",
-      "position": 3
+      "position": 4
     },
     {
       "date": "1988-11-05",
@@ -19000,7 +19070,7 @@
       "duration_ms": 913032,
       "duration_min": 15.2172,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1988-05-24",
@@ -19192,13 +19262,6 @@
       "position": 4
     },
     {
-      "date": "1989-04-15",
-      "duration_ms": 951118,
-      "duration_min": 15.851966666666666,
-      "venue": "Billings Lounge, University of Vermont",
-      "position": 22
-    },
-    {
       "date": "1989-04-20",
       "duration_ms": 442279,
       "duration_min": 7.371316666666667,
@@ -19350,7 +19413,7 @@
       "duration_ms": 882887,
       "duration_min": 14.714783333333333,
       "venue": "El Dorado Caf\u00e9",
-      "position": 18
+      "position": 19
     },
     {
       "date": "1990-11-03",
@@ -19711,8 +19774,8 @@
     },
     {
       "date": "2011-08-06",
-      "duration_ms": 899683,
-      "duration_min": 14.994716666666667,
+      "duration_ms": 887040,
+      "duration_min": 14.784,
       "venue": "Gorge Amphitheatre",
       "position": 11
     },
@@ -19725,8 +19788,8 @@
     },
     {
       "date": "2012-06-22",
-      "duration_ms": 972460,
-      "duration_min": 16.207666666666668,
+      "duration_ms": 940147,
+      "duration_min": 15.669116666666667,
       "venue": "Riverbend Music Center",
       "position": 23
     },
@@ -19858,8 +19921,8 @@
     },
     {
       "date": "2013-12-31",
-      "duration_ms": 888111,
-      "duration_min": 14.80185,
+      "duration_ms": 865344,
+      "duration_min": 14.4224,
       "venue": "Madison Square Garden",
       "position": 8
     },
@@ -19914,8 +19977,8 @@
     },
     {
       "date": "2014-08-30",
-      "duration_ms": 931422,
-      "duration_min": 15.5237,
+      "duration_ms": 894328,
+      "duration_min": 14.905466666666667,
       "venue": "Dick's Sporting Goods Park",
       "position": 26
     },
@@ -19966,12 +20029,12 @@
       "duration_ms": 682684,
       "duration_min": 11.378066666666667,
       "venue": "Nectar's",
-      "position": 16
+      "position": 18
     },
     {
       "date": "2017-08-04",
-      "duration_ms": 1042077,
-      "duration_min": 17.36795,
+      "duration_ms": 1012637,
+      "duration_min": 16.877283333333335,
       "venue": "Madison Square Garden",
       "position": 17
     },
@@ -19994,7 +20057,7 @@
       "duration_ms": 848144,
       "duration_min": 14.135733333333333,
       "venue": "The Roma",
-      "position": 32
+      "position": 33
     },
     {
       "date": "1992-03-13",
@@ -20019,8 +20082,8 @@
     },
     {
       "date": "2018-10-28",
-      "duration_ms": 956578,
-      "duration_min": 15.942966666666667,
+      "duration_ms": 939128,
+      "duration_min": 15.652133333333333,
       "venue": "Allstate Arena",
       "position": 19
     },
@@ -20310,6 +20373,13 @@
       "duration_min": 16.3812,
       "venue": "Madison Square Garden",
       "position": 23
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 951092,
+      "duration_min": 15.851533333333334,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 25
     }
   ],
   "drowned": [
@@ -20441,8 +20511,8 @@
     },
     {
       "date": "2004-06-20",
-      "duration_ms": 1406145,
-      "duration_min": 23.43575,
+      "duration_ms": 1311948,
+      "duration_min": 21.8658,
       "venue": "Saratoga Performing Arts Center",
       "position": 9
     },
@@ -20609,8 +20679,8 @@
     },
     {
       "date": "2017-07-30",
-      "duration_ms": 1335768,
-      "duration_min": 22.2628,
+      "duration_ms": 1290144,
+      "duration_min": 21.5024,
       "venue": "Madison Square Garden",
       "position": 11
     },
@@ -20677,21 +20747,21 @@
       "duration_ms": 80797,
       "duration_min": 1.3466166666666666,
       "venue": "Veterans Memorial Auditorium",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1994-06-22",
       "duration_ms": 214857,
       "duration_min": 3.58095,
       "venue": "Veterans Memorial Auditorium",
-      "position": 29
+      "position": 14
     },
     {
       "date": "1994-06-22",
       "duration_ms": 101460,
       "duration_min": 1.691,
       "venue": "Veterans Memorial Auditorium",
-      "position": 14
+      "position": 16
     },
     {
       "date": "1994-06-24",
@@ -23627,6 +23697,13 @@
       "duration_min": 16.2016,
       "venue": "Sphere",
       "position": 12
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 791544,
+      "duration_min": 13.1924,
+      "venue": "Enmarket Arena",
+      "position": 12
     }
   ],
   "bathtub-gin": [
@@ -23663,7 +23740,7 @@
       "duration_ms": 470909,
       "duration_min": 7.848483333333333,
       "venue": "St. Lawrence University",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1992-11-22",
@@ -23684,7 +23761,7 @@
       "duration_ms": 458684,
       "duration_min": 7.644733333333333,
       "venue": "Symphony Hall",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1994-04-09",
@@ -24710,8 +24787,8 @@
     },
     {
       "date": "2003-07-09",
-      "duration_ms": 1612487,
-      "duration_min": 26.874783333333333,
+      "duration_ms": 1597440,
+      "duration_min": 26.624,
       "venue": "Shoreline Amphitheatre",
       "position": 5
     },
@@ -24997,8 +25074,8 @@
     },
     {
       "date": "2012-12-29",
-      "duration_ms": 690939,
-      "duration_min": 11.51565,
+      "duration_ms": 656248,
+      "duration_min": 10.937466666666667,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -25193,15 +25270,15 @@
     },
     {
       "date": "2014-10-18",
-      "duration_ms": 771187,
-      "duration_min": 12.853116666666667,
+      "duration_ms": 742740,
+      "duration_min": 12.379,
       "venue": "Key Arena",
       "position": 11
     },
     {
       "date": "2014-10-24",
-      "duration_ms": 796029,
-      "duration_min": 13.26715,
+      "duration_ms": 768549,
+      "duration_min": 12.80915,
       "venue": "The Forum",
       "position": 11
     },
@@ -25214,8 +25291,8 @@
     },
     {
       "date": "2015-01-01",
-      "duration_ms": 760895,
-      "duration_min": 12.681583333333334,
+      "duration_ms": 704549,
+      "duration_min": 11.742483333333332,
       "venue": "American Airlines Arena",
       "position": 9
     },
@@ -25228,8 +25305,8 @@
     },
     {
       "date": "2015-07-22",
-      "duration_ms": 727536,
-      "duration_min": 12.1256,
+      "duration_ms": 712542,
+      "duration_min": 11.8757,
       "venue": "Les Schwab Amphitheater",
       "position": 16
     },
@@ -25242,8 +25319,8 @@
     },
     {
       "date": "2015-08-07",
-      "duration_ms": 861074,
-      "duration_min": 14.351233333333333,
+      "duration_ms": 801332,
+      "duration_min": 13.355533333333334,
       "venue": "Blossom Music Center",
       "position": 11
     },
@@ -25256,8 +25333,8 @@
     },
     {
       "date": "2015-08-21",
-      "duration_ms": 1401731,
-      "duration_min": 23.362183333333334,
+      "duration_ms": 1362730,
+      "duration_min": 22.71216666666667,
       "venue": "Watkins Glen International",
       "position": 12
     },
@@ -25305,8 +25382,8 @@
     },
     {
       "date": "2016-07-16",
-      "duration_ms": 813009,
-      "duration_min": 13.55015,
+      "duration_ms": 786442,
+      "duration_min": 13.107366666666667,
       "venue": "Gorge Amphitheatre",
       "position": 12
     },
@@ -25354,8 +25431,8 @@
     },
     {
       "date": "2017-07-25",
-      "duration_ms": 790320,
-      "duration_min": 13.172,
+      "duration_ms": 765624,
+      "duration_min": 12.7604,
       "venue": "Madison Square Garden",
       "position": 5
     },
@@ -25403,8 +25480,8 @@
     },
     {
       "date": "2018-09-01",
-      "duration_ms": 738600,
-      "duration_min": 12.31,
+      "duration_ms": 721464,
+      "duration_min": 12.0244,
       "venue": "Dick's Sporting Goods Park",
       "position": 8
     },
@@ -25466,8 +25543,8 @@
     },
     {
       "date": "2019-09-01",
-      "duration_ms": 929463,
-      "duration_min": 15.49105,
+      "duration_ms": 913450,
+      "duration_min": 15.224166666666667,
       "venue": "Dick's Sporting Goods Park",
       "position": 12
     },
@@ -25571,8 +25648,8 @@
     },
     {
       "date": "2022-05-27",
-      "duration_ms": 754728,
-      "duration_min": 12.5788,
+      "duration_ms": 738240,
+      "duration_min": 12.304,
       "venue": "The Wharf Amphitheater",
       "position": 12
     },
@@ -26353,7 +26430,7 @@
       "duration_ms": 766067,
       "duration_min": 12.767783333333334,
       "venue": "Le Spectrum",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-02-10",
@@ -26381,7 +26458,7 @@
       "duration_ms": 728242,
       "duration_min": 12.137366666666667,
       "venue": "Electric Ballroom",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-02-21",
@@ -26577,7 +26654,7 @@
       "duration_ms": 640549,
       "duration_min": 10.675816666666666,
       "venue": "Commodore Ballroom",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1993-08-28",
@@ -26623,8 +26700,8 @@
     },
     {
       "date": "1988-04-22",
-      "duration_ms": 646504,
-      "duration_min": 10.775066666666667,
+      "duration_ms": 623712,
+      "duration_min": 10.3952,
       "venue": "University of Vermont",
       "position": 18
     },
@@ -26633,7 +26710,7 @@
       "duration_ms": 734041,
       "duration_min": 12.234016666666667,
       "venue": "Nectar's",
-      "position": 16
+      "position": 19
     },
     {
       "date": "1988-07-23",
@@ -26668,7 +26745,7 @@
       "duration_ms": 600294,
       "duration_min": 10.0049,
       "venue": "Molly's Cafe",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1988-12-10",
@@ -26850,7 +26927,7 @@
       "duration_ms": 508682,
       "duration_min": 8.478033333333334,
       "venue": "The Front",
-      "position": 7
+      "position": 8
     },
     {
       "date": "1989-03-30",
@@ -26983,7 +27060,7 @@
       "duration_ms": 404872,
       "duration_min": 6.747866666666667,
       "venue": "Goddard College",
-      "position": 21
+      "position": 22
     },
     {
       "date": "1989-11-10",
@@ -27354,7 +27431,7 @@
       "duration_ms": 758491,
       "duration_min": 12.641516666666666,
       "venue": "The Haunt",
-      "position": 21
+      "position": 22
     },
     {
       "date": "1990-10-05",
@@ -27368,7 +27445,7 @@
       "duration_ms": 632398,
       "duration_min": 10.539966666666666,
       "venue": "The Bayou",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1990-10-31",
@@ -27526,8 +27603,8 @@
     },
     {
       "date": "1997-11-19",
-      "duration_ms": 782106,
-      "duration_min": 13.0351,
+      "duration_ms": 766537,
+      "duration_min": 12.775616666666666,
       "venue": "Assembly Hall, University of Illinois",
       "position": 10
     },
@@ -27568,8 +27645,8 @@
     },
     {
       "date": "1997-08-11",
-      "duration_ms": 817868,
-      "duration_min": 13.631133333333333,
+      "duration_ms": 809088,
+      "duration_min": 13.4848,
       "venue": "Deer Creek Music Center",
       "position": 8
     },
@@ -27883,8 +27960,8 @@
     },
     {
       "date": "2003-02-15",
-      "duration_ms": 757812,
-      "duration_min": 12.6302,
+      "duration_ms": 729835,
+      "duration_min": 12.163916666666667,
       "venue": "Thomas & Mack Center",
       "position": 8
     },
@@ -27911,8 +27988,8 @@
     },
     {
       "date": "2003-07-17",
-      "duration_ms": 874527,
-      "duration_min": 14.57545,
+      "duration_ms": 782629,
+      "duration_min": 13.043816666666666,
       "venue": "Verizon Wireless Amphitheater Kansas City",
       "position": 16
     },
@@ -27988,8 +28065,8 @@
     },
     {
       "date": "2009-03-07",
-      "duration_ms": 601522,
-      "duration_min": 10.025366666666667,
+      "duration_ms": 581832,
+      "duration_min": 9.6972,
       "venue": "Hampton Coliseum",
       "position": 15
     },
@@ -28009,8 +28086,8 @@
     },
     {
       "date": "2009-06-04",
-      "duration_ms": 643109,
-      "duration_min": 10.718483333333333,
+      "duration_ms": 598335,
+      "duration_min": 9.97225,
       "venue": "Nikon at Jones Beach Theater",
       "position": 9
     },
@@ -28023,8 +28100,8 @@
     },
     {
       "date": "2009-08-01",
-      "duration_ms": 762410,
-      "duration_min": 12.706833333333334,
+      "duration_ms": 749244,
+      "duration_min": 12.4874,
       "venue": "Red Rocks Amphitheatre",
       "position": 9
     },
@@ -28037,8 +28114,8 @@
     },
     {
       "date": "2009-08-16",
-      "duration_ms": 584934,
-      "duration_min": 9.7489,
+      "duration_ms": 563148,
+      "duration_min": 9.3858,
       "venue": "Saratoga Performing Arts Center",
       "position": 12
     },
@@ -28058,15 +28135,15 @@
     },
     {
       "date": "2010-08-14",
-      "duration_ms": 639660,
-      "duration_min": 10.661,
+      "duration_ms": 613538,
+      "duration_min": 10.225633333333333,
       "venue": "Alpine Valley Music Theatre",
       "position": 14
     },
     {
       "date": "2010-08-18",
-      "duration_ms": 708206,
-      "duration_min": 11.803433333333333,
+      "duration_ms": 677851,
+      "duration_min": 11.297516666666667,
       "venue": "Nikon at Jones Beach Theater",
       "position": 11
     },
@@ -28086,29 +28163,29 @@
     },
     {
       "date": "2010-10-11",
-      "duration_ms": 591909,
-      "duration_min": 9.86515,
+      "duration_ms": 565342,
+      "duration_min": 9.422366666666667,
       "venue": "1stBank Center",
       "position": 10
     },
     {
       "date": "2010-10-15",
-      "duration_ms": 624118,
-      "duration_min": 10.401966666666667,
+      "duration_ms": 612441,
+      "duration_min": 10.20735,
       "venue": "North Charleston Coliseum",
       "position": 13
     },
     {
       "date": "2010-10-20",
-      "duration_ms": 784039,
-      "duration_min": 13.067316666666667,
+      "duration_ms": 739736,
+      "duration_min": 12.328933333333334,
       "venue": "Utica Memorial Auditorium",
       "position": 11
     },
     {
       "date": "2010-10-24",
-      "duration_ms": 599562,
-      "duration_min": 9.9927,
+      "duration_ms": 587442,
+      "duration_min": 9.7907,
       "venue": "Mullins Center, University of Massachusetts",
       "position": 9
     },
@@ -28121,8 +28198,8 @@
     },
     {
       "date": "2011-05-29",
-      "duration_ms": 617691,
-      "duration_min": 10.29485,
+      "duration_ms": 605048,
+      "duration_min": 10.084133333333334,
       "venue": "Bethel Woods Center for the Arts",
       "position": 12
     },
@@ -28142,15 +28219,15 @@
     },
     {
       "date": "2011-06-14",
-      "duration_ms": 648098,
-      "duration_min": 10.801633333333333,
+      "duration_ms": 526446,
+      "duration_min": 8.7741,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
       "position": 20
     },
     {
       "date": "2011-06-18",
-      "duration_ms": 589087,
-      "duration_min": 9.818116666666667,
+      "duration_ms": 554841,
+      "duration_min": 9.24735,
       "venue": "Time Warner Cable Music Pavilion at Walnut Creek ",
       "position": 10
     },
@@ -28198,15 +28275,15 @@
     },
     {
       "date": "2011-08-17",
-      "duration_ms": 724010,
-      "duration_min": 12.066833333333333,
+      "duration_ms": 535641,
+      "duration_min": 8.92735,
       "venue": "UIC Pavilion, University of Illinois",
       "position": 24
     },
     {
       "date": "2011-08-06",
-      "duration_ms": 847438,
-      "duration_min": 14.123966666666666,
+      "duration_ms": 682632,
+      "duration_min": 11.3772,
       "venue": "Gorge Amphitheatre",
       "position": 20
     },
@@ -28247,15 +28324,15 @@
     },
     {
       "date": "2012-07-03",
-      "duration_ms": 745718,
-      "duration_min": 12.428633333333334,
+      "duration_ms": 718629,
+      "duration_min": 11.97715,
       "venue": "Nikon at Jones Beach Theater",
       "position": 23
     },
     {
       "date": "2012-07-06",
-      "duration_ms": 667716,
-      "duration_min": 11.1286,
+      "duration_ms": 634932,
+      "duration_min": 10.5822,
       "venue": "Saratoga Performing Arts Center",
       "position": 26
     },
@@ -28289,8 +28366,8 @@
     },
     {
       "date": "2012-08-22",
-      "duration_ms": 647863,
-      "duration_min": 10.797716666666666,
+      "duration_ms": 628080,
+      "duration_min": 10.468,
       "venue": "Starlight Theatre",
       "position": 10
     },
@@ -28310,8 +28387,8 @@
     },
     {
       "date": "2011-07-02",
-      "duration_ms": 625842,
-      "duration_min": 10.4307,
+      "duration_ms": 607948,
+      "duration_min": 10.132466666666666,
       "venue": "Watkins Glen International",
       "position": 29
     },
@@ -28390,7 +28467,7 @@
       "duration_ms": 508291,
       "duration_min": 8.471516666666666,
       "venue": "Hunt's",
-      "position": 8
+      "position": 9
     },
     {
       "date": "2013-07-03",
@@ -28408,8 +28485,8 @@
     },
     {
       "date": "2013-07-14",
-      "duration_ms": 656118,
-      "duration_min": 10.9353,
+      "duration_ms": 620434,
+      "duration_min": 10.340566666666666,
       "venue": "Merriweather Post Pavilion",
       "position": 11
     },
@@ -28422,8 +28499,8 @@
     },
     {
       "date": "2013-07-21",
-      "duration_ms": 737071,
-      "duration_min": 12.284516666666667,
+      "duration_ms": 634645,
+      "duration_min": 10.577416666666666,
       "venue": "FirstMerit Bank Pavilion at Northerly Island",
       "position": 15
     },
@@ -28443,8 +28520,8 @@
     },
     {
       "date": "2013-10-18",
-      "duration_ms": 771762,
-      "duration_min": 12.8627,
+      "duration_ms": 594442,
+      "duration_min": 9.907366666666666,
       "venue": "Hampton Coliseum",
       "position": 21
     },
@@ -28471,8 +28548,8 @@
     },
     {
       "date": "2012-12-30",
-      "duration_ms": 623647,
-      "duration_min": 10.394116666666667,
+      "duration_ms": 585535,
+      "duration_min": 9.758916666666666,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -28499,8 +28576,8 @@
     },
     {
       "date": "2013-12-28",
-      "duration_ms": 784562,
-      "duration_min": 13.076033333333333,
+      "duration_ms": 566047,
+      "duration_min": 9.434116666666666,
       "venue": "Madison Square Garden",
       "position": 20
     },
@@ -28569,22 +28646,22 @@
     },
     {
       "date": "2014-07-03",
-      "duration_ms": 634201,
-      "duration_min": 10.570016666666668,
+      "duration_ms": 608131,
+      "duration_min": 10.135516666666666,
       "venue": "Saratoga Performing Arts Center",
       "position": 19
     },
     {
       "date": "2014-07-09",
-      "duration_ms": 627148,
-      "duration_min": 10.452466666666666,
+      "duration_ms": 608235,
+      "duration_min": 10.13725,
       "venue": "The Mann Center for the Performing Arts",
       "position": 12
     },
     {
       "date": "2014-07-12",
-      "duration_ms": 598805,
-      "duration_min": 9.980083333333333,
+      "duration_ms": 585639,
+      "duration_min": 9.76065,
       "venue": "Randall's Island",
       "position": 13
     },
@@ -28625,15 +28702,15 @@
     },
     {
       "date": "2014-10-22",
-      "duration_ms": 682188,
-      "duration_min": 11.3698,
+      "duration_ms": 660428,
+      "duration_min": 11.007133333333334,
       "venue": "Santa Barbara Bowl",
       "position": 24
     },
     {
       "date": "2014-10-28",
-      "duration_ms": 636369,
-      "duration_min": 10.60615,
+      "duration_ms": 601626,
+      "duration_min": 10.0271,
       "venue": "Bill Graham Civic Auditorium",
       "position": 12
     },
@@ -28656,19 +28733,19 @@
       "duration_ms": 675096,
       "duration_min": 11.2516,
       "venue": "Webster Hall, Dartmouth College",
-      "position": 8
+      "position": 9
     },
     {
       "date": "2015-07-28",
-      "duration_ms": 670694,
-      "duration_min": 11.178233333333333,
+      "duration_ms": 647549,
+      "duration_min": 10.792483333333333,
       "venue": "Austin360 Amphitheater",
       "position": 12
     },
     {
       "date": "2015-08-01",
-      "duration_ms": 636813,
-      "duration_min": 10.61355,
+      "duration_ms": 604552,
+      "duration_min": 10.075866666666666,
       "venue": "Aaron's Amphitheatre at Lakewood",
       "position": 9
     },
@@ -28681,15 +28758,15 @@
     },
     {
       "date": "2015-08-15",
-      "duration_ms": 896287,
-      "duration_min": 14.938116666666666,
+      "duration_ms": 812643,
+      "duration_min": 13.54405,
       "venue": "Merriweather Post Pavilion",
       "position": 12
     },
     {
       "date": "2015-08-22",
-      "duration_ms": 755357,
-      "duration_min": 12.589283333333332,
+      "duration_ms": 661344,
+      "duration_min": 11.0224,
       "venue": "Watkins Glen International",
       "position": 13
     },
@@ -28709,8 +28786,8 @@
     },
     {
       "date": "2016-01-01",
-      "duration_ms": 751909,
-      "duration_min": 12.531816666666666,
+      "duration_ms": 697051,
+      "duration_min": 11.617516666666667,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -28723,8 +28800,8 @@
     },
     {
       "date": "2009-11-25",
-      "duration_ms": 722651,
-      "duration_min": 12.044183333333333,
+      "duration_ms": 690834,
+      "duration_min": 11.5139,
       "venue": "Wachovia Center",
       "position": 10
     },
@@ -28751,8 +28828,8 @@
     },
     {
       "date": "2016-07-18",
-      "duration_ms": 596715,
-      "duration_min": 9.94525,
+      "duration_ms": 572029,
+      "duration_min": 9.533816666666667,
       "venue": "Bill Graham Civic Auditorium",
       "position": 20
     },
@@ -28772,15 +28849,15 @@
     },
     {
       "date": "2016-10-16",
-      "duration_ms": 601208,
-      "duration_min": 10.020133333333334,
+      "duration_ms": 576549,
+      "duration_min": 9.60915,
       "venue": "Jacksonville Veterans Memorial Arena",
       "position": 18
     },
     {
       "date": "2016-10-22",
-      "duration_ms": 696294,
-      "duration_min": 11.6049,
+      "duration_ms": 667298,
+      "duration_min": 11.121633333333333,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
       "position": 12
     },
@@ -28793,8 +28870,8 @@
     },
     {
       "date": "2017-01-13",
-      "duration_ms": 849345,
-      "duration_min": 14.15575,
+      "duration_ms": 655752,
+      "duration_min": 10.9292,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 17
     },
@@ -28807,15 +28884,15 @@
     },
     {
       "date": "2017-07-16",
-      "duration_ms": 634018,
-      "duration_min": 10.566966666666668,
+      "duration_ms": 621349,
+      "duration_min": 10.355816666666666,
       "venue": "Huntington Bank Pavilion at Northerly Island",
       "position": 10
     },
     {
       "date": "2017-08-02",
-      "duration_ms": 698984,
-      "duration_min": 11.649733333333334,
+      "duration_ms": 667638,
+      "duration_min": 11.1273,
       "venue": "Madison Square Garden",
       "position": 12
     },
@@ -28898,8 +28975,8 @@
     },
     {
       "date": "2018-09-02",
-      "duration_ms": 637392,
-      "duration_min": 10.6232,
+      "duration_ms": 621840,
+      "duration_min": 10.364,
       "venue": "Dick's Sporting Goods Park",
       "position": 13
     },
@@ -28912,8 +28989,8 @@
     },
     {
       "date": "2018-10-31",
-      "duration_ms": 837642,
-      "duration_min": 13.9607,
+      "duration_ms": 661342,
+      "duration_min": 11.022366666666667,
       "venue": "MGM Grand Garden Arena",
       "position": 26
     },
@@ -28933,8 +29010,8 @@
     },
     {
       "date": "2019-06-12",
-      "duration_ms": 690260,
-      "duration_min": 11.504333333333333,
+      "duration_ms": 668029,
+      "duration_min": 11.133816666666666,
       "venue": "Chaifetz Arena, Saint Louis University",
       "position": 11
     },
@@ -28996,8 +29073,8 @@
     },
     {
       "date": "2021-08-10",
-      "duration_ms": 625816,
-      "duration_min": 10.430266666666666,
+      "duration_ms": 600242,
+      "duration_min": 10.004033333333334,
       "venue": "Hersheypark Stadium",
       "position": 11
     },
@@ -29024,8 +29101,8 @@
     },
     {
       "date": "2022-02-25",
-      "duration_ms": 689256,
-      "duration_min": 11.4876,
+      "duration_ms": 647328,
+      "duration_min": 10.7888,
       "venue": "Moon Palace",
       "position": 16
     },
@@ -29400,7 +29477,7 @@
       "duration_ms": 356258,
       "duration_min": 5.937633333333333,
       "venue": "St. Lawrence University",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1992-05-17",
@@ -29505,7 +29582,7 @@
       "duration_ms": 393300,
       "duration_min": 6.555,
       "venue": "The Vic Theatre",
-      "position": 2
+      "position": 7
     },
     {
       "date": "1992-12-07",
@@ -29778,7 +29855,7 @@
       "duration_ms": 380317,
       "duration_min": 6.338616666666667,
       "venue": "Le Spectrum",
-      "position": 11
+      "position": 12
     },
     {
       "date": "1993-02-12",
@@ -29799,7 +29876,7 @@
       "duration_ms": 458005,
       "duration_min": 7.633416666666666,
       "venue": "Electric Ballroom",
-      "position": 1
+      "position": 2
     },
     {
       "date": "1993-02-21",
@@ -29967,7 +30044,7 @@
       "duration_ms": 370364,
       "duration_min": 6.172733333333333,
       "venue": "State Theatre",
-      "position": 1
+      "position": 2
     },
     {
       "date": "1993-05-01",
@@ -30065,7 +30142,7 @@
       "duration_ms": 365662,
       "duration_min": 6.094366666666667,
       "venue": "The Macauley Theater",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-08-20",
@@ -30086,7 +30163,7 @@
       "duration_ms": 436323,
       "duration_min": 7.27205,
       "venue": "Commodore Ballroom",
-      "position": 1
+      "position": 2
     },
     {
       "date": "1993-08-28",
@@ -30184,7 +30261,7 @@
       "duration_ms": 358060,
       "duration_min": 5.967666666666666,
       "venue": "Wheeler Opera House",
-      "position": 20
+      "position": 22
     },
     {
       "date": "1991-03-23",
@@ -31028,8 +31105,8 @@
     },
     {
       "date": "1997-12-05",
-      "duration_ms": 726256,
-      "duration_min": 12.104266666666666,
+      "duration_ms": 552576,
+      "duration_min": 9.2096,
       "venue": "CSU Convocation Center",
       "position": 17
     },
@@ -31378,8 +31455,8 @@
     },
     {
       "date": "2003-12-31",
-      "duration_ms": 304464,
-      "duration_min": 5.0744,
+      "duration_ms": 296088,
+      "duration_min": 4.9348,
       "venue": "American Airlines Arena",
       "position": 15
     },
@@ -31623,8 +31700,8 @@
     },
     {
       "date": "2010-10-24",
-      "duration_ms": 375850,
-      "duration_min": 6.264166666666667,
+      "duration_ms": 363128,
+      "duration_min": 6.052133333333333,
       "venue": "Mullins Center, University of Massachusetts",
       "position": 22
     },
@@ -31714,8 +31791,8 @@
     },
     {
       "date": "2011-08-12",
-      "duration_ms": 525714,
-      "duration_min": 8.7619,
+      "duration_ms": 389747,
+      "duration_min": 6.495783333333334,
       "venue": "Polo Fields, Golden Gate Park",
       "position": 25
     },
@@ -32176,8 +32253,8 @@
     },
     {
       "date": "2015-07-21",
-      "duration_ms": 543478,
-      "duration_min": 9.057966666666667,
+      "duration_ms": 398341,
+      "duration_min": 6.639016666666667,
       "venue": "Les Schwab Amphitheater",
       "position": 20
     },
@@ -32274,8 +32351,8 @@
     },
     {
       "date": "2016-07-19",
-      "duration_ms": 394475,
-      "duration_min": 6.574583333333333,
+      "duration_ms": 365140,
+      "duration_min": 6.085666666666667,
       "venue": "Bill Graham Civic Auditorium",
       "position": 1
     },
@@ -32337,8 +32414,8 @@
     },
     {
       "date": "2017-07-18",
-      "duration_ms": 612232,
-      "duration_min": 10.203866666666666,
+      "duration_ms": 427729,
+      "duration_min": 7.128816666666666,
       "venue": "Ervin J. Nutter Center, Wright State University",
       "position": 16
     },
@@ -32393,8 +32470,8 @@
     },
     {
       "date": "2018-08-12",
-      "duration_ms": 670968,
-      "duration_min": 11.1828,
+      "duration_ms": 590136,
+      "duration_min": 9.8356,
       "venue": "Merriweather Post Pavilion",
       "position": 8
     },
@@ -32435,8 +32512,8 @@
     },
     {
       "date": "2019-02-23",
-      "duration_ms": 607848,
-      "duration_min": 10.1308,
+      "duration_ms": 591144,
+      "duration_min": 9.8524,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 8
     },
@@ -33511,7 +33588,7 @@
       "duration_ms": 581068,
       "duration_min": 9.684466666666667,
       "venue": "Electric Ballroom",
-      "position": 12
+      "position": 13
     },
     {
       "date": "1993-02-21",
@@ -33581,7 +33658,7 @@
       "duration_ms": 658704,
       "duration_min": 10.9784,
       "venue": "Paul Wright Gym, Western State College",
-      "position": 5
+      "position": 8
     },
     {
       "date": "1993-03-17",
@@ -33714,7 +33791,7 @@
       "duration_ms": 675971,
       "duration_min": 11.266183333333334,
       "venue": "State Theatre",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1993-05-05",
@@ -34071,7 +34148,7 @@
       "duration_ms": 481541,
       "duration_min": 8.025683333333333,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 5
+      "position": 6
     },
     {
       "date": "1991-10-28",
@@ -34092,7 +34169,7 @@
       "duration_ms": 506227,
       "duration_min": 8.437116666666666,
       "venue": "Cochran Lounge, Student Union, Macalester College",
-      "position": 14
+      "position": 16
     },
     {
       "date": "1991-11-01",
@@ -35349,8 +35426,8 @@
     },
     {
       "date": "2013-07-31",
-      "duration_ms": 637388,
-      "duration_min": 10.623133333333334,
+      "duration_ms": 623752,
+      "duration_min": 10.395866666666667,
       "venue": "Lake Tahoe Outdoor Arena at Harveys",
       "position": 13
     },
@@ -36292,7 +36369,7 @@
       "duration_ms": 868754,
       "duration_min": 14.479233333333333,
       "venue": "The Vic Theatre",
-      "position": 15
+      "position": 20
     },
     {
       "date": "1992-12-07",
@@ -36320,14 +36397,14 @@
       "duration_ms": 649012,
       "duration_min": 10.816866666666666,
       "venue": "Symphony Hall",
-      "position": 24
+      "position": 8
     },
     {
       "date": "1992-12-30",
       "duration_ms": 243984,
       "duration_min": 4.0664,
       "venue": "Symphony Hall",
-      "position": 8
+      "position": 9
     },
     {
       "date": "1994-04-04",
@@ -36579,7 +36656,7 @@
       "duration_ms": 801672,
       "duration_min": 13.3612,
       "venue": "Electric Ballroom",
-      "position": 8
+      "position": 9
     },
     {
       "date": "1993-02-20",
@@ -36614,7 +36691,7 @@
       "duration_ms": 780251,
       "duration_min": 13.004183333333334,
       "venue": "Paul Wright Gym, Western State College",
-      "position": 8
+      "position": 11
     },
     {
       "date": "1993-03-17",
@@ -37090,7 +37167,7 @@
       "duration_ms": 636003,
       "duration_min": 10.60005,
       "venue": "McCullough Social Hall, McCullough Student Center, Middlebury College",
-      "position": 3
+      "position": 8
     },
     {
       "date": "1991-12-07",
@@ -37426,7 +37503,7 @@
       "duration_ms": 663040,
       "duration_min": 11.050666666666666,
       "venue": "The Clarke Memorial Fountain, Notre Dame University",
-      "position": 2
+      "position": 3
     },
     {
       "date": "1990-05-04",
@@ -37468,7 +37545,7 @@
       "duration_ms": 712856,
       "duration_min": 11.880933333333333,
       "venue": "Hamilton College",
-      "position": 2
+      "position": 5
     },
     {
       "date": "1990-05-19",
@@ -37566,7 +37643,7 @@
       "duration_ms": 655935,
       "duration_min": 10.93225,
       "venue": "El Dorado Caf\u00e9",
-      "position": 15
+      "position": 16
     },
     {
       "date": "1990-10-31",
@@ -38406,7 +38483,7 @@
       "duration_ms": 719304,
       "duration_min": 11.9884,
       "venue": "Webster Hall, Dartmouth College",
-      "position": 12
+      "position": 14
     },
     {
       "date": "1994-05-06",
@@ -38560,7 +38637,7 @@
       "duration_ms": 756036,
       "duration_min": 12.6006,
       "venue": "Le Spectrum",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1993-04-03",
@@ -38961,7 +39038,7 @@
       "duration_ms": 410671,
       "duration_min": 6.844516666666666,
       "venue": "Hunt's",
-      "position": 27
+      "position": 28
     },
     {
       "date": "1994-04-09",
@@ -39213,21 +39290,14 @@
       "duration_ms": 385045,
       "duration_min": 6.417416666666667,
       "venue": "Wheeler Opera House",
-      "position": 19
+      "position": 20
     },
     {
       "date": "1991-10-24",
       "duration_ms": 447216,
       "duration_min": 7.4536,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 18
-    },
-    {
-      "date": "1989-04-15",
-      "duration_ms": 432091,
-      "duration_min": 7.201516666666667,
-      "venue": "Billings Lounge, University of Vermont",
-      "position": 17
+      "position": 19
     },
     {
       "date": "1989-05-26",
@@ -39518,8 +39588,8 @@
     },
     {
       "date": "1997-07-21",
-      "duration_ms": 942890,
-      "duration_min": 15.714833333333333,
+      "duration_ms": 804937,
+      "duration_min": 13.415616666666667,
       "venue": "GTE Virginia Beach Amphitheater",
       "position": 14
     },
@@ -39553,8 +39623,8 @@
     },
     {
       "date": "1997-03-18",
-      "duration_ms": 648829,
-      "duration_min": 10.813816666666666,
+      "duration_ms": 630936,
+      "duration_min": 10.5156,
       "venue": "The Flynn Theatre",
       "position": 20
     },
@@ -39581,8 +39651,8 @@
     },
     {
       "date": "1997-11-14",
-      "duration_ms": 980846,
-      "duration_min": 16.347433333333335,
+      "duration_ms": 903837,
+      "duration_min": 15.06395,
       "venue": "The \u201cE\u201d Center",
       "position": 12
     },
@@ -39749,15 +39819,15 @@
     },
     {
       "date": "2003-07-15",
-      "duration_ms": 681247,
-      "duration_min": 11.354116666666666,
+      "duration_ms": 646531,
+      "duration_min": 10.775516666666666,
       "venue": "USANA Amphitheatre",
       "position": 22
     },
     {
       "date": "2003-07-23",
-      "duration_ms": 789002,
-      "duration_min": 13.150033333333333,
+      "duration_ms": 649639,
+      "duration_min": 10.827316666666666,
       "venue": "Verizon Wireless Music Center",
       "position": 15
     },
@@ -39819,8 +39889,8 @@
     },
     {
       "date": "2009-03-08",
-      "duration_ms": 811860,
-      "duration_min": 13.531,
+      "duration_ms": 588931,
+      "duration_min": 9.815516666666667,
       "venue": "Hampton Coliseum",
       "position": 26
     },
@@ -39854,8 +39924,8 @@
     },
     {
       "date": "2010-08-13",
-      "duration_ms": 670903,
-      "duration_min": 11.181716666666667,
+      "duration_ms": 637127,
+      "duration_min": 10.618783333333333,
       "venue": "Verizon Wireless Music Center",
       "position": 23
     },
@@ -39889,8 +39959,8 @@
     },
     {
       "date": "2010-10-20",
-      "duration_ms": 822648,
-      "duration_min": 13.7108,
+      "duration_ms": 645329,
+      "duration_min": 10.755483333333334,
       "venue": "Utica Memorial Auditorium",
       "position": 22
     },
@@ -40001,15 +40071,15 @@
     },
     {
       "date": "2012-07-04",
-      "duration_ms": 640679,
-      "duration_min": 10.677983333333334,
+      "duration_ms": 547840,
+      "duration_min": 9.130666666666666,
       "venue": "Nikon at Jones Beach Theater",
       "position": 25
     },
     {
       "date": "2012-08-17",
-      "duration_ms": 637022,
-      "duration_min": 10.617033333333334,
+      "duration_ms": 553352,
+      "duration_min": 9.222533333333333,
       "venue": "Bill Graham Civic Auditorium",
       "position": 11
     },
@@ -40071,8 +40141,8 @@
     },
     {
       "date": "2013-07-05",
-      "duration_ms": 779154,
-      "duration_min": 12.9859,
+      "duration_ms": 738638,
+      "duration_min": 12.310633333333334,
       "venue": "Saratoga Performing Arts Center",
       "position": 19
     },
@@ -40127,15 +40197,15 @@
     },
     {
       "date": "2012-12-30",
-      "duration_ms": 831373,
-      "duration_min": 13.856216666666667,
+      "duration_ms": 634436,
+      "duration_min": 10.573933333333333,
       "venue": "Madison Square Garden",
       "position": 16
     },
     {
       "date": "2013-12-30",
-      "duration_ms": 592405,
-      "duration_min": 9.873416666666667,
+      "duration_ms": 556748,
+      "duration_min": 9.279133333333334,
       "venue": "Madison Square Garden",
       "position": 20
     },
@@ -40183,8 +40253,8 @@
     },
     {
       "date": "1997-07-01",
-      "duration_ms": 723043,
-      "duration_min": 12.050716666666666,
+      "duration_ms": 691226,
+      "duration_min": 11.520433333333333,
       "venue": "Paradiso",
       "position": 16
     },
@@ -40239,8 +40309,8 @@
     },
     {
       "date": "2014-07-18",
-      "duration_ms": 739448,
-      "duration_min": 12.324133333333334,
+      "duration_ms": 625528,
+      "duration_min": 10.425466666666667,
       "venue": "FirstMerit Bank Pavilion at Northerly Island",
       "position": 20
     },
@@ -40253,8 +40323,8 @@
     },
     {
       "date": "2014-11-02",
-      "duration_ms": 687308,
-      "duration_min": 11.455133333333333,
+      "duration_ms": 541231,
+      "duration_min": 9.020516666666667,
       "venue": "MGM Grand Garden Arena",
       "position": 19
     },
@@ -40281,8 +40351,8 @@
     },
     {
       "date": "2015-07-25",
-      "duration_ms": 679680,
-      "duration_min": 11.328,
+      "duration_ms": 664137,
+      "duration_min": 11.06895,
       "venue": "The Forum",
       "position": 17
     },
@@ -40295,8 +40365,8 @@
     },
     {
       "date": "2015-08-08",
-      "duration_ms": 812147,
-      "duration_min": 13.535783333333333,
+      "duration_ms": 658338,
+      "duration_min": 10.9723,
       "venue": "Alpine Valley Music Theatre",
       "position": 17
     },
@@ -40358,8 +40428,8 @@
     },
     {
       "date": "2016-10-21",
-      "duration_ms": 803605,
-      "duration_min": 13.393416666666667,
+      "duration_ms": 646034,
+      "duration_min": 10.767233333333333,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
       "position": 17
     },
@@ -40379,8 +40449,8 @@
     },
     {
       "date": "2017-01-15",
-      "duration_ms": 661447,
-      "duration_min": 11.024116666666666,
+      "duration_ms": 653427,
+      "duration_min": 10.89045,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 18
     },
@@ -40449,8 +40519,8 @@
     },
     {
       "date": "2018-07-27",
-      "duration_ms": 704313,
-      "duration_min": 11.73855,
+      "duration_ms": 555337,
+      "duration_min": 9.255616666666667,
       "venue": "The Forum",
       "position": 16
     },
@@ -40491,8 +40561,8 @@
     },
     {
       "date": "2018-12-28",
-      "duration_ms": 643448,
-      "duration_min": 10.724133333333333,
+      "duration_ms": 602540,
+      "duration_min": 10.042333333333334,
       "venue": "Madison Square Garden",
       "position": 20
     },
@@ -40505,8 +40575,8 @@
     },
     {
       "date": "2019-06-11",
-      "duration_ms": 690000,
-      "duration_min": 11.5,
+      "duration_ms": 680232,
+      "duration_min": 11.3372,
       "venue": "Chaifetz Arena, Saint Louis University",
       "position": 17
     },
@@ -40859,6 +40929,13 @@
       "duration_min": 9.446,
       "venue": "Madison Square Garden",
       "position": 15
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 432091,
+      "duration_min": 7.201516666666667,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 20
     }
   ],
   "light": [
@@ -41357,7 +41434,7 @@
       "duration_ms": 940121,
       "duration_min": 15.668683333333334,
       "venue": "Watkins Glen International",
-      "position": 24
+      "position": 25
     },
     {
       "date": "2015-09-05",
@@ -41494,8 +41571,8 @@
     },
     {
       "date": "2018-08-31",
-      "duration_ms": 1080432,
-      "duration_min": 18.0072,
+      "duration_ms": 1053336,
+      "duration_min": 17.5556,
       "venue": "Dick's Sporting Goods Park",
       "position": 14
     },
@@ -42532,8 +42609,8 @@
     },
     {
       "date": "2018-12-29",
-      "duration_ms": 406752,
-      "duration_min": 6.7792,
+      "duration_ms": 392832,
+      "duration_min": 6.5472,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -43150,8 +43227,8 @@
     },
     {
       "date": "2016-06-28",
-      "duration_ms": 982700,
-      "duration_min": 16.378333333333334,
+      "duration_ms": 933695,
+      "duration_min": 15.561583333333333,
       "venue": "The Mann Center for the Performing Arts",
       "position": 13
     },
@@ -43192,15 +43269,15 @@
     },
     {
       "date": "2016-09-03",
-      "duration_ms": 677616,
-      "duration_min": 11.2936,
+      "duration_ms": 648333,
+      "duration_min": 10.80555,
       "venue": "Dick's Sporting Goods Park",
       "position": 12
     },
     {
       "date": "2014-07-14",
-      "duration_ms": 597290,
-      "duration_min": 9.954833333333333,
+      "duration_ms": 591408,
+      "duration_min": 9.8568,
       "venue": "NBC Studios",
       "position": 2
     },
@@ -43255,8 +43332,8 @@
     },
     {
       "date": "2017-07-25",
-      "duration_ms": 1180896,
-      "duration_min": 19.6816,
+      "duration_ms": 1111800,
+      "duration_min": 18.53,
       "venue": "Madison Square Garden",
       "position": 6
     },
@@ -44258,8 +44335,8 @@
     },
     {
       "date": "2017-07-28",
-      "duration_ms": 713927,
-      "duration_min": 11.898783333333334,
+      "duration_ms": 690233,
+      "duration_min": 11.503883333333333,
       "venue": "Madison Square Garden",
       "position": 11
     },
@@ -44293,8 +44370,8 @@
     },
     {
       "date": "2018-08-05",
-      "duration_ms": 679419,
-      "duration_min": 11.32365,
+      "duration_ms": 640340,
+      "duration_min": 10.672333333333333,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
       "position": 8
     },
@@ -44342,8 +44419,8 @@
     },
     {
       "date": "2019-02-21",
-      "duration_ms": 613848,
-      "duration_min": 10.2308,
+      "duration_ms": 595320,
+      "duration_min": 9.922,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 9
     },
@@ -44766,6 +44843,13 @@
       "duration_min": 13.3096,
       "venue": "Fenway Park",
       "position": 8
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 1001280,
+      "duration_min": 16.688,
+      "venue": "Enmarket Arena",
+      "position": 9
     }
   ],
   "twist": [
@@ -45569,8 +45653,8 @@
     },
     {
       "date": "2015-12-31",
-      "duration_ms": 995579,
-      "duration_min": 16.592983333333333,
+      "duration_ms": 966635,
+      "duration_min": 16.110583333333334,
       "venue": "Madison Square Garden",
       "position": 15
     },
@@ -45625,8 +45709,8 @@
     },
     {
       "date": "2014-06-24",
-      "duration_ms": 620774,
-      "duration_min": 10.346233333333334,
+      "duration_ms": 527047,
+      "duration_min": 8.784116666666666,
       "venue": "Ed Sullivan Theater",
       "position": 8
     },
@@ -46148,7 +46232,7 @@
       "duration_ms": 669336,
       "duration_min": 11.1556,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 3
+      "position": 4
     },
     {
       "date": "1992-04-23",
@@ -46239,7 +46323,7 @@
       "duration_ms": 480261,
       "duration_min": 8.00435,
       "venue": "The Vic Theatre",
-      "position": 6
+      "position": 11
     },
     {
       "date": "1992-12-07",
@@ -46582,7 +46666,7 @@
       "duration_ms": 630753,
       "duration_min": 10.51255,
       "venue": "Le Spectrum",
-      "position": 1
+      "position": 2
     },
     {
       "date": "1993-02-12",
@@ -46813,7 +46897,7 @@
       "duration_ms": 745874,
       "duration_min": 12.431233333333333,
       "venue": "Commodore Ballroom",
-      "position": 6
+      "position": 7
     },
     {
       "date": "1993-08-06",
@@ -47080,13 +47164,6 @@
       "duration_min": 7.90335,
       "venue": "Greenfield Armory Castle",
       "position": 6
-    },
-    {
-      "date": "1989-04-15",
-      "duration_ms": 611840,
-      "duration_min": 10.197333333333333,
-      "venue": "Billings Lounge, University of Vermont",
-      "position": 20
     },
     {
       "date": "1989-04-20",
@@ -47377,8 +47454,8 @@
     },
     {
       "date": "1990-02-15",
-      "duration_ms": 513802,
-      "duration_min": 8.563366666666667,
+      "duration_ms": 457008,
+      "duration_min": 7.6168,
       "venue": "The Living Room",
       "position": 11
     },
@@ -47415,7 +47492,7 @@
       "duration_ms": 584020,
       "duration_min": 9.733666666666666,
       "venue": "Hamilton College",
-      "position": 10
+      "position": 13
     },
     {
       "date": "1990-09-15",
@@ -47769,8 +47846,8 @@
     },
     {
       "date": "2003-01-04",
-      "duration_ms": 769620,
-      "duration_min": 12.827,
+      "duration_ms": 747840,
+      "duration_min": 12.464,
       "venue": "Hampton Coliseum",
       "position": 9
     },
@@ -47783,8 +47860,8 @@
     },
     {
       "date": "2004-06-23",
-      "duration_ms": 864679,
-      "duration_min": 14.411316666666666,
+      "duration_ms": 846237,
+      "duration_min": 14.10395,
       "venue": "Verizon Wireless Music Center",
       "position": 7
     },
@@ -47832,8 +47909,8 @@
     },
     {
       "date": "2009-06-05",
-      "duration_ms": 773460,
-      "duration_min": 12.891,
+      "duration_ms": 718550,
+      "duration_min": 11.975833333333334,
       "venue": "Nikon at Jones Beach Theater",
       "position": 10
     },
@@ -47979,8 +48056,8 @@
     },
     {
       "date": "2013-07-13",
-      "duration_ms": 703478,
-      "duration_min": 11.724633333333333,
+      "duration_ms": 667350,
+      "duration_min": 11.1225,
       "venue": "Merriweather Post Pavilion",
       "position": 8
     },
@@ -47993,8 +48070,8 @@
     },
     {
       "date": "2013-10-23",
-      "duration_ms": 764317,
-      "duration_min": 12.738616666666667,
+      "duration_ms": 725238,
+      "duration_min": 12.0873,
       "venue": "Glens Falls Civic Center",
       "position": 13
     },
@@ -48049,8 +48126,8 @@
     },
     {
       "date": "2013-07-06",
-      "duration_ms": 1140323,
-      "duration_min": 19.005383333333334,
+      "duration_ms": 1104640,
+      "duration_min": 18.410666666666668,
       "venue": "Saratoga Performing Arts Center",
       "position": 10
     },
@@ -48063,8 +48140,8 @@
     },
     {
       "date": "2014-07-13",
-      "duration_ms": 803344,
-      "duration_min": 13.389066666666666,
+      "duration_ms": 768336,
+      "duration_min": 12.8056,
       "venue": "Randall's Island",
       "position": 11
     },
@@ -48105,8 +48182,8 @@
     },
     {
       "date": "2015-08-09",
-      "duration_ms": 776281,
-      "duration_min": 12.938016666666666,
+      "duration_ms": 747337,
+      "duration_min": 12.455616666666666,
       "venue": "Alpine Valley Music Theatre",
       "position": 10
     },
@@ -48147,8 +48224,8 @@
     },
     {
       "date": "2016-12-29",
-      "duration_ms": 733283,
-      "duration_min": 12.221383333333334,
+      "duration_ms": 693238,
+      "duration_min": 11.553966666666666,
       "venue": "Madison Square Garden",
       "position": 12
     },
@@ -48175,8 +48252,8 @@
     },
     {
       "date": "2018-07-22",
-      "duration_ms": 1148787,
-      "duration_min": 19.14645,
+      "duration_ms": 1030531,
+      "duration_min": 17.175516666666667,
       "venue": "Gorge Amphitheatre",
       "position": 15
     },
@@ -48508,6 +48585,20 @@
       "duration_min": 12.8832,
       "venue": "Madison Square Garden",
       "position": 21
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 611840,
+      "duration_min": 10.197333333333333,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 23
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 1886880,
+      "duration_min": 31.448,
+      "venue": "Enmarket Arena",
+      "position": 8
     }
   ],
   "maze": [
@@ -48600,7 +48691,7 @@
       "duration_ms": 490527,
       "duration_min": 8.17545,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 25
+      "position": 27
     },
     {
       "date": "1992-04-23",
@@ -48810,7 +48901,7 @@
       "duration_ms": 597682,
       "duration_min": 9.961366666666667,
       "venue": "The Vic Theatre",
-      "position": 17
+      "position": 22
     },
     {
       "date": "1992-12-07",
@@ -49167,7 +49258,7 @@
       "duration_ms": 575295,
       "duration_min": 9.58825,
       "venue": "Benton Convention Center",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-02-19",
@@ -49181,7 +49272,7 @@
       "duration_ms": 583915,
       "duration_min": 9.731916666666667,
       "venue": "The Moon",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1993-02-25",
@@ -49356,7 +49447,7 @@
       "duration_ms": 604317,
       "duration_min": 10.07195,
       "venue": "State Theatre",
-      "position": 7
+      "position": 8
     },
     {
       "date": "1993-05-05",
@@ -49447,7 +49538,7 @@
       "duration_ms": 641045,
       "duration_min": 10.684083333333334,
       "venue": "The Macauley Theater",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1993-08-17",
@@ -49468,7 +49559,7 @@
       "duration_ms": 637466,
       "duration_min": 10.624433333333334,
       "venue": "Commodore Ballroom",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1993-08-28",
@@ -50067,15 +50158,15 @@
     },
     {
       "date": "2003-02-26",
-      "duration_ms": 986149,
-      "duration_min": 16.435816666666668,
+      "duration_ms": 974446,
+      "duration_min": 16.240766666666666,
       "venue": "Worcester Centrum Centre",
       "position": 8
     },
     {
       "date": "2003-07-12",
-      "duration_ms": 1081704,
-      "duration_min": 18.0284,
+      "duration_ms": 1062844,
+      "duration_min": 17.714066666666668,
       "venue": "Gorge Amphitheatre",
       "position": 8
     },
@@ -51010,7 +51101,7 @@
       "duration_ms": 546377,
       "duration_min": 9.106283333333334,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 19
+      "position": 21
     },
     {
       "date": "1992-04-23",
@@ -51150,7 +51241,7 @@
       "duration_ms": 598491,
       "duration_min": 9.97485,
       "venue": "The Vic Theatre",
-      "position": 21
+      "position": 26
     },
     {
       "date": "1992-12-29",
@@ -51241,7 +51332,7 @@
       "duration_ms": 210077,
       "duration_min": 3.5012833333333333,
       "venue": "Veterans Memorial Auditorium",
-      "position": 17
+      "position": 19
     },
     {
       "date": "1994-07-02",
@@ -51339,14 +51430,14 @@
       "duration_ms": 256549,
       "duration_min": 4.275816666666667,
       "venue": "Le Spectrum",
-      "position": 26
+      "position": 20
     },
     {
       "date": "1993-04-29",
       "duration_ms": 344607,
       "duration_min": 5.74345,
       "venue": "Le Spectrum",
-      "position": 20
+      "position": 22
     },
     {
       "date": "1993-02-11",
@@ -51367,7 +51458,7 @@
       "duration_ms": 377496,
       "duration_min": 6.2916,
       "venue": "Electric Ballroom",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1993-02-20",
@@ -51605,7 +51696,7 @@
       "duration_ms": 604604,
       "duration_min": 10.076733333333333,
       "venue": "Commodore Ballroom",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1993-12-30",
@@ -51630,8 +51721,8 @@
     },
     {
       "date": "1988-11-11",
-      "duration_ms": 448340,
-      "duration_min": 7.472333333333333,
+      "duration_ms": 361944,
+      "duration_min": 6.0324,
       "venue": "Old Stone Church",
       "position": 13
     },
@@ -51689,7 +51780,7 @@
       "duration_ms": 392333,
       "duration_min": 6.538883333333334,
       "venue": "The Front",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1991-02-08",
@@ -51892,7 +51983,7 @@
       "duration_ms": 404532,
       "duration_min": 6.7422,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1991-10-27",
@@ -52103,13 +52194,6 @@
       "duration_min": 5.691216666666667,
       "venue": "The Front",
       "position": 9
-    },
-    {
-      "date": "1989-10-07",
-      "duration_ms": 357590,
-      "duration_min": 5.959833333333333,
-      "venue": "Chase Hall, Bates College",
-      "position": 5
     },
     {
       "date": "1989-10-21",
@@ -52340,7 +52424,7 @@
       "duration_ms": 390243,
       "duration_min": 6.50405,
       "venue": "23 East Cabaret",
-      "position": 20
+      "position": 21
     },
     {
       "date": "1990-02-15",
@@ -52445,7 +52529,7 @@
       "duration_ms": 344633,
       "duration_min": 5.743883333333334,
       "venue": "The Clarke Memorial Fountain, Notre Dame University",
-      "position": 11
+      "position": 16
     },
     {
       "date": "1990-04-26",
@@ -52480,7 +52564,7 @@
       "duration_ms": 395285,
       "duration_min": 6.5880833333333335,
       "venue": "Hamilton College",
-      "position": 7
+      "position": 10
     },
     {
       "date": "1990-05-23",
@@ -52599,7 +52683,7 @@
       "duration_ms": 344372,
       "duration_min": 5.739533333333333,
       "venue": "El Dorado Caf\u00e9",
-      "position": 12
+      "position": 13
     },
     {
       "date": "1990-10-31",
@@ -52820,8 +52904,8 @@
     },
     {
       "date": "1997-11-13",
-      "duration_ms": 731847,
-      "duration_min": 12.19745,
+      "duration_ms": 642351,
+      "duration_min": 10.70585,
       "venue": "Thomas & Mack Center",
       "position": 16
     },
@@ -52855,8 +52939,8 @@
     },
     {
       "date": "1997-12-31",
-      "duration_ms": 1111301,
-      "duration_min": 18.521683333333332,
+      "duration_ms": 1085231,
+      "duration_min": 18.087183333333332,
       "venue": "Madison Square Garden",
       "position": 16
     },
@@ -53135,8 +53219,8 @@
     },
     {
       "date": "2003-11-28",
-      "duration_ms": 555624,
-      "duration_min": 9.2604,
+      "duration_ms": 543336,
+      "duration_min": 9.0556,
       "venue": "Nassau Veterans Memorial Coliseum",
       "position": 17
     },
@@ -53170,8 +53254,8 @@
     },
     {
       "date": "2003-07-21",
-      "duration_ms": 721267,
-      "duration_min": 12.021116666666666,
+      "duration_ms": 693238,
+      "duration_min": 11.553966666666666,
       "venue": "Verizon Wireless Music Center",
       "position": 11
     },
@@ -53184,22 +53268,22 @@
     },
     {
       "date": "2003-07-09",
-      "duration_ms": 737411,
-      "duration_min": 12.290183333333333,
+      "duration_ms": 589845,
+      "duration_min": 9.83075,
       "venue": "Shoreline Amphitheatre",
       "position": 13
     },
     {
       "date": "2003-08-03",
-      "duration_ms": 912379,
-      "duration_min": 15.206316666666666,
+      "duration_ms": 833592,
+      "duration_min": 13.8932,
       "venue": "Loring Commerce Centre",
       "position": 9
     },
     {
       "date": "2004-06-17",
-      "duration_ms": 864758,
-      "duration_min": 14.412633333333334,
+      "duration_ms": 720536,
+      "duration_min": 12.008933333333333,
       "venue": "KeySpan Park",
       "position": 20
     },
@@ -53233,8 +53317,8 @@
     },
     {
       "date": "2009-11-24",
-      "duration_ms": 746423,
-      "duration_min": 12.440383333333333,
+      "duration_ms": 557636,
+      "duration_min": 9.293933333333333,
       "venue": "Wachovia Center",
       "position": 19
     },
@@ -53289,8 +53373,8 @@
     },
     {
       "date": "2009-08-05",
-      "duration_ms": 385776,
-      "duration_min": 6.4296,
+      "duration_ms": 368849,
+      "duration_min": 6.147483333333334,
       "venue": "Shoreline Amphitheatre",
       "position": 19
     },
@@ -53492,8 +53576,8 @@
     },
     {
       "date": "2012-07-07",
-      "duration_ms": 500010,
-      "duration_min": 8.3335,
+      "duration_ms": 462838,
+      "duration_min": 7.713966666666667,
       "venue": "Saratoga Performing Arts Center",
       "position": 26
     },
@@ -53513,8 +53597,8 @@
     },
     {
       "date": "2012-09-01",
-      "duration_ms": 462707,
-      "duration_min": 7.711783333333333,
+      "duration_ms": 437629,
+      "duration_min": 7.293816666666666,
       "venue": "Dick's Sporting Goods Park",
       "position": 21
     },
@@ -53604,8 +53688,8 @@
     },
     {
       "date": "2013-07-03",
-      "duration_ms": 564088,
-      "duration_min": 9.401466666666666,
+      "duration_ms": 523651,
+      "duration_min": 8.727516666666666,
       "venue": "Darling's Waterfront Pavilion",
       "position": 12
     },
@@ -53618,8 +53702,8 @@
     },
     {
       "date": "2013-07-17",
-      "duration_ms": 594912,
-      "duration_min": 9.9152,
+      "duration_ms": 443592,
+      "duration_min": 7.3932,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
       "position": 23
     },
@@ -53653,15 +53737,15 @@
     },
     {
       "date": "2013-10-19",
-      "duration_ms": 582740,
-      "duration_min": 9.712333333333333,
+      "duration_ms": 538932,
+      "duration_min": 8.9822,
       "venue": "Hampton Coliseum",
       "position": 11
     },
     {
       "date": "2013-10-26",
-      "duration_ms": 538149,
-      "duration_min": 8.96915,
+      "duration_ms": 525531,
+      "duration_min": 8.75885,
       "venue": "DCU Center",
       "position": 17
     },
@@ -53723,8 +53807,8 @@
     },
     {
       "date": "2014-07-09",
-      "duration_ms": 447504,
-      "duration_min": 7.4584,
+      "duration_ms": 428643,
+      "duration_min": 7.14405,
       "venue": "The Mann Center for the Performing Arts",
       "position": 22
     },
@@ -53803,7 +53887,7 @@
       "duration_ms": 362592,
       "duration_min": 6.0432,
       "venue": "Webster Hall, Dartmouth College",
-      "position": 19
+      "position": 21
     },
     {
       "date": "2015-07-21",
@@ -53814,8 +53898,8 @@
     },
     {
       "date": "2015-07-31",
-      "duration_ms": 481019,
-      "duration_min": 8.016983333333334,
+      "duration_ms": 448235,
+      "duration_min": 7.470583333333333,
       "venue": "Aaron's Amphitheatre at Lakewood",
       "position": 10
     },
@@ -53884,8 +53968,8 @@
     },
     {
       "date": "2016-06-29",
-      "duration_ms": 459336,
-      "duration_min": 7.6556,
+      "duration_ms": 412128,
+      "duration_min": 6.8688,
       "venue": "The Mann Center for the Performing Arts",
       "position": 11
     },
@@ -53926,8 +54010,8 @@
     },
     {
       "date": "2016-10-16",
-      "duration_ms": 440294,
-      "duration_min": 7.338233333333333,
+      "duration_ms": 396931,
+      "duration_min": 6.615516666666666,
       "venue": "Jacksonville Veterans Memorial Arena",
       "position": 10
     },
@@ -53947,8 +54031,8 @@
     },
     {
       "date": "2017-08-02",
-      "duration_ms": 752457,
-      "duration_min": 12.54095,
+      "duration_ms": 560327,
+      "duration_min": 9.338783333333334,
       "venue": "Madison Square Garden",
       "position": 18
     },
@@ -54476,6 +54560,20 @@
       "duration_min": 5.2828,
       "venue": "Fenway Park",
       "position": 13
+    },
+    {
+      "date": "1989-04-15",
+      "duration_ms": 439380,
+      "duration_min": 7.323,
+      "venue": "Billings Lounge, University of Vermont",
+      "position": 4
+    },
+    {
+      "date": "1989-10-07",
+      "duration_ms": 359424,
+      "duration_min": 5.9904,
+      "venue": "Chase Hall, Bates College",
+      "position": 5
     }
   ],
   "prince-caspian": [
@@ -54719,8 +54817,8 @@
     },
     {
       "date": "1997-02-17",
-      "duration_ms": 594704,
-      "duration_min": 9.911733333333334,
+      "duration_ms": 467827,
+      "duration_min": 7.797116666666667,
       "venue": "Paradiso",
       "position": 17
     },
@@ -55041,8 +55139,8 @@
     },
     {
       "date": "2003-02-14",
-      "duration_ms": 646165,
-      "duration_min": 10.769416666666666,
+      "duration_ms": 482064,
+      "duration_min": 8.0344,
       "venue": "Great Western Forum",
       "position": 16
     },
@@ -55433,10 +55531,10 @@
     },
     {
       "date": "2015-08-22",
-      "duration_ms": 1011513,
-      "duration_min": 16.85855,
+      "duration_ms": 980140,
+      "duration_min": 16.33566666666667,
       "venue": "Watkins Glen International",
-      "position": 19
+      "position": 20
     },
     {
       "date": "2015-09-06",
@@ -55475,8 +55573,8 @@
     },
     {
       "date": "2017-07-19",
-      "duration_ms": 976927,
-      "duration_min": 16.282116666666667,
+      "duration_ms": 940330,
+      "duration_min": 15.672166666666667,
       "venue": "Petersen Events Center",
       "position": 8
     },
@@ -55720,8 +55818,8 @@
     },
     {
       "date": "2024-09-01",
-      "duration_ms": 291240,
-      "duration_min": 4.854,
+      "duration_ms": 283128,
+      "duration_min": 4.7188,
       "venue": "Dick's Sporting Goods Park",
       "position": 9
     },
@@ -55830,7 +55928,7 @@
       "duration_ms": 188656,
       "duration_min": 3.1442666666666668,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1991-10-28",
@@ -55851,7 +55949,7 @@
       "duration_ms": 185287,
       "duration_min": 3.0881166666666666,
       "venue": "Armstrong Hall, Colorado College",
-      "position": 21
+      "position": 23
     },
     {
       "date": "1991-11-01",
@@ -56751,8 +56849,8 @@
     },
     {
       "date": "2017-07-26",
-      "duration_ms": 866926,
-      "duration_min": 14.448766666666666,
+      "duration_ms": 847824,
+      "duration_min": 14.1304,
       "venue": "Madison Square Garden",
       "position": 10
     },
@@ -57439,8 +57537,8 @@
     },
     {
       "date": "2016-07-15",
-      "duration_ms": 827664,
-      "duration_min": 13.7944,
+      "duration_ms": 754834,
+      "duration_min": 12.580566666666666,
       "venue": "Gorge Amphitheatre",
       "position": 15
     },
@@ -57460,8 +57558,8 @@
     },
     {
       "date": "2017-01-14",
-      "duration_ms": 690495,
-      "duration_min": 11.50825,
+      "duration_ms": 637492,
+      "duration_min": 10.624866666666666,
       "venue": "Barcel\u00f3 Maya Beach",
       "position": 12
     },
@@ -57681,6 +57779,13 @@
       "duration_min": 31.5976,
       "venue": "Madison Square Garden",
       "position": 17
+    },
+    {
+      "date": "2026-07-15",
+      "duration_ms": 954024,
+      "duration_min": 15.9004,
+      "venue": "Enmarket Arena",
+      "position": 11
     }
   ],
   "possum": [
@@ -57780,7 +57885,7 @@
       "duration_ms": 317884,
       "duration_min": 5.298066666666666,
       "venue": "Hunt's",
-      "position": 16
+      "position": 17
     },
     {
       "date": "1992-03-06",
@@ -57843,7 +57948,7 @@
       "duration_ms": 762958,
       "duration_min": 12.715966666666667,
       "venue": "Redwood Acres Fairgrounds",
-      "position": 6
+      "position": 7
     },
     {
       "date": "1992-04-23",
@@ -57983,7 +58088,7 @@
       "duration_ms": 689763,
       "duration_min": 11.49605,
       "venue": "Symphony Hall",
-      "position": 17
+      "position": 18
     },
     {
       "date": "1994-04-04",
@@ -58158,7 +58263,7 @@
       "duration_ms": 594260,
       "duration_min": 9.904333333333334,
       "venue": "Benton Convention Center",
-      "position": 2
+      "position": 3
     },
     {
       "date": "1993-02-20",
@@ -58263,7 +58368,7 @@
       "duration_ms": 631249,
       "duration_min": 10.520816666666667,
       "venue": "State Theatre",
-      "position": 22
+      "position": 23
     },
     {
       "date": "1993-05-06",
@@ -58431,7 +58536,7 @@
       "duration_ms": 440999,
       "duration_min": 7.349983333333333,
       "venue": "Molly's Cafe",
-      "position": 4
+      "position": 5
     },
     {
       "date": "1988-11-05",
@@ -58466,7 +58571,7 @@
       "duration_ms": 325878,
       "duration_min": 5.4313,
       "venue": "Living and Learning Center, University of Vermont",
-      "position": 7
+      "position": 8
     },
     {
       "date": "1991-07-20",
@@ -58697,7 +58802,7 @@
       "duration_ms": 585874,
       "duration_min": 9.764566666666667,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 23
+      "position": 24
     },
     {
       "date": "1991-10-27",
@@ -58718,7 +58823,7 @@
       "duration_ms": 602488,
       "duration_min": 10.041466666666667,
       "venue": "Cochran Lounge, Student Union, Macalester College",
-      "position": 24
+      "position": 26
     },
     {
       "date": "1991-11-02",
@@ -58781,7 +58886,7 @@
       "duration_ms": 294165,
       "duration_min": 4.90275,
       "venue": "McCullough Social Hall, McCullough Student Center, Middlebury College",
-      "position": 20
+      "position": 26
     },
     {
       "date": "1991-12-31",
@@ -58802,7 +58907,7 @@
       "duration_ms": 474984,
       "duration_min": 7.9164,
       "venue": "The Front",
-      "position": 9
+      "position": 10
     },
     {
       "date": "1989-03-24",
@@ -59471,8 +59576,8 @@
     },
     {
       "date": "1990-10-05",
-      "duration_ms": 614713,
-      "duration_min": 10.245216666666666,
+      "duration_ms": 605336,
+      "duration_min": 10.088933333333333,
       "venue": "Skidmore Gymnasium, Skidmore College",
       "position": 23
     },
@@ -59495,7 +59600,7 @@
       "duration_ms": 558733,
       "duration_min": 9.312216666666666,
       "venue": "El Dorado Caf\u00e9",
-      "position": 9
+      "position": 10
     },
     {
       "date": "1990-10-31",
@@ -59537,7 +59642,7 @@
       "duration_ms": 616542,
       "duration_min": 10.2757,
       "venue": "Earlham College",
-      "position": 20
+      "position": 21
     },
     {
       "date": "1990-11-16",
@@ -59653,8 +59758,8 @@
     },
     {
       "date": "1997-11-19",
-      "duration_ms": 854883,
-      "duration_min": 14.24805,
+      "duration_ms": 840829,
+      "duration_min": 14.013816666666667,
       "venue": "Assembly Hall, University of Illinois",
       "position": 15
     },
@@ -59681,8 +59786,8 @@
     },
     {
       "date": "1997-12-07",
-      "duration_ms": 745038,
-      "duration_min": 12.4173,
+      "duration_ms": 705541,
+      "duration_min": 11.759016666666666,
       "venue": "Ervin J. Nutter Center, Wright State University",
       "position": 27
     },
@@ -59961,15 +60066,15 @@
     },
     {
       "date": "2003-07-22",
-      "duration_ms": 622629,
-      "duration_min": 10.37715,
+      "duration_ms": 609933,
+      "duration_min": 10.16555,
       "venue": "Verizon Wireless Music Center",
       "position": 8
     },
     {
       "date": "2003-07-31",
-      "duration_ms": 669414,
-      "duration_min": 11.1569,
+      "duration_ms": 608731,
+      "duration_min": 10.145516666666667,
       "venue": "Tweeter Center at the Waterfront",
       "position": 9
     },
@@ -59996,8 +60101,8 @@
     },
     {
       "date": "2004-06-26",
-      "duration_ms": 697522,
-      "duration_min": 11.625366666666666,
+      "duration_ms": 617592,
+      "duration_min": 10.2932,
       "venue": "Alpine Valley Music Theatre",
       "position": 15
     },
@@ -60122,15 +60227,15 @@
     },
     {
       "date": "2010-08-13",
-      "duration_ms": 616281,
-      "duration_min": 10.27135,
+      "duration_ms": 570044,
+      "duration_min": 9.500733333333333,
       "venue": "Verizon Wireless Music Center",
       "position": 13
     },
     {
       "date": "2010-08-17",
-      "duration_ms": 632346,
-      "duration_min": 10.5391,
+      "duration_ms": 597576,
+      "duration_min": 9.9596,
       "venue": "Nikon at Jones Beach Theater",
       "position": 9
     },
@@ -60563,8 +60668,8 @@
     },
     {
       "date": "2013-10-26",
-      "duration_ms": 514612,
-      "duration_min": 8.576866666666668,
+      "duration_ms": 453538,
+      "duration_min": 7.558966666666667,
       "venue": "DCU Center",
       "position": 19
     },
@@ -60584,8 +60689,8 @@
     },
     {
       "date": "2013-12-29",
-      "duration_ms": 570776,
-      "duration_min": 9.512933333333333,
+      "duration_ms": 537051,
+      "duration_min": 8.95085,
       "venue": "Madison Square Garden",
       "position": 17
     },
@@ -60654,22 +60759,22 @@
     },
     {
       "date": "2013-07-06",
-      "duration_ms": 560327,
-      "duration_min": 9.338783333333334,
+      "duration_ms": 537626,
+      "duration_min": 8.960433333333333,
       "venue": "Saratoga Performing Arts Center",
       "position": 18
     },
     {
       "date": "2014-07-03",
-      "duration_ms": 500506,
-      "duration_min": 8.341766666666667,
+      "duration_ms": 478250,
+      "duration_min": 7.970833333333333,
       "venue": "Saratoga Performing Arts Center",
       "position": 11
     },
     {
       "date": "2014-07-08",
-      "duration_ms": 429688,
-      "duration_min": 7.161466666666667,
+      "duration_ms": 403644,
+      "duration_min": 6.7274,
       "venue": "The Mann Center for the Performing Arts",
       "position": 22
     },
@@ -60766,15 +60871,15 @@
     },
     {
       "date": "2015-08-08",
-      "duration_ms": 499984,
-      "duration_min": 8.333066666666667,
+      "duration_ms": 468637,
+      "duration_min": 7.810616666666666,
       "venue": "Alpine Valley Music Theatre",
       "position": 9
     },
     {
       "date": "2015-08-16",
-      "duration_ms": 576601,
-      "duration_min": 9.610016666666667,
+      "duration_ms": 521247,
+      "duration_min": 8.68745,
       "venue": "Merriweather Post Pavilion",
       "position": 9
     },
@@ -60783,7 +60888,7 @@
       "duration_ms": 485642,
       "duration_min": 8.094033333333334,
       "venue": "Watkins Glen International",
-      "position": 22
+      "position": 23
     },
     {
       "date": "2015-12-31",
@@ -60808,15 +60913,15 @@
     },
     {
       "date": "2016-07-03",
-      "duration_ms": 534204,
-      "duration_min": 8.9034,
+      "duration_ms": 488438,
+      "duration_min": 8.140633333333334,
       "venue": "Saratoga Performing Arts Center",
       "position": 12
     },
     {
       "date": "2016-07-18",
-      "duration_ms": 583367,
-      "duration_min": 9.722783333333334,
+      "duration_ms": 551549,
+      "duration_min": 9.192483333333334,
       "venue": "Bill Graham Civic Auditorium",
       "position": 10
     },
@@ -60878,8 +60983,8 @@
     },
     {
       "date": "2017-08-01",
-      "duration_ms": 786077,
-      "duration_min": 13.101283333333333,
+      "duration_ms": 588147,
+      "duration_min": 9.80245,
       "venue": "Madison Square Garden",
       "position": 20
     },
@@ -60976,8 +61081,8 @@
     },
     {
       "date": "2018-12-28",
-      "duration_ms": 586789,
-      "duration_min": 9.779816666666667,
+      "duration_ms": 573936,
+      "duration_min": 9.5656,
       "venue": "Madison Square Garden",
       "position": 18
     },
@@ -61004,8 +61109,8 @@
     },
     {
       "date": "2019-11-30",
-      "duration_ms": 615240,
-      "duration_min": 10.254,
+      "duration_ms": 602136,
+      "duration_min": 10.0356,
       "venue": "Dunkin' Donuts Center",
       "position": 21
     },
@@ -61325,6 +61430,13 @@
       "position": 18
     },
     {
+      "date": "1989-01-26",
+      "duration_ms": 500924,
+      "duration_min": 8.348733333333334,
+      "venue": "The Paradise",
+      "position": 16
+    },
+    {
       "date": "2025-07-22",
       "duration_ms": 573528,
       "duration_min": 9.5588,
@@ -61386,6 +61498,13 @@
       "duration_min": 7.2472,
       "venue": "Fenway Park",
       "position": 15
+    },
+    {
+      "date": "1989-10-07",
+      "duration_ms": 510144,
+      "duration_min": 8.5024,
+      "venue": "Chase Hall, Bates College",
+      "position": 14
     }
   ],
   "free": [
@@ -61706,8 +61825,8 @@
     },
     {
       "date": "1997-07-02",
-      "duration_ms": 777509,
-      "duration_min": 12.958483333333334,
+      "duration_ms": 689946,
+      "duration_min": 11.4991,
       "venue": "Paradiso",
       "position": 13
     },
@@ -61916,8 +62035,8 @@
     },
     {
       "date": "2003-11-28",
-      "duration_ms": 664320,
-      "duration_min": 11.072,
+      "duration_ms": 645576,
+      "duration_min": 10.7596,
       "venue": "Nassau Veterans Memorial Coliseum",
       "position": 8
     },
@@ -63104,7 +63223,7 @@
       "duration_ms": 953809,
       "duration_min": 15.896816666666666,
       "venue": "Watkins Glen International",
-      "position": 21
+      "position": 22
     },
     {
       "date": "2015-09-04",
@@ -63150,8 +63269,8 @@
     },
     {
       "date": "2016-07-16",
-      "duration_ms": 624170,
-      "duration_min": 10.402833333333334,
+      "duration_ms": 592327,
+      "duration_min": 9.872116666666667,
       "venue": "Gorge Amphitheatre",
       "position": 13
     },
@@ -63220,8 +63339,8 @@
     },
     {
       "date": "2017-07-14",
-      "duration_ms": 508056,
-      "duration_min": 8.4676,
+      "duration_ms": 488647,
+      "duration_min": 8.144116666666667,
       "venue": "Huntington Bank Pavilion at Northerly Island",
       "position": 9
     },
@@ -63234,8 +63353,8 @@
     },
     {
       "date": "2017-09-01",
-      "duration_ms": 893231,
-      "duration_min": 14.887183333333333,
+      "duration_ms": 884219,
+      "duration_min": 14.736983333333333,
       "venue": "Dick's Sporting Goods Park",
       "position": 4
     },
@@ -64176,8 +64295,8 @@
     },
     {
       "date": "2018-10-31",
-      "duration_ms": 799295,
-      "duration_min": 13.321583333333333,
+      "duration_ms": 726309,
+      "duration_min": 12.10515,
       "venue": "MGM Grand Garden Arena",
       "position": 20
     },
@@ -65405,8 +65524,8 @@
     },
     {
       "date": "2004-08-10",
-      "duration_ms": 1272686,
-      "duration_min": 21.211433333333332,
+      "duration_ms": 1248026,
+      "duration_min": 20.800433333333334,
       "venue": "Tweeter Center",
       "position": 6
     },
@@ -66060,6 +66179,13 @@
       "duration_min": 7.9784,
       "venue": "Sphere",
       "position": 2
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 421296,
+      "duration_min": 7.0216,
+      "venue": "Enmarket Arena",
+      "position": 3
     }
   ],
   "steam": [
@@ -66538,6 +66664,13 @@
       "duration_min": 10.0204,
       "venue": "Sphere",
       "position": 7
+    },
+    {
+      "date": "2026-07-14",
+      "duration_ms": 629784,
+      "duration_min": 10.4964,
+      "venue": "Enmarket Arena",
+      "position": 5
     }
   ],
   "cities": [
@@ -66581,7 +66714,7 @@
       "duration_ms": 322664,
       "duration_min": 5.3777333333333335,
       "venue": "Nectar's",
-      "position": 10
+      "position": 11
     },
     {
       "date": "1988-05-22",
@@ -67043,7 +67176,7 @@
       "duration_ms": 559282,
       "duration_min": 9.321366666666666,
       "venue": "Watkins Glen International",
-      "position": 23
+      "position": 24
     },
     {
       "date": "2016-07-01",
@@ -67357,8 +67490,8 @@
     },
     {
       "date": "2004-08-12",
-      "duration_ms": 1390920,
-      "duration_min": 23.182,
+      "duration_ms": 1276536,
+      "duration_min": 21.2756,
       "venue": "Tweeter Center at the Waterfront",
       "position": 14
     },
@@ -67627,6 +67760,13 @@
       "duration_min": 14.0636,
       "venue": "Sphere",
       "position": 6
+    },
+    {
+      "date": "2026-07-15",
+      "duration_ms": 980544,
+      "duration_min": 16.3424,
+      "venue": "Enmarket Arena",
+      "position": 13
     }
   ],
   "theme-from-the-bottom": [
@@ -68577,8 +68717,8 @@
     },
     {
       "date": "2015-07-21",
-      "duration_ms": 547971,
-      "duration_min": 9.13285,
+      "duration_ms": 534831,
+      "duration_min": 8.91385,
       "venue": "Les Schwab Amphitheater",
       "position": 21
     },
@@ -70285,7 +70425,7 @@
       "duration_ms": 487105,
       "duration_min": 8.118416666666667,
       "venue": "Le Spectrum",
-      "position": 13
+      "position": 14
     },
     {
       "date": "1993-02-12",
@@ -70376,7 +70516,7 @@
       "duration_ms": 482482,
       "duration_min": 8.041366666666667,
       "venue": "Commodore Ballroom",
-      "position": 14
+      "position": 15
     },
     {
       "date": "1993-08-03",
@@ -70460,7 +70600,7 @@
       "duration_ms": 383373,
       "duration_min": 6.38955,
       "venue": "Crystal Ballroom, Hotel St. Michael",
-      "position": 6
+      "position": 7
     },
     {
       "date": "1991-10-31",
@@ -70580,13 +70720,6 @@
       "duration_min": 7.279016666666666,
       "venue": "The Front",
       "position": 9
-    },
-    {
-      "date": "1989-10-07",
-      "duration_ms": 409809,
-      "duration_min": 6.83015,
-      "venue": "Chase Hall, Bates College",
-      "position": 2
     },
     {
       "date": "1989-10-14",
@@ -70880,7 +71013,7 @@
       "duration_ms": 387814,
       "duration_min": 6.463566666666667,
       "venue": "The Clarke Memorial Fountain, Notre Dame University",
-      "position": 3
+      "position": 4
     },
     {
       "date": "1990-05-11",
@@ -71650,7 +71783,7 @@
       "duration_ms": 431360,
       "duration_min": 7.189333333333333,
       "venue": "Fly Me to the Moon Saloon",
-      "position": 9
+      "position": 10
     },
     {
       "date": "1990-12-02",
@@ -71777,6 +71910,13 @@
       "duration_min": 7.234,
       "venue": "Sphere",
       "position": 5
+    },
+    {
+      "date": "1989-10-07",
+      "duration_ms": 411792,
+      "duration_min": 6.8632,
+      "venue": "Chase Hall, Bates College",
+      "position": 2
     }
   ]
 }

@@ -1,8 +1,8 @@
 {
   "you-enjoy-myself": {
-    "track_count": 587,
-    "avg_duration_min": 18.90520528109029,
-    "median_duration_min": 18.751133333333332,
+    "track_count": 590,
+    "avg_duration_min": 18.821712457627118,
+    "median_duration_min": 18.6504,
     "min_duration_min": 1.1110666666666666,
     "max_duration_min": 40.5329,
     "longest": {
@@ -11,7 +11,7 @@
       "venue": "Rosemont Horizon"
     },
     "monster_count": 40,
-    "monster_rate": 0.06814310051107325,
+    "monster_rate": 0.06779661016949153,
     "monsters": [
       {
         "date": "1995-10-31",
@@ -59,15 +59,15 @@
         "venue": "Austin Music Hall"
       },
       {
-        "date": "2003-07-19",
-        "duration_min": 28.7,
-        "venue": "Alpine Valley Music Theatre"
+        "date": "1994-11-19",
+        "duration_min": 28.5,
+        "venue": "Parking Lot, Indiana University Auditorium"
       }
     ]
   },
   "tweezer": {
     "track_count": 457,
-    "avg_duration_min": 13.47517049598833,
+    "avg_duration_min": 13.464657731582786,
     "median_duration_min": 12.267966666666666,
     "min_duration_min": 0.5559666666666667,
     "max_duration_min": 50.276133333333334,
@@ -133,8 +133,8 @@
   },
   "down-with-disease": {
     "track_count": 336,
-    "avg_duration_min": 13.451073511904761,
-    "median_duration_min": 12.662416666666667,
+    "avg_duration_min": 13.449211557539684,
+    "median_duration_min": 12.621933333333333,
     "min_duration_min": 0.93,
     "max_duration_min": 34.1416,
     "longest": {
@@ -198,9 +198,9 @@
     ]
   },
   "ghost": {
-    "track_count": 234,
-    "avg_duration_min": 13.650975854700855,
-    "median_duration_min": 13.1796,
+    "track_count": 235,
+    "avg_duration_min": 13.631665815602837,
+    "median_duration_min": 13.174,
     "min_duration_min": 0.596,
     "max_duration_min": 31.748783333333332,
     "longest": {
@@ -209,7 +209,7 @@
       "venue": "Loring Commerce Centre"
     },
     "monster_count": 7,
-    "monster_rate": 0.029914529914529916,
+    "monster_rate": 0.029787234042553193,
     "monsters": [
       {
         "date": "2003-08-03",
@@ -249,9 +249,9 @@
     ]
   },
   "david-bowie": {
-    "track_count": 459,
-    "avg_duration_min": 13.550511328976034,
-    "median_duration_min": 12.812633333333334,
+    "track_count": 464,
+    "avg_duration_min": 13.471170402298851,
+    "median_duration_min": 12.74515,
     "min_duration_min": 0.32,
     "max_duration_min": 37.462633333333336,
     "longest": {
@@ -260,7 +260,7 @@
       "venue": "The Orpheum Theatre"
     },
     "monster_count": 9,
-    "monster_rate": 0.0196078431372549,
+    "monster_rate": 0.01939655172413793,
     "monsters": [
       {
         "date": "1994-11-26",
@@ -310,9 +310,9 @@
     ]
   },
   "harry-hood": {
-    "track_count": 432,
-    "avg_duration_min": 13.493865817901234,
-    "median_duration_min": 13.312433333333333,
+    "track_count": 433,
+    "avg_duration_min": 13.421558006158584,
+    "median_duration_min": 13.229716666666667,
     "min_duration_min": 2.5425833333333334,
     "max_duration_min": 29.589766666666666,
     "longest": {
@@ -320,18 +320,13 @@
       "duration_min": 29.589766666666666,
       "venue": "Verizon Wireless Amphitheatre - Charlotte"
     },
-    "monster_count": 2,
-    "monster_rate": 0.004629629629629629,
+    "monster_count": 1,
+    "monster_rate": 0.0023094688221709007,
     "monsters": [
       {
         "date": "2003-07-25",
         "duration_min": 29.6,
         "venue": "Verizon Wireless Amphitheatre - Charlotte"
-      },
-      {
-        "date": "2003-07-31",
-        "duration_min": 26.4,
-        "venue": "Tweeter Center at the Waterfront"
       }
     ]
   },
@@ -435,8 +430,8 @@
   },
   "fluffhead": {
     "track_count": 276,
-    "avg_duration_min": 14.635180132850241,
-    "median_duration_min": 14.661216666666666,
+    "avg_duration_min": 14.621089130434783,
+    "median_duration_min": 14.656,
     "min_duration_min": 3.94145,
     "max_duration_min": 32.97828333333333,
     "longest": {
@@ -456,7 +451,7 @@
   },
   "drowned": {
     "track_count": 48,
-    "avg_duration_min": 14.79692986111111,
+    "avg_duration_min": 14.748380902777777,
     "median_duration_min": 13.632433333333333,
     "min_duration_min": 4.917116666666667,
     "max_duration_min": 31.36915,
@@ -542,9 +537,9 @@
     ]
   },
   "piper": {
-    "track_count": 209,
-    "avg_duration_min": 11.172613636363637,
-    "median_duration_min": 9.837283333333334,
+    "track_count": 210,
+    "avg_duration_min": 11.182231666666667,
+    "median_duration_min": 9.915216666666666,
     "min_duration_min": 4.0354833333333335,
     "max_duration_min": 32.670033333333336,
     "longest": {
@@ -553,7 +548,7 @@
       "venue": "Saratoga Performing Arts Center"
     },
     "monster_count": 2,
-    "monster_rate": 0.009569377990430622,
+    "monster_rate": 0.009523809523809525,
     "monsters": [
       {
         "date": "2004-06-19",
@@ -569,8 +564,8 @@
   },
   "bathtub-gin": {
     "track_count": 312,
-    "avg_duration_min": 12.277291773504272,
-    "median_duration_min": 11.95145,
+    "avg_duration_min": 12.257171688034187,
+    "median_duration_min": 11.915316666666667,
     "min_duration_min": 0.9292,
     "max_duration_min": 31.31385,
     "longest": {
@@ -592,21 +587,21 @@
         "venue": "Rupp Arena"
       },
       {
-        "date": "2003-07-09",
-        "duration_min": 26.9,
-        "venue": "Shoreline Amphitheatre"
-      },
-      {
         "date": "2003-02-22",
         "duration_min": 26.7,
         "venue": "U.S. Bank Arena"
+      },
+      {
+        "date": "2003-07-09",
+        "duration_min": 26.6,
+        "venue": "Shoreline Amphitheatre"
       }
     ]
   },
   "run-like-an-antelope": {
     "track_count": 494,
-    "avg_duration_min": 11.302224628879891,
-    "median_duration_min": 11.0524,
+    "avg_duration_min": 11.213128036437247,
+    "median_duration_min": 10.980566666666666,
     "min_duration_min": 0.07358333333333333,
     "max_duration_min": 20.8775,
     "longest": {
@@ -620,8 +615,8 @@
   },
   "chalk-dust-torture": {
     "track_count": 518,
-    "avg_duration_min": 8.45566097168597,
-    "median_duration_min": 7.1124,
+    "avg_duration_min": 8.430330984555983,
+    "median_duration_min": 7.103566666666667,
     "min_duration_min": 0.93605,
     "max_duration_min": 28.814,
     "longest": {
@@ -666,7 +661,7 @@
   },
   "stash": {
     "track_count": 449,
-    "avg_duration_min": 11.551689123979212,
+    "avg_duration_min": 11.551182962138084,
     "median_duration_min": 11.4396,
     "min_duration_min": 0.9164666666666667,
     "max_duration_min": 30.68735,
@@ -702,8 +697,8 @@
   },
   "slave-to-the-traffic-light": {
     "track_count": 286,
-    "avg_duration_min": 10.037591724941725,
-    "median_duration_min": 10.2535,
+    "avg_duration_min": 9.914224242424241,
+    "median_duration_min": 10.135516666666666,
     "min_duration_min": 2.3096666666666668,
     "max_duration_min": 16.7336,
     "longest": {
@@ -717,7 +712,7 @@
   },
   "light": {
     "track_count": 136,
-    "avg_duration_min": 12.384250490196079,
+    "avg_duration_min": 12.380929901960783,
     "median_duration_min": 12.39075,
     "min_duration_min": 2.557383333333333,
     "max_duration_min": 23.92685,
@@ -732,7 +727,7 @@
   },
   "carini": {
     "track_count": 159,
-    "avg_duration_min": 10.872675995807128,
+    "avg_duration_min": 10.871216876310273,
     "median_duration_min": 9.1015,
     "min_duration_min": 1.00615,
     "max_duration_min": 40.0744,
@@ -768,7 +763,7 @@
   },
   "fuego": {
     "track_count": 101,
-    "avg_duration_min": 13.631313366336633,
+    "avg_duration_min": 13.60602194719472,
     "median_duration_min": 11.61055,
     "min_duration_min": 5.0448,
     "max_duration_min": 37.3416,
@@ -808,8 +803,8 @@
     ]
   },
   "sand": {
-    "track_count": 161,
-    "avg_duration_min": 12.321185403726707,
+    "track_count": 162,
+    "avg_duration_min": 12.339776748971193,
     "median_duration_min": 10.8204,
     "min_duration_min": 1.1288,
     "max_duration_min": 39.7268,
@@ -819,7 +814,7 @@
       "venue": "TD Pavilion at the Mann"
     },
     "monster_count": 2,
-    "monster_rate": 0.012422360248447204,
+    "monster_rate": 0.012345679012345678,
     "monsters": [
       {
         "date": "2025-07-15",
@@ -835,8 +830,8 @@
   },
   "twist": {
     "track_count": 189,
-    "avg_duration_min": 10.490507495590828,
-    "median_duration_min": 9.5352,
+    "avg_duration_min": 10.479689947089947,
+    "median_duration_min": 9.5164,
     "min_duration_min": 1.4737333333333333,
     "max_duration_min": 24.0296,
     "longest": {
@@ -849,19 +844,24 @@
     "monsters": []
   },
   "split-open-and-melt": {
-    "track_count": 345,
-    "avg_duration_min": 11.057550966183575,
-    "median_duration_min": 10.722833333333334,
+    "track_count": 346,
+    "avg_duration_min": 11.093117341040463,
+    "median_duration_min": 10.725,
     "min_duration_min": 1.2908833333333334,
-    "max_duration_min": 30.920266666666667,
+    "max_duration_min": 31.448,
     "longest": {
-      "date": "2004-08-15",
-      "duration_min": 30.920266666666667,
-      "venue": "Newport State Airport"
+      "date": "2026-07-14",
+      "duration_min": 31.448,
+      "venue": "Enmarket Arena"
     },
-    "monster_count": 1,
-    "monster_rate": 0.002898550724637681,
+    "monster_count": 2,
+    "monster_rate": 0.005780346820809248,
     "monsters": [
+      {
+        "date": "2026-07-14",
+        "duration_min": 31.4,
+        "venue": "Enmarket Arena"
+      },
       {
         "date": "2004-08-15",
         "duration_min": 30.9,
@@ -871,13 +871,13 @@
   },
   "maze": {
     "track_count": 347,
-    "avg_duration_min": 10.469959894332373,
+    "avg_duration_min": 10.468491930835734,
     "median_duration_min": 10.147266666666667,
     "min_duration_min": 1.0692833333333334,
-    "max_duration_min": 18.0284,
+    "max_duration_min": 17.714066666666668,
     "longest": {
       "date": "2003-07-12",
-      "duration_min": 18.0284,
+      "duration_min": 17.714066666666668,
       "venue": "Gorge Amphitheatre"
     },
     "monster_count": 0,
@@ -885,9 +885,9 @@
     "monsters": []
   },
   "weekapaug-groove": {
-    "track_count": 505,
-    "avg_duration_min": 8.087087029702971,
-    "median_duration_min": 7.4584,
+    "track_count": 506,
+    "avg_duration_min": 8.037437549407114,
+    "median_duration_min": 7.376116666666666,
     "min_duration_min": 0.9991833333333333,
     "max_duration_min": 35.74551666666667,
     "longest": {
@@ -896,7 +896,7 @@
       "venue": "Red Rocks Amphitheatre"
     },
     "monster_count": 1,
-    "monster_rate": 0.0019801980198019802,
+    "monster_rate": 0.001976284584980237,
     "monsters": [
       {
         "date": "1995-06-10",
@@ -907,7 +907,7 @@
   },
   "prince-caspian": {
     "track_count": 188,
-    "avg_duration_min": 7.692786170212766,
+    "avg_duration_min": 7.660245390070923,
     "median_duration_min": 7.527183333333333,
     "min_duration_min": 0.9272,
     "max_duration_min": 18.40065,
@@ -922,7 +922,7 @@
   },
   "tube": {
     "track_count": 197,
-    "avg_duration_min": 6.425290778341793,
+    "avg_duration_min": 6.423674703891709,
     "median_duration_min": 5.8308,
     "min_duration_min": 1.6172,
     "max_duration_min": 17.554283333333334,
@@ -936,9 +936,9 @@
     "monsters": []
   },
   "crosseyed-and-painless": {
-    "track_count": 72,
-    "avg_duration_min": 13.156218055555556,
-    "median_duration_min": 12.66285,
+    "track_count": 73,
+    "avg_duration_min": 13.165080593607305,
+    "median_duration_min": 12.580566666666666,
     "min_duration_min": 2.7350166666666667,
     "max_duration_min": 33.0264,
     "longest": {
@@ -947,7 +947,7 @@
       "venue": "Madison Square Garden"
     },
     "monster_count": 3,
-    "monster_rate": 0.041666666666666664,
+    "monster_rate": 0.0410958904109589,
     "monsters": [
       {
         "date": "2017-07-25",
@@ -967,9 +967,9 @@
     ]
   },
   "possum": {
-    "track_count": 529,
-    "avg_duration_min": 9.614654064272212,
-    "median_duration_min": 9.378833333333333,
+    "track_count": 531,
+    "avg_duration_min": 9.583458003766479,
+    "median_duration_min": 9.33355,
     "min_duration_min": 1.4606833333333333,
     "max_duration_min": 23.963866666666668,
     "longest": {
@@ -983,7 +983,7 @@
   },
   "free": {
     "track_count": 237,
-    "avg_duration_min": 9.05925787623066,
+    "avg_duration_min": 9.05178199718706,
     "median_duration_min": 8.6732,
     "min_duration_min": 2.3423166666666666,
     "max_duration_min": 33.173766666666666,
@@ -1004,7 +1004,7 @@
   },
   "blaze-on": {
     "track_count": 97,
-    "avg_duration_min": 10.491534536082474,
+    "avg_duration_min": 10.481179896907216,
     "median_duration_min": 9.3076,
     "min_duration_min": 1.4836,
     "max_duration_min": 27.782966666666667,
@@ -1046,8 +1046,8 @@
   },
   "set-your-soul-free": {
     "track_count": 45,
-    "avg_duration_min": 14.66525888888889,
-    "median_duration_min": 13.321583333333333,
+    "avg_duration_min": 14.638227037037039,
+    "median_duration_min": 13.111733333333333,
     "min_duration_min": 6.7052,
     "max_duration_min": 26.056,
     "longest": {
@@ -1097,8 +1097,8 @@
     ]
   },
   "birds-of-a-feather": {
-    "track_count": 143,
-    "avg_duration_min": 8.711398135198134,
+    "track_count": 144,
+    "avg_duration_min": 8.69680925925926,
     "median_duration_min": 7.659966666666667,
     "min_duration_min": 4.895783333333333,
     "max_duration_min": 25.391016666666665,
@@ -1108,7 +1108,7 @@
       "venue": "Polaris Amphitheater"
     },
     "monster_count": 1,
-    "monster_rate": 0.006993006993006993,
+    "monster_rate": 0.006944444444444444,
     "monsters": [
       {
         "date": "1999-07-23",
@@ -1118,8 +1118,8 @@
     ]
   },
   "steam": {
-    "track_count": 68,
-    "avg_duration_min": 8.913957598039216,
+    "track_count": 69,
+    "avg_duration_min": 8.93689154589372,
     "median_duration_min": 9.075816666666666,
     "min_duration_min": 1.1062833333333333,
     "max_duration_min": 14.283316666666666,
@@ -1148,8 +1148,8 @@
     "monsters": []
   },
   "scents-and-subtle-sounds": {
-    "track_count": 50,
-    "avg_duration_min": 12.491663333333333,
+    "track_count": 51,
+    "avg_duration_min": 12.529787581699347,
     "median_duration_min": 12.05115,
     "min_duration_min": 2.0462666666666665,
     "max_duration_min": 30.68735,
@@ -1159,7 +1159,7 @@
       "venue": "Tweeter Center at the Waterfront"
     },
     "monster_count": 1,
-    "monster_rate": 0.02,
+    "monster_rate": 0.0196078431372549,
     "monsters": [
       {
         "date": "2003-07-30",
@@ -1170,7 +1170,7 @@
   },
   "theme-from-the-bottom": {
     "track_count": 198,
-    "avg_duration_min": 9.896231818181818,
+    "avg_duration_min": 9.895125757575757,
     "median_duration_min": 9.515533333333334,
     "min_duration_min": 6.8053333333333335,
     "max_duration_min": 24.206,
@@ -1200,7 +1200,7 @@
   },
   "ya-mar": {
     "track_count": 230,
-    "avg_duration_min": 8.217498260869565,
+    "avg_duration_min": 8.217641956521739,
     "median_duration_min": 7.6521333333333335,
     "min_duration_min": 3.9257666666666666,
     "max_duration_min": 18.8443,
