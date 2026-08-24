@@ -3558,35 +3558,35 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 10
+        "gap": 9
       },
       {
         "song": "Run Like an Antelope",
         "position": 2,
         "set": "1",
         "isjamchart": 1,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Golgi Apparatus",
         "position": 3,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "Back Porch Boogie Blues",
         "position": 4,
         "set": "1",
         "isjamchart": 0,
-        "gap": 11
+        "gap": 10
       },
       {
         "song": "Lushington",
         "position": 5,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "Possum",
@@ -3614,14 +3614,14 @@
         "position": 9,
         "set": "1",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Fire",
         "position": 10,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 4
       }
     ]
   },
@@ -213816,7 +213816,7 @@
         "song": "Waves",
         "position": 1,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       }
     ]
@@ -213935,7 +213935,7 @@
         "song": "Waves",
         "position": 15,
         "set": "2",
-        "isjamchart": 1,
+        "isjamchart": 0,
         "gap": 78
       },
       {

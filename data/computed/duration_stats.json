@@ -1,8 +1,8 @@
 {
   "you-enjoy-myself": {
-    "track_count": 590,
-    "avg_duration_min": 18.804531836158194,
-    "median_duration_min": 18.52735,
+    "track_count": 592,
+    "avg_duration_min": 18.737571283783783,
+    "median_duration_min": 18.49165,
     "min_duration_min": 1.1110666666666666,
     "max_duration_min": 40.5329,
     "longest": {
@@ -11,7 +11,7 @@
       "venue": "Rosemont Horizon"
     },
     "monster_count": 39,
-    "monster_rate": 0.06610169491525424,
+    "monster_rate": 0.06587837837837837,
     "monsters": [
       {
         "date": "1995-10-31",
@@ -66,9 +66,9 @@
     ]
   },
   "tweezer": {
-    "track_count": 457,
-    "avg_duration_min": 13.41626163384391,
-    "median_duration_min": 12.240983333333334,
+    "track_count": 464,
+    "avg_duration_min": 13.164349066091955,
+    "median_duration_min": 12.146933333333333,
     "min_duration_min": 0.5559666666666667,
     "max_duration_min": 50.276133333333334,
     "longest": {
@@ -76,8 +76,8 @@
       "duration_min": 50.276133333333334,
       "venue": "Mud Island Amphitheater"
     },
-    "monster_count": 26,
-    "monster_rate": 0.05689277899343545,
+    "monster_count": 24,
+    "monster_rate": 0.05172413793103448,
     "monsters": [
       {
         "date": "1995-06-14",
@@ -132,9 +132,9 @@
     ]
   },
   "down-with-disease": {
-    "track_count": 336,
-    "avg_duration_min": 13.333225892857142,
-    "median_duration_min": 12.503516666666666,
+    "track_count": 337,
+    "avg_duration_min": 13.288575420375865,
+    "median_duration_min": 12.476516666666667,
     "min_duration_min": 0.93,
     "max_duration_min": 34.1416,
     "longest": {
@@ -143,7 +143,7 @@
       "venue": "North Charleston Coliseum"
     },
     "monster_count": 12,
-    "monster_rate": 0.03571428571428571,
+    "monster_rate": 0.03560830860534125,
     "monsters": [
       {
         "date": "2025-07-11",
@@ -199,7 +199,7 @@
   },
   "ghost": {
     "track_count": 235,
-    "avg_duration_min": 13.580019432624114,
+    "avg_duration_min": 13.579862482269505,
     "median_duration_min": 13.174,
     "min_duration_min": 0.596,
     "max_duration_min": 31.748783333333332,
@@ -249,9 +249,9 @@
     ]
   },
   "david-bowie": {
-    "track_count": 464,
-    "avg_duration_min": 13.425040301724138,
-    "median_duration_min": 12.743833333333333,
+    "track_count": 470,
+    "avg_duration_min": 13.204240921985816,
+    "median_duration_min": 12.657633333333333,
     "min_duration_min": 0.11711666666666666,
     "max_duration_min": 37.462633333333336,
     "longest": {
@@ -259,8 +259,8 @@
       "duration_min": 37.462633333333336,
       "venue": "The Orpheum Theatre"
     },
-    "monster_count": 9,
-    "monster_rate": 0.01939655172413793,
+    "monster_count": 8,
+    "monster_rate": 0.01702127659574468,
     "monsters": [
       {
         "date": "1994-11-26",
@@ -271,11 +271,6 @@
         "date": "1994-12-29",
         "duration_min": 32.5,
         "venue": "Providence Civic Center"
-      },
-      {
-        "date": "1995-07-03",
-        "duration_min": 30.9,
-        "venue": "Summerstage at Sugarbush North"
       },
       {
         "date": "1995-06-29",
@@ -311,7 +306,7 @@
   },
   "harry-hood": {
     "track_count": 433,
-    "avg_duration_min": 13.37007155504234,
+    "avg_duration_min": 13.368129253271748,
     "median_duration_min": 13.229716666666667,
     "min_duration_min": 2.5425833333333334,
     "max_duration_min": 29.589766666666666,
@@ -332,7 +327,7 @@
   },
   "ruby-waves": {
     "track_count": 46,
-    "avg_duration_min": 16.45178297101449,
+    "avg_duration_min": 16.451711231884058,
     "median_duration_min": 14.7992,
     "min_duration_min": 0.6434833333333333,
     "max_duration_min": 38.16968333333333,
@@ -382,10 +377,10 @@
     ]
   },
   "soul-planet": {
-    "track_count": 25,
-    "avg_duration_min": 14.826696,
+    "track_count": 26,
+    "avg_duration_min": 14.183430128205128,
     "median_duration_min": 13.450883333333334,
-    "min_duration_min": 4.112,
+    "min_duration_min": 1.1084833333333333,
     "max_duration_min": 46.83233333333333,
     "longest": {
       "date": "2021-08-31",
@@ -393,7 +388,7 @@
       "venue": "Shoreline Amphitheatre"
     },
     "monster_count": 2,
-    "monster_rate": 0.08,
+    "monster_rate": 0.07692307692307693,
     "monsters": [
       {
         "date": "2021-08-31",
@@ -430,7 +425,7 @@
   },
   "fluffhead": {
     "track_count": 276,
-    "avg_duration_min": 14.61987288647343,
+    "avg_duration_min": 14.619747644927536,
     "median_duration_min": 14.656,
     "min_duration_min": 3.94145,
     "max_duration_min": 32.97828333333333,
@@ -487,7 +482,7 @@
   },
   "simple": {
     "track_count": 217,
-    "avg_duration_min": 10.204201766513059,
+    "avg_duration_min": 10.204182565284178,
     "median_duration_min": 8.655666666666667,
     "min_duration_min": 1.3466166666666666,
     "max_duration_min": 40.8572,
@@ -537,10 +532,10 @@
     ]
   },
   "piper": {
-    "track_count": 210,
-    "avg_duration_min": 11.16318992063492,
-    "median_duration_min": 9.915216666666666,
-    "min_duration_min": 4.0354833333333335,
+    "track_count": 211,
+    "avg_duration_min": 11.105156319115324,
+    "median_duration_min": 9.837283333333334,
+    "min_duration_min": 0.605,
     "max_duration_min": 32.670033333333336,
     "longest": {
       "date": "2004-06-19",
@@ -548,7 +543,7 @@
       "venue": "Saratoga Performing Arts Center"
     },
     "monster_count": 2,
-    "monster_rate": 0.009523809523809525,
+    "monster_rate": 0.009478672985781991,
     "monsters": [
       {
         "date": "2004-06-19",
@@ -563,9 +558,9 @@
     ]
   },
   "bathtub-gin": {
-    "track_count": 312,
-    "avg_duration_min": 12.216448985042735,
-    "median_duration_min": 11.9127,
+    "track_count": 313,
+    "avg_duration_min": 12.17500101171459,
+    "median_duration_min": 11.901383333333333,
     "min_duration_min": 0.9292,
     "max_duration_min": 31.060033333333333,
     "longest": {
@@ -574,7 +569,7 @@
       "venue": "Lawrence Joel Veterans Memorial Coliseum"
     },
     "monster_count": 4,
-    "monster_rate": 0.01282051282051282,
+    "monster_rate": 0.012779552715654952,
     "monsters": [
       {
         "date": "1997-11-23",
@@ -599,24 +594,24 @@
     ]
   },
   "run-like-an-antelope": {
-    "track_count": 494,
-    "avg_duration_min": 11.20888967611336,
-    "median_duration_min": 10.980566666666666,
+    "track_count": 495,
+    "avg_duration_min": 11.182639696969696,
+    "median_duration_min": 10.958216666666667,
     "min_duration_min": 0.07358333333333333,
-    "max_duration_min": 20.8775,
+    "max_duration_min": 20.66285,
     "longest": {
-      "date": "1994-05-16",
-      "duration_min": 20.8775,
-      "venue": "The Wiltern Theatre"
+      "date": "1997-07-29",
+      "duration_min": 20.66285,
+      "venue": "Desert Sky Pavilion"
     },
     "monster_count": 0,
     "monster_rate": 0.0,
     "monsters": []
   },
   "chalk-dust-torture": {
-    "track_count": 518,
-    "avg_duration_min": 8.387432335907336,
-    "median_duration_min": 7.060033333333333,
+    "track_count": 519,
+    "avg_duration_min": 8.36881997430957,
+    "median_duration_min": 7.047833333333333,
     "min_duration_min": 0.93605,
     "max_duration_min": 28.814,
     "longest": {
@@ -625,7 +620,7 @@
       "venue": "Broadview Stage at SPAC"
     },
     "monster_count": 6,
-    "monster_rate": 0.011583011583011582,
+    "monster_rate": 0.011560693641618497,
     "monsters": [
       {
         "date": "2025-07-25",
@@ -660,9 +655,9 @@
     ]
   },
   "stash": {
-    "track_count": 449,
-    "avg_duration_min": 11.513850148478099,
-    "median_duration_min": 11.366316666666666,
+    "track_count": 450,
+    "avg_duration_min": 11.486521,
+    "median_duration_min": 11.36065,
     "min_duration_min": 0.9164666666666667,
     "max_duration_min": 30.42395,
     "longest": {
@@ -671,7 +666,7 @@
       "venue": "Paradiso"
     },
     "monster_count": 1,
-    "monster_rate": 0.0022271714922048997,
+    "monster_rate": 0.0022222222222222222,
     "monsters": [
       {
         "date": "1997-07-02",
@@ -681,9 +676,9 @@
     ]
   },
   "reba": {
-    "track_count": 401,
-    "avg_duration_min": 13.008261512884456,
-    "median_duration_min": 12.665466666666667,
+    "track_count": 403,
+    "avg_duration_min": 12.933295574855252,
+    "median_duration_min": 12.639783333333334,
     "min_duration_min": 0.048766666666666666,
     "max_duration_min": 20.6855,
     "longest": {
@@ -697,7 +692,7 @@
   },
   "slave-to-the-traffic-light": {
     "track_count": 286,
-    "avg_duration_min": 9.914224242424241,
+    "avg_duration_min": 9.914031002331003,
     "median_duration_min": 10.135516666666666,
     "min_duration_min": 2.3096666666666668,
     "max_duration_min": 16.7336,
@@ -712,7 +707,7 @@
   },
   "light": {
     "track_count": 136,
-    "avg_duration_min": 12.324478553921567,
+    "avg_duration_min": 12.324456495098039,
     "median_duration_min": 12.2449,
     "min_duration_min": 2.557383333333333,
     "max_duration_min": 23.92685,
@@ -727,7 +722,7 @@
   },
   "carini": {
     "track_count": 159,
-    "avg_duration_min": 10.837528721174005,
+    "avg_duration_min": 10.837344129979035,
     "median_duration_min": 9.1015,
     "min_duration_min": 1.00615,
     "max_duration_min": 40.0744,
@@ -763,9 +758,9 @@
   },
   "fuego": {
     "track_count": 101,
-    "avg_duration_min": 13.60602194719472,
+    "avg_duration_min": 13.605947194719471,
     "median_duration_min": 11.61055,
-    "min_duration_min": 5.0448,
+    "min_duration_min": 5.04325,
     "max_duration_min": 37.3416,
     "longest": {
       "date": "2026-04-23",
@@ -804,13 +799,13 @@
   },
   "sand": {
     "track_count": 162,
-    "avg_duration_min": 12.301568930041153,
+    "avg_duration_min": 12.301408847736626,
     "median_duration_min": 10.8204,
     "min_duration_min": 1.1288,
-    "max_duration_min": 39.7268,
+    "max_duration_min": 39.72591666666667,
     "longest": {
       "date": "2025-07-15",
-      "duration_min": 39.7268,
+      "duration_min": 39.72591666666667,
       "venue": "TD Pavilion at the Mann"
     },
     "monster_count": 2,
@@ -829,10 +824,10 @@
     ]
   },
   "twist": {
-    "track_count": 189,
-    "avg_duration_min": 10.464186948853616,
-    "median_duration_min": 9.5164,
-    "min_duration_min": 1.4737333333333333,
+    "track_count": 190,
+    "avg_duration_min": 10.39574105263158,
+    "median_duration_min": 9.4284,
+    "min_duration_min": 1.0266666666666666,
     "max_duration_min": 24.0296,
     "longest": {
       "date": "2004-04-16",
@@ -844,18 +839,18 @@
     "monsters": []
   },
   "split-open-and-melt": {
-    "track_count": 345,
-    "avg_duration_min": 11.083864106280194,
+    "track_count": 346,
+    "avg_duration_min": 11.044490510597303,
     "median_duration_min": 10.725,
     "min_duration_min": 1.2908833333333334,
-    "max_duration_min": 31.448,
+    "max_duration_min": 31.4471,
     "longest": {
       "date": "2026-07-14",
-      "duration_min": 31.448,
+      "duration_min": 31.4471,
       "venue": "Enmarket Arena"
     },
     "monster_count": 2,
-    "monster_rate": 0.005797101449275362,
+    "monster_rate": 0.005780346820809248,
     "monsters": [
       {
         "date": "2026-07-14",
@@ -870,9 +865,9 @@
     ]
   },
   "maze": {
-    "track_count": 346,
-    "avg_duration_min": 10.486193497109825,
-    "median_duration_min": 10.169033333333333,
+    "track_count": 347,
+    "avg_duration_min": 10.44657958693564,
+    "median_duration_min": 10.142033333333334,
     "min_duration_min": 3.5961833333333333,
     "max_duration_min": 17.714066666666668,
     "longest": {
@@ -886,28 +881,22 @@
   },
   "weekapaug-groove": {
     "track_count": 507,
-    "avg_duration_min": 8.00458527284681,
-    "median_duration_min": 7.323,
-    "min_duration_min": 0.9991833333333333,
-    "max_duration_min": 35.74551666666667,
+    "avg_duration_min": 7.802576199868508,
+    "median_duration_min": 7.211966666666667,
+    "min_duration_min": 0.9977,
+    "max_duration_min": 18.2596,
     "longest": {
-      "date": "1995-06-10",
-      "duration_min": 35.74551666666667,
-      "venue": "Red Rocks Amphitheatre"
+      "date": "1995-12-31",
+      "duration_min": 18.2596,
+      "venue": "Madison Square Garden"
     },
-    "monster_count": 1,
-    "monster_rate": 0.0019723865877712033,
-    "monsters": [
-      {
-        "date": "1995-06-10",
-        "duration_min": 35.7,
-        "venue": "Red Rocks Amphitheatre"
-      }
-    ]
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
   },
   "prince-caspian": {
     "track_count": 188,
-    "avg_duration_min": 7.634796897163121,
+    "avg_duration_min": 7.634771985815603,
     "median_duration_min": 7.527183333333333,
     "min_duration_min": 0.9272,
     "max_duration_min": 16.33566666666667,
@@ -922,7 +911,7 @@
   },
   "tube": {
     "track_count": 197,
-    "avg_duration_min": 6.388024788494079,
+    "avg_duration_min": 6.3880186971235196,
     "median_duration_min": 5.8308,
     "min_duration_min": 1.6172,
     "max_duration_min": 17.554283333333334,
@@ -937,7 +926,7 @@
   },
   "crosseyed-and-painless": {
     "track_count": 73,
-    "avg_duration_min": 13.132493150684931,
+    "avg_duration_min": 13.132468721461187,
     "median_duration_min": 12.580566666666666,
     "min_duration_min": 1.4289,
     "max_duration_min": 33.0264,
@@ -967,10 +956,10 @@
     ]
   },
   "possum": {
-    "track_count": 531,
-    "avg_duration_min": 9.529198462021343,
-    "median_duration_min": 9.312216666666666,
-    "min_duration_min": 1.4606833333333333,
+    "track_count": 533,
+    "avg_duration_min": 9.488411726078798,
+    "median_duration_min": 9.2713,
+    "min_duration_min": 0.84,
     "max_duration_min": 17.439783333333335,
     "longest": {
       "date": "1995-11-29",
@@ -982,9 +971,9 @@
     "monsters": []
   },
   "free": {
-    "track_count": 237,
-    "avg_duration_min": 9.043684458509142,
-    "median_duration_min": 8.6732,
+    "track_count": 238,
+    "avg_duration_min": 8.990675560224089,
+    "median_duration_min": 8.672366666666667,
     "min_duration_min": 2.3423166666666666,
     "max_duration_min": 33.173766666666666,
     "longest": {
@@ -993,7 +982,7 @@
       "venue": "USAir Arena"
     },
     "monster_count": 1,
-    "monster_rate": 0.004219409282700422,
+    "monster_rate": 0.004201680672268907,
     "monsters": [
       {
         "date": "1995-11-22",
@@ -1004,9 +993,9 @@
   },
   "blaze-on": {
     "track_count": 97,
-    "avg_duration_min": 10.465744329896907,
+    "avg_duration_min": 10.465536426116838,
     "median_duration_min": 9.3076,
-    "min_duration_min": 1.4836,
+    "min_duration_min": 1.4823166666666667,
     "max_duration_min": 27.782966666666667,
     "longest": {
       "date": "2021-08-06",
@@ -1046,7 +1035,7 @@
   },
   "set-your-soul-free": {
     "track_count": 45,
-    "avg_duration_min": 14.604393333333334,
+    "avg_duration_min": 14.604296296296297,
     "median_duration_min": 13.111733333333333,
     "min_duration_min": 6.7052,
     "max_duration_min": 26.056,
@@ -1072,8 +1061,8 @@
   },
   "golden-age": {
     "track_count": 87,
-    "avg_duration_min": 12.600323371647509,
-    "median_duration_min": 11.8712,
+    "avg_duration_min": 12.600265325670497,
+    "median_duration_min": 11.8696,
     "min_duration_min": 5.717766666666667,
     "max_duration_min": 26.5004,
     "longest": {
@@ -1098,7 +1087,7 @@
   },
   "birds-of-a-feather": {
     "track_count": 144,
-    "avg_duration_min": 8.629513425925927,
+    "avg_duration_min": 8.629506365740742,
     "median_duration_min": 7.659966666666667,
     "min_duration_min": 4.895783333333333,
     "max_duration_min": 25.391016666666665,
@@ -1133,10 +1122,10 @@
     "monsters": []
   },
   "cities": {
-    "track_count": 105,
-    "avg_duration_min": 8.190254126984128,
-    "median_duration_min": 6.9032,
-    "min_duration_min": 0.7662666666666667,
+    "track_count": 107,
+    "avg_duration_min": 8.014955607476635,
+    "median_duration_min": 6.858883333333333,
+    "min_duration_min": 0.7112166666666667,
     "max_duration_min": 23.150583333333334,
     "longest": {
       "date": "1997-08-10",
@@ -1149,8 +1138,8 @@
   },
   "scents-and-subtle-sounds": {
     "track_count": 51,
-    "avg_duration_min": 12.40072908496732,
-    "median_duration_min": 11.9336,
+    "avg_duration_min": 12.400610130718954,
+    "median_duration_min": 11.932766666666666,
     "min_duration_min": 2.0462666666666665,
     "max_duration_min": 30.68735,
     "longest": {
@@ -1170,7 +1159,7 @@
   },
   "theme-from-the-bottom": {
     "track_count": 198,
-    "avg_duration_min": 9.8767585016835,
+    "avg_duration_min": 9.876747643097643,
     "median_duration_min": 9.5132,
     "min_duration_min": 6.8053333333333335,
     "max_duration_min": 24.206,
@@ -1200,7 +1189,7 @@
   },
   "ya-mar": {
     "track_count": 230,
-    "avg_duration_min": 8.173235072463768,
+    "avg_duration_min": 8.173234347826087,
     "median_duration_min": 7.59075,
     "min_duration_min": 3.9257666666666666,
     "max_duration_min": 18.8443,
