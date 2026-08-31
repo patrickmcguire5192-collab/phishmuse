@@ -36757,6 +36757,22 @@
     "venue_count": 1,
     "year_count": 1
   },
+  "Disco Set": {
+    "play_count": 1,
+    "jamchart_count": 0,
+    "opener_count": 0,
+    "encore_count": 0,
+    "first_played": "1997-08-16",
+    "last_played": "1997-08-16",
+    "venues": [
+      270
+    ],
+    "years": [
+      "1997"
+    ],
+    "venue_count": 1,
+    "year_count": 1
+  },
   "Art Jam": {
     "play_count": 1,
     "jamchart_count": 0,
@@ -40711,7 +40727,7 @@
   },
   "Waves": {
     "play_count": 58,
-    "jamchart_count": 16,
+    "jamchart_count": 17,
     "opener_count": 1,
     "encore_count": 0,
     "first_played": "2002-12-31",

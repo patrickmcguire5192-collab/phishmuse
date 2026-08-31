@@ -1781,6 +1781,15 @@
     "times_played": 4,
     "gap": 721
   },
+  "Disco Set": {
+    "songid": 3272,
+    "slug": "disco-set",
+    "artist": "Phish",
+    "debut": "1997-08-16",
+    "last_played": "1997-08-16",
+    "times_played": 1,
+    "gap": 968
+  },
   "Divided Sky": {
     "songid": 161,
     "slug": "divided-sky",

@@ -157110,21 +157110,21 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "Harpua",
         "position": 2,
         "set": "1",
         "isjamchart": 0,
-        "gap": 54
+        "gap": 53
       },
       {
         "song": "Chalk Dust Torture",
         "position": 3,
         "set": "1",
         "isjamchart": 1,
-        "gap": 1
+        "gap": 0
       },
       {
         "song": "Theme from the Bottom",
@@ -157145,14 +157145,14 @@
         "position": 6,
         "set": "1",
         "isjamchart": 1,
-        "gap": 2
+        "gap": 1
       },
       {
         "song": "Ginseng Sullivan",
         "position": 7,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "You Enjoy Myself",
@@ -157166,21 +157166,21 @@
         "position": 9,
         "set": "1",
         "isjamchart": 0,
-        "gap": 1
+        "gap": 0
       },
       {
         "song": "Character Zero",
         "position": 10,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "The Squirming Coil",
         "position": 11,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "Wolfman's Brother",
@@ -157194,70 +157194,70 @@
         "position": 13,
         "set": "2",
         "isjamchart": 1,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "My Soul",
         "position": 14,
         "set": "2",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 2
       },
       {
         "song": "Jam",
         "position": 15,
         "set": "2",
         "isjamchart": 1,
-        "gap": 1
+        "gap": 0
       },
       {
         "song": "Slave to the Traffic Light",
         "position": 16,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Rocky Top",
         "position": 17,
         "set": "2",
         "isjamchart": 0,
-        "gap": 1
+        "gap": 0
       },
       {
         "song": "Julius",
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 7
+        "gap": 6
       },
       {
         "song": "Halley's Comet",
         "position": 19,
         "set": "3",
         "isjamchart": 1,
-        "gap": 92
+        "gap": 91
       },
       {
         "song": "Cities",
         "position": 20,
         "set": "3",
         "isjamchart": 1,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Llama",
         "position": 21,
         "set": "3",
         "isjamchart": 1,
-        "gap": 19
+        "gap": 18
       },
       {
         "song": "Lawn Boy",
         "position": 22,
         "set": "3",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Limb By Limb",
@@ -157271,14 +157271,14 @@
         "position": 24,
         "set": "3",
         "isjamchart": 0,
-        "gap": 1
+        "gap": 0
       },
       {
         "song": "Contact",
         "position": 25,
         "set": "e",
         "isjamchart": 0,
-        "gap": 60
+        "gap": 59
       },
       {
         "song": "Loving Cup",
@@ -157286,6 +157286,13 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 5
+      },
+      {
+        "song": "Disco Set",
+        "position": 27,
+        "set": "4",
+        "isjamchart": 0,
+        "gap": 0
       }
     ]
   },
@@ -213935,7 +213942,7 @@
         "song": "Waves",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 78
       },
       {
