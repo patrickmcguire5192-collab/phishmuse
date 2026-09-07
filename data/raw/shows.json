@@ -307256,5 +307256,355 @@
         "gap": 3
       }
     ]
+  },
+  {
+    "showid": 1771439367,
+    "showdate": "2026-09-04",
+    "venue": "Dick's Sporting Goods Park",
+    "city": "Commerce City",
+    "state": "CO",
+    "country": "USA",
+    "venueid": 961,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "No Men In No Man's Land",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Oblivion",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Prince Caspian",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Plasma",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "Tube",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Ya Mar",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 22
+      },
+      {
+        "song": "Wolfman's Brother",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "46 Days",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Down with Disease",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Life Saving Gun",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Lonely Trip",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 20
+      },
+      {
+        "song": "Run Like an Antelope",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "Character Zero",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Wading in the Velvet Sea",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Harry Hood",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 1
+      }
+    ]
+  },
+  {
+    "showid": 1771439389,
+    "showdate": "2026-09-05",
+    "venue": "Dick's Sporting Goods Park",
+    "city": "Commerce City",
+    "state": "CO",
+    "country": "USA",
+    "venueid": 961,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "Possum",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "Sand",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "Sigma Oasis",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "The Moma Dance",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Back on the Train",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Free",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Most Events Aren't Planned",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "What's Going Through Your Mind",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "A Wave of Hope",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Tweezer",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "Chalk Dust Torture",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "When the Circus Comes",
+        "position": 12,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 56
+      },
+      {
+        "song": "Carini",
+        "position": 13,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 2
+      }
+    ]
+  },
+  {
+    "showid": 1771439411,
+    "showdate": "2026-09-06",
+    "venue": "Dick's Sporting Goods Park",
+    "city": "Commerce City",
+    "state": "CO",
+    "country": "USA",
+    "venueid": 961,
+    "tourid": 217,
+    "tourname": "2026 Summer Tour",
+    "tourwhen": "2026 Summer",
+    "songs": [
+      {
+        "song": "Ghost",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Kill Devil Falls",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Roggae",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "Blaze On",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Backwards Down the Number Line",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Axilla (Part II)",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Taste",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Split Open and Melt",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "My Friend, My Friend",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Fuego",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Melt the Guns",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Light",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Everything's Right",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Waste",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "First Tube",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Tweezer Reprise",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 2
+      }
+    ]
   }
 ]

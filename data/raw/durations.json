@@ -7449,6 +7449,13 @@
       "duration_min": 1.4683666666666666,
       "venue": "Alpine Valley Music Theatre",
       "position": 8
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 1427597,
+      "duration_min": 23.793283333333335,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 13
     }
   ],
   "down-with-disease": [
@@ -9810,6 +9817,13 @@
       "duration_min": 0.9508,
       "venue": "Deer Creek Music Center",
       "position": 12
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 2118330,
+      "duration_min": 35.3055,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 13
     }
   ],
   "ghost": [
@@ -17824,6 +17838,13 @@
       "duration_min": 13.630033333333333,
       "venue": "Fenway Park",
       "position": 7
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 994500,
+      "duration_min": 16.575,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 19
     }
   ],
   "ruby-waves": [
@@ -29616,6 +29637,13 @@
       "duration_min": 1.99145,
       "venue": "The Capitol Theatre",
       "position": 15
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 659261,
+      "duration_min": 10.987683333333333,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 16
     }
   ],
   "chalk-dust-torture": [
@@ -33251,6 +33279,13 @@
       "duration_min": 1.8559,
       "venue": "Boardwalk Hall",
       "position": 7
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 575000,
+      "duration_min": 9.583333333333334,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 14
     }
   ],
   "stash": [
@@ -43299,6 +43334,13 @@
       "duration_min": 17.908316666666668,
       "venue": "Fenway Park",
       "position": 1
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 672500,
+      "duration_min": 11.208333333333334,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 16
     }
   ],
   "fuego": [
@@ -45144,6 +45186,13 @@
       "duration_min": 16.688,
       "venue": "Enmarket Arena",
       "position": 9
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 1055755,
+      "duration_min": 17.595916666666668,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 5
     }
   ],
   "twist": [
@@ -56214,6 +56263,13 @@
       "duration_min": 15.9708,
       "venue": "Madison Square Garden",
       "position": 13
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 560160,
+      "duration_min": 9.336,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 7
     }
   ],
   "tube": [
@@ -57595,6 +57651,13 @@
       "duration_min": 6.0108,
       "venue": "Madison Square Garden",
       "position": 10
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 496929,
+      "duration_min": 8.28215,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 9
     }
   ],
   "crosseyed-and-painless": [
@@ -61876,6 +61939,13 @@
       "duration_min": 14.65575,
       "venue": "Compton Terrace Amphitheater",
       "position": 11
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 502476,
+      "duration_min": 8.3746,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 4
     }
   ],
   "free": [
@@ -63544,6 +63614,13 @@
       "duration_min": 3.25495,
       "venue": "Moon Palace",
       "position": 5
+    },
+    {
+      "date": "2026-09-05",
+      "duration_ms": 721364,
+      "duration_min": 12.022733333333333,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 9
     }
   ],
   "blaze-on": [
@@ -72309,6 +72386,13 @@
       "duration_min": 6.8632,
       "venue": "Chase Hall, Bates College",
       "position": 2
+    },
+    {
+      "date": "2026-09-04",
+      "duration_ms": 501740,
+      "duration_min": 8.362333333333334,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 10
     }
   ]
 }
