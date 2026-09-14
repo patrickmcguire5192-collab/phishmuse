@@ -3400,7 +3400,7 @@
       "duration_ms": 1288058,
       "duration_min": 21.467633333333332,
       "venue": "Merriweather Post Pavilion",
-      "position": 18
+      "position": 17
     },
     {
       "date": "2013-08-04",
@@ -10602,7 +10602,7 @@
       "duration_ms": 590864,
       "duration_min": 9.847733333333334,
       "venue": "Dick's Sporting Goods Park",
-      "position": 2
+      "position": 1
     },
     {
       "date": "2013-10-19",
@@ -11471,6 +11471,13 @@
       "duration_min": 8.3505,
       "venue": "Le Transbordeur",
       "position": 14
+    },
+    {
+      "date": "2026-09-06",
+      "duration_ms": 1038577,
+      "duration_min": 17.309616666666667,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 6
     }
   ],
   "david-bowie": [
@@ -16850,7 +16857,7 @@
       "duration_ms": 790872,
       "duration_min": 13.1812,
       "venue": "PNC Bank Arts Center",
-      "position": 14
+      "position": 13
     },
     {
       "date": "2013-07-13",
@@ -16892,7 +16899,7 @@
       "duration_ms": 551497,
       "duration_min": 9.191616666666667,
       "venue": "Dick's Sporting Goods Park",
-      "position": 19
+      "position": 18
     },
     {
       "date": "2013-10-19",
@@ -17354,7 +17361,7 @@
       "duration_ms": 780878,
       "duration_min": 13.014633333333334,
       "venue": "Merriweather Post Pavilion",
-      "position": 17
+      "position": 16
     },
     {
       "date": "2018-08-31",
@@ -20120,7 +20127,7 @@
       "duration_ms": 848952,
       "duration_min": 14.1492,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
-      "position": 17
+      "position": 16
     },
     {
       "date": "2013-07-27",
@@ -20864,7 +20871,7 @@
       "duration_ms": 575280,
       "duration_min": 9.588,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
-      "position": 14
+      "position": 13
     },
     {
       "date": "2013-10-26",
@@ -23325,7 +23332,7 @@
       "duration_ms": 508536,
       "duration_min": 8.4756,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
-      "position": 18
+      "position": 17
     },
     {
       "date": "2013-07-20",
@@ -25364,7 +25371,7 @@
       "duration_ms": 683712,
       "duration_min": 11.3952,
       "venue": "PNC Bank Arts Center",
-      "position": 7
+      "position": 6
     },
     {
       "date": "2013-07-21",
@@ -28747,7 +28754,7 @@
       "duration_ms": 620336,
       "duration_min": 10.338933333333333,
       "venue": "Merriweather Post Pavilion",
-      "position": 11
+      "position": 10
     },
     {
       "date": "2013-07-21",
@@ -32277,7 +32284,7 @@
       "duration_ms": 557218,
       "duration_min": 9.286966666666666,
       "venue": "Merriweather Post Pavilion",
-      "position": 6
+      "position": 5
     },
     {
       "date": "2013-07-12",
@@ -35695,7 +35702,7 @@
       "duration_ms": 828761,
       "duration_min": 13.812683333333334,
       "venue": "Merriweather Post Pavilion",
-      "position": 7
+      "position": 6
     },
     {
       "date": "2013-07-22",
@@ -35709,7 +35716,7 @@
       "duration_ms": 751970,
       "duration_min": 12.532833333333333,
       "venue": "Dick's Sporting Goods Park",
-      "position": 10
+      "position": 9
     },
     {
       "date": "2013-10-18",
@@ -40480,7 +40487,7 @@
       "duration_ms": 616272,
       "duration_min": 10.2712,
       "venue": "PNC Bank Arts Center",
-      "position": 19
+      "position": 18
     },
     {
       "date": "2013-07-20",
@@ -40508,7 +40515,7 @@
       "duration_ms": 592516,
       "duration_min": 9.875266666666667,
       "venue": "Dick's Sporting Goods Park",
-      "position": 22
+      "position": 21
     },
     {
       "date": "2013-10-27",
@@ -41581,14 +41588,14 @@
       "duration_ms": 690072,
       "duration_min": 11.5012,
       "venue": "PNC Bank Arts Center",
-      "position": 17
+      "position": 16
     },
     {
       "date": "2013-07-14",
       "duration_ms": 716539,
       "duration_min": 11.942316666666667,
       "venue": "Merriweather Post Pavilion",
-      "position": 15
+      "position": 14
     },
     {
       "date": "2013-07-20",
@@ -42219,6 +42226,13 @@
       "duration_min": 15.9532,
       "venue": "Fenway Park",
       "position": 12
+    },
+    {
+      "date": "2026-09-06",
+      "duration_ms": 961933,
+      "duration_min": 16.032216666666667,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 17
     }
   ],
   "carini": [
@@ -44050,6 +44064,13 @@
       "duration_min": 15.672,
       "venue": "Fenway Park",
       "position": 9
+    },
+    {
+      "date": "2026-09-06",
+      "duration_ms": 1235293,
+      "duration_min": 20.588216666666668,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 15
     }
   ],
   "sand": [
@@ -44415,7 +44436,7 @@
       "duration_ms": 546192,
       "duration_min": 9.1032,
       "venue": "PNC Bank Arts Center",
-      "position": 16
+      "position": 15
     },
     {
       "date": "2013-08-05",
@@ -44436,7 +44457,7 @@
       "duration_ms": 898299,
       "duration_min": 14.97165,
       "venue": "Dick's Sporting Goods Park",
-      "position": 15
+      "position": 14
     },
     {
       "date": "2013-10-26",
@@ -44856,7 +44877,7 @@
       "duration_ms": 622858,
       "duration_min": 10.380966666666666,
       "venue": "Golden 1 Center",
-      "position": 28
+      "position": 23
     },
     {
       "date": "2021-10-23",
@@ -45761,7 +45782,7 @@
       "duration_ms": 537809,
       "duration_min": 8.963483333333333,
       "venue": "Merriweather Post Pavilion",
-      "position": 13
+      "position": 12
     },
     {
       "date": "2013-07-20",
@@ -45789,7 +45810,7 @@
       "duration_ms": 436448,
       "duration_min": 7.274133333333333,
       "venue": "Dick's Sporting Goods Park",
-      "position": 21
+      "position": 20
     },
     {
       "date": "2013-10-18",
@@ -48949,6 +48970,13 @@
       "duration_min": 1.5813333333333333,
       "venue": "Matthew Knight Arena",
       "position": 9
+    },
+    {
+      "date": "2026-09-06",
+      "duration_ms": 747000,
+      "duration_min": 12.45,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 13
     }
   ],
   "maze": [
@@ -53992,7 +54020,7 @@
       "duration_ms": 443463,
       "duration_min": 7.39105,
       "venue": "Verizon Wireless Amphitheatre at Encore Park",
-      "position": 23
+      "position": 22
     },
     {
       "date": "2013-07-20",
@@ -56943,7 +56971,7 @@
       "duration_ms": 263595,
       "duration_min": 4.39325,
       "venue": "Merriweather Post Pavilion",
-      "position": 10
+      "position": 9
     },
     {
       "date": "2013-07-22",
@@ -57412,7 +57440,7 @@
       "duration_ms": 460248,
       "duration_min": 7.6708,
       "venue": "Golden 1 Center",
-      "position": 23
+      "position": 18
     },
     {
       "date": "2021-10-23",
@@ -57862,7 +57890,7 @@
       "duration_ms": 966480,
       "duration_min": 16.108,
       "venue": "PNC Bank Arts Center",
-      "position": 13
+      "position": 12
     },
     {
       "date": "2013-07-26",
@@ -61007,7 +61035,7 @@
       "duration_ms": 594288,
       "duration_min": 9.9048,
       "venue": "PNC Bank Arts Center",
-      "position": 22
+      "position": 21
     },
     {
       "date": "2013-07-20",
@@ -64302,6 +64330,13 @@
       "duration_min": 10.8956,
       "venue": "Empower FCU Amphitheater at Lakeview",
       "position": 13
+    },
+    {
+      "date": "2026-09-06",
+      "duration_ms": 1025347,
+      "duration_min": 17.089116666666666,
+      "venue": "Dick's Sporting Goods Park",
+      "position": 9
     }
   ],
   "waves": [
@@ -65161,7 +65196,7 @@
       "duration_ms": 616307,
       "duration_min": 10.271783333333333,
       "venue": "Merriweather Post Pavilion",
-      "position": 12
+      "position": 11
     },
     {
       "date": "2013-07-20",
@@ -69049,7 +69084,7 @@
       "duration_ms": 505896,
       "duration_min": 8.4316,
       "venue": "PNC Bank Arts Center",
-      "position": 11
+      "position": 10
     },
     {
       "date": "2013-07-20",
@@ -69070,7 +69105,7 @@
       "duration_ms": 552934,
       "duration_min": 9.215566666666666,
       "venue": "Dick's Sporting Goods Park",
-      "position": 6
+      "position": 5
     },
     {
       "date": "2013-10-19",
@@ -70472,7 +70507,7 @@
       "duration_ms": 523310,
       "duration_min": 8.721833333333333,
       "venue": "Dick's Sporting Goods Park",
-      "position": 12
+      "position": 11
     },
     {
       "date": "2013-10-23",
@@ -72084,7 +72119,7 @@
       "duration_ms": 399024,
       "duration_min": 6.6504,
       "venue": "PNC Bank Arts Center",
-      "position": 9
+      "position": 8
     },
     {
       "date": "2013-08-04",

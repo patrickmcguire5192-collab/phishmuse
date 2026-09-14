@@ -198,9 +198,9 @@
     ]
   },
   "ghost": {
-    "track_count": 235,
-    "avg_duration_min": 13.579699078014183,
-    "median_duration_min": 13.174,
+    "track_count": 236,
+    "avg_duration_min": 13.595503813559322,
+    "median_duration_min": 13.1777,
     "min_duration_min": 0.596,
     "max_duration_min": 31.748783333333332,
     "longest": {
@@ -209,7 +209,7 @@
       "venue": "Loring Commerce Centre"
     },
     "monster_count": 7,
-    "monster_rate": 0.029787234042553193,
+    "monster_rate": 0.029661016949152543,
     "monsters": [
       {
         "date": "2003-08-03",
@@ -706,8 +706,8 @@
     "monsters": []
   },
   "light": {
-    "track_count": 136,
-    "avg_duration_min": 12.324499142156862,
+    "track_count": 137,
+    "avg_duration_min": 12.351562773722627,
     "median_duration_min": 12.244133333333334,
     "min_duration_min": 2.557383333333333,
     "max_duration_min": 23.92685,
@@ -757,9 +757,9 @@
     ]
   },
   "fuego": {
-    "track_count": 101,
-    "avg_duration_min": 13.614675742574256,
-    "median_duration_min": 11.609916666666667,
+    "track_count": 102,
+    "avg_duration_min": 13.683043790849673,
+    "median_duration_min": 11.761466666666667,
     "min_duration_min": 5.043183333333333,
     "max_duration_min": 37.3416,
     "longest": {
@@ -768,7 +768,7 @@
       "venue": "Sphere"
     },
     "monster_count": 5,
-    "monster_rate": 0.04950495049504951,
+    "monster_rate": 0.049019607843137254,
     "monsters": [
       {
         "date": "2026-04-23",
@@ -839,8 +839,8 @@
     "monsters": []
   },
   "split-open-and-melt": {
-    "track_count": 346,
-    "avg_duration_min": 11.043951734104047,
+    "track_count": 347,
+    "avg_duration_min": 11.048003746397693,
     "median_duration_min": 10.724366666666667,
     "min_duration_min": 1.2899166666666666,
     "max_duration_min": 31.4471,
@@ -850,7 +850,7 @@
       "venue": "Enmarket Arena"
     },
     "monster_count": 2,
-    "monster_rate": 0.005780346820809248,
+    "monster_rate": 0.005763688760806916,
     "monsters": [
       {
         "date": "2026-07-14",
@@ -992,9 +992,9 @@
     ]
   },
   "blaze-on": {
-    "track_count": 97,
-    "avg_duration_min": 10.465474226804123,
-    "median_duration_min": 9.3076,
+    "track_count": 98,
+    "avg_duration_min": 10.533062414965986,
+    "median_duration_min": 9.509483333333334,
     "min_duration_min": 1.48225,
     "max_duration_min": 27.782966666666667,
     "longest": {
@@ -1003,7 +1003,7 @@
       "venue": "Ruoff Music Center"
     },
     "monster_count": 1,
-    "monster_rate": 0.010309278350515464,
+    "monster_rate": 0.01020408163265306,
     "monsters": [
       {
         "date": "2021-08-06",
