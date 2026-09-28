@@ -531,6 +531,83 @@
       }
     ]
   },
+  "piper": {
+    "track_count": 211,
+    "avg_duration_min": 11.105302211690365,
+    "median_duration_min": 9.837283333333334,
+    "min_duration_min": 0.6048333333333333,
+    "max_duration_min": 32.66925,
+    "longest": {
+      "date": "2004-06-19",
+      "duration_min": 32.66925,
+      "venue": "Saratoga Performing Arts Center"
+    },
+    "monster_count": 2,
+    "monster_rate": 0.009478672985781991,
+    "monsters": [
+      {
+        "date": "2004-06-19",
+        "duration_min": 32.7,
+        "venue": "Saratoga Performing Arts Center"
+      },
+      {
+        "date": "1999-07-18",
+        "duration_min": 25.0,
+        "venue": "Oswego County Airport"
+      }
+    ]
+  },
+  "bathtub-gin": {
+    "track_count": 314,
+    "avg_duration_min": 12.13182314225053,
+    "median_duration_min": 11.901383333333333,
+    "min_duration_min": 0.3938833333333333,
+    "max_duration_min": 31.05915,
+    "longest": {
+      "date": "1997-11-23",
+      "duration_min": 31.05915,
+      "venue": "Lawrence Joel Veterans Memorial Coliseum"
+    },
+    "monster_count": 4,
+    "monster_rate": 0.012738853503184714,
+    "monsters": [
+      {
+        "date": "1997-11-23",
+        "duration_min": 31.1,
+        "venue": "Lawrence Joel Veterans Memorial Coliseum"
+      },
+      {
+        "date": "1996-11-07",
+        "duration_min": 27.1,
+        "venue": "Rupp Arena"
+      },
+      {
+        "date": "2003-02-22",
+        "duration_min": 26.7,
+        "venue": "U.S. Bank Arena"
+      },
+      {
+        "date": "2003-07-09",
+        "duration_min": 26.6,
+        "venue": "Shoreline Amphitheatre"
+      }
+    ]
+  },
+  "run-like-an-antelope": {
+    "track_count": 498,
+    "avg_duration_min": 11.12527061579652,
+    "median_duration_min": 10.958216666666667,
+    "min_duration_min": 0.07358333333333333,
+    "max_duration_min": 20.661916666666666,
+    "longest": {
+      "date": "1997-07-29",
+      "duration_min": 20.661916666666666,
+      "venue": "Desert Sky Pavilion"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
   "chalk-dust-torture": {
     "track_count": 520,
     "avg_duration_min": 8.370541538461538,
