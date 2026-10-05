@@ -13442,7 +13442,7 @@
         "position": 3,
         "set": "1",
         "isjamchart": 0,
-        "gap": 13
+        "gap": 14
       },
       {
         "song": "Peaches en Regalia",
@@ -13470,7 +13470,7 @@
         "position": 7,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 5
       },
       {
         "song": "All Blues",
@@ -13540,7 +13540,7 @@
         "position": 17,
         "set": "3",
         "isjamchart": 0,
-        "gap": 20
+        "gap": 21
       },
       {
         "song": "Big Black Furry Creature from Mars",
@@ -13589,7 +13589,7 @@
         "position": 24,
         "set": "e",
         "isjamchart": 1,
-        "gap": 4
+        "gap": 5
       }
     ]
   },
@@ -13645,7 +13645,7 @@
         "position": 6,
         "set": "1",
         "isjamchart": 0,
-        "gap": 14
+        "gap": 15
       },
       {
         "song": "I Am Hydrogen",
@@ -13659,7 +13659,7 @@
         "position": 8,
         "set": "1",
         "isjamchart": 0,
-        "gap": 14
+        "gap": 15
       },
       {
         "song": "Golgi Apparatus",
@@ -13715,14 +13715,14 @@
         "position": 16,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 6
       },
       {
         "song": "Letter to Jimmy Page",
         "position": 17,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 6
       },
       {
         "song": "Alumni Blues",
@@ -13757,7 +13757,7 @@
         "position": 22,
         "set": "3",
         "isjamchart": 0,
-        "gap": 17
+        "gap": 18
       },
       {
         "song": "Suzy Greenberg",
@@ -13771,7 +13771,7 @@
         "position": 24,
         "set": "3",
         "isjamchart": 0,
-        "gap": 9
+        "gap": 10
       },
       {
         "song": "Bike",
@@ -14317,7 +14317,7 @@
         "position": 13,
         "set": "2",
         "isjamchart": 0,
-        "gap": 29
+        "gap": 30
       },
       {
         "song": "Light Up Or Leave Me Alone",
@@ -34911,7 +34911,7 @@
         "position": 12,
         "set": "2",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "I Am Hydrogen",
@@ -34925,7 +34925,7 @@
         "position": 14,
         "set": "2",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Magilla",
@@ -35128,7 +35128,7 @@
         "position": 13,
         "set": "2",
         "isjamchart": 0,
-        "gap": 10
+        "gap": 9
       },
       {
         "song": "Buried Alive",
@@ -35142,7 +35142,7 @@
         "position": 15,
         "set": "2",
         "isjamchart": 1,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Magilla",
@@ -35268,7 +35268,7 @@
         "position": 10,
         "set": "1",
         "isjamchart": 1,
-        "gap": 11
+        "gap": 10
       },
       {
         "song": "Golgi Apparatus",
@@ -35303,7 +35303,7 @@
         "position": 15,
         "set": "2",
         "isjamchart": 0,
-        "gap": 21
+        "gap": 20
       },
       {
         "song": "Eliza",
@@ -35324,7 +35324,7 @@
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 6
+        "gap": 5
       },
       {
         "song": "Foam",
@@ -35345,7 +35345,7 @@
         "position": 21,
         "set": "2",
         "isjamchart": 0,
-        "gap": 7
+        "gap": 6
       },
       {
         "song": "Possum",
@@ -35807,7 +35807,7 @@
         "position": 18,
         "set": "2",
         "isjamchart": 1,
-        "gap": 11
+        "gap": 10
       },
       {
         "song": "Highway to Hell",
@@ -35891,7 +35891,7 @@
         "position": 8,
         "set": "1",
         "isjamchart": 0,
-        "gap": 12
+        "gap": 11
       },
       {
         "song": "The Landlady",
@@ -36360,7 +36360,7 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "The Squirming Coil",
@@ -36374,35 +36374,35 @@
         "position": 3,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 0
       },
       {
         "song": "The Landlady",
         "position": 4,
         "set": "1",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Magilla",
         "position": 5,
         "set": "1",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Dinner and a Movie",
         "position": 6,
         "set": "1",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Bouncing Around the Room",
         "position": 7,
         "set": "1",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Tweezer",
@@ -36416,14 +36416,14 @@
         "position": 9,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 0
       },
       {
         "song": "Suzy Greenberg",
         "position": 10,
         "set": "1",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 0
       },
       {
         "song": "Mike's Song",
@@ -36437,7 +36437,7 @@
         "position": 12,
         "set": "2",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Weekapaug Groove",
@@ -36451,7 +36451,7 @@
         "position": 14,
         "set": "2",
         "isjamchart": 0,
-        "gap": 3
+        "gap": 0
       },
       {
         "song": "Stash",
@@ -36465,63 +36465,63 @@
         "position": 16,
         "set": "2",
         "isjamchart": 0,
-        "gap": 28
+        "gap": 0
       },
       {
         "song": "Fee",
         "position": 17,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 0
       },
       {
         "song": "Gumbo",
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 2
+        "gap": 0
       },
       {
         "song": "Golgi Apparatus",
         "position": 19,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 0
       },
       {
         "song": "Love You",
         "position": 20,
         "set": "2",
         "isjamchart": 0,
-        "gap": 7
+        "gap": 0
       },
       {
         "song": "Hold Your Head Up",
         "position": 21,
         "set": "2",
         "isjamchart": 0,
-        "gap": 7
+        "gap": 0
       },
       {
         "song": "Run Like an Antelope",
         "position": 22,
         "set": "2",
         "isjamchart": 1,
-        "gap": 3
+        "gap": 0
       },
       {
         "song": "Contact",
         "position": 23,
         "set": "e",
         "isjamchart": 0,
-        "gap": 10
+        "gap": 0
       },
       {
         "song": "Highway to Hell",
         "position": 24,
         "set": "e",
         "isjamchart": 0,
-        "gap": 6
+        "gap": 0
       }
     ]
   },
@@ -36976,14 +36976,14 @@
         "position": 17,
         "set": "2",
         "isjamchart": 0,
-        "gap": 34
+        "gap": 33
       },
       {
         "song": "Letter to Jimmy Page",
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 34
+        "gap": 33
       },
       {
         "song": "Alumni Blues",
@@ -39139,7 +39139,7 @@
         "position": 14,
         "set": "2",
         "isjamchart": 0,
-        "gap": 45
+        "gap": 44
       },
       {
         "song": "Llama",
@@ -40889,7 +40889,7 @@
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 77
+        "gap": 76
       },
       {
         "song": "Llama",
@@ -90988,7 +90988,7 @@
         "position": 11,
         "set": "2",
         "isjamchart": 0,
-        "gap": 477
+        "gap": 476
       },
       {
         "song": "David Bowie",
@@ -307604,6 +307604,370 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 3
+      }
+    ]
+  },
+  {
+    "showid": 1785866856,
+    "showdate": "2026-10-02",
+    "venue": "Jim Whelan Boardwalk Hall",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "country": "USA",
+    "venueid": 1692,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Fuego",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "A Wave of Hope",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Slave to the Traffic Light",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Pillow Jets",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "It's Ice",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Ghost",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 1
+      },
+      {
+        "song": "Oblivion",
+        "position": 7,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Down with Disease",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Tweezer",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Mercury",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Death Don't Hurt Very Long",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 100
+      },
+      {
+        "song": "Fluffhead",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Alumni Blues",
+        "position": 13,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 158
+      },
+      {
+        "song": "Letter to Jimmy Page",
+        "position": 14,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 158
+      },
+      {
+        "song": "Alumni Blues",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Say It To Me S.A.N.T.O.S.",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 5
+      }
+    ]
+  },
+  {
+    "showid": 1785866879,
+    "showdate": "2026-10-03",
+    "venue": "Jim Whelan Boardwalk Hall",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "country": "USA",
+    "venueid": 1692,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Sand",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Everything's Right",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Back on the Train",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Stash",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "555",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 19
+      },
+      {
+        "song": "Mountains in the Mist",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 18
+      },
+      {
+        "song": "Bathtub Gin",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Chalk Dust Torture",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "What's Going Through Your Mind",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Mike's Song",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Waste",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 2
+      },
+      {
+        "song": "Weekapaug Groove",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Monsters",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Harry Hood",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Character Zero",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Sleeping Monkey",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 77
+      },
+      {
+        "song": "Tweezer Reprise",
+        "position": 17,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 2
+      }
+    ]
+  },
+  {
+    "showid": 1785866897,
+    "showdate": "2026-10-04",
+    "venue": "Jim Whelan Boardwalk Hall",
+    "city": "Atlantic City",
+    "state": "NJ",
+    "country": "USA",
+    "venueid": 1692,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "David Bowie",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "The Moma Dance",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Sigma Oasis",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Blaze On",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Halley's Comet",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Wilson",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "The Squirming Coil",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Split Open and Melt",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "No Men In No Man's Land",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Simple",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Lonely Trip",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "You Enjoy Myself",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Carini",
+        "position": 13,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
       }
     ]
   }
