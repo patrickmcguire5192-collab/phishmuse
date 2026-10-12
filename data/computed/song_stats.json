@@ -853,12 +853,12 @@
     "year_count": 29
   },
   "Slave to the Traffic Light": {
-    "play_count": 300,
+    "play_count": 301,
     "jamchart_count": 56,
     "opener_count": 8,
-    "encore_count": 46,
+    "encore_count": 47,
     "first_played": "1984-12-01",
-    "last_played": "2026-10-02",
+    "last_played": "2026-10-11",
     "venues": [
       2,
       3,
@@ -882,6 +882,7 @@
       31,
       548,
       549,
+      1573,
       1575,
       556,
       47,
@@ -1087,7 +1088,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 189,
+    "venue_count": 190,
     "year_count": 35
   },
   "Spanish Flea": {
@@ -2677,12 +2678,12 @@
     "year_count": 1
   },
   "Run Like an Antelope": {
-    "play_count": 512,
+    "play_count": 513,
     "jamchart_count": 136,
     "opener_count": 3,
     "encore_count": 34,
     "first_played": "1985-04-06",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-06",
     "venues": [
       2,
       3,
@@ -3000,7 +3001,8 @@
       1611,
       1612,
       1645,
-      1652
+      1652,
+      1689
     ],
     "years": [
       "1985",
@@ -3040,7 +3042,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 317,
+    "venue_count": 318,
     "year_count": 36
   },
   "McGrupp and the Watchful Hosemasters": {
@@ -3402,12 +3404,12 @@
     "year_count": 3
   },
   "Possum": {
-    "play_count": 596,
+    "play_count": 598,
     "jamchart_count": 129,
     "opener_count": 33,
     "encore_count": 55,
     "first_played": "1985-09-27",
-    "last_played": "2026-09-05",
+    "last_played": "2026-10-11",
     "venues": [
       1,
       2,
@@ -3769,6 +3771,7 @@
       1546,
       1548,
       1570,
+      1573,
       1576,
       1588,
       1591,
@@ -3779,7 +3782,8 @@
       1626,
       1649,
       1651,
-      1653
+      1653,
+      1689
     ],
     "years": [
       "1985",
@@ -3819,7 +3823,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 371,
+    "venue_count": 373,
     "year_count": 36
   },
   "Melt the Guns": {
@@ -3864,12 +3868,12 @@
     "year_count": 1
   },
   "Harry Hood": {
-    "play_count": 452,
+    "play_count": 453,
     "jamchart_count": 120,
     "opener_count": 7,
     "encore_count": 55,
     "first_played": "1985-10-30",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-09",
     "venues": [
       512,
       2,
@@ -3978,6 +3982,7 @@
       154,
       1692,
       157,
+      1690,
       674,
       163,
       167,
@@ -4199,7 +4204,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 288,
+    "venue_count": 289,
     "year_count": 37
   },
   "Revival": {
@@ -7405,12 +7410,12 @@
     "year_count": 2
   },
   "Suzy Greenberg": {
-    "play_count": 460,
+    "play_count": 461,
     "jamchart_count": 18,
     "opener_count": 42,
     "encore_count": 47,
     "first_played": "1987-02-13",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-06",
     "venues": [
       2,
       3,
@@ -7720,7 +7725,8 @@
       1576,
       1586,
       1597,
-      1649
+      1649,
+      1689
     ],
     "years": [
       "1987",
@@ -7758,7 +7764,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 309,
+    "venue_count": 310,
     "year_count": 34
   },
   "Why Don't You Love Me?": {
@@ -8507,12 +8513,12 @@
     "year_count": 8
   },
   "Timber (Jerry the Mule)": {
-    "play_count": 111,
+    "play_count": 112,
     "jamchart_count": 38,
     "opener_count": 2,
     "encore_count": 1,
     "first_played": "1987-04-29",
-    "last_played": "2026-07-27",
+    "last_played": "2026-10-07",
     "venues": [
       2,
       3,
@@ -8536,6 +8542,7 @@
       649,
       655,
       660,
+      1689,
       154,
       157,
       1192,
@@ -8632,7 +8639,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 85,
+    "venue_count": 86,
     "year_count": 30
   },
   "The Ballad of Curtis Loew": {
@@ -8990,12 +8997,12 @@
     "year_count": 22
   },
   "Divided Sky": {
-    "play_count": 448,
+    "play_count": 449,
     "jamchart_count": 34,
     "opener_count": 19,
     "encore_count": 5,
     "first_played": "1987-05-11",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-06",
     "venues": [
       2,
       3,
@@ -9305,7 +9312,8 @@
       1597,
       1650,
       1653,
-      1674
+      1674,
+      1689
     ],
     "years": [
       "1987",
@@ -9344,7 +9352,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 309,
+    "venue_count": 310,
     "year_count": 35
   },
   "Harpua": {
@@ -9548,12 +9556,12 @@
     "year_count": 13
   },
   "The Curtain With": {
-    "play_count": 49,
+    "play_count": 50,
     "jamchart_count": 13,
     "opener_count": 9,
     "encore_count": 1,
     "first_played": "1987-08-09",
-    "last_played": "2026-07-27",
+    "last_played": "2026-10-07",
     "venues": [
       2,
       519,
@@ -9564,6 +9572,7 @@
       781,
       401,
       274,
+      1689,
       157,
       1437,
       428,
@@ -9610,7 +9619,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 34,
+    "venue_count": 35,
     "year_count": 18
   },
   "The Sloth": {
@@ -11618,12 +11627,12 @@
     "year_count": 18
   },
   "The Lizards": {
-    "play_count": 337,
+    "play_count": 338,
     "jamchart_count": 0,
     "opener_count": 1,
-    "encore_count": 19,
+    "encore_count": 20,
     "first_played": "1988-01-27",
-    "last_played": "2026-07-22",
+    "last_played": "2026-10-07",
     "venues": [
       2,
       3,
@@ -11739,6 +11748,7 @@
       151,
       662,
       663,
+      1689,
       668,
       157,
       670,
@@ -11904,7 +11914,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 244,
+    "venue_count": 245,
     "year_count": 32
   },
   "Sympathy for the Devil": {
@@ -15848,12 +15858,12 @@
     "year_count": 24
   },
   "Punch You in the Eye": {
-    "play_count": 173,
+    "play_count": 174,
     "jamchart_count": 6,
     "opener_count": 32,
     "encore_count": 6,
     "first_played": "1989-08-17",
-    "last_played": "2026-07-25",
+    "last_played": "2026-10-09",
     "venues": [
       3,
       516,
@@ -15894,6 +15904,7 @@
       134,
       137,
       143,
+      1690,
       157,
       158,
       1192,
@@ -16016,7 +16027,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 130,
+    "venue_count": 131,
     "year_count": 28
   },
   "Rhombus Narration": {
@@ -16282,12 +16293,12 @@
     "year_count": 27
   },
   "Reba": {
-    "play_count": 423,
+    "play_count": 424,
     "jamchart_count": 117,
     "opener_count": 12,
     "encore_count": 4,
     "first_played": "1989-10-01",
-    "last_played": "2026-07-22",
+    "last_played": "2026-10-09",
     "venues": [
       3,
       6,
@@ -16595,7 +16606,8 @@
       1591,
       1597,
       1649,
-      1650
+      1650,
+      1690
     ],
     "years": [
       "1989",
@@ -16630,7 +16642,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 307,
+    "venue_count": 308,
     "year_count": 31
   },
   "Highway to Hell": {
@@ -18169,12 +18181,12 @@
     "year_count": 1
   },
   "Rift": {
-    "play_count": 325,
+    "play_count": 326,
     "jamchart_count": 0,
-    "opener_count": 19,
+    "opener_count": 20,
     "encore_count": 2,
     "first_played": "1990-02-25",
-    "last_played": "2026-07-25",
+    "last_played": "2026-10-11",
     "venues": [
       515,
       3,
@@ -18197,6 +18209,7 @@
       36,
       37,
       548,
+      1573,
       40,
       556,
       45,
@@ -18455,7 +18468,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 246,
+    "venue_count": 247,
     "year_count": 30
   },
   "Killer Joe": {
@@ -18475,12 +18488,12 @@
     "year_count": 1
   },
   "Tweezer": {
-    "play_count": 481,
+    "play_count": 485,
     "jamchart_count": 209,
-    "opener_count": 10,
+    "opener_count": 11,
     "encore_count": 1,
     "first_played": "1990-03-28",
-    "last_played": "2026-10-02",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       515,
@@ -18588,6 +18601,7 @@
       663,
       665,
       154,
+      1690,
       1692,
       157,
       158,
@@ -18808,7 +18822,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 292,
+    "venue_count": 293,
     "year_count": 31
   },
   "Uncle Pen": {
@@ -19026,12 +19040,12 @@
     "year_count": 15
   },
   "Runaway Jim": {
-    "play_count": 418,
+    "play_count": 419,
     "jamchart_count": 78,
     "opener_count": 95,
     "encore_count": 10,
     "first_played": "1990-03-28",
-    "last_played": "2026-07-22",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       3,
@@ -19346,7 +19360,8 @@
       1597,
       1612,
       1649,
-      1657
+      1657,
+      1690
     ],
     "years": [
       "1990",
@@ -19381,7 +19396,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 314,
+    "venue_count": 315,
     "year_count": 31
   },
   "Cavern": {
@@ -20509,12 +20524,12 @@
     "year_count": 12
   },
   "Tube": {
-    "play_count": 210,
+    "play_count": 211,
     "jamchart_count": 57,
     "opener_count": 13,
     "encore_count": 11,
     "first_played": "1990-09-13",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-07",
     "venues": [
       512,
       1,
@@ -20556,6 +20571,7 @@
       1651,
       139,
       662,
+      1689,
       157,
       672,
       673,
@@ -20682,7 +20698,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 132,
+    "venue_count": 133,
     "year_count": 31
   },
   "The Asse Festival": {
@@ -20741,12 +20757,12 @@
     "year_count": 1
   },
   "Buried Alive": {
-    "play_count": 177,
+    "play_count": 178,
     "jamchart_count": 3,
-    "opener_count": 83,
+    "opener_count": 84,
     "encore_count": 1,
     "first_played": "1990-09-13",
-    "last_played": "2026-07-17",
+    "last_played": "2026-10-06",
     "venues": [
       1,
       521,
@@ -20818,6 +20834,7 @@
       151,
       663,
       665,
+      1689,
       157,
       674,
       162,
@@ -20925,7 +20942,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 145,
+    "venue_count": 146,
     "year_count": 29
   },
   "Paul and Silas": {
@@ -21717,12 +21734,12 @@
     "year_count": 1
   },
   "Gumbo": {
-    "play_count": 129,
+    "play_count": 130,
     "jamchart_count": 37,
-    "opener_count": 4,
+    "opener_count": 5,
     "encore_count": 4,
     "first_played": "1990-09-28",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-07",
     "venues": [
       3,
       4,
@@ -21756,6 +21773,7 @@
       635,
       1674,
       659,
+      1689,
       155,
       156,
       157,
@@ -21853,7 +21871,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 97,
+    "venue_count": 98,
     "year_count": 29
   },
   "Black and Tan Fantasy": {
@@ -21925,12 +21943,12 @@
     "year_count": 1
   },
   "Llama": {
-    "play_count": 330,
+    "play_count": 331,
     "jamchart_count": 39,
     "opener_count": 62,
     "encore_count": 3,
     "first_played": "1990-10-27",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-07",
     "venues": [
       3,
       4,
@@ -22134,6 +22152,7 @@
       304,
       162,
       305,
+      1689,
       163,
       309,
       311,
@@ -22227,7 +22246,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 262,
+    "venue_count": 263,
     "year_count": 30
   },
   "Manteca": {
@@ -22350,12 +22369,12 @@
     "year_count": 1
   },
   "Tweezer Reprise": {
-    "play_count": 345,
+    "play_count": 346,
     "jamchart_count": 12,
     "opener_count": 4,
-    "encore_count": 219,
+    "encore_count": 220,
     "first_played": "1991-02-01",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       3,
@@ -22423,6 +22442,7 @@
       146,
       663,
       665,
+      1690,
       1692,
       157,
       158,
@@ -22613,7 +22633,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 223,
+    "venue_count": 224,
     "year_count": 30
   },
   "Guelah Papyrus": {
@@ -22838,12 +22858,12 @@
     "year_count": 25
   },
   "Chalk Dust Torture": {
-    "play_count": 541,
+    "play_count": 542,
     "jamchart_count": 101,
     "opener_count": 100,
     "encore_count": 18,
     "first_played": "1991-02-01",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-09",
     "venues": [
       3,
       4,
@@ -23207,6 +23227,7 @@
       1611,
       1626,
       1650,
+      1690,
       1692
     ],
     "years": [
@@ -23242,7 +23263,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 363,
+    "venue_count": 364,
     "year_count": 31
   },
   "Let's Go": {
@@ -24379,12 +24400,12 @@
     "year_count": 1
   },
   "Maze": {
-    "play_count": 354,
+    "play_count": 355,
     "jamchart_count": 48,
     "opener_count": 12,
     "encore_count": 2,
     "first_played": "1992-01-14",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       516,
@@ -25014,12 +25035,12 @@
     "year_count": 16
   },
   "Sleeping Monkey": {
-    "play_count": 98,
+    "play_count": 99,
     "jamchart_count": 2,
     "opener_count": 0,
-    "encore_count": 74,
+    "encore_count": 75,
     "first_played": "1992-01-14",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       4,
@@ -25049,6 +25070,7 @@
       142,
       146,
       152,
+      1690,
       1692,
       157,
       162,
@@ -25138,7 +25160,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 88,
+    "venue_count": 89,
     "year_count": 26
   },
   "Mound": {
@@ -26905,12 +26927,12 @@
     "year_count": 5
   },
   "Loving Cup": {
-    "play_count": 158,
+    "play_count": 159,
     "jamchart_count": 19,
     "opener_count": 8,
     "encore_count": 72,
     "first_played": "1993-02-03",
-    "last_played": "2026-07-27",
+    "last_played": "2026-10-07",
     "venues": [
       512,
       4,
@@ -26941,6 +26963,7 @@
       129,
       141,
       657,
+      1689,
       155,
       157,
       158,
@@ -27062,7 +27085,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 119,
+    "venue_count": 120,
     "year_count": 28
   },
   "The Wedge": {
@@ -28180,12 +28203,12 @@
     "year_count": 9
   },
   "Also Sprach Zarathustra": {
-    "play_count": 282,
+    "play_count": 283,
     "jamchart_count": 69,
     "opener_count": 7,
     "encore_count": 3,
     "first_played": "1993-07-16",
-    "last_played": "2026-07-24",
+    "last_played": "2026-10-06",
     "venues": [
       3,
       4,
@@ -28232,6 +28255,7 @@
       144,
       657,
       662,
+      1689,
       155,
       157,
       158,
@@ -28398,7 +28422,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 180,
+    "venue_count": 181,
     "year_count": 28
   },
   "Yerushalayim Shel Zahav": {
@@ -29156,12 +29180,12 @@
     "year_count": 16
   },
   "Julius": {
-    "play_count": 245,
+    "play_count": 246,
     "jamchart_count": 20,
     "opener_count": 18,
-    "encore_count": 38,
+    "encore_count": 39,
     "first_played": "1994-04-04",
-    "last_played": "2026-07-25",
+    "last_played": "2026-10-07",
     "venues": [
       515,
       3,
@@ -29219,6 +29243,7 @@
       661,
       663,
       153,
+      1689,
       157,
       1193,
       172,
@@ -29384,16 +29409,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 191,
+    "venue_count": 192,
     "year_count": 27
   },
   "Wolfman's Brother": {
-    "play_count": 256,
+    "play_count": 257,
     "jamchart_count": 74,
     "opener_count": 15,
     "encore_count": 2,
     "first_played": "1994-04-04",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-06",
     "venues": [
       512,
       1,
@@ -29439,6 +29464,7 @@
       655,
       144,
       660,
+      1689,
       155,
       157,
       158,
@@ -29590,7 +29616,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 165,
+    "venue_count": 166,
     "year_count": 27
   },
   "I Wan'na Be Like You": {
@@ -29767,12 +29793,12 @@
     "year_count": 18
   },
   "Axilla (Part II)": {
-    "play_count": 67,
+    "play_count": 68,
     "jamchart_count": 5,
     "opener_count": 2,
     "encore_count": 0,
     "first_played": "1994-04-16",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-06",
     "venues": [
       128,
       130,
@@ -29787,6 +29813,7 @@
       1546,
       9,
       144,
+      1689,
       157,
       34,
       1570,
@@ -29840,7 +29867,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 55,
+    "venue_count": 56,
     "year_count": 8
   },
   "All Along the Watchtower": {
@@ -31363,12 +31390,12 @@
     "year_count": 5
   },
   "Theme from the Bottom": {
-    "play_count": 203,
+    "play_count": 204,
     "jamchart_count": 40,
     "opener_count": 10,
     "encore_count": 9,
     "first_played": "1995-05-14",
-    "last_played": "2026-07-27",
+    "last_played": "2026-10-11",
     "venues": [
       513,
       514,
@@ -31388,6 +31415,7 @@
       1546,
       34,
       1570,
+      1573,
       38,
       40,
       1576,
@@ -31539,7 +31567,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 141,
+    "venue_count": 142,
     "year_count": 25
   },
   "Ha Ha Ha": {
@@ -31767,12 +31795,12 @@
     "year_count": 26
   },
   "Free": {
-    "play_count": 247,
+    "play_count": 249,
     "jamchart_count": 32,
     "opener_count": 21,
     "encore_count": 2,
     "first_played": "1995-05-14",
-    "last_played": "2026-09-05",
+    "last_played": "2026-10-11",
     "venues": [
       512,
       513,
@@ -31812,6 +31840,7 @@
       658,
       660,
       663,
+      1689,
       154,
       156,
       157,
@@ -31961,7 +31990,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 158,
+    "venue_count": 159,
     "year_count": 26
   },
   "Strange Design": {
@@ -34244,12 +34273,12 @@
     "year_count": 1
   },
   "Crosseyed and Painless": {
-    "play_count": 76,
+    "play_count": 78,
     "jamchart_count": 35,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "1996-10-31",
-    "last_played": "2026-07-29",
+    "last_played": "2026-10-09",
     "venues": [
       768,
       769,
@@ -34265,6 +34294,7 @@
       400,
       401,
       1306,
+      1690,
       157,
       1312,
       1316,
@@ -34324,7 +34354,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 46,
+    "venue_count": 47,
     "year_count": 24
   },
   "The Great Curve": {
@@ -34961,12 +34991,12 @@
     "year_count": 12
   },
   "Carini": {
-    "play_count": 165,
+    "play_count": 166,
     "jamchart_count": 51,
     "opener_count": 21,
     "encore_count": 13,
     "first_played": "1997-02-17",
-    "last_played": "2026-10-04",
+    "last_played": "2026-10-09",
     "venues": [
       3,
       4,
@@ -34985,6 +35015,7 @@
       1649,
       1651,
       1653,
+      1690,
       155,
       1692,
       157,
@@ -35085,7 +35116,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 89,
+    "venue_count": 90,
     "year_count": 25
   },
   "One Meatball": {
@@ -35408,12 +35439,12 @@
     "year_count": 13
   },
   "Ghost": {
-    "play_count": 245,
+    "play_count": 246,
     "jamchart_count": 69,
     "opener_count": 12,
-    "encore_count": 4,
+    "encore_count": 5,
     "first_played": "1997-06-06",
-    "last_played": "2026-10-02",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       3,
@@ -35453,6 +35484,7 @@
       1657,
       1674,
       1675,
+      1690,
       1692,
       157,
       698,
@@ -35579,7 +35611,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 137,
+    "venue_count": 138,
     "year_count": 24
   },
   "Water in the Sky": {
@@ -35773,12 +35805,12 @@
     "year_count": 23
   },
   "Dirt": {
-    "play_count": 83,
+    "play_count": 84,
     "jamchart_count": 0,
     "opener_count": 0,
     "encore_count": 1,
     "first_played": "1997-06-06",
-    "last_played": "2026-07-11",
+    "last_played": "2026-10-09",
     "venues": [
       384,
       1,
@@ -35804,6 +35836,7 @@
       397,
       407,
       271,
+      1690,
       157,
       415,
       417,
@@ -35875,16 +35908,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 71,
+    "venue_count": 72,
     "year_count": 21
   },
   "Twist": {
-    "play_count": 198,
+    "play_count": 199,
     "jamchart_count": 57,
     "opener_count": 2,
     "encore_count": 1,
     "first_played": "1997-06-06",
-    "last_played": "2026-07-08",
+    "last_played": "2026-10-09",
     "venues": [
       1,
       3,
@@ -35911,6 +35944,7 @@
       1649,
       1650,
       1657,
+      1690,
       157,
       1192,
       698,
@@ -36029,16 +36063,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 116,
+    "venue_count": 117,
     "year_count": 24
   },
   "Piper": {
-    "play_count": 215,
+    "play_count": 216,
     "jamchart_count": 76,
     "opener_count": 5,
     "encore_count": 0,
     "first_played": "1997-06-06",
-    "last_played": "2026-07-14",
+    "last_played": "2026-10-11",
     "venues": [
       512,
       3,
@@ -36577,12 +36611,12 @@
     "year_count": 9
   },
   "Meatstick": {
-    "play_count": 81,
+    "play_count": 82,
     "jamchart_count": 16,
     "opener_count": 1,
     "encore_count": 16,
     "first_played": "1997-06-25",
-    "last_played": "2026-07-17",
+    "last_played": "2026-10-07",
     "venues": [
       768,
       387,
@@ -36602,6 +36636,7 @@
       274,
       407,
       408,
+      1689,
       1436,
       157,
       417,
@@ -36667,7 +36702,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 58,
+    "venue_count": 59,
     "year_count": 22
   },
   "Cecilia": {
@@ -37335,12 +37370,12 @@
     "year_count": 6
   },
   "Roggae": {
-    "play_count": 121,
+    "play_count": 122,
     "jamchart_count": 29,
     "opener_count": 3,
     "encore_count": 1,
     "first_played": "1998-06-29",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-07",
     "venues": [
       1,
       3,
@@ -37365,6 +37400,7 @@
       1597,
       575,
       1652,
+      1689,
       157,
       158,
       698,
@@ -37445,7 +37481,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 78,
+    "venue_count": 79,
     "year_count": 22
   },
   "The Moma Dance": {
@@ -38506,12 +38542,12 @@
     "year_count": 2
   },
   "Rock and Roll": {
-    "play_count": 98,
+    "play_count": 99,
     "jamchart_count": 21,
     "opener_count": 2,
     "encore_count": 18,
     "first_played": "1998-10-31",
-    "last_played": "2026-07-15",
+    "last_played": "2026-10-11",
     "venues": [
       768,
       3,
@@ -38543,6 +38579,7 @@
       389,
       1575,
       425,
+      1573,
       1327,
       816,
       50,
@@ -38603,7 +38640,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 65,
+    "venue_count": 66,
     "year_count": 22
   },
   "Cool It Down": {
@@ -39475,12 +39512,12 @@
     "year_count": 14
   },
   "What's the Use?": {
-    "play_count": 76,
+    "play_count": 77,
     "jamchart_count": 11,
     "opener_count": 1,
     "encore_count": 2,
     "first_played": "1999-07-04",
-    "last_played": "2026-07-21",
+    "last_played": "2026-10-11",
     "venues": [
       768,
       386,
@@ -39504,6 +39541,7 @@
       1437,
       1314,
       1316,
+      1573,
       1576,
       1327,
       816,
@@ -39552,7 +39590,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 48,
+    "venue_count": 49,
     "year_count": 19
   },
   "Tuesday's Gone": {
@@ -39755,12 +39793,12 @@
     "year_count": 2
   },
   "First Tube": {
-    "play_count": 151,
+    "play_count": 152,
     "jamchart_count": 2,
     "opener_count": 25,
-    "encore_count": 56,
+    "encore_count": 57,
     "first_played": "1999-09-09",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-06",
     "venues": [
       1,
       3,
@@ -39777,6 +39815,7 @@
       1611,
       96,
       1650,
+      1689,
       157,
       158,
       1192,
@@ -39875,7 +39914,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 90,
+    "venue_count": 91,
     "year_count": 20
   },
   "Will It Go Round in Circles": {
@@ -40130,12 +40169,12 @@
     "year_count": 21
   },
   "Sand": {
-    "play_count": 170,
+    "play_count": 171,
     "jamchart_count": 47,
     "opener_count": 10,
     "encore_count": 3,
     "first_played": "1999-09-11",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       6,
@@ -40144,6 +40183,7 @@
       1546,
       523,
       1570,
+      1573,
       1575,
       1586,
       1587,
@@ -40259,7 +40299,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 97,
+    "venue_count": 98,
     "year_count": 22
   },
   "Cold Rain and Snow": {
@@ -40599,12 +40639,12 @@
     "year_count": 2
   },
   "46 Days": {
-    "play_count": 162,
+    "play_count": 163,
     "jamchart_count": 40,
     "opener_count": 15,
     "encore_count": 6,
     "first_played": "2002-12-14",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-06",
     "venues": [
       3,
       4,
@@ -40625,6 +40665,7 @@
       1645,
       1649,
       1651,
+      1689,
       157,
       1192,
       1193,
@@ -40719,7 +40760,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 89,
+    "venue_count": 90,
     "year_count": 21
   },
   "All of These Dreams": {
@@ -40761,12 +40802,12 @@
     "year_count": 10
   },
   "Waves": {
-    "play_count": 58,
+    "play_count": 59,
     "jamchart_count": 17,
     "opener_count": 1,
     "encore_count": 0,
     "first_played": "2002-12-31",
-    "last_played": "2026-04-25",
+    "last_played": "2026-10-09",
     "venues": [
       768,
       3,
@@ -40778,6 +40819,7 @@
       270,
       526,
       402,
+      1690,
       157,
       1314,
       933,
@@ -40832,7 +40874,7 @@
       "2024",
       "2026"
     ],
-    "venue_count": 42,
+    "venue_count": 43,
     "year_count": 19
   },
   "Seven Below": {
@@ -41074,12 +41116,12 @@
     "year_count": 10
   },
   "Pebbles and Marbles": {
-    "play_count": 35,
+    "play_count": 36,
     "jamchart_count": 5,
     "opener_count": 1,
     "encore_count": 2,
     "first_played": "2003-01-03",
-    "last_played": "2026-07-15",
+    "last_played": "2026-10-09",
     "venues": [
       768,
       3,
@@ -41090,6 +41132,7 @@
       1674,
       269,
       270,
+      1690,
       157,
       1437,
       1570,
@@ -41128,7 +41171,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 28,
+    "venue_count": 29,
     "year_count": 16
   },
   "Anything But Me": {
@@ -42048,12 +42091,12 @@
     "year_count": 1
   },
   "Backwards Down the Number Line": {
-    "play_count": 152,
+    "play_count": 153,
     "jamchart_count": 25,
     "opener_count": 2,
     "encore_count": 8,
     "first_played": "2009-03-06",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-07",
     "venues": [
       3,
       4,
@@ -42072,6 +42115,7 @@
       1626,
       1652,
       1653,
+      1689,
       157,
       1192,
       1193,
@@ -42161,7 +42205,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 86,
+    "venue_count": 87,
     "year_count": 17
   },
   "Beauty of a Broken Heart": {
@@ -42390,12 +42434,12 @@
     "year_count": 17
   },
   "Light": {
-    "play_count": 141,
+    "play_count": 142,
     "jamchart_count": 38,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "2009-05-31",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-06",
     "venues": [
       3,
       4,
@@ -42416,6 +42460,7 @@
       1626,
       1651,
       1675,
+      1689,
       157,
       1192,
       1193,
@@ -42498,7 +42543,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 81,
+    "venue_count": 82,
     "year_count": 17
   },
   "Time Turns Elastic": {
@@ -42624,12 +42669,12 @@
     "year_count": 16
   },
   "Kill Devil Falls": {
-    "play_count": 128,
+    "play_count": 129,
     "jamchart_count": 28,
     "opener_count": 19,
     "encore_count": 0,
     "first_played": "2009-06-02",
-    "last_played": "2026-09-06",
+    "last_played": "2026-10-07",
     "venues": [
       3,
       519,
@@ -42651,6 +42696,7 @@
       1626,
       1651,
       1657,
+      1689,
       157,
       698,
       1220,
@@ -42728,16 +42774,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 77,
+    "venue_count": 78,
     "year_count": 17
   },
   "Twenty Years Later": {
-    "play_count": 50,
+    "play_count": 51,
     "jamchart_count": 8,
     "opener_count": 0,
     "encore_count": 1,
     "first_played": "2009-06-05",
-    "last_played": "2026-04-16",
+    "last_played": "2026-10-11",
     "venues": [
       1283,
       3,
@@ -42755,6 +42801,7 @@
       1314,
       1316,
       933,
+      1573,
       296,
       809,
       698,
@@ -42797,7 +42844,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 38,
+    "venue_count": 39,
     "year_count": 17
   },
   "Let Me Lie": {
@@ -42882,12 +42929,12 @@
     "year_count": 14
   },
   "Joy": {
-    "play_count": 59,
+    "play_count": 60,
     "jamchart_count": 0,
     "opener_count": 0,
-    "encore_count": 8,
+    "encore_count": 9,
     "first_played": "2009-06-07",
-    "last_played": "2026-04-17",
+    "last_played": "2026-10-06",
     "venues": [
       768,
       3,
@@ -42898,6 +42945,7 @@
       1546,
       526,
       274,
+      1689,
       1306,
       1307,
       157,
@@ -42954,7 +43002,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 45,
+    "venue_count": 46,
     "year_count": 17
   },
   "When the Cactus is in Bloom": {
@@ -43652,12 +43700,12 @@
     "year_count": 1
   },
   "Golden Age": {
-    "play_count": 91,
+    "play_count": 92,
     "jamchart_count": 36,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "2009-11-27",
-    "last_played": "2026-07-31",
+    "last_played": "2026-10-07",
     "venues": [
       768,
       3,
@@ -43670,6 +43718,7 @@
       1543,
       1547,
       1546,
+      1689,
       1306,
       1307,
       157,
@@ -43739,7 +43788,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 59,
+    "venue_count": 60,
     "year_count": 18
   },
   "Tomorrow's Song": {
@@ -44649,12 +44698,12 @@
     "year_count": 14
   },
   "Steam": {
-    "play_count": 71,
+    "play_count": 72,
     "jamchart_count": 18,
     "opener_count": 1,
     "encore_count": 0,
     "first_played": "2011-06-04",
-    "last_played": "2026-07-14",
+    "last_played": "2026-10-06",
     "venues": [
       3,
       389,
@@ -44666,6 +44715,7 @@
       1528,
       1674,
       526,
+      1689,
       1307,
       1436,
       157,
@@ -44721,7 +44771,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 46,
+    "venue_count": 47,
     "year_count": 16
   },
   "Rhymes": {
@@ -45206,12 +45256,12 @@
     "year_count": 13
   },
   "Fuego": {
-    "play_count": 107,
+    "play_count": 108,
     "jamchart_count": 33,
     "opener_count": 3,
     "encore_count": 2,
     "first_played": "2013-10-31",
-    "last_played": "2026-10-02",
+    "last_played": "2026-10-11",
     "venues": [
       768,
       3,
@@ -45676,18 +45726,19 @@
     "year_count": 1
   },
   "Plasma": {
-    "play_count": 46,
+    "play_count": 48,
     "jamchart_count": 12,
     "opener_count": 2,
     "encore_count": 1,
     "first_played": "2014-10-17",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-09",
     "venues": [
       3,
       775,
       1543,
       274,
       1306,
+      1690,
       157,
       1312,
       1570,
@@ -45728,7 +45779,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 29,
+    "venue_count": 30,
     "year_count": 13
   },
   "Take Me Out to the Ballgame": {
@@ -45875,12 +45926,12 @@
     "year_count": 2
   },
   "Your Pet Cat": {
-    "play_count": 21,
+    "play_count": 22,
     "jamchart_count": 7,
     "opener_count": 1,
     "encore_count": 1,
     "first_played": "2014-10-31",
-    "last_played": "2024-08-16",
+    "last_played": "2026-10-09",
     "venues": [
       768,
       961,
@@ -45891,6 +45942,7 @@
       9,
       1481,
       213,
+      1690,
       1399,
       698,
       157,
@@ -45906,10 +45958,11 @@
       "2020",
       "2021",
       "2022",
-      "2024"
+      "2024",
+      "2026"
     ],
-    "venue_count": 13,
-    "year_count": 10
+    "venue_count": 14,
+    "year_count": 11
   },
   "Shipwreck": {
     "play_count": 2,
@@ -46788,18 +46841,19 @@
     "year_count": 4
   },
   "More": {
-    "play_count": 56,
+    "play_count": 57,
     "jamchart_count": 0,
     "opener_count": 0,
     "encore_count": 18,
     "first_played": "2016-10-14",
-    "last_played": "2026-07-21",
+    "last_played": "2026-10-06",
     "venues": [
       768,
       3,
       6,
       1546,
       1675,
+      1689,
       1308,
       1436,
       157,
@@ -46841,7 +46895,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 32,
+    "venue_count": 33,
     "year_count": 11
   },
   "I Always Wanted It This Way": {
@@ -47152,12 +47206,12 @@
     "year_count": 1
   },
   "Everything's Right": {
-    "play_count": 79,
+    "play_count": 80,
     "jamchart_count": 20,
     "opener_count": 5,
     "encore_count": 0,
     "first_played": "2017-07-14",
-    "last_played": "2026-10-03",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       1540,
@@ -47173,6 +47227,7 @@
       1437,
       1314,
       1316,
+      1573,
       1575,
       1326,
       1329,
@@ -47220,7 +47275,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 48,
+    "venue_count": 49,
     "year_count": 10
   },
   "Leaves": {
@@ -47735,12 +47790,12 @@
     "year_count": 1
   },
   "Most Events Aren't Planned": {
-    "play_count": 25,
+    "play_count": 26,
     "jamchart_count": 1,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "2017-08-06",
-    "last_played": "2026-09-05",
+    "last_played": "2026-10-07",
     "venues": [
       768,
       961,
@@ -47751,6 +47806,7 @@
       1544,
       1481,
       1547,
+      1689,
       1587,
       1651,
       1497,
@@ -47771,7 +47827,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 17,
+    "venue_count": 18,
     "year_count": 9
   },
   "Soul Planet": {
@@ -48234,12 +48290,12 @@
     "year_count": 2
   },
   "Drift While You're Sleeping": {
-    "play_count": 36,
+    "play_count": 37,
     "jamchart_count": 0,
     "opener_count": 0,
     "encore_count": 7,
     "first_played": "2019-06-11",
-    "last_played": "2026-07-15",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       1546,
@@ -48250,6 +48306,7 @@
       1437,
       1312,
       1316,
+      1573,
       1587,
       1462,
       1466,
@@ -48278,16 +48335,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 26,
+    "venue_count": 27,
     "year_count": 8
   },
   "About to Run": {
-    "play_count": 30,
+    "play_count": 31,
     "jamchart_count": 0,
     "opener_count": 0,
-    "encore_count": 3,
+    "encore_count": 4,
     "first_played": "2019-06-12",
-    "last_played": "2026-07-14",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       1544,
@@ -48296,6 +48353,7 @@
       1306,
       157,
       1437,
+      1573,
       296,
       1329,
       1586,
@@ -48323,22 +48381,23 @@
       "2025",
       "2026"
     ],
-    "venue_count": 24,
+    "venue_count": 25,
     "year_count": 7
   },
   "Ruby Waves": {
-    "play_count": 49,
+    "play_count": 50,
     "jamchart_count": 22,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "2019-06-18",
-    "last_played": "2026-08-01",
+    "last_played": "2026-10-07",
     "venues": [
       3,
       389,
       6,
       9,
       526,
+      1689,
       1306,
       1436,
       157,
@@ -48376,16 +48435,16 @@
       "2025",
       "2026"
     ],
-    "venue_count": 32,
+    "venue_count": 33,
     "year_count": 7
   },
   "A Life Beyond The Dream": {
-    "play_count": 45,
+    "play_count": 46,
     "jamchart_count": 0,
     "opener_count": 0,
     "encore_count": 27,
     "first_played": "2019-06-19",
-    "last_played": "2026-07-31",
+    "last_played": "2026-10-11",
     "venues": [
       3,
       1540,
@@ -48393,6 +48452,7 @@
       1543,
       1546,
       157,
+      1573,
       296,
       809,
       1587,
@@ -48425,7 +48485,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 27,
+    "venue_count": 28,
     "year_count": 8
   },
   "Friend": {
@@ -49326,12 +49386,12 @@
     "year_count": 1
   },
   "Hey Stranger": {
-    "play_count": 19,
+    "play_count": 20,
     "jamchart_count": 4,
     "opener_count": 1,
     "encore_count": 0,
     "first_played": "2022-12-29",
-    "last_played": "2026-07-10",
+    "last_played": "2026-10-07",
     "venues": [
       961,
       1222,
@@ -49344,6 +49404,7 @@
       1587,
       1588,
       157,
+      1689,
       1528,
       698,
       1306,
@@ -49357,7 +49418,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 16,
+    "venue_count": 17,
     "year_count": 5
   },
   "Oblivion": {
@@ -49400,12 +49461,12 @@
     "year_count": 4
   },
   "Ether Edge": {
-    "play_count": 15,
+    "play_count": 16,
     "jamchart_count": 5,
     "opener_count": 0,
     "encore_count": 0,
     "first_played": "2023-07-12",
-    "last_played": "2026-07-18",
+    "last_played": "2026-10-11",
     "venues": [
       961,
       1597,
@@ -49582,12 +49643,12 @@
     "year_count": 4
   },
   "Life Saving Gun": {
-    "play_count": 23,
+    "play_count": 24,
     "jamchart_count": 8,
     "opener_count": 1,
     "encore_count": 0,
     "first_played": "2023-07-30",
-    "last_played": "2026-09-04",
+    "last_played": "2026-10-06",
     "venues": [
       961,
       6,
@@ -49601,6 +49662,7 @@
       1588,
       157,
       1657,
+      1689,
       1497,
       1306,
       572,
@@ -49613,7 +49675,7 @@
       "2025",
       "2026"
     ],
-    "venue_count": 17,
+    "venue_count": 18,
     "year_count": 4
   },
   "Broken Into Pieces": {

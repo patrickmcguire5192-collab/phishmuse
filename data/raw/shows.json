@@ -13428,14 +13428,14 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 5
       },
       {
         "song": "The Curtain",
         "position": 2,
         "set": "1",
         "isjamchart": 0,
-        "gap": 22
+        "gap": 23
       },
       {
         "song": "Wilson",
@@ -13505,7 +13505,7 @@
         "position": 12,
         "set": "2",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 5
       },
       {
         "song": "On Your Way Down",
@@ -13638,7 +13638,7 @@
         "position": 5,
         "set": "1",
         "isjamchart": 1,
-        "gap": 5
+        "gap": 6
       },
       {
         "song": "Mike's Song",
@@ -13694,14 +13694,14 @@
         "position": 13,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 6
       },
       {
         "song": "Timber (Jerry the Mule)",
         "position": 14,
         "set": "2",
         "isjamchart": 0,
-        "gap": 21
+        "gap": 22
       },
       {
         "song": "Contact",
@@ -13743,7 +13743,7 @@
         "position": 20,
         "set": "2",
         "isjamchart": 0,
-        "gap": 14
+        "gap": 15
       },
       {
         "song": "Sanity",
@@ -20106,7 +20106,7 @@
         "position": 9,
         "set": "2",
         "isjamchart": 0,
-        "gap": 134
+        "gap": 135
       },
       {
         "song": "Harry Hood",
@@ -34841,7 +34841,7 @@
         "position": 2,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Foam",
@@ -34869,7 +34869,7 @@
         "position": 6,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Minute by Minute",
@@ -34904,7 +34904,7 @@
         "position": 11,
         "set": "1",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Mike's Song",
@@ -34988,7 +34988,7 @@
         "position": 23,
         "set": "2",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Self",
@@ -35016,7 +35016,7 @@
         "position": 27,
         "set": "e",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "La Grange",
@@ -35044,7 +35044,7 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 4
       },
       {
         "song": "Bouncing Around the Room",
@@ -36234,7 +36234,7 @@
         "position": 10,
         "set": "1",
         "isjamchart": 0,
-        "gap": 83
+        "gap": 82
       },
       {
         "song": "David Bowie",
@@ -36360,7 +36360,7 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 0
+        "gap": 2
       },
       {
         "song": "The Squirming Coil",
@@ -36374,7 +36374,7 @@
         "position": 3,
         "set": "1",
         "isjamchart": 0,
-        "gap": 0
+        "gap": 3
       },
       {
         "song": "The Landlady",
@@ -36423,7 +36423,7 @@
         "position": 10,
         "set": "1",
         "isjamchart": 0,
-        "gap": 0
+        "gap": 3
       },
       {
         "song": "Mike's Song",
@@ -36465,7 +36465,7 @@
         "position": 16,
         "set": "2",
         "isjamchart": 0,
-        "gap": 0
+        "gap": 27
       },
       {
         "song": "Fee",
@@ -36479,7 +36479,7 @@
         "position": 18,
         "set": "2",
         "isjamchart": 0,
-        "gap": 0
+        "gap": 2
       },
       {
         "song": "Golgi Apparatus",
@@ -36507,7 +36507,7 @@
         "position": 22,
         "set": "2",
         "isjamchart": 1,
-        "gap": 0
+        "gap": 3
       },
       {
         "song": "Contact",
@@ -36962,7 +36962,7 @@
         "position": 15,
         "set": "2",
         "isjamchart": 0,
-        "gap": 55
+        "gap": 54
       },
       {
         "song": "Ya Mar",
@@ -41827,7 +41827,7 @@
         "position": 22,
         "set": "e2",
         "isjamchart": 0,
-        "gap": 51
+        "gap": 50
       }
     ]
   },
@@ -65809,7 +65809,7 @@
         "position": 1,
         "set": "1",
         "isjamchart": 0,
-        "gap": 202
+        "gap": 201
       },
       {
         "song": "Cavern",
@@ -85514,7 +85514,7 @@
         "position": 6,
         "set": "1",
         "isjamchart": 0,
-        "gap": 417
+        "gap": 416
       },
       {
         "song": "I Didn't Know",
@@ -307968,6 +307968,559 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 4
+      }
+    ]
+  },
+  {
+    "showid": 1785867006,
+    "showdate": "2026-10-06",
+    "venue": "Allianz Amphitheater at Riverfront",
+    "city": "Richmond",
+    "state": "VA",
+    "country": "USA",
+    "venueid": 1689,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Buried Alive",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "Free",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Run Like an Antelope",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Wolfman's Brother",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Steam",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 19
+      },
+      {
+        "song": "Axilla (Part II)",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Divided Sky",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "46 Days",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Life Saving Gun",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Light",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Possum",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Also Sprach Zarathustra",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "Suzy Greenberg",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 12
+      },
+      {
+        "song": "More",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Joy",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 32
+      },
+      {
+        "song": "First Tube",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
+      }
+    ]
+  },
+  {
+    "showid": 1785867025,
+    "showdate": "2026-10-07",
+    "venue": "Allianz Amphitheater at Riverfront",
+    "city": "Richmond",
+    "state": "VA",
+    "country": "USA",
+    "venueid": 1689,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Gumbo",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "The Curtain With",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "Hey Stranger",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 23
+      },
+      {
+        "song": "Llama",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Roggae",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Tube",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Timber (Jerry the Mule)",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "Most Events Aren't Planned",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Kill Devil Falls",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Ruby Waves",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Golden Age",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 9
+      },
+      {
+        "song": "Meatstick",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 18
+      },
+      {
+        "song": "Backwards Down the Number Line",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Loving Cup",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "The Lizards",
+        "position": 15,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Julius",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 12
+      }
+    ]
+  },
+  {
+    "showid": 1785867842,
+    "showdate": "2026-10-09",
+    "venue": "VyStar Veterans Memorial Arena",
+    "city": "Jacksonville",
+    "state": "FL",
+    "country": "USA",
+    "venueid": 1690,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Tweezer",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Runaway Jim",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "Reba",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "Tweezer",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Plasma",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "Tweezer",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Plasma",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Pebbles and Marbles",
+        "position": 8,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 20
+      },
+      {
+        "song": "Dirt",
+        "position": 9,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 23
+      },
+      {
+        "song": "Chalk Dust Torture",
+        "position": 10,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Punch You in the Eye",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Crosseyed and Painless",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "Your Pet Cat",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 100
+      },
+      {
+        "song": "Crosseyed and Painless",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Twist",
+        "position": 15,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 25
+      },
+      {
+        "song": "Waves",
+        "position": 16,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 30
+      },
+      {
+        "song": "Tweezer",
+        "position": 17,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 0
+      },
+      {
+        "song": "Harry Hood",
+        "position": 18,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Carini",
+        "position": 19,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Sleeping Monkey",
+        "position": 20,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Ghost",
+        "position": 21,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Tweezer Reprise",
+        "position": 22,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
+      }
+    ]
+  },
+  {
+    "showid": 1785867579,
+    "showdate": "2026-10-11",
+    "venue": "Orion Amphitheater",
+    "city": "Huntsville",
+    "state": "AL",
+    "country": "USA",
+    "venueid": 1573,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Rift",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 14
+      },
+      {
+        "song": "Free",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Maze",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 15
+      },
+      {
+        "song": "Theme from the Bottom",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 13
+      },
+      {
+        "song": "Sand",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Ether Edge",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 19
+      },
+      {
+        "song": "Drift While You're Sleeping",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 21
+      },
+      {
+        "song": "Everything's Right",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Fuego",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Twenty Years Later",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 36
+      },
+      {
+        "song": "Possum",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "What's the Use?",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "Piper",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 22
+      },
+      {
+        "song": "A Life Beyond The Dream",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 11
+      },
+      {
+        "song": "Rock and Roll",
+        "position": 15,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 21
+      },
+      {
+        "song": "About to Run",
+        "position": 16,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 22
+      },
+      {
+        "song": "Slave to the Traffic Light",
+        "position": 17,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 6
       }
     ]
   }
