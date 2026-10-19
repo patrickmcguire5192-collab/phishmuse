@@ -7470,6 +7470,34 @@
       "duration_min": 20.03311666666667,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 9
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 888998,
+      "duration_min": 14.816633333333334,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 1
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 148698,
+      "duration_min": 2.4783,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 4
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 256743,
+      "duration_min": 4.27905,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 6
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 737003,
+      "duration_min": 12.283383333333333,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 17
     }
   ],
   "down-with-disease": [
@@ -9845,6 +9873,13 @@
       "duration_min": 24.582216666666667,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 8
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 673448,
+      "duration_min": 11.224133333333333,
+      "venue": "Orion Amphitheater",
+      "position": 11
     }
   ],
   "ghost": [
@@ -11506,6 +11541,13 @@
       "duration_min": 18.071116666666665,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 6
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 515303,
+      "duration_min": 8.588383333333333,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 21
     }
   ],
   "david-bowie": [
@@ -17894,6 +17936,13 @@
       "duration_min": 15.858666666666666,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 14
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 1035247,
+      "duration_min": 17.25411666666667,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 18
     }
   ],
   "ruby-waves": [
@@ -24033,6 +24082,13 @@
       "duration_min": 11.834666666666667,
       "venue": "Madison Square Garden",
       "position": 16
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 948891,
+      "duration_min": 15.81485,
+      "venue": "Orion Amphitheater",
+      "position": 13
     }
   ],
   "bathtub-gin": [
@@ -29735,6 +29791,13 @@
       "duration_min": 11.819333333333333,
       "venue": "Allianz Amphitheater at Riverfront",
       "position": 3
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 651352,
+      "duration_min": 10.855866666666667,
+      "venue": "Orion Amphitheater",
+      "position": 20
     }
   ],
   "chalk-dust-torture": [
@@ -33384,6 +33447,13 @@
       "duration_min": 20.001766666666665,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 8
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 706685,
+      "duration_min": 11.778083333333333,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 10
     }
   ],
   "stash": [
@@ -39366,6 +39436,13 @@
       "duration_min": 15.127883333333333,
       "venue": "Austin Music Hall",
       "position": 14
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 790500,
+      "duration_min": 13.175,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 3
     }
   ],
   "slave-to-the-traffic-light": [
@@ -41377,6 +41454,13 @@
       "duration_min": 11.175116666666666,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 3
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 581223,
+      "duration_min": 9.68705,
+      "venue": "Orion Amphitheater",
+      "position": 17
     }
   ],
   "light": [
@@ -43474,6 +43558,13 @@
       "duration_min": 13.088333333333333,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 13
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 601366,
+      "duration_min": 10.022766666666667,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 19
     }
   ],
   "fuego": [
@@ -44197,6 +44288,13 @@
       "duration_min": 13.487883333333333,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 1
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 1653090,
+      "duration_min": 27.5515,
+      "venue": "Orion Amphitheater",
+      "position": 9
     }
   ],
   "sand": [
@@ -45347,6 +45445,13 @@
       "duration_min": 12.257783333333334,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 1
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 776654,
+      "duration_min": 12.944233333333333,
+      "venue": "Orion Amphitheater",
+      "position": 5
     }
   ],
   "twist": [
@@ -46679,6 +46784,13 @@
       "duration_min": 7.266733333333334,
       "venue": "Ruoff Music Center",
       "position": 21
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 548943,
+      "duration_min": 9.14905,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 15
     }
   ],
   "split-open-and-melt": [
@@ -51555,6 +51667,13 @@
       "duration_min": 10.159883333333333,
       "venue": "Mohegan Sun Arena",
       "position": 6
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 548777,
+      "duration_min": 9.146283333333333,
+      "venue": "Orion Amphitheater",
+      "position": 3
     }
   ],
   "weekapaug-groove": [
@@ -55120,6 +55239,13 @@
       "duration_min": 8.207333333333333,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 12
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 376069,
+      "duration_min": 6.267816666666667,
+      "venue": "Orion Amphitheater",
+      "position": 3
     }
   ],
   "prince-caspian": [
@@ -56445,6 +56571,13 @@
       "duration_min": 9.336,
       "venue": "Dick's Sporting Goods Park",
       "position": 7
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 663695,
+      "duration_min": 11.061583333333333,
+      "venue": "Orion Amphitheater",
+      "position": 9
     }
   ],
   "tube": [
@@ -58353,6 +58486,20 @@
       "duration_min": 15.9004,
       "venue": "Enmarket Arena",
       "position": 11
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 1182703,
+      "duration_min": 19.711716666666668,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 12
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 96349,
+      "duration_min": 1.6058166666666667,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 14
     }
   ],
   "possum": [
@@ -62135,6 +62282,13 @@
       "duration_min": 8.470666666666666,
       "venue": "Allianz Amphitheater at Riverfront",
       "position": 11
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 565999,
+      "duration_min": 9.433316666666666,
+      "venue": "Orion Amphitheater",
+      "position": 11
     }
   ],
   "free": [
@@ -63817,6 +63971,13 @@
       "duration_min": 11.610666666666667,
       "venue": "Allianz Amphitheater at Riverfront",
       "position": 2
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 1244041,
+      "duration_min": 20.734016666666665,
+      "venue": "Orion Amphitheater",
+      "position": 2
     }
   ],
   "blaze-on": [
@@ -64512,6 +64673,13 @@
       "duration_min": 12.863716666666667,
       "venue": "Jim Whelan Boardwalk Hall",
       "position": 4
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 1121235,
+      "duration_min": 18.68725,
+      "venue": "Orion Amphitheater",
+      "position": 10
     }
   ],
   "waves": [
@@ -64913,6 +65081,13 @@
       "duration_min": 10.8064,
       "venue": "Sphere",
       "position": 13
+    },
+    {
+      "date": "2026-10-09",
+      "duration_ms": 482310,
+      "duration_min": 8.0385,
+      "venue": "VyStar Veterans Memorial Arena",
+      "position": 16
     }
   ],
   "set-your-soul-free": [
@@ -66858,6 +67033,13 @@
       "duration_min": 7.0216,
       "venue": "Enmarket Arena",
       "position": 3
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 479861,
+      "duration_min": 7.997683333333334,
+      "venue": "Orion Amphitheater",
+      "position": 6
     }
   ],
   "steam": [
@@ -68460,6 +68642,13 @@
       "duration_min": 16.3424,
       "venue": "Enmarket Arena",
       "position": 13
+    },
+    {
+      "date": "2026-10-12",
+      "duration_ms": 819943,
+      "duration_min": 13.665716666666667,
+      "venue": "Orion Amphitheater",
+      "position": 13
     }
   ],
   "theme-from-the-bottom": [
@@ -69848,6 +70037,13 @@
       "duration_min": 10.824,
       "venue": "Madison Square Garden",
       "position": 5
+    },
+    {
+      "date": "2026-10-11",
+      "duration_ms": 831405,
+      "duration_min": 13.85675,
+      "venue": "Orion Amphitheater",
+      "position": 4
     }
   ],
   "limb-by-limb": [

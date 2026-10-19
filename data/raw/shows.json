@@ -13526,7 +13526,7 @@
         "position": 15,
         "set": "3",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 5
       },
       {
         "song": "Walk Away",
@@ -13547,7 +13547,7 @@
         "position": 18,
         "set": "3",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 5
       },
       {
         "song": "The Ballad of Curtis Loew",
@@ -13687,7 +13687,7 @@
         "position": 12,
         "set": "2",
         "isjamchart": 0,
-        "gap": 5
+        "gap": 6
       },
       {
         "song": "The Lizards",
@@ -34960,7 +34960,7 @@
         "position": 19,
         "set": "2",
         "isjamchart": 0,
-        "gap": 4
+        "gap": 3
       },
       {
         "song": "Buried Alive",
@@ -36654,7 +36654,7 @@
         "position": 17,
         "set": "2",
         "isjamchart": 0,
-        "gap": 18
+        "gap": 17
       },
       {
         "song": "Magilla",
@@ -39622,7 +39622,7 @@
         "position": 27,
         "set": "e",
         "isjamchart": 0,
-        "gap": 38
+        "gap": 37
       }
     ]
   },
@@ -308521,6 +308521,160 @@
         "set": "e",
         "isjamchart": 0,
         "gap": 6
+      }
+    ]
+  },
+  {
+    "showid": 1791506821,
+    "showdate": "2026-10-12",
+    "venue": "Orion Amphitheater",
+    "city": "Huntsville",
+    "state": "AL",
+    "country": "USA",
+    "venueid": 1573,
+    "tourid": 223,
+    "tourname": "2026 Fall Tour",
+    "tourwhen": "2026 Fall",
+    "songs": [
+      {
+        "song": "Mike's Song",
+        "position": 1,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Shade",
+        "position": 2,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 20
+      },
+      {
+        "song": "Weekapaug Groove",
+        "position": 3,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "AC/DC Bag",
+        "position": 4,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "Wolfman's Brother",
+        "position": 5,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 4
+      },
+      {
+        "song": "Birds of a Feather",
+        "position": 6,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 23
+      },
+      {
+        "song": "My Friend, My Friend",
+        "position": 7,
+        "set": "1",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "No Men In No Man's Land",
+        "position": 8,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Prince Caspian",
+        "position": 9,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Blaze On",
+        "position": 10,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 5
+      },
+      {
+        "song": "Down with Disease",
+        "position": 11,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 7
+      },
+      {
+        "song": "Big Black Furry Creature from Mars",
+        "position": 12,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 17
+      },
+      {
+        "song": "Scents and Subtle Sounds",
+        "position": 13,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 22
+      },
+      {
+        "song": "Good Times Bad Times",
+        "position": 14,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 16
+      },
+      {
+        "song": "Taste",
+        "position": 15,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 8
+      },
+      {
+        "song": "The Wedge",
+        "position": 16,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 16
+      },
+      {
+        "song": "Character Zero",
+        "position": 17,
+        "set": "2",
+        "isjamchart": 0,
+        "gap": 6
+      },
+      {
+        "song": "Wading in the Velvet Sea",
+        "position": 18,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 10
+      },
+      {
+        "song": "Backwards Down the Number Line",
+        "position": 19,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 3
+      },
+      {
+        "song": "Run Like an Antelope",
+        "position": 20,
+        "set": "e",
+        "isjamchart": 0,
+        "gap": 4
       }
     ]
   }
