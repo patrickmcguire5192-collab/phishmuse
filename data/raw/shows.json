@@ -304837,21 +304837,21 @@
         "song": "Fuego",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
         "song": "Life Saving Gun",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
         "song": "Sand",
         "position": 14,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 2
       },
       {
@@ -304900,7 +304900,7 @@
         "song": "Sigma Oasis",
         "position": 1,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -304921,7 +304921,7 @@
         "song": "Cities",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
@@ -305082,7 +305082,7 @@
         "song": "Bouncing Around the Room",
         "position": 9,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 4
       },
       {
@@ -305096,14 +305096,14 @@
         "song": "Down with Disease",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
         "song": "You Enjoy Myself",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -305166,21 +305166,21 @@
         "song": "Theme from the Bottom",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
         "song": "Timber (Jerry the Mule)",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
         "song": "555",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
@@ -305215,7 +305215,7 @@
         "song": "Tweezer",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -305264,7 +305264,7 @@
         "song": "Tweezer Reprise",
         "position": 17,
         "set": "e",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       }
     ]
@@ -305285,14 +305285,14 @@
         "song": "46 Days",
         "position": 1,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
         "song": "Evolve",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 13
       },
       {
@@ -305306,7 +305306,7 @@
         "song": "Bathtub Gin",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -305334,7 +305334,7 @@
         "song": "Simple",
         "position": 8,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -305411,7 +305411,7 @@
         "song": "Gumbo",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -305439,21 +305439,21 @@
         "song": "The Curtain With",
         "position": 6,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
         "song": "Horn",
         "position": 7,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
         "song": "Split Open and Melt",
         "position": 8,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 14
       },
       {
@@ -305467,7 +305467,7 @@
         "song": "It's Ice",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -305530,7 +305530,7 @@
         "song": "Vultures",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -305544,7 +305544,7 @@
         "song": "The Wedge",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -305579,14 +305579,14 @@
         "song": "Sightless Escape",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 44
       },
       {
         "song": "A Song I Heard the Ocean Sing",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -305607,7 +305607,7 @@
         "song": "Scents and Subtle Sounds",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 15
       },
       {
@@ -305649,7 +305649,7 @@
         "song": "Character Zero",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -305670,7 +305670,7 @@
         "song": "Sample in a Jar",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -305691,28 +305691,28 @@
         "song": "Golgi Apparatus",
         "position": 8,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
         "song": "Harry Hood",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
         "song": "Fuego",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
         "song": "The Lizards",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
@@ -305775,7 +305775,7 @@
         "song": "Contact",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 96
       },
       {
@@ -305789,7 +305789,7 @@
         "song": "Axilla (Part II)",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
@@ -305824,28 +305824,28 @@
         "song": "Runaway Jim",
         "position": 9,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
         "song": "Life Saving Gun",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
         "song": "Gotta Jibboo",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 17
       },
       {
         "song": "Ether Edge",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -305866,7 +305866,7 @@
         "song": "Free",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -305922,7 +305922,7 @@
         "song": "Ass Handed",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 139
       },
       {
@@ -305950,7 +305950,7 @@
         "song": "Oblivion",
         "position": 7,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -305964,7 +305964,7 @@
         "song": "Carini",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
@@ -306027,14 +306027,14 @@
         "song": "Turtle in the Clouds",
         "position": 1,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 46
       },
       {
         "song": "Bug",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 14
       },
       {
@@ -306055,7 +306055,7 @@
         "song": "Mull",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 18
       },
       {
@@ -306076,7 +306076,7 @@
         "song": "Sand",
         "position": 8,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
@@ -306216,7 +306216,7 @@
         "song": "AC/DC Bag",
         "position": 10,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -306258,7 +306258,7 @@
         "song": "Mike's Song",
         "position": 16,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -306279,14 +306279,14 @@
         "song": "Bouncing Around the Room",
         "position": 19,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
         "song": "My Friend, My Friend",
         "position": 20,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -306363,7 +306363,7 @@
         "song": "Bathtub Gin",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -306384,7 +306384,7 @@
         "song": "Gumbo",
         "position": 5,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -306447,14 +306447,14 @@
         "song": "Also Sprach Zarathustra",
         "position": 14,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 2
       },
       {
         "song": "Chalk Dust Torture",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
@@ -306475,21 +306475,21 @@
         "song": "The Wedge",
         "position": 18,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 6
       },
       {
         "song": "Makisupa Policeman",
         "position": 19,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 150
       },
       {
         "song": "Kung",
         "position": 20,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 259
       },
       {
@@ -306503,7 +306503,7 @@
         "song": "Golgi Apparatus",
         "position": 22,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
@@ -306552,7 +306552,7 @@
         "song": "Simple",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -306594,21 +306594,21 @@
         "song": "Tweezer",
         "position": 8,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
         "song": "Down with Disease",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
         "song": "Tweezer",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
@@ -306622,7 +306622,7 @@
         "song": "Tweezer",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
@@ -306643,35 +306643,35 @@
         "song": "Tweezer",
         "position": 15,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
         "song": "Catapult",
         "position": 16,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 224
       },
       {
         "song": "Tweezer",
         "position": 17,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
         "song": "Cavern",
         "position": 18,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 12
       },
       {
         "song": "Tweezer",
         "position": 19,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 0
       },
       {
@@ -306685,7 +306685,7 @@
         "song": "Purple Rain",
         "position": 21,
         "set": "e",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 536
       },
       {
@@ -306720,7 +306720,7 @@
         "song": "Timber (Jerry the Mule)",
         "position": 2,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 11
       },
       {
@@ -306748,7 +306748,7 @@
         "song": "Halley's Comet",
         "position": 6,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
@@ -306797,14 +306797,14 @@
         "song": "Prince Caspian",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 4
       },
       {
         "song": "Drowned",
         "position": 14,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 120
       },
       {
@@ -306818,7 +306818,7 @@
         "song": "It's Ice",
         "position": 16,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -306881,7 +306881,7 @@
         "song": "Axilla (Part II)",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -306944,14 +306944,14 @@
         "song": "You Enjoy Myself",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
         "song": "Waste",
         "position": 13,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 14
       },
       {
@@ -306979,7 +306979,7 @@
         "song": "Crosseyed and Painless",
         "position": 17,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -307021,7 +307021,7 @@
         "song": "Carini",
         "position": 1,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -307063,28 +307063,28 @@
         "song": "What's Going Through Your Mind",
         "position": 7,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
         "song": "Fuego",
         "position": 8,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
         "song": "Melt the Guns",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 2052
       },
       {
         "song": "A Wave of Hope",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 9
       },
       {
@@ -307147,7 +307147,7 @@
         "song": "Sigma Oasis",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -307196,21 +307196,21 @@
         "song": "Ruby Waves",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
         "song": "No Men In No Man's Land",
         "position": 11,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 8
       },
       {
         "song": "Light",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -307224,7 +307224,7 @@
         "song": "Ghost",
         "position": 14,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 7
       },
       {
@@ -307294,7 +307294,7 @@
         "song": "Plasma",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 16
       },
       {
@@ -307329,14 +307329,14 @@
         "song": "Down with Disease",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 5
       },
       {
         "song": "Life Saving Gun",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -307406,7 +307406,7 @@
         "song": "Sigma Oasis",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 2
       },
       {
@@ -307427,7 +307427,7 @@
         "song": "Free",
         "position": 6,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 3
       },
       {
@@ -307511,14 +307511,14 @@
         "song": "Roggae",
         "position": 3,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 18
       },
       {
         "song": "Blaze On",
         "position": 4,
         "set": "1",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 10
       },
       {
@@ -307553,14 +307553,14 @@
         "song": "My Friend, My Friend",
         "position": 9,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 3
       },
       {
         "song": "Fuego",
         "position": 10,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 4
       },
       {
@@ -307574,7 +307574,7 @@
         "song": "Light",
         "position": 12,
         "set": "2",
-        "isjamchart": 0,
+        "isjamchart": 1,
         "gap": 3
       },
       {
