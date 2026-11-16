@@ -1,7 +1,7 @@
 {
   "you-enjoy-myself": {
     "track_count": 601,
-    "avg_duration_min": 18.47400840266223,
+    "avg_duration_min": 18.473173266777593,
     "median_duration_min": 18.39005,
     "min_duration_min": 0.5666666666666667,
     "max_duration_min": 40.5329,
@@ -67,7 +67,7 @@
   },
   "tweezer": {
     "track_count": 470,
-    "avg_duration_min": 13.162008120567377,
+    "avg_duration_min": 13.16157159574468,
     "median_duration_min": 12.169583333333334,
     "min_duration_min": 0.5303166666666667,
     "max_duration_min": 50.276133333333334,
@@ -133,7 +133,7 @@
   },
   "down-with-disease": {
     "track_count": 340,
-    "avg_duration_min": 13.373934215686276,
+    "avg_duration_min": 13.380424509803921,
     "median_duration_min": 12.503516666666666,
     "min_duration_min": 0.93,
     "max_duration_min": 35.3055,
@@ -199,7 +199,7 @@
   },
   "ghost": {
     "track_count": 238,
-    "avg_duration_min": 13.593270588235296,
+    "avg_duration_min": 13.592663095238095,
     "median_duration_min": 13.1777,
     "min_duration_min": 0.596,
     "max_duration_min": 31.748783333333332,
@@ -250,7 +250,7 @@
   },
   "david-bowie": {
     "track_count": 477,
-    "avg_duration_min": 13.028655415793152,
+    "avg_duration_min": 13.028237945492663,
     "median_duration_min": 12.613933333333334,
     "min_duration_min": 0.11658333333333333,
     "max_duration_min": 37.4617,
@@ -301,27 +301,6 @@
         "date": "1999-07-31",
         "duration_min": 25.1,
         "venue": "Naeba Ski Resort"
-      }
-    ]
-  },
-  "harry-hood": {
-    "track_count": 436,
-    "avg_duration_min": 13.389739143730885,
-    "median_duration_min": 13.266983333333334,
-    "min_duration_min": 2.5425833333333334,
-    "max_duration_min": 29.589033333333333,
-    "longest": {
-      "date": "2003-07-25",
-      "duration_min": 29.589033333333333,
-      "venue": "Verizon Wireless Amphitheatre - Charlotte"
-    },
-    "monster_count": 1,
-    "monster_rate": 0.0022935779816513763,
-    "monsters": [
-      {
-        "date": "2003-07-25",
-        "duration_min": 29.6,
-        "venue": "Verizon Wireless Amphitheatre - Charlotte"
       }
     ]
   },
@@ -425,7 +404,7 @@
   },
   "fluffhead": {
     "track_count": 277,
-    "avg_duration_min": 14.625280264741276,
+    "avg_duration_min": 14.624952707581228,
     "median_duration_min": 14.65525,
     "min_duration_min": 3.94145,
     "max_duration_min": 32.9769,
@@ -446,8 +425,8 @@
   },
   "drowned": {
     "track_count": 48,
-    "avg_duration_min": 14.446557638888889,
-    "median_duration_min": 13.544483333333334,
+    "avg_duration_min": 14.445431597222223,
+    "median_duration_min": 13.509633333333333,
     "min_duration_min": 4.917116666666667,
     "max_duration_min": 31.36915,
     "longest": {
@@ -482,7 +461,7 @@
   },
   "simple": {
     "track_count": 218,
-    "avg_duration_min": 10.297786620795106,
+    "avg_duration_min": 10.296913073394496,
     "median_duration_min": 8.693116666666667,
     "min_duration_min": 1.3466166666666666,
     "max_duration_min": 40.8572,
@@ -538,7 +517,7 @@
   },
   "piper": {
     "track_count": 212,
-    "avg_duration_min": 11.127517059748428,
+    "avg_duration_min": 11.127236949685535,
     "median_duration_min": 9.915216666666666,
     "min_duration_min": 0.6048333333333333,
     "max_duration_min": 32.66925,
@@ -564,7 +543,7 @@
   },
   "bathtub-gin": {
     "track_count": 315,
-    "avg_duration_min": 12.132987037037037,
+    "avg_duration_min": 12.13201470899471,
     "median_duration_min": 11.901383333333333,
     "min_duration_min": 0.3938833333333333,
     "max_duration_min": 31.05915,
@@ -600,7 +579,7 @@
   },
   "run-like-an-antelope": {
     "track_count": 500,
-    "avg_duration_min": 11.126119933333333,
+    "avg_duration_min": 11.125728066666667,
     "median_duration_min": 10.958216666666667,
     "min_duration_min": 0.07358333333333333,
     "max_duration_min": 20.661916666666666,
@@ -615,7 +594,7 @@
   },
   "chalk-dust-torture": {
     "track_count": 522,
-    "avg_duration_min": 8.39935143678161,
+    "avg_duration_min": 8.398705747126437,
     "median_duration_min": 7.060033333333333,
     "min_duration_min": 0.93605,
     "max_duration_min": 28.814,
@@ -661,7 +640,7 @@
   },
   "stash": {
     "track_count": 451,
-    "avg_duration_min": 11.486625203252034,
+    "avg_duration_min": 11.485811123429416,
     "median_duration_min": 11.36065,
     "min_duration_min": 0.9164666666666667,
     "max_duration_min": 30.423666666666666,
@@ -682,7 +661,7 @@
   },
   "reba": {
     "track_count": 404,
-    "avg_duration_min": 12.93185540429043,
+    "avg_duration_min": 12.931369389438943,
     "median_duration_min": 12.642833333333334,
     "min_duration_min": 0.048766666666666666,
     "max_duration_min": 20.6855,
@@ -697,7 +676,7 @@
   },
   "slave-to-the-traffic-light": {
     "track_count": 288,
-    "avg_duration_min": 9.917194907407408,
+    "avg_duration_min": 9.917061342592593,
     "median_duration_min": 10.135516666666666,
     "min_duration_min": 2.3096666666666668,
     "max_duration_min": 16.732583333333334,
@@ -727,7 +706,7 @@
   },
   "carini": {
     "track_count": 162,
-    "avg_duration_min": 10.84843497942387,
+    "avg_duration_min": 10.848166358024692,
     "median_duration_min": 9.24255,
     "min_duration_min": 1.00615,
     "max_duration_min": 40.0744,
@@ -809,7 +788,7 @@
   },
   "sand": {
     "track_count": 165,
-    "avg_duration_min": 12.339448484848486,
+    "avg_duration_min": 12.339042525252525,
     "median_duration_min": 10.824,
     "min_duration_min": 1.1288,
     "max_duration_min": 39.72591666666667,
@@ -835,7 +814,7 @@
   },
   "twist": {
     "track_count": 191,
-    "avg_duration_min": 10.394553315881327,
+    "avg_duration_min": 10.394148865619545,
     "median_duration_min": 9.39625,
     "min_duration_min": 1.027,
     "max_duration_min": 24.0296,
@@ -850,7 +829,7 @@
   },
   "split-open-and-melt": {
     "track_count": 348,
-    "avg_duration_min": 11.053663362068965,
+    "avg_duration_min": 11.051360488505747,
     "median_duration_min": 10.737633333333333,
     "min_duration_min": 1.2899166666666666,
     "max_duration_min": 31.4471,
@@ -876,7 +855,7 @@
   },
   "maze": {
     "track_count": 349,
-    "avg_duration_min": 10.410835959885388,
+    "avg_duration_min": 10.410020200573065,
     "median_duration_min": 10.1357,
     "min_duration_min": 0.08666666666666667,
     "max_duration_min": 17.712683333333334,
@@ -891,7 +870,7 @@
   },
   "weekapaug-groove": {
     "track_count": 510,
-    "avg_duration_min": 7.780510784313726,
+    "avg_duration_min": 7.779898758169935,
     "median_duration_min": 7.209366666666667,
     "min_duration_min": 0.9976333333333334,
     "max_duration_min": 18.2596,
@@ -906,7 +885,7 @@
   },
   "prince-caspian": {
     "track_count": 190,
-    "avg_duration_min": 7.6556301754385965,
+    "avg_duration_min": 7.655073771929824,
     "median_duration_min": 7.5448,
     "min_duration_min": 0.9272,
     "max_duration_min": 16.3352,
@@ -921,7 +900,7 @@
   },
   "tube": {
     "track_count": 199,
-    "avg_duration_min": 6.4089815745393635,
+    "avg_duration_min": 6.408426046901172,
     "median_duration_min": 5.857516666666666,
     "min_duration_min": 1.6172,
     "max_duration_min": 17.554283333333334,
@@ -965,24 +944,9 @@
       }
     ]
   },
-  "possum": {
-    "track_count": 541,
-    "avg_duration_min": 9.350631300061615,
-    "median_duration_min": 9.216866666666666,
-    "min_duration_min": 0.4483333333333333,
-    "max_duration_min": 17.439783333333335,
-    "longest": {
-      "date": "1995-11-29",
-      "duration_min": 17.439783333333335,
-      "venue": "Municipal Auditorium"
-    },
-    "monster_count": 0,
-    "monster_rate": 0.0,
-    "monsters": []
-  },
   "free": {
     "track_count": 241,
-    "avg_duration_min": 9.061980636237898,
+    "avg_duration_min": 9.060882434301522,
     "median_duration_min": 8.673083333333333,
     "min_duration_min": 2.5476666666666667,
     "max_duration_min": 33.173766666666666,
@@ -1100,27 +1064,6 @@
       }
     ]
   },
-  "birds-of-a-feather": {
-    "track_count": 145,
-    "avg_duration_min": 8.62689287356322,
-    "median_duration_min": 7.6588,
-    "min_duration_min": 4.895783333333333,
-    "max_duration_min": 25.391016666666665,
-    "longest": {
-      "date": "1999-07-23",
-      "duration_min": 25.391016666666665,
-      "venue": "Polaris Amphitheater"
-    },
-    "monster_count": 1,
-    "monster_rate": 0.006896551724137931,
-    "monsters": [
-      {
-        "date": "1999-07-23",
-        "duration_min": 25.4,
-        "venue": "Polaris Amphitheater"
-      }
-    ]
-  },
   "steam": {
     "track_count": 70,
     "avg_duration_min": 8.955581666666667,
@@ -1131,21 +1074,6 @@
       "date": "2017-12-30",
       "duration_min": 14.283316666666666,
       "venue": "Madison Square Garden"
-    },
-    "monster_count": 0,
-    "monster_rate": 0.0,
-    "monsters": []
-  },
-  "cities": {
-    "track_count": 107,
-    "avg_duration_min": 8.014848442367601,
-    "median_duration_min": 6.858666666666666,
-    "min_duration_min": 0.7111333333333333,
-    "max_duration_min": 23.1505,
-    "longest": {
-      "date": "1997-08-10",
-      "duration_min": 23.1505,
-      "venue": "Deer Creek Music Center"
     },
     "monster_count": 0,
     "monster_rate": 0.0,
@@ -1174,8 +1102,8 @@
   },
   "theme-from-the-bottom": {
     "track_count": 199,
-    "avg_duration_min": 9.89654472361809,
-    "median_duration_min": 9.5132,
+    "avg_duration_min": 9.89600594639866,
+    "median_duration_min": 9.492883333333333,
     "min_duration_min": 6.8053333333333335,
     "max_duration_min": 24.206,
     "longest": {
@@ -1189,7 +1117,7 @@
   },
   "limb-by-limb": {
     "track_count": 164,
-    "avg_duration_min": 9.474560264227643,
+    "avg_duration_min": 9.474116260162601,
     "median_duration_min": 9.130666666666666,
     "min_duration_min": 3.4080333333333335,
     "max_duration_min": 16.576283333333333,
@@ -1204,7 +1132,7 @@
   },
   "ya-mar": {
     "track_count": 231,
-    "avg_duration_min": 8.173835281385282,
+    "avg_duration_min": 8.172845887445888,
     "median_duration_min": 7.59075,
     "min_duration_min": 3.9257666666666666,
     "max_duration_min": 18.84335,
