@@ -304,6 +304,27 @@
       }
     ]
   },
+  "harry-hood": {
+    "track_count": 436,
+    "avg_duration_min": 13.38926616972477,
+    "median_duration_min": 13.266983333333334,
+    "min_duration_min": 2.5425833333333334,
+    "max_duration_min": 29.589033333333333,
+    "longest": {
+      "date": "2003-07-25",
+      "duration_min": 29.589033333333333,
+      "venue": "Verizon Wireless Amphitheatre - Charlotte"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.0022935779816513763,
+    "monsters": [
+      {
+        "date": "2003-07-25",
+        "duration_min": 29.6,
+        "venue": "Verizon Wireless Amphitheatre - Charlotte"
+      }
+    ]
+  },
   "ruby-waves": {
     "track_count": 47,
     "avg_duration_min": 16.601554609929078,
@@ -944,6 +965,21 @@
       }
     ]
   },
+  "possum": {
+    "track_count": 541,
+    "avg_duration_min": 9.350217406038201,
+    "median_duration_min": 9.216866666666666,
+    "min_duration_min": 0.4483333333333333,
+    "max_duration_min": 17.439783333333335,
+    "longest": {
+      "date": "1995-11-29",
+      "duration_min": 17.439783333333335,
+      "venue": "Municipal Auditorium"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
   "free": {
     "track_count": 241,
     "avg_duration_min": 9.060882434301522,
@@ -1064,6 +1100,27 @@
       }
     ]
   },
+  "birds-of-a-feather": {
+    "track_count": 145,
+    "avg_duration_min": 8.626637701149425,
+    "median_duration_min": 7.6588,
+    "min_duration_min": 4.895783333333333,
+    "max_duration_min": 25.391016666666665,
+    "longest": {
+      "date": "1999-07-23",
+      "duration_min": 25.391016666666665,
+      "venue": "Polaris Amphitheater"
+    },
+    "monster_count": 1,
+    "monster_rate": 0.006896551724137931,
+    "monsters": [
+      {
+        "date": "1999-07-23",
+        "duration_min": 25.4,
+        "venue": "Polaris Amphitheater"
+      }
+    ]
+  },
   "steam": {
     "track_count": 70,
     "avg_duration_min": 8.955581666666667,
@@ -1074,6 +1131,21 @@
       "date": "2017-12-30",
       "duration_min": 14.283316666666666,
       "venue": "Madison Square Garden"
+    },
+    "monster_count": 0,
+    "monster_rate": 0.0,
+    "monsters": []
+  },
+  "cities": {
+    "track_count": 107,
+    "avg_duration_min": 8.014848442367601,
+    "median_duration_min": 6.858666666666666,
+    "min_duration_min": 0.7111333333333333,
+    "max_duration_min": 23.1505,
+    "longest": {
+      "date": "1997-08-10",
+      "duration_min": 23.1505,
+      "venue": "Deer Creek Music Center"
     },
     "monster_count": 0,
     "monster_rate": 0.0,
